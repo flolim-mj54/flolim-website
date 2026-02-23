@@ -31,10 +31,10 @@ const Location = () => {
             오시는 길 <span className="text-lg text-slate-400 font-normal tracking-widest uppercase ml-2">Location</span>
           </h2>
           
-          {/* 🚀 구글 지도 공식 임베드 (천안G1비즈캠퍼스 완벽 연동) */}
+          {/* 🚀 구글 지도 공식 임베드 (진짜 주소) */}
           <div className="w-full h-[400px] border border-slate-300 mb-8 shadow-inner bg-slate-200 relative overflow-hidden">
             <iframe 
-              src="https://maps.google.com/maps?q=충남+천안시+서북구+2공단4로+40-11&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+              src="https://maps.google.com/maps?q=천안G1비즈캠퍼스&hl=ko&z=15&output=embed" 
               width="100%" 
               height="100%" 
               style={{ border: 0 }} 
@@ -43,6 +43,7 @@ const Location = () => {
               referrerPolicy="no-referrer-when-downgrade"
               title="주식회사 플로림 오시는 길"
             ></iframe>
+          </div>
           </div>
 
           <div className="bg-slate-50 border border-slate-200 p-8 mb-10">
