@@ -2,37 +2,39 @@ import React, { useEffect, useRef, useState } from "react";
 
 const Location = () => {
   const [mapStatus, setMapStatus] = useState("🔄 지도를 불러오는 중입니다...");
-  // 💡 리액트 전용 자석(useRef): 지도가 들어갈 빈 공간을 절대 놓치지 않게 꽉 잡아줍니다.
   const mapRef = useRef(null);
 
   useEffect(() => {
+    // 💡 대표님의 완벽한 진짜 키입니다.
     const KAKAO_API_KEY = "97f2f1eb9375c07d206cdc3a6dd64b20";
 
-    const drawMap = () => {
-      window.kakao.maps.load(() => {
-        if (!mapRef.current) return;
+    const initMap = () => {
+      if (window.kakao && window.kakao.maps && window.kakao.maps.load) {
+        window.kakao.maps.load(() => {
+          if (!mapRef.current) return;
 
-        const position = new window.kakao.maps.LatLng(36.8378, 127.1328);
-        const map = new window.kakao.maps.Map(mapRef.current, { center: position, level: 3 });
-        const marker = new window.kakao.maps.Marker({ position });
-        marker.setMap(map);
+          const position = new window.kakao.maps.LatLng(36.8378, 127.1328);
+          const map = new window.kakao.maps.Map(mapRef.current, { center: position, level: 3 });
+          const marker = new window.kakao.maps.Marker({ position });
+          marker.setMap(map);
 
-        const infowindow = new window.kakao.maps.InfoWindow({
-            content: '<div style="padding:5px 10px; font-size:14px; font-weight:bold; color:#1eb4c8; text-align:center; border:none;">주식회사 플로림</div>'
+          const infowindow = new window.kakao.maps.InfoWindow({
+              content: '<div style="padding:5px 10px; font-size:14px; font-weight:bold; color:#1eb4c8; text-align:center; border:none;">주식회사 플로림</div>'
+          });
+          infowindow.open(map, marker);
+
+          setMapStatus("성공"); 
         });
-        infowindow.open(map, marker);
-
-        setMapStatus("성공"); // 지도 그리기 성공! 글씨 숨김
-      });
+      }
     };
 
-    // 1. 이미 스크립트가 로드되어 있다면 바로 그리기
+    // 1. 혹시 이미 로드된 지도가 있다면 바로 그리기
     if (window.kakao && window.kakao.maps) {
-      drawMap();
+      initMap();
       return;
     }
 
-    // 2. 스크립트가 없다면 안전하게 다운로드 시작 (도메인 등록 완료되었으니 무조건 성공함!)
+    // 2. 지도가 없다면 딱 한 번만! 깔끔하게 새로 다운로드
     const scriptId = "kakao-map-script";
     let script = document.getElementById(scriptId);
 
@@ -41,20 +43,19 @@ const Location = () => {
       script.id = scriptId;
       script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${KAKAO_API_KEY}&autoload=false`;
       script.async = true;
+
+      // 다운로드가 끝나면 그리기 함수 실행!
+      script.onload = () => initMap();
+      
+      script.onerror = () => {
+        setMapStatus("❌ 스크립트 로드 실패");
+      };
+
       document.head.appendChild(script);
+    } else {
+      // 이미 다운로드 중이라면 다 끝날 때까지 기다리기
+      script.addEventListener("load", initMap);
     }
-
-    // 3. 스크립트 다운로드가 끝나면 무조건 지도 그리기 실행!
-    const handleLoad = () => drawMap();
-    const handleError = () => setMapStatus("❌ 스크립트 다운로드 실패 (인터넷 상태를 확인해주세요)");
-
-    script.addEventListener("load", handleLoad);
-    script.addEventListener("error", handleError);
-
-    return () => {
-      script.removeEventListener("load", handleLoad);
-      script.removeEventListener("error", handleError);
-    };
   }, []);
 
   return (
@@ -87,7 +88,6 @@ const Location = () => {
             오시는 길 <span className="text-lg text-slate-400 font-normal tracking-widest uppercase ml-2">Location</span>
           </h2>
           
-          {/* 🚀 지도가 들어갈 도화지 (자석 mapRef 장착!) */}
           <div className="w-full h-[400px] bg-slate-200 border border-slate-300 mb-8 relative overflow-hidden flex items-center justify-center text-center shadow-inner">
             {mapStatus !== "성공" && (
               <div className="text-slate-700 font-bold text-lg z-10 p-4">
