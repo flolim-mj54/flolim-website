@@ -68,13 +68,6 @@ const SmartLedIntro = () => {
             </ul>
           </div>
 
-          <div className="mt-6 border border-slate-300 bg-slate-50 p-5">
-            <h4 className="text-slate-800 font-bold mb-2">기술 지원 및 문의</h4>
-            <div className="text-[#1eb4c8] font-black text-xl mb-1">
-              02-1234-5678
-            </div>
-            <div className="text-[12px] text-slate-500">info@flolim.com</div>
-          </div>
         </aside>
 
         {/* 3. 오른쪽 메인 본문 */}

@@ -62,14 +62,6 @@ const ContactUs = () => {
             </ul>
           </div>
           
-          <div className="mt-6 border border-slate-300 bg-slate-50 p-5">
-            <h4 className="text-slate-800 font-bold mb-4 border-b border-slate-200 pb-2">Direct Contact</h4>
-            <div className="space-y-3 text-[13px] text-slate-600">
-              <p><span className="font-bold text-slate-800">대표 전화:</span><br/>02-1234-5678</p>
-              <p><span className="font-bold text-slate-800">이메일:</span><br/>info@flolim.com</p>
-              <p><span className="font-bold text-slate-800">본사 주소:</span><br/>서울특별시 OO구 OO대로 123 플로림타워 11층</p>
-            </div>
-          </div>
         </aside>
 
         <section className="flex-1 min-w-0">
