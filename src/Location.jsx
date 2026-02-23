@@ -1,6 +1,63 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 const Location = () => {
+  const mapElement = useRef(null);
+
+  useEffect(() => {
+    // 💡 네이버 클라우드에서 발급받은 Client ID를 아래 따옴표 안에 넣어주세요!
+    const NAVER_CLIENT_ID = "HkZop8QP8lCc2wUc8EKeOF2T9u5jMMbayjDIESzb";
+
+    const drawMap = () => {
+      // 도화지나 네이버 스크립트가 아직 없으면 대기
+      if (!mapElement.current || !window.naver || !window.naver.maps) return;
+
+      // 천안G1비즈캠퍼스 좌표
+      const location = new window.naver.maps.LatLng(36.8378, 127.1328); 
+      
+      const mapOptions = {
+        center: location,
+        zoom: 16, // 네이버 지도는 16 레벨이 건물이 잘 보이고 적당합니다.
+        zoomControl: true,
+        zoomControlOptions: {
+          position: window.naver.maps.Position.TOP_RIGHT,
+        },
+      };
+
+      // 지도 생성
+      const map = new window.naver.maps.Map(mapElement.current, mapOptions);
+
+      // 마커(핀) 꽂기
+      const marker = new window.naver.maps.Marker({
+        position: location,
+        map: map,
+      });
+
+      // 마커 위에 회사 이름 예쁘게 띄우기
+      const infoWindow = new window.naver.maps.InfoWindow({
+        content: '<div style="padding:10px 15px; font-size:14px; font-weight:bold; color:#1eb4c8; text-align:center; border:none; letter-spacing:-0.5px;">주식회사 플로림</div>',
+        backgroundColor: "#ffffff",
+        borderColor: "#cbd5e1",
+        borderWidth: 1,
+        anchorSize: new window.naver.maps.Size(10, 10),
+      });
+      
+      infoWindow.open(map, marker);
+    };
+
+    // 1. 이미 네이버 스크립트가 다운로드되어 있다면 바로 그리기
+    if (window.naver && window.naver.maps) {
+      drawMap();
+    } else {
+      // 2. 스크립트가 없다면 안전하게 다운로드 후 그리기
+      const script = document.createElement("script");
+      script.src = `https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${NAVER_CLIENT_ID}`;
+      script.async = true;
+      document.head.appendChild(script);
+
+      script.onload = () => drawMap();
+    }
+  }, []);
+
   return (
     <div className="w-full bg-white font-sans text-slate-800 pb-20">
       <div className="w-full bg-slate-50 py-12 border-b border-slate-200 border-t-4 border-t-[#1eb4c8]">
@@ -31,18 +88,9 @@ const Location = () => {
             오시는 길 <span className="text-lg text-slate-400 font-normal tracking-widest uppercase ml-2">Location</span>
           </h2>
           
-          {/* 🚀 구글 지도 공식 퍼가기(Embed) 전용 진짜 주소 */}
-          <div className="w-full h-[400px] border border-slate-300 mb-8 overflow-hidden bg-slate-200">
-            <iframe 
-              src="https://maps.google.com/maps?q=천안G1비즈캠퍼스&t=&z=15&ie=UTF8&iwloc=&output=embed"
-              width="100%" 
-              height="100%" 
-              style={{ border: 0 }} 
-              allowFullScreen=""
-              loading="lazy" 
-              referrerPolicy="no-referrer-when-downgrade"
-              title="주식회사 플로림 오시는 길"
-            ></iframe>
+          {/* 🚀 네이버 지도가 그려질 도화지 */}
+          <div className="w-full h-[400px] border border-slate-300 mb-8 overflow-hidden bg-slate-100 relative">
+            <div ref={mapElement} style={{ width: "100%", height: "100%" }}></div>
           </div>
 
           <div className="bg-slate-50 border border-slate-200 p-8 mb-10">
