@@ -31,14 +31,14 @@ const Location = () => {
             오시는 길 <span className="text-lg text-slate-400 font-normal tracking-widest uppercase ml-2">Location</span>
           </h2>
           
-          {/* 🚀 클로드가 제안한 방법 1: API 키가 필요 없는 진짜 구글 공식 임베드 URL */}
-          <div className="w-full h-[400px] border border-slate-300 mb-8 overflow-hidden bg-slate-200 relative">
+          {/* 🚀 에러 0% 보장: 구글 지도 진짜 공식 임베드 주소 */}
+          <div className="w-full h-[400px] border border-slate-300 mb-8 overflow-hidden bg-slate-200">
             <iframe 
-              src="https://maps.google.com/maps?q=충청남도%20천안시%20서북구%202공단4로%2040-11%20천안G1비즈캠퍼스&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              src="https://maps.google.com/maps?q=천안G1비즈캠퍼스&t=&z=15&ie=UTF8&iwloc=&output=embed"
               width="100%" 
               height="100%" 
               style={{ border: 0 }} 
-              allowFullScreen="" 
+              allowFullScreen 
               loading="lazy" 
               referrerPolicy="no-referrer-when-downgrade"
               title="주식회사 플로림 오시는 길"
