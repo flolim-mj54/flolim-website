@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 
 const ContactUs = () => {
+  // 메일 전송 상태를 보여주기 위한 변수
   const [result, setResult] = useState("");
 
-  // 🚀 메일 발송 기능 (디자인은 건드리지 않고 기능만 살렸습니다)
+  // 메일 전송 로직
   const onSubmit = async (event) => {
     event.preventDefault();
     setResult("메일을 전송하는 중입니다. 잠시만 기다려주세요...");
@@ -23,7 +24,7 @@ const ContactUs = () => {
 
       if (data.success) {
         setResult("✅ 문의가 성공적으로 접수되었습니다! 담당자가 확인 후 연락드리겠습니다.");
-        event.target.reset(); 
+        event.target.reset(); // 전송 성공 시 폼 비우기
       } else {
         setResult("❌ 전송에 실패했습니다. 이메일(moojeong54@flolim.com)로 직접 문의해 주세요.");
       }
@@ -44,61 +45,102 @@ const ContactUs = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 flex flex-col md:flex-row gap-10">
-        
-        {/* 🚀 선임연구원님이 지시하신 '자료실', '온라인 문의' 메뉴로 완벽 복구했습니다 */}
         <aside className="w-full md:w-64 flex-shrink-0">
           <div className="border border-slate-300">
             <div className="bg-[#1eb4c8] text-white py-4 px-5">
               <h2 className="text-lg font-bold tracking-tight">고객지원</h2>
             </div>
             <ul className="flex flex-col">
-              <li className="border-b border-slate-200"><a href="#" className="flex items-center justify-between px-5 py-4 text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all">자료실</a></li>
-              <li className="border-b border-slate-200 last:border-0"><a href="#" className="flex items-center justify-between px-5 py-4 bg-cyan-50 text-[#1eb4c8] font-bold">온라인 문의 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="square" strokeLinejoin="miter" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg></a></li>
+              <li className="border-b border-slate-200">
+                <a href="#" className="flex items-center justify-between px-5 py-4 text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all">자료실</a>
+              </li>
+              <li className="border-b border-slate-200 last:border-0">
+                <a href="#" className="flex items-center justify-between px-5 py-4 bg-cyan-50 text-[#1eb4c8] font-bold">
+                  온라인 문의 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="square" strokeLinejoin="miter" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
+                </a>
+              </li>
             </ul>
+          </div>
+          
+          <div className="mt-6 border border-slate-300 bg-slate-50 p-5">
+            <h4 className="text-slate-800 font-bold mb-4 border-b border-slate-200 pb-2">Direct Contact</h4>
+            <div className="space-y-3 text-[13px] text-slate-600">
+              <p><span className="font-bold text-slate-800">대표 전화:</span><br/>02-1234-5678</p>
+              <p><span className="font-bold text-slate-800">이메일:</span><br/>info@flolim.com</p>
+              <p><span className="font-bold text-slate-800">본사 주소:</span><br/>서울특별시 OO구 OO대로 123 플로림타워 11층</p>
+            </div>
           </div>
         </aside>
 
-        {/* 🚀 원래의 깔끔한 폼 디자인 뼈대 유지 + 기능 연결 */}
         <section className="flex-1 min-w-0">
-          <h2 className="text-3xl font-black text-slate-800 tracking-tight mb-6 pb-4 border-b-2 border-slate-200">
+          <h2 className="text-3xl font-black text-slate-800 tracking-tight mb-8 pb-4 border-b-2 border-slate-200">
             온라인 문의 <span className="text-lg text-slate-400 font-normal tracking-widest uppercase ml-2">Contact Us</span>
           </h2>
-          <p className="text-slate-600 mb-8">플로림에 궁금하신 점이나 제휴 관련 문의를 남겨주시면, 신속하게 답변해 드리겠습니다.</p>
+          <p className="text-slate-600 mb-8 break-keep">
+            솔루션 도입, 시스템 구축 비용, ESCO 연계 사업 등 플로림의 서비스에 대해 궁금하신 점을 남겨주시면 담당자가 신속하게 답변해 드리겠습니다.
+          </p>
 
-          <form onSubmit={onSubmit} className="bg-white border border-slate-200 p-8 shadow-sm">
-            <div className="space-y-6">
+          {/* 🚀 onSubmit 이벤트 연결 */}
+          <form onSubmit={onSubmit} className="bg-slate-50 border border-slate-200 p-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div>
-                <label className="block text-sm font-bold text-slate-700 mb-2">이름 또는 회사명 <span className="text-red-500">*</span></label>
-                <input type="text" name="name" required className="w-full px-4 py-3 border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#1eb4c8]" placeholder="홍길동 / 주식회사 플로림" />
+                <label className="block text-sm font-bold text-slate-700 mb-2">회사명/기관명 <span className="text-red-500">*</span></label>
+                <input type="text" name="company" required className="w-full border border-slate-300 px-4 py-2 focus:outline-none focus:border-[#1eb4c8] focus:ring-1 focus:ring-[#1eb4c8]" placeholder="예) OO시청, OO건설" />
               </div>
-
               <div>
-                <label className="block text-sm font-bold text-slate-700 mb-2">회신받으실 이메일 <span className="text-red-500">*</span></label>
-                <input type="email" name="email" required className="w-full px-4 py-3 border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#1eb4c8]" placeholder="example@email.com" />
+                <label className="block text-sm font-bold text-slate-700 mb-2">담당자 성함 <span className="text-red-500">*</span></label>
+                <input type="text" name="name" required className="w-full border border-slate-300 px-4 py-2 focus:outline-none focus:border-[#1eb4c8] focus:ring-1 focus:ring-[#1eb4c8]" placeholder="홍길동" />
               </div>
-
               <div>
-                <label className="block text-sm font-bold text-slate-700 mb-2">연락처</label>
-                <input type="tel" name="phone" className="w-full px-4 py-3 border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#1eb4c8]" placeholder="010-0000-0000" />
+                <label className="block text-sm font-bold text-slate-700 mb-2">연락처 <span className="text-red-500">*</span></label>
+                <input type="text" name="phone" required className="w-full border border-slate-300 px-4 py-2 focus:outline-none focus:border-[#1eb4c8] focus:ring-1 focus:ring-[#1eb4c8]" placeholder="010-0000-0000" />
               </div>
-
               <div>
-                <label className="block text-sm font-bold text-slate-700 mb-2">문의 내용 <span className="text-red-500">*</span></label>
-                <textarea name="message" required rows="6" className="w-full px-4 py-3 border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#1eb4c8] resize-none" placeholder="문의하실 내용을 상세히 적어주세요."></textarea>
+                <label className="block text-sm font-bold text-slate-700 mb-2">이메일 <span className="text-red-500">*</span></label>
+                <input type="email" name="email" required className="w-full border border-slate-300 px-4 py-2 focus:outline-none focus:border-[#1eb4c8] focus:ring-1 focus:ring-[#1eb4c8]" placeholder="example@email.com" />
               </div>
+            </div>
+            
+            <div className="mb-6">
+              <label className="block text-sm font-bold text-slate-700 mb-2">관심 분야 (선택)</label>
+              <select name="interest" className="w-full border border-slate-300 px-4 py-2 focus:outline-none focus:border-[#1eb4c8] focus:ring-1 focus:ring-[#1eb4c8] bg-white text-slate-600">
+                <option value="선택 안함">선택해주세요</option>
+                <option value="가로등 제어 시스템">가로등 제어 시스템 (LoRa, NB-IoT)</option>
+                <option value="스마트 LED 제어 시스템">스마트 LED 제어 시스템</option>
+                <option value="ESCO 연계 사업">켑코이에스(ESCO) 연계 사업 문의</option>
+                <option value="기타 문의">기타 시스템 구축 및 제휴 문의</option>
+              </select>
+            </div>
 
-              {/* 결과 출력 메시지창 */}
-              {result && (
-                <div className={`p-4 font-bold ${result.includes("성공") ? "text-green-600 bg-green-50 border border-green-200" : "text-[#1eb4c8] bg-cyan-50 border border-cyan-200"}`}>
-                  {result}
-                </div>
-              )}
+            <div className="mb-8">
+              <label className="block text-sm font-bold text-slate-700 mb-2">문의 내용 <span className="text-red-500">*</span></label>
+              <textarea name="message" required rows="5" className="w-full border border-slate-300 px-4 py-2 focus:outline-none focus:border-[#1eb4c8] focus:ring-1 focus:ring-[#1eb4c8] resize-none" placeholder="문의하실 내용을 상세히 적어주세요."></textarea>
+            </div>
 
-              <div className="pt-4 text-center">
-                <button type="submit" className="bg-[#1eb4c8] hover:bg-[#199ba8] text-white font-bold py-4 px-12 transition-colors duration-200 shadow-md">
-                  문의 접수하기
-                </button>
+            <div className="mb-8 p-4 bg-white border border-slate-200 text-sm text-slate-500 h-24 overflow-y-auto">
+              [개인정보 수집 및 이용 동의]<br/>
+              1. 수집 목적: 문의 내역 확인 및 답변 처리<br/>
+              2. 수집 항목: 이름, 연락처, 이메일, 소속<br/>
+              3. 보유 및 이용 기간: 문의 처리 완료 후 6개월간 보관 후 파기
+            </div>
+            
+            {/* 결과 메시지 출력 영역 */}
+            {result && (
+              <div className={`mb-4 p-4 font-bold text-center ${result.includes("성공") ? "text-green-600 bg-green-50 border border-green-200" : "text-[#1eb4c8] bg-cyan-50 border border-cyan-200"}`}>
+                {result}
               </div>
+            )}
+
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+              <label className="flex items-center text-sm font-bold text-slate-700 cursor-pointer">
+                {/* 🚀 required 추가로 체크 필수 처리 */}
+                <input type="checkbox" required className="mr-2 w-4 h-4 text-[#1eb4c8] focus:ring-[#1eb4c8] border-slate-300" />
+                개인정보 수집 및 이용에 동의합니다. (필수)
+              </label>
+              {/* 🚀 type을 submit으로 변경 */}
+              <button type="submit" className="bg-[#1eb4c8] hover:bg-[#189aa9] text-white font-bold px-10 py-3 transition-colors w-full md:w-auto">
+                문의 접수하기
+              </button>
             </div>
           </form>
         </section>
