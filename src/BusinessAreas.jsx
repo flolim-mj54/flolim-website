@@ -1,6 +1,9 @@
 import React from "react";
+// 🚀 주소 이동을 담당하는 Link 컴포넌트를 가져옵니다.
+import { Link } from "react-router-dom";
 
 const BusinessAreas = () => {
+  // 🚀 각 사업 분야에 이동할 목적지 주소(path)를 추가했습니다.
   const areas = [
     {
       title: "LoRa-Mesh 가로등 제어",
@@ -12,6 +15,7 @@ const BusinessAreas = () => {
         "Mesh 토폴로지 통신 안정성",
         "고신뢰성 무선 제어 단말기 적용",
       ],
+      path: "/lora", // 👈 LoRa 상세 페이지로 이동
     },
     {
       title: "NB-IoT 스마트 가로등 제어",
@@ -23,6 +27,7 @@ const BusinessAreas = () => {
         "음영 지역 없는 전국망 통신",
         "초기 인프라 구축 비용 절감",
       ],
+      path: "/nbiot", // 👈 NB-IoT 상세 페이지로 이동
     },
     {
       title: "스마트 LED 전등 제어",
@@ -34,6 +39,7 @@ const BusinessAreas = () => {
         "켑코이에스(ESCO) 연계",
         "자체 제작 맞춤형 컨트롤러",
       ],
+      path: "/led-intro", // 👈 스마트 LED 개요 페이지로 이동
     },
   ];
 
@@ -55,9 +61,11 @@ const BusinessAreas = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-b border-l border-slate-200">
           {areas.map((area, index) => (
-            <div
+            // 🚀 기존 div 태그를 Link 태그로 변경하여 클릭 영역을 활성화했습니다. (block 속성 추가)
+            <Link
               key={index}
-              className="group border-r border-t border-slate-200 p-10 hover:bg-slate-50 transition-colors duration-300 relative overflow-hidden cursor-pointer"
+              to={area.path}
+              className="block group border-r border-t border-slate-200 p-10 hover:bg-slate-50 transition-colors duration-300 relative overflow-hidden cursor-pointer"
             >
               <div className="absolute top-0 left-0 w-full h-1 bg-[#1eb4c8] transform -translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
               <h4 className="text-[#1eb4c8] text-xs font-bold tracking-widest mb-2">
@@ -80,11 +88,17 @@ const BusinessAreas = () => {
                   </li>
                 ))}
               </ul>
-            </div>
+              
+              {/* 🚀 사용자에게 클릭할 수 있음을 알려주는 화살표 아이콘(Call to Action)을 살짝 추가했습니다 */}
+              <div className="absolute bottom-6 right-8 text-slate-300 group-hover:text-[#1eb4c8] transition-colors duration-300">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="square" strokeLinejoin="miter" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+              </div>
+            </Link>
           ))}
         </div>
       </div>
     </section>
   );
 };
+
 export default BusinessAreas;
