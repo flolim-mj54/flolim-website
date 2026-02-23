@@ -31,10 +31,10 @@ const Location = () => {
             오시는 길 <span className="text-lg text-slate-400 font-normal tracking-widest uppercase ml-2">Location</span>
           </h2>
           
-          {/* 🚀 구글 지도 공식 임베드 (진짜 주소) */}
+          {/* 🚀 진짜 구글 지도 공식 임베드 (천안G1비즈캠퍼스) */}
           <div className="w-full h-[400px] border border-slate-300 mb-8 shadow-inner bg-slate-200 relative overflow-hidden">
             <iframe 
-              src="https://maps.google.com/maps?q=천안G1비즈캠퍼스&hl=ko&z=15&output=embed" 
+              src="https://maps.google.com/maps?q=천안G1비즈캠퍼스&t=&z=15&ie=UTF8&iwloc=&output=embed" 
               width="100%" 
               height="100%" 
               style={{ border: 0 }} 
@@ -44,7 +44,6 @@ const Location = () => {
               title="주식회사 플로림 오시는 길"
             ></iframe>
           </div>
-          </div>
 
           <div className="bg-slate-50 border border-slate-200 p-8 mb-10">
             <h3 className="text-xl font-black text-slate-800 mb-6">주식회사 플로림 (FLOLIM)</h3>
@@ -53,7 +52,7 @@ const Location = () => {
                 <span className="w-24 font-bold text-slate-800 shrink-0">본사 주소</span> 
                 <div>
                   <span className="text-slate-500 mr-2">[도로명]</span>충남 천안시 서북구 2공단4로 40-11 천안G1비즈캠퍼스 1223호 주식회사 플로림 <br/>
-                  <span className="text-slate-500 mr-2">[지   번]</span>충남 천안시 서북구 성성동 1001 천안G1비즈캠퍼스 1223호 주식회사 플로림
+                  <span className="text-slate-500 mr-2">[지   번]</span>충남 천안시 서북구 성성동 1001 천안G1비즈캠퍼스 1223호 주식회사 플로림
                 </div>
               </li>
               <li className="flex items-start"><span className="w-24 font-bold text-slate-800 shrink-0 mt-1">대표 전화</span><span className="mt-1 text-lg font-bold text-[#1eb4c8]">1660-0687</span></li>
