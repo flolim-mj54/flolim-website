@@ -5,7 +5,7 @@ const Location = () => {
 
   useEffect(() => {
     // 💡 네이버 클라우드에서 발급받은 Client ID를 아래 따옴표 안에 넣어주세요!
-    const NAVER_CLIENT_ID = "HkZop8QP8lCc2wUc8EKeOF2T9u5jMMbayjDIESzb";
+    const NAVER_CLIENT_ID = "jmxph75p6j";
 
     const drawMap = () => {
       // 도화지나 네이버 스크립트가 아직 없으면 대기
