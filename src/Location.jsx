@@ -31,17 +31,18 @@ const Location = () => {
             오시는 길 <span className="text-lg text-slate-400 font-normal tracking-widest uppercase ml-2">Location</span>
           </h2>
           
-          {/* 🚀 진짜 구글 지도 공식 임베드 (천안G1비즈캠퍼스) */}
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3192.739527745712!2d127.1184644762714!3d36.84871376496261!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b270050a5778d%3A0x5a6fb6c99cd8e47e!2z7LKc7JWIRzHruYTspojsuqDtjbzsiqQ!5e0!3m2!1sko!2skr!4v1771816430116!5m2!1sko!2skr"
-            width="100%" 
-            height="100%" 
-            style={{ border: 0 }} 
-            allowFullScreen="" 
-            loading="lazy" 
-            referrerPolicy="no-referrer-when-downgrade"
-            title="주식회사 플로림 오시는 길"
-          />
+          <div className="w-full h-[400px] border border-slate-300 mb-8 overflow-hidden">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3192.739527745712!2d127.1184644762714!3d36.84871376496261!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b270050a5778d%3A0x5a6fb6c99cd8e47e!2z7LKc7JWIRzHruYTspojsuqDtjbzsiqQ!5e0!3m2!1sko!2skr!4v1771816430116!5m2!1sko!2skr"
+              width="100%" 
+              height="100%" 
+              style={{ border: 0 }} 
+              allowFullScreen 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
+              title="주식회사 플로림 오시는 길"
+            />
+          </div>
           </div>
 
           <div className="bg-slate-50 border border-slate-200 p-8 mb-10">
