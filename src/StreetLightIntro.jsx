@@ -25,35 +25,73 @@ const StreetLightIntro = () => {
             </ul>
           </div>
         </aside>
+        
         <section className="flex-1 min-w-0">
           <h2 className="text-3xl font-black text-slate-800 tracking-tight mb-8 pb-4 border-b-2 border-slate-200">
             가로등 제어 시스템 <span className="text-lg text-slate-400 font-normal tracking-widest uppercase ml-2">Overview</span>
           </h2>
+          
           <div className="mb-14">
             <h3 className="text-2xl font-bold text-[#1eb4c8] border-b border-slate-300 pb-2 mb-6 inline-block pr-8">Overview</h3>
             <p className="text-slate-700 leading-relaxed break-keep text-[15px]">
-              플로림(FLOLIM)의 가로등 제어 시스템은 단순한 점/소등 방식을 넘어 현장 상황과 주변 환경에 맞춰 조명을 능동적으로 제어하는 지능형 통합 관제 솔루션입니다. LoRa-Mesh 및 NB-IoT 등 현장 규모와 예산에 맞는 최적의 통신 방식을 선택하여 인프라를 구축할 수 있으며, 관리자는 중앙 관제 센터에서 수만 개의 가로등 상태를 실시간으로 모니터링하고 제어합니다.
+              기존의 단순한 타이머 기반 점·소등 방식을 넘어, 사물인터넷(IoT) 통신 기술을 활용해 도시의 조명 인프라를 원격으로 통합 관리하는 <b>지능형 관제 솔루션</b>입니다. 
+              <br/><br/>
+              플로림(FLOLIM)의 가로등 제어 시스템은 현장의 지형, 규모, 예산 등 다양한 환경적 요인을 분석하여 <b>LoRa-Mesh(자가망)</b> 또는 <b>NB-IoT(상용망)</b> 등 가장 최적화된 맞춤형 통신 인프라를 설계해 드립니다. 이를 통해 도심의 밤을 더욱 안전하게 밝히는 것은 물론, 획기적인 에너지 절감과 유지보수 효율성을 제공하여 스마트시티의 핵심 기반을 완성합니다.
             </p>
           </div>
+          
           <div className="mb-14">
-            <h3 className="text-2xl font-bold text-[#1eb4c8] border-b border-slate-300 pb-2 mb-6 inline-block pr-8">Feature</h3>
-            <ul className="space-y-3 text-[15px] text-slate-700">
-              <li className="flex items-start"><span className="text-[#1eb4c8] mr-2 font-bold">■</span>스케줄링, 디밍(밝기 조절) 및 센서 연동을 통한 획기적인 에너지 절감</li>
-              <li className="flex items-start"><span className="text-[#1eb4c8] mr-2 font-bold">■</span>고장, 누전, 정전 등 이상 상태 실시간 감지로 유지보수 효율 극대화</li>
-              <li className="flex items-start"><span className="text-[#1eb4c8] mr-2 font-bold">■</span>통신비 없는 LoRa-Mesh 자가망부터 전국망 NB-IoT까지 최적의 인프라 지원</li>
-              <li className="flex items-start"><span className="text-[#1eb4c8] mr-2 font-bold">■</span>직관적인 UI/UX의 웹 기반 대시보드로 PC 및 모바일 원격 통합 관리</li>
+            <h3 className="text-2xl font-bold text-[#1eb4c8] border-b border-slate-300 pb-2 mb-6 inline-block pr-8">Key Benefits</h3>
+            <ul className="space-y-4 text-[15px] text-slate-700">
+              <li className="flex items-start">
+                <span className="text-[#1eb4c8] mr-3 font-bold text-lg mt-[-2px]">■</span>
+                <div>
+                  <b className="text-slate-800 block mb-1">극대화된 에너지 및 예산 절감</b>
+                  정밀한 디밍(밝기 조절) 제어와 일출·일몰 시간, 날씨 등 주변 환경 데이터를 연동한 스마트 스케줄링으로 불필요한 전력 낭비를 최소화합니다.
+                </div>
+              </li>
+              <li className="flex items-start">
+                <span className="text-[#1eb4c8] mr-3 font-bold text-lg mt-[-2px]">■</span>
+                <div>
+                  <b className="text-slate-800 block mb-1">선제적인 장애 대응 및 유지보수 효율화</b>
+                  누전, 정전, 램프 고장, 통신 단절 등 이상 상태 발생 시 관리자에게 즉각적인 알림(팝업/SMS)을 발송하여 민원 발생 전 신속한 대처가 가능합니다.
+                </div>
+              </li>
+              <li className="flex items-start">
+                <span className="text-[#1eb4c8] mr-3 font-bold text-lg mt-[-2px]">■</span>
+                <div>
+                  <b className="text-slate-800 block mb-1">유연한 통신 인프라 확장성</b>
+                  설치 현장의 특성에 따라 통신비가 없는 'LoRa 자가망'부터 음영 지역 없는 'NB-IoT 전국망'까지 고객의 요구사항에 맞는 통신 방식을 선택하여 하이브리드 구축이 가능합니다.
+                </div>
+              </li>
+              <li className="flex items-start">
+                <span className="text-[#1eb4c8] mr-3 font-bold text-lg mt-[-2px]">■</span>
+                <div>
+                  <b className="text-slate-800 block mb-1">어디서나 제어하는 웹/모바일 플랫폼</b>
+                  PC 관제 센터뿐만 아니라 스마트폰, 태블릿 등 모바일 환경을 완벽히 지원하는 직관적인 통합 대시보드를 제공하여 시공간의 제약 없는 운영을 지원합니다.
+                </div>
+              </li>
             </ul>
           </div>
+          
           <div className="mb-14">
-            <h3 className="text-2xl font-bold text-[#1eb4c8] border-b border-slate-300 pb-2 mb-6 inline-block pr-8">System Diagram</h3>
-            <div className="w-full bg-slate-50 border border-slate-200 h-[300px] flex flex-col items-center justify-center">
-              <span className="text-slate-400 font-bold tracking-widest mb-4">[ 통합 운영 구조도 이미지 삽입 영역 ]</span>
-              <span className="text-sm text-slate-400">관제 서버 ↔ 통신망 ↔ 가로등 단말기</span>
+            <h3 className="text-2xl font-bold text-[#1eb4c8] border-b border-slate-300 pb-2 mb-6 inline-block pr-8">System Architecture</h3>
+            <div className="w-full bg-slate-50 border border-slate-200 h-[300px] flex flex-col items-center justify-center relative shadow-inner">
+              <span className="text-slate-400 font-bold tracking-widest mb-4 z-10">[ 스마트 가로등 포괄적 시스템 구성도 이미지 삽입 영역 ]</span>
+              <div className="flex items-center space-x-4 text-sm text-slate-500 font-bold z-10">
+                <span className="bg-white px-4 py-2 border border-slate-300 rounded shadow-sm">통합 관제 플랫폼 (웹/모바일)</span>
+                <span>↔</span>
+                <span className="bg-cyan-50 text-[#1eb4c8] px-4 py-2 border border-cyan-200 rounded shadow-sm">무선 통신망 (LoRa / NB-IoT)</span>
+                <span>↔</span>
+                <span className="bg-white px-4 py-2 border border-slate-300 rounded shadow-sm">양방향 무선 제어 단말기 (가로등)</span>
+              </div>
             </div>
           </div>
+          
         </section>
       </div>
     </div>
   );
 };
+
 export default StreetLightIntro;
