@@ -1,20 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect } from "react";
 
 const Location = () => {
-  const [mapStatus, setMapStatus] = useState("🔄 지도를 불러오는 중입니다...");
-  const mapRef = useRef(null);
-
   useEffect(() => {
-    // 💡 대표님의 완벽한 진짜 키입니다.
-    const KAKAO_API_KEY = "97f2f1eb9375c07d206cdc3a6dd64b20";
-
-    const initMap = () => {
+    // 💡 0.5초마다 대문에 지도가 도착했는지 문을 두드려보는 단순 무식한 추적기
+    const checkAndDrawMap = setInterval(() => {
+      // 카카오 지도가 무사히 도착했다면?
       if (window.kakao && window.kakao.maps && window.kakao.maps.load) {
+        clearInterval(checkAndDrawMap); // 확인 끝났으니 추적기 끄기
+
+        // 지도 그리기 시작!
         window.kakao.maps.load(() => {
-          if (!mapRef.current) return;
+          const container = document.getElementById("kakao-map");
+          if (!container) return; // 그릴 도화지가 없으면 스톱
 
           const position = new window.kakao.maps.LatLng(36.8378, 127.1328);
-          const map = new window.kakao.maps.Map(mapRef.current, { center: position, level: 3 });
+          const map = new window.kakao.maps.Map(container, { center: position, level: 3 });
           const marker = new window.kakao.maps.Marker({ position });
           marker.setMap(map);
 
@@ -22,40 +22,12 @@ const Location = () => {
               content: '<div style="padding:5px 10px; font-size:14px; font-weight:bold; color:#1eb4c8; text-align:center; border:none;">주식회사 플로림</div>'
           });
           infowindow.open(map, marker);
-
-          setMapStatus("성공"); 
         });
       }
-    };
+    }, 500); // 0.5초 간격으로 계속 확인
 
-    // 1. 혹시 이미 로드된 지도가 있다면 바로 그리기
-    if (window.kakao && window.kakao.maps) {
-      initMap();
-      return;
-    }
-
-    // 2. 지도가 없다면 딱 한 번만! 깔끔하게 새로 다운로드
-    const scriptId = "kakao-map-script";
-    let script = document.getElementById(scriptId);
-
-    if (!script) {
-      script = document.createElement("script");
-      script.id = scriptId;
-      script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${KAKAO_API_KEY}&autoload=false`;
-      script.async = true;
-
-      // 다운로드가 끝나면 그리기 함수 실행!
-      script.onload = () => initMap();
-      
-      script.onerror = () => {
-        setMapStatus("❌ 스크립트 로드 실패");
-      };
-
-      document.head.appendChild(script);
-    } else {
-      // 이미 다운로드 중이라면 다 끝날 때까지 기다리기
-      script.addEventListener("load", initMap);
-    }
+    // 화면을 나갈 때 추적기 안전하게 끄기
+    return () => clearInterval(checkAndDrawMap);
   }, []);
 
   return (
@@ -88,18 +60,8 @@ const Location = () => {
             오시는 길 <span className="text-lg text-slate-400 font-normal tracking-widest uppercase ml-2">Location</span>
           </h2>
           
-          <div className="w-full h-[400px] bg-slate-200 border border-slate-300 mb-8 relative overflow-hidden flex items-center justify-center text-center shadow-inner">
-            {mapStatus !== "성공" && (
-              <div className="text-slate-700 font-bold text-lg z-10 p-4">
-                {mapStatus}
-              </div>
-            )}
-            <div 
-              ref={mapRef} 
-              className="absolute inset-0 w-full h-full"
-              style={{ opacity: mapStatus === "성공" ? 1 : 0 }}
-            ></div>
-          </div>
+          {/* 🚀 지도가 들어갈 깔끔한 도화지 */}
+          <div id="kakao-map" className="w-full h-[400px] bg-slate-200 border border-slate-300 mb-8 shadow-inner"></div>
 
           <div className="bg-slate-50 border border-slate-200 p-8 mb-10">
             <h3 className="text-xl font-black text-slate-800 mb-6">주식회사 플로림 (FLOLIM)</h3>
