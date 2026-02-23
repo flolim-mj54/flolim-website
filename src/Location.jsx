@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 const Location = () => {
-  const [mapStatus, setMapStatus] = useState("🔄 카카오 서버에 지도를 요청하는 중입니다...");
-
   useEffect(() => {
-    // 💡 대표님의 실제 카카오 JS 키를 완벽히 장착했습니다!
-    const KAKAO_API_KEY = "97f2f1eb9375c07d206cdc3a6dd64b20"; 
-
+    // 대문(index.html)에 지도가 도착할 때까지 0.1초씩 기다렸다가 그립니다!
     const drawMap = () => {
+      if (!window.kakao || !window.kakao.maps) {
+        setTimeout(drawMap, 100); 
+        return;
+      }
+
       window.kakao.maps.load(() => {
         const container = document.getElementById("kakao-map");
         if (!container) return;
@@ -21,39 +22,10 @@ const Location = () => {
             content: '<div style="padding:5px 10px; font-size:14px; font-weight:bold; color:#1eb4c8; text-align:center; border:none;">주식회사 플로림</div>'
         });
         infowindow.open(map, marker);
-
-        setMapStatus("성공"); 
       });
     };
 
-    // 1. 카카오 스크립트 요청
-    let script = document.getElementById("kakao-map-script");
-    if (!script) {
-      script = document.createElement("script");
-      script.id = "kakao-map-script";
-      script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${KAKAO_API_KEY}&autoload=false`;
-      script.async = true;
-      document.head.appendChild(script);
-    }
-
-    // 2. 💡 0.1초 단위 추적기 (리액트 타이밍 꼬임 완벽 방지)
-    let checkCount = 0;
-    const checker = setInterval(() => {
-      // 카카오 객체가 완벽하게 도착했는지 확인!
-      if (window.kakao && window.kakao.maps && window.kakao.maps.load) {
-        clearInterval(checker); // 도착했으면 추적기 끄기
-        drawMap();              // 바로 지도 그리기 실행!
-      }
-      
-      checkCount++;
-      if (checkCount > 50) { // 5초(0.1초 x 50)가 지나도 안 뜨면 에러 띄우기
-        clearInterval(checker);
-        setMapStatus("❌ 카카오 서버 응답 지연! \n(F12를 눌러 Console 탭의 빨간색 에러 메시지를 확인해주세요.)");
-      }
-    }, 100);
-
-    // 3. 화면 밖으로 나갈 때 추적기 안전하게 끄기
-    return () => clearInterval(checker);
+    drawMap();
   }, []);
 
   return (
@@ -86,18 +58,7 @@ const Location = () => {
             오시는 길 <span className="text-lg text-slate-400 font-normal tracking-widest uppercase ml-2">Location</span>
           </h2>
           
-          <div className="w-full h-[400px] bg-slate-200 border border-slate-300 mb-8 relative overflow-hidden flex items-center justify-center text-center shadow-inner p-4">
-            {mapStatus !== "성공" && (
-              <div className="text-slate-700 font-bold text-lg leading-relaxed whitespace-pre-wrap z-10">
-                {mapStatus}
-              </div>
-            )}
-            <div 
-              id="kakao-map" 
-              className="absolute inset-0 w-full h-full"
-              style={{ opacity: mapStatus === "성공" ? 1 : 0 }}
-            ></div>
-          </div>
+          <div id="kakao-map" style={{ width: "100%", height: "400px", backgroundColor: "#e2e8f0", border: "1px solid #cbd5e1", marginBottom: "2rem" }}></div>
 
           <div className="bg-slate-50 border border-slate-200 p-8 mb-10">
             <h3 className="text-xl font-black text-slate-800 mb-6">주식회사 플로림 (FLOLIM)</h3>
