@@ -10,7 +10,7 @@ const Location = () => {
     const drawMap = () => {
       if (!mapElement.current || !window.naver || !window.naver.maps) return;
 
-      const location = new window.naver.maps.LatLng(36.8378, 127.1328); 
+      const location = new window.naver.maps.LatLng(36.848810, 127.121045); 
       
       const mapOptions = {
         center: location,
