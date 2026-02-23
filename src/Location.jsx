@@ -31,20 +31,19 @@ const Location = () => {
             오시는 길 <span className="text-lg text-slate-400 font-normal tracking-widest uppercase ml-2">Location</span>
           </h2>
           
-          {/* 🚀 구글 지도 공식 임베드 (천안G1비즈캠퍼스) */}
-          <div className="w-full h-[400px] border border-slate-300 mb-8 overflow-hidden bg-slate-200">
+          {/* 🚀 클로드가 제안한 방법 1: API 키가 필요 없는 진짜 구글 공식 임베드 URL */}
+          <div className="w-full h-[400px] border border-slate-300 mb-8 overflow-hidden bg-slate-200 relative">
             <iframe 
-              src="https://maps.google.com/maps?q=천안G1비즈캠퍼스&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              src="https://maps.google.com/maps?q=충청남도%20천안시%20서북구%202공단4로%2040-11%20천안G1비즈캠퍼스&t=&z=15&ie=UTF8&iwloc=&output=embed"
               width="100%" 
               height="100%" 
               style={{ border: 0 }} 
-              allowFullScreen 
+              allowFullScreen="" 
               loading="lazy" 
               referrerPolicy="no-referrer-when-downgrade"
               title="주식회사 플로림 오시는 길"
-            />
+            ></iframe>
           </div>
-          {/* ❌ 여기에 있던 불필요한 </div> 태그를 삭제했습니다! */}
 
           <div className="bg-slate-50 border border-slate-200 p-8 mb-10">
             <h3 className="text-xl font-black text-slate-800 mb-6">주식회사 플로림 (FLOLIM)</h3>
