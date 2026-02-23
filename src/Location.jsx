@@ -1,13 +1,6 @@
 import React from "react";
-// 💡 방금 설치한 마스터키 도구들을 불러옵니다!
-import { Map, MapMarker, useKakaoLoader } from "react-kakao-maps-sdk";
 
 const Location = () => {
-  // 💡 이 한 줄이 그동안 속 썩이던 스크립트 다운로드, 에러, 타이밍 문제를 완벽하게 100% 자동 해결합니다.
-  const [loading, error] = useKakaoLoader({
-    appkey: "97f2f1eb9375c07d206cdc3a6dd64b20", 
-  });
-
   return (
     <div className="w-full bg-white font-sans text-slate-800 pb-20">
       <div className="w-full bg-slate-50 py-12 border-b border-slate-200 border-t-4 border-t-[#1eb4c8]">
@@ -38,24 +31,18 @@ const Location = () => {
             오시는 길 <span className="text-lg text-slate-400 font-normal tracking-widest uppercase ml-2">Location</span>
           </h2>
           
-          {/* 🚀 전용 도구를 사용한 완벽한 지도 영역 */}
-          <div className="w-full h-[400px] border border-slate-300 mb-8 shadow-inner relative flex items-center justify-center bg-slate-100">
-            {loading && <div className="text-slate-600 font-bold z-10">지도를 안전하게 불러오는 중입니다...</div>}
-            {error && <div className="text-red-500 font-bold z-10">지도 불러오기 실패</div>}
-            
-            {!loading && !error && (
-              <Map 
-                center={{ lat: 36.8378, lng: 127.1328 }} 
-                style={{ width: "100%", height: "100%" }} 
-                level={3}
-              >
-                <MapMarker position={{ lat: 36.8378, lng: 127.1328 }}>
-                  <div style={{ padding: "5px", color: "#1eb4c8", fontWeight: "bold", textAlign: "center" }}>
-                    주식회사 플로림
-                  </div>
-                </MapMarker>
-              </Map>
-            )}
+          {/* 🚀 구글 지도 임베드 (API 키/설정 전혀 필요 없는 무적의 방식!) */}
+          <div className="w-full h-[400px] border border-slate-300 mb-8 shadow-inner bg-slate-200">
+            <iframe 
+              src="https://maps.google.com/maps?q=충청남도%20천안시%20서북구%202공단4로%2040-11&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+              width="100%" 
+              height="100%" 
+              style={{ border: 0 }} 
+              allowFullScreen="" 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
+              title="주식회사 플로림 오시는 길"
+            ></iframe>
           </div>
 
           <div className="bg-slate-50 border border-slate-200 p-8 mb-10">
@@ -69,7 +56,19 @@ const Location = () => {
                 </div>
               </li>
               <li className="flex items-start"><span className="w-24 font-bold text-slate-800 shrink-0 mt-1">대표 전화</span><span className="mt-1 text-lg font-bold text-[#1eb4c8]">1660-0687</span></li>
+              <li className="flex items-start"><span className="w-24 font-bold text-slate-800 shrink-0">이메일</span>info@flolim.com</li>
             </ul>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="border border-slate-200 p-6">
+              <h4 className="text-[#1eb4c8] font-black text-lg mb-3 flex items-center"><span className="text-2xl mr-2">🚆</span> 대중교통 이용 시</h4>
+              <p className="text-sm text-slate-600 leading-relaxed break-keep">수도권 전철 1호선 <b>두정역</b> 하차 후, 택시 또는 버스를 이용하여 천안제2일반산업단지 방면으로 이동</p>
+            </div>
+            <div className="border border-slate-200 p-6">
+              <h4 className="text-[#1eb4c8] font-black text-lg mb-3 flex items-center"><span className="text-2xl mr-2">🚘</span> 자가용 이용 시</h4>
+              <p className="text-sm text-slate-600 leading-relaxed break-keep">경부고속도로 <b>천안IC</b> 진출 후 천안제2일반산업단지 교차로 방면. 내비게이션에 주소 검색 후 방문해 주세요.</p>
+            </div>
           </div>
         </section>
       </div>
