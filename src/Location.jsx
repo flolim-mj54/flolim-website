@@ -1,36 +1,16 @@
 import React, { useEffect, useState } from "react";
 
 const Location = () => {
-  // 💡 지도의 현재 상태를 화면에 직접 띄우기 위한 장치
   const [mapStatus, setMapStatus] = useState(
     "🔄 카카오 서버에 지도를 요청하는 중입니다..."
   );
 
   useEffect(() => {
-    // 💡 무조건 "JavaScript 키"를 넣으셔야 합니다! (REST API 키 절대 금지)
+    // 💡 무조건 "JavaScript 키"를 넣으셔야 합니다!
     const KAKAO_API_KEY = "97f2f1eb9375c07d206cdc3a6dd64b20";
 
-    // 기존 스크립트가 꼬여있으면 청소
-    const existingScript = document.getElementById("kakao-map-script");
-    if (existingScript) existingScript.remove();
-
-    // 스크립트 새로 장착
-    const script = document.createElement("script");
-    script.id = "kakao-map-script";
-    script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${KAKAO_API_KEY.trim()}&autoload=false`;
-    script.async = true;
-
-    // 🎯 스크립트 로드 성공 여부 정밀 추적
-    script.onload = () => {
-      // 카카오 스크립트는 다운받았는데, 인증(키/도메인)에 실패해서 지도를 안 준 경우
-      if (!window.kakao || !window.kakao.maps) {
-        setMapStatus(
-          "❌ 카카오 서버가 지도를 거절했습니다! \n(이유: 1. JavaScript 키가 아니거나 2. 도메인 등록이 잘못됨)"
-        );
-        return;
-      }
-
-      // 인증 성공! 지도 그리기 시작
+    // 🎯 지도 그리는 함수
+    const initMap = () => {
       window.kakao.maps.load(() => {
         const container = document.getElementById("kakao-map");
         if (!container) return;
@@ -49,16 +29,34 @@ const Location = () => {
         });
         infowindow.open(map, marker);
 
-        setMapStatus("성공"); // 성공하면 메시지 숨기기
+        setMapStatus("성공");
       });
     };
 
-    // 스크립트 자체를 아예 못 가져온 경우 (네트워크 에러 등)
-    script.onerror = () => {
+    // 1. 이미 지도가 한 번 로드된 경우 (바로 그리기)
+    if (window.kakao && window.kakao.maps) {
+      initMap();
+      return;
+    }
+
+    // 2. 누군가 이미 다운로드를 시작한 경우 (삭제하지 말고 끝날 때까지 기다리기!)
+    const existingScript = document.getElementById("kakao-map-script");
+    if (existingScript) {
+      existingScript.addEventListener("load", initMap);
+      return;
+    }
+
+    // 3. 완전히 처음 들어온 경우 (새로 다운로드 시작)
+    const script = document.createElement("script");
+    script.id = "kakao-map-script";
+    script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${KAKAO_API_KEY.trim()}&autoload=false`;
+    script.async = true;
+
+    script.onload = () => initMap();
+    script.onerror = () =>
       setMapStatus(
-        "❌ 스크립트 다운로드 실패! (광고 차단기(AdBlock)를 끄거나 인터넷 상태를 확인해주세요)"
+        "❌ 스크립트 다운로드 실패! (API 키가 잘못되었거나 도메인 등록이 누락되었습니다.)"
       );
-    };
 
     document.head.appendChild(script);
   }, []);
@@ -133,16 +131,12 @@ const Location = () => {
             </span>
           </h2>
 
-          {/* 🚀 에러 메시지 띄우는 화면 & 지도 영역 */}
           <div className="w-full h-[400px] bg-slate-200 border border-slate-300 mb-8 relative overflow-hidden flex items-center justify-center text-center shadow-inner p-4">
-            {/* 상태 메시지가 "성공"이 아닐 때만 글씨를 보여줌 */}
             {mapStatus !== "성공" && (
               <div className="text-slate-700 font-bold text-lg leading-relaxed whitespace-pre-wrap z-10">
                 {mapStatus}
               </div>
             )}
-
-            {/* 실제 지도가 깔릴 곳 (성공하면 보이고, 아니면 숨김) */}
             <div
               id="kakao-map"
               className="absolute inset-0 w-full h-full"
