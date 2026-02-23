@@ -1,4 +1,6 @@
 import React from "react";
+// 🚀 라우팅을 위해 Link 컴포넌트를 불러옵니다.
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -16,16 +18,32 @@ const Hero = () => {
           LoRa-Mesh 가로등부터 Matter 기반 스마트 LED까지. <br />
           플로림의 기술력으로 도시의 밤을 가장 밝고 효율적으로 혁신합니다.
         </p>
-        <div className="flex flex-col sm:flex-row gap-5 justify-center">
-          <button className="px-10 py-4 bg-[#1eb4c8] hover:bg-[#189aa9] text-white font-bold text-lg rounded-none shadow-sm transition-all duration-300">
-            시스템 개요 보기
-          </button>
-          <button className="px-10 py-4 bg-transparent border-2 border-slate-300 text-slate-500 hover:border-[#1eb4c8] hover:text-[#1eb4c8] font-bold text-lg rounded-none transition-all duration-300">
+        
+        {/* 🚀 버튼 3개 분리 및 Link 라우팅 적용 (모바일 대응 flex-wrap 적용) */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center flex-wrap items-center">
+          <Link 
+            to="/streetlight-intro" 
+            className="w-full sm:w-auto px-8 py-4 bg-[#1eb4c8] hover:bg-[#189aa9] text-white font-bold text-[16px] md:text-lg rounded-none shadow-sm transition-all duration-300 text-center"
+          >
+            가로등 제어 시스템
+          </Link>
+          <Link 
+            to="/led-intro" 
+            className="w-full sm:w-auto px-8 py-4 bg-[#1eb4c8] hover:bg-[#189aa9] text-white font-bold text-[16px] md:text-lg rounded-none shadow-sm transition-all duration-300 text-center"
+          >
+            스마트 LED 제어 시스템
+          </Link>
+          <Link 
+            to="/contact" 
+            className="w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-slate-300 text-slate-500 hover:border-[#1eb4c8] hover:text-[#1eb4c8] font-bold text-[16px] md:text-lg rounded-none transition-all duration-300 text-center"
+          >
             기술 문의하기
-          </button>
+          </Link>
         </div>
+        
       </div>
     </section>
   );
 };
+
 export default Hero;
