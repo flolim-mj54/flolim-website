@@ -31,14 +31,14 @@ const Location = () => {
             오시는 길 <span className="text-lg text-slate-400 font-normal tracking-widest uppercase ml-2">Location</span>
           </h2>
           
-          {/* 🚀 에러 0% 보장: 구글 지도 진짜 공식 임베드 주소 */}
+          {/* 🚀 구글 지도 공식 퍼가기(Embed) 전용 진짜 주소 */}
           <div className="w-full h-[400px] border border-slate-300 mb-8 overflow-hidden bg-slate-200">
             <iframe 
               src="https://maps.google.com/maps?q=천안G1비즈캠퍼스&t=&z=15&ie=UTF8&iwloc=&output=embed"
               width="100%" 
               height="100%" 
               style={{ border: 0 }} 
-              allowFullScreen 
+              allowFullScreen=""
               loading="lazy" 
               referrerPolicy="no-referrer-when-downgrade"
               title="주식회사 플로림 오시는 길"
