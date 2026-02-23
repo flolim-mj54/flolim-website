@@ -13,7 +13,7 @@ import SmartLedSolution from "./SmartLedSolution";
 import PlatformIntro from "./PlatformIntro";
 import Dashboard from "./Dashboard";
 import Archive from "./Archive";
-import ContactUs from "./ContactUs";
+import Contact from "./Contact";
 // 방금 추가한 회사소개 3개 페이지 import
 import Greeting from "./Greeting";
 import History from "./History";
@@ -61,7 +61,7 @@ export default function App() {
       case "archive":
         return <Archive />;
       case "contact":
-        return <ContactUs />;
+        return <Contact />;
 
       default:
         return <Hero />;
