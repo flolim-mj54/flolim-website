@@ -11,7 +11,7 @@ const ContactUs = () => {
     const formData = new FormData(event.target);
     
     // ▼ 선임연구원님의 moojeong54@flolim.com 진짜 Access Key를 꼭 넣어주세요! ▼
-    formData.append("access_key", "YOUR_ACCESS_KEY_HERE");
+    formData.append("access_key", "39f6bc8c-1219-4d84-8115-c581f1802a01");
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
