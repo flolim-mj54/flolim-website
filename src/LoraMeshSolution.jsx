@@ -37,11 +37,18 @@ const LoraMeshSolution = () => {
 
           <div className="mb-14">
             <h3 className="text-2xl font-bold text-[#1eb4c8] border-b border-slate-300 pb-2 mb-6 inline-block pr-8">Overview</h3>
-            <p className="text-slate-700 leading-relaxed break-keep text-[15px]">
+            <p className="text-slate-700 leading-relaxed break-keep text-[15px] mb-8">
               플로림(FLOLIM)의 LoRa-Mesh 솔루션은 <b>IEEE 802.15.4 물리 계층</b>을 기반으로 단말기 간 자체적인 그물망(Self-Grouping MESH)을 형성하는 고신뢰성 무선 통신 네트워크입니다.
               <br/><br/>
-              지점 간(Node-to-Node) 최대 150m 통신을 지원하며, 릴레이 전송을 통해 <b>도시권 기준 1~3km 반경의 광역 커버리지</b>를 확보합니다. 매월 발생하는 통신망 이용료가 전면 무료이며, 특정 구간의 통신 장애 발생 시 우회 경로를 스스로 탐색하는 자가 복구 알고리즘을 탑재하여 뛰어난 네트워크 생존력을 보장합니다.
+              지점 간(Node-to-Node) 통신을 통해 <b>도시권 기준 1~3km 반경의 광역 커버리지</b>를 확보합니다. 매월 발생하는 통신망 이용료가 전면 무료이며, 단말기 간 통신 장애 발생 시 우회 경로를 스스로 탐색하여 서버와의 연결을 유지하는 뛰어난 네트워크 생존력을 자랑합니다.
             </p>
+
+            {/* 🖼️ 메인 비주얼/3D 영상 삽입 영역 */}
+            <div className="w-full aspect-video bg-slate-100 border-2 border-dashed border-slate-300 rounded-lg flex flex-col items-center justify-center text-slate-500 hover:bg-slate-50 transition-colors">
+              <svg className="w-12 h-12 mb-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              <span className="font-bold tracking-wide">[ 3D 소개 영상 또는 고화질 솔루션 이미지 삽입 영역 ]</span>
+              <span className="text-sm mt-1">LoRa-Mesh의 그물망 통신을 직관적으로 보여주는 시각 자료를 추천합니다.</span>
+            </div>
           </div>
 
           <div className="mb-14">
@@ -49,36 +56,42 @@ const LoraMeshSolution = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* 집중기 컴포넌트 */}
-              <div className="bg-slate-50 border border-slate-200 p-6">
+              <div className="bg-slate-50 border border-slate-200 p-6 flex flex-col">
                 <div className="flex items-center mb-4">
                   <span className="w-10 h-10 bg-[#1eb4c8] text-white flex items-center justify-center font-bold text-xl mr-3">01</span>
-                  <h4 className="text-lg font-bold text-slate-800">중앙 집중기 (Gateway / RTU)</h4>
+                  <h4 className="text-lg font-bold text-slate-800">중앙 집중기 (Gateway)</h4>
                 </div>
-                <p className="text-sm text-slate-600 mb-4 leading-relaxed">
-                  서버(이더넷/4G)와 무선 램프 컨트롤러(LoRa MESH) 사이의 핵심 통신 브리지 역할을 수행합니다.
+                {/* 🖼️ 제품 이미지 삽입 영역 */}
+                <div className="w-full h-40 bg-white border border-slate-200 flex items-center justify-center text-slate-400 text-sm mb-4">
+                  [ 집중기 하드웨어 제품 사진 ]
+                </div>
+                <p className="text-sm text-slate-600 mb-4 leading-relaxed flex-1">
+                  현장의 무선 단말기(LoRa MESH) 데이터를 수집하여 관제 서버로 실시간 전송하는 핵심 통신 브리지입니다.
                 </p>
                 <ul className="space-y-2 text-[13px] text-slate-700">
                   <li className="flex items-start"><span className="text-[#1eb4c8] mr-2">✔️</span>고성능 ARM9 CPU 및 임베디드 Linux OS 탑재</li>
                   <li className="flex items-start"><span className="text-[#1eb4c8] mr-2">✔️</span>내장형 스마트 미터기로 원격 전력량 측정 지원</li>
-                  <li className="flex items-start"><span className="text-[#1eb4c8] mr-2">✔️</span>4 DO / 6 DI 지원 및 RS485 (지능형 터널 제어 확장)</li>
-                  <li className="flex items-start"><span className="text-[#1eb4c8] mr-2">✔️</span>고전압, 낙뢰, 고주파 신호를 차단하는 강력한 간섭 방지 케이스 (IP54)</li>
+                  <li className="flex items-start"><span className="text-[#1eb4c8] mr-2">✔️</span>4 DO / 6 DI 지원 및 RS485 통신 인터페이스</li>
                 </ul>
               </div>
 
               {/* 단말기 컴포넌트 */}
-              <div className="bg-slate-50 border border-slate-200 p-6">
+              <div className="bg-slate-50 border border-slate-200 p-6 flex flex-col">
                 <div className="flex items-center mb-4">
                   <span className="w-10 h-10 bg-[#1eb4c8] text-white flex items-center justify-center font-bold text-xl mr-3">02</span>
-                  <h4 className="text-lg font-bold text-slate-800">단일 램프 컨트롤러 (Node)</h4>
+                  <h4 className="text-lg font-bold text-slate-800">무선 램프 컨트롤러 (Node)</h4>
                 </div>
-                <p className="text-sm text-slate-600 mb-4 leading-relaxed">
-                  LED 드라이버와 직접 연결되어 조명을 제어하고 상세 전력 데이터를 집중기로 전송합니다.
+                {/* 🖼️ 제품 이미지 삽입 영역 */}
+                <div className="w-full h-40 bg-white border border-slate-200 flex items-center justify-center text-slate-400 text-sm mb-4">
+                  [ NEMA 컨트롤러 / 내장형 모듈 사진 ]
+                </div>
+                <p className="text-sm text-slate-600 mb-4 leading-relaxed flex-1">
+                  조명(가로등)에 장착되어 제어 명령을 오차 없이 수행하고 전력 상태를 보고하는 스마트 단말기입니다.
                 </p>
                 <ul className="space-y-2 text-[13px] text-slate-700">
                   <li className="flex items-start"><span className="text-[#1eb4c8] mr-2">✔️</span>표준 NEMA 7핀 인터페이스 적용 (플러그 앤 플레이)</li>
-                  <li className="flex items-start"><span className="text-[#1eb4c8] mr-2">✔️</span>16A 릴레이 내장 및 0-10V / PWM 디밍 인터페이스 지원</li>
-                  <li className="flex items-start"><span className="text-[#1eb4c8] mr-2">✔️</span>전류, 전압, 전력, 역률 등 세밀한 전기 매개변수 실시간 수집</li>
-                  <li className="flex items-start"><span className="text-[#1eb4c8] mr-2">✔️</span>옵션 센서(GPS, 기울기 감지) 및 광전지 자동 제어 지원 (IP65)</li>
+                  <li className="flex items-start"><span className="text-[#1eb4c8] mr-2">✔️</span>16A 릴레이 내장 및 0-10V / PWM 정밀 디밍 지원</li>
+                  <li className="flex items-start"><span className="text-[#1eb4c8] mr-2">✔️</span>전류, 전압, 전력, 역률 등 전기 매개변수 실시간 수집</li>
                 </ul>
               </div>
             </div>
@@ -90,25 +103,35 @@ const LoraMeshSolution = () => {
               <li className="flex items-start">
                 <span className="text-[#1eb4c8] mr-2 font-bold mt-1">■</span>
                 <div>
-                  <b className="text-slate-800 block">다중 제어 및 브로드캐스트 모드</b>
-                  전체 점소등(Broadcast), 특정 그룹 제어(Multicast), 개별 제어(Unicast)를 모두 지원하며 다중 전략(위도/경도 연동, 휴일 모드) 설정이 가능합니다.
+                  <b className="text-slate-800 block">다중 제어 및 유연한 그룹화</b>
+                  전체 점소등(Broadcast), 특정 그룹 제어(Multicast), 개별 제어(Unicast)를 원격으로 실행하며 위도/경도, 휴일 모드 등 다중 전략 설정이 가능합니다.
                 </div>
               </li>
               <li className="flex items-start">
                 <span className="text-[#1eb4c8] mr-2 font-bold mt-1">■</span>
                 <div>
                   <b className="text-slate-800 block">램프 고장 및 상태 진단</b>
-                  램프의 이상 여부, 누전, 통신 불량 등을 즉각적으로 감지하여 통합 관제 서버에 알람(Alarm)을 자동 보고합니다.
+                  램프의 이상 여부, 누전, 통신 불량 등을 즉각적으로 감지하여 관제 서버 대시보드에 알람(Alarm)을 자동 표출합니다.
                 </div>
               </li>
               <li className="flex items-start">
                 <span className="text-[#1eb4c8] mr-2 font-bold mt-1">■</span>
                 <div>
-                  <b className="text-slate-800 block">OTA(Over-The-Air) 원격 업데이트</b>
-                  현장 방문 없이 이더넷/4G 네트워크를 통해 펌웨어 및 로직을 원격으로 쉽게 업그레이드할 수 있습니다.
+                  <b className="text-slate-800 block">OTA(Over-The-Air) 원격 펌웨어 업데이트</b>
+                  현장 방문 없이 네트워크를 통해 하드웨어의 펌웨어 및 로직을 원격으로 안전하고 쉽게 업그레이드할 수 있습니다.
                 </div>
               </li>
             </ul>
+          </div>
+
+          {/* 🖼️ 다이어그램 삽입 영역 (System Architecture) */}
+          <div className="mb-14">
+            <h3 className="text-2xl font-bold text-[#1eb4c8] border-b border-slate-300 pb-2 mb-6 inline-block pr-8">System Architecture</h3>
+            <div className="w-full bg-slate-50 border-2 border-slate-200 border-dashed p-8 flex flex-col items-center justify-center min-h-[350px]">
+              <svg className="w-16 h-16 text-slate-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+              <span className="text-slate-500 font-bold tracking-widest block mb-2">[ 시스템 구성도(네트워크 토폴로지) 이미지 삽입 영역 ]</span>
+              <span className="text-sm text-slate-400 text-center">관제 서버 ↔ 집중기(Gateway) ↔ 다수의 램프 컨트롤러(Mesh 연결) 형태의 이미지를 넣어주세요.</span>
+            </div>
           </div>
 
           <div className="mb-14">
@@ -130,10 +153,6 @@ const LoraMeshSolution = () => {
                 <tr className="border-b border-slate-200">
                   <th className="bg-slate-50 py-3 px-4 text-left font-bold text-slate-700">동작 전압 / 전력 소비</th>
                   <td className="py-3 px-4 text-slate-600">AC 96~264V (집중기의 경우 100~500VAC 지원) / 시스템당 약 2W 내외 소비</td>
-                </tr>
-                <tr className="border-b border-slate-200">
-                  <th className="bg-slate-50 py-3 px-4 text-left font-bold text-slate-700">하드웨어 확장성</th>
-                  <td className="py-3 px-4 text-slate-600">표준 NEMA 인터페이스 연동, 외부 1-10V 컨트롤 인터페이스(DCI)</td>
                 </tr>
               </tbody>
             </table>

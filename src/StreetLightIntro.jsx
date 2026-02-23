@@ -12,6 +12,7 @@ const StreetLightIntro = () => {
           <h1 className="text-3xl md:text-4xl font-black text-slate-800 tracking-tight">가로등 제어 시스템</h1>
         </div>
       </div>
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 flex flex-col md:flex-row gap-10">
         <aside className="w-full md:w-64 flex-shrink-0">
           <div className="border border-slate-300">
@@ -33,11 +34,18 @@ const StreetLightIntro = () => {
           
           <div className="mb-14">
             <h3 className="text-2xl font-bold text-[#1eb4c8] border-b border-slate-300 pb-2 mb-6 inline-block pr-8">Overview</h3>
-            <p className="text-slate-700 leading-relaxed break-keep text-[15px]">
+            <p className="text-slate-700 leading-relaxed break-keep text-[15px] mb-8">
               기존의 단순한 타이머 기반 점·소등 방식을 넘어, 사물인터넷(IoT) 통신 기술을 활용해 도시의 조명 인프라를 원격으로 통합 관리하는 <b>지능형 관제 솔루션</b>입니다. 
               <br/><br/>
               플로림(FLOLIM)의 가로등 제어 시스템은 현장의 지형, 규모, 예산 등 다양한 환경적 요인을 분석하여 <b>LoRa-Mesh(자가망)</b> 또는 <b>NB-IoT(상용망)</b> 등 가장 최적화된 맞춤형 통신 인프라를 설계해 드립니다. 이를 통해 도심의 밤을 더욱 안전하게 밝히는 것은 물론, 획기적인 에너지 절감과 유지보수 효율성을 제공하여 스마트시티의 핵심 기반을 완성합니다.
             </p>
+
+            {/* 🖼️ 메인 비주얼/3D 영상 삽입 영역 */}
+            <div className="w-full aspect-video bg-slate-100 border-2 border-dashed border-slate-300 rounded-lg flex flex-col items-center justify-center text-slate-500 hover:bg-slate-50 transition-colors">
+              <svg className="w-12 h-12 mb-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              <span className="font-bold tracking-wide">[ 스마트 가로등 제어 시스템 3D 소개 영상 또는 대표 이미지 삽입 영역 ]</span>
+              <span className="text-sm mt-1">도심 전체의 조명이 지능적으로 제어되는 역동적인 시각 자료를 추천합니다.</span>
+            </div>
           </div>
           
           <div className="mb-14">
@@ -76,14 +84,19 @@ const StreetLightIntro = () => {
           
           <div className="mb-14">
             <h3 className="text-2xl font-bold text-[#1eb4c8] border-b border-slate-300 pb-2 mb-6 inline-block pr-8">System Architecture</h3>
-            <div className="w-full bg-slate-50 border border-slate-200 h-[300px] flex flex-col items-center justify-center relative shadow-inner">
-              <span className="text-slate-400 font-bold tracking-widest mb-4 z-10">[ 스마트 가로등 포괄적 시스템 구성도 이미지 삽입 영역 ]</span>
-              <div className="flex items-center space-x-4 text-sm text-slate-500 font-bold z-10">
-                <span className="bg-white px-4 py-2 border border-slate-300 rounded shadow-sm">통합 관제 플랫폼 (웹/모바일)</span>
-                <span>↔</span>
-                <span className="bg-cyan-50 text-[#1eb4c8] px-4 py-2 border border-cyan-200 rounded shadow-sm">무선 통신망 (LoRa / NB-IoT)</span>
-                <span>↔</span>
-                <span className="bg-white px-4 py-2 border border-slate-300 rounded shadow-sm">양방향 무선 제어 단말기 (가로등)</span>
+            {/* 🖼️ 다이어그램 삽입 영역 (System Architecture) */}
+            <div className="w-full bg-slate-50 border-2 border-slate-200 border-dashed p-8 flex flex-col items-center justify-center min-h-[350px]">
+              <svg className="w-16 h-16 text-slate-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+              <span className="text-slate-500 font-bold tracking-widest block mb-2">[ 포괄적 시스템 구성도(네트워크 토폴로지) 이미지 삽입 영역 ]</span>
+              <span className="text-sm text-slate-400 text-center mb-6">통합 관제 플랫폼(웹/모바일) ↔ 무선 통신망(LoRa/NB-IoT) ↔ 양방향 무선 제어 단말기 형태의 이미지를 넣어주세요.</span>
+              
+              {/* 이미지가 없을 때를 대비한 텍스트 흐름도 (추후 이미지 삽입 시 삭제하셔도 됩니다) */}
+              <div className="flex items-center space-x-2 md:space-x-4 text-xs md:text-sm text-slate-500 font-bold z-10 flex-wrap justify-center mt-4">
+                <span className="bg-white px-4 py-2 border border-slate-300 rounded shadow-sm mb-2">통합 관제 플랫폼</span>
+                <span className="mb-2">↔</span>
+                <span className="bg-cyan-50 text-[#1eb4c8] px-4 py-2 border border-cyan-200 rounded shadow-sm mb-2">무선 통신망</span>
+                <span className="mb-2">↔</span>
+                <span className="bg-white px-4 py-2 border border-slate-300 rounded shadow-sm mb-2">무선 제어 단말기</span>
               </div>
             </div>
           </div>
