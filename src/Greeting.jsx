@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Greeting = () => {
   return (
@@ -11,7 +12,6 @@ const Greeting = () => {
           <h1 className="text-3xl md:text-4xl font-black text-slate-800 tracking-tight">인사말</h1>
         </div>
       </div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 flex flex-col md:flex-row gap-10">
         <aside className="w-full md:w-64 flex-shrink-0">
           <div className="border border-slate-300">
@@ -19,18 +19,16 @@ const Greeting = () => {
               <h2 className="text-lg font-bold tracking-tight">회사소개</h2>
             </div>
             <ul className="flex flex-col">
-              <li className="border-b border-slate-200"><a href="#" className="flex items-center justify-between px-5 py-4 bg-cyan-50 text-[#1eb4c8] font-bold">인사말 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="square" strokeLinejoin="miter" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg></a></li>
-              <li className="border-b border-slate-200"><a href="#" className="flex items-center justify-between px-5 py-4 text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all">연혁</a></li>
-              <li className="border-b border-slate-200 last:border-0"><a href="#" className="flex items-center justify-between px-5 py-4 text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all">오시는 길</a></li>
+              <li className="border-b border-slate-200"><Link to="/greeting" className="flex items-center justify-between px-5 py-4 bg-cyan-50 text-[#1eb4c8] font-bold">인사말 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="square" strokeLinejoin="miter" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg></Link></li>
+              <li className="border-b border-slate-200"><Link to="/history" className="flex items-center justify-between px-5 py-4 text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all">연혁</Link></li>
+              <li className="border-b border-slate-200 last:border-0"><Link to="/location" className="flex items-center justify-between px-5 py-4 text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all">오시는 길</Link></li>
             </ul>
           </div>
         </aside>
-
         <section className="flex-1 min-w-0">
           <h2 className="text-3xl font-black text-slate-800 tracking-tight mb-8 pb-4 border-b-2 border-slate-200">
             인사말 <span className="text-lg text-slate-400 font-normal tracking-widest uppercase ml-2">Greeting</span>
           </h2>
-          
           <div className="bg-slate-50 border border-slate-200 p-10 mb-10 text-center">
             <h3 className="text-2xl font-bold text-[#1eb4c8] mb-6">"플로림과 함께 미래를 그려갑니다."</h3>
             <p className="text-slate-700 leading-relaxed break-keep mb-10">
@@ -48,5 +46,4 @@ const Greeting = () => {
     </div>
   );
 };
-
 export default Greeting;
