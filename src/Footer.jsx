@@ -24,7 +24,7 @@ const Footer = () => {
           <div className="md:col-span-1">
             <h4 className="text-slate-800 font-bold mb-6 text-sm border-l-2 border-[#1eb4c8] pl-2">가로등 제어 시스템</h4>
             <ul className="space-y-3 text-sm">
-              <li><Link to="/streetlight-intro" className="hover:text-[#1eb4c8] transition-colors">가로등 제어 시스템</Link></li>
+              <li><Link to="/streetlight-intro" className="hover:text-[#1eb4c8] transition-colors">시스템 개요</Link></li>
               <li><Link to="/lora" className="hover:text-[#1eb4c8] transition-colors">LoRa-Mesh 솔루션</Link></li>
               <li><Link to="/nbiot" className="hover:text-[#1eb4c8] transition-colors">NB-IoT 솔루션</Link></li>
             </ul>
@@ -32,16 +32,16 @@ const Footer = () => {
           <div className="md:col-span-1">
             <h4 className="text-slate-800 font-bold mb-6 text-sm border-l-2 border-[#1eb4c8] pl-2">스마트 LED 전등 제어 시스템</h4>
             <ul className="space-y-3 text-sm">
-              <li><Link to="/led-intro" className="hover:text-[#1eb4c8] transition-colors">스마트 LED 전등 제어 시스템</Link></li>
-              <li><Link to="/esco" className="hover:text-[#1eb4c8] transition-colors">켑코이에스 연계 사업</Link></li>
-              <li><Link to="/led-solution" className="hover:text-[#1eb4c8] transition-colors">스마트 LED 제어 솔루션</Link></li>
+              <li><Link to="/led-intro" className="hover:text-[#1eb4c8] transition-colors">시스템 개요</Link></li>
+              <li><Link to="/esco" className="hover:text-[#1eb4c8] transition-colors">ESCO 연계 사업</Link></li>
+              <li><Link to="/led-solution" className="hover:text-[#1eb4c8] transition-colors">스마트 LED 솔루션</Link></li>
             </ul>
           </div>
           <div className="md:col-span-1">
             <h4 className="text-slate-800 font-bold mb-6 text-sm border-l-2 border-[#1eb4c8] pl-2">통합 관제 플랫폼</h4>
             <ul className="space-y-3 text-sm mb-8">
-              <li><Link to="/platform" className="hover:text-[#1eb4c8] transition-colors">통합 관제 플랫폼</Link></li>
-              <li><Link to="/dashboard" className="hover:text-[#1eb4c8] transition-colors">모니터링 대시보드</Link></li>
+              <li><Link to="/platform" className="hover:text-[#1eb4c8] transition-colors">플랫폼 소</Link></li>
+              <li><Link to="/dashboard" className="hover:text-[#1eb4c8] transition-colors">대시보드</Link></li>
             </ul>
             <h4 className="text-slate-800 font-bold mb-4 text-sm border-l-2 border-[#1eb4c8] pl-2">고객지원</h4>
             <ul className="space-y-3 text-sm">
