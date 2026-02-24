@@ -43,7 +43,7 @@ const KepcoEsco = () => {
 
         <section className="flex-1 min-w-0">
           <h2 className="text-3xl font-black text-slate-800 tracking-tight mb-8 pb-4 border-b-2 border-slate-200">
-            ESCO 연계 사업 <span className="text-lg text-slate-400 font-normal tracking-widest uppercase ml-2">Overview</span>
+            켑코이에스 ESCO 에너지 효율화 연계 사업 <span className="text-lg text-slate-400 font-normal tracking-widest uppercase ml-2">Overview</span>
           </h2>
 
           <div className="mb-14">

@@ -41,7 +41,7 @@ const SmartLedSolution = () => {
         
         <section className="flex-1 min-w-0">
           <h2 className="text-3xl font-black text-slate-800 tracking-tight mb-8 pb-4 border-b-2 border-slate-200">
-            스마트 LED 솔루션 <span className="text-lg text-slate-400 font-normal tracking-widest uppercase ml-2">Technical Specification</span>
+            스마트 LED 전등 제어 솔루션 <span className="text-lg text-slate-400 font-normal tracking-widest uppercase ml-2">Technical Specification</span>
           </h2>
           
           <div className="mb-14">

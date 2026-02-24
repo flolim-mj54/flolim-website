@@ -40,8 +40,9 @@ const LoraMeshSolution = () => {
         </aside>
         
         <section className="flex-1 min-w-0">
+          {/* 🚀 본문 H2 제목 풀네임 적용 */}
           <h2 className="text-3xl font-black text-slate-800 tracking-tight mb-8 pb-4 border-b-2 border-slate-200">
-            LoRa-Mesh 솔루션 <span className="text-lg text-slate-400 font-normal tracking-widest uppercase ml-2">Overview</span>
+            LoRa-Mesh 가로등 제어 솔루션 <span className="text-lg text-slate-400 font-normal tracking-widest uppercase ml-2">Overview</span>
           </h2>
           
           <div className="mb-14">
