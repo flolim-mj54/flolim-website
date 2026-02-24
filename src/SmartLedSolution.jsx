@@ -14,8 +14,6 @@ const SmartLedSolution = () => {
       </div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 flex flex-col md:flex-row gap-10">
-        
-        {/* 🚀 사이드바: 3개의 정확한 링크 적용 및 세 번째 메뉴 활성화 */}
         <aside className="w-full md:w-[350px] flex-shrink-0">
           <div className="border border-slate-300">
             <div className="bg-[#1eb4c8] text-white py-4 px-5">
@@ -23,17 +21,17 @@ const SmartLedSolution = () => {
             </div>
             <ul className="flex flex-col">
               <li className="border-b border-slate-200">
-                <Link to="/led-intro" className="flex items-center justify-between px-4 py-4 text-[13px] lg:text-[14px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
+                <Link to="/led-intro" className="flex items-center justify-between px-4 py-4 text-[14px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
                   스마트 LED 전등 제어 시스템
                 </Link>
               </li>
               <li className="border-b border-slate-200">
-                <Link to="/esco" className="flex items-center justify-between px-4 py-4 text-[13px] lg:text-[14px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
+                <Link to="/esco" className="flex items-center justify-between px-4 py-4 text-[14px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
                   켑코이에스(ESCO) 에너지 효율화 연계 사업
                 </Link>
               </li>
               <li className="border-b border-slate-200 last:border-0">
-                <Link to="/led-solution" className="flex items-center justify-between px-4 py-4 text-[13px] lg:text-[14px] tracking-tight bg-cyan-50 text-[#1eb4c8] font-bold whitespace-nowrap">
+                <Link to="/led-solution" className="flex items-center justify-between px-4 py-4 text-[14px] tracking-tight bg-cyan-50 text-[#1eb4c8] font-bold whitespace-nowrap">
                   스마트 LED 전등 제어 솔루션 <svg className="w-4 h-4 flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="square" strokeLinejoin="miter" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
                 </Link>
               </li>
@@ -59,7 +57,6 @@ const SmartLedSolution = () => {
           <div className="mb-14">
             <h3 className="text-2xl font-bold text-[#1eb4c8] border-b border-slate-300 pb-2 mb-6 inline-block pr-8">System Components</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              
               <div className="bg-slate-50 border border-slate-200 p-6 flex flex-col">
                 <div className="flex items-center mb-4">
                   <span className="w-10 h-10 bg-[#1eb4c8] text-white flex items-center justify-center font-bold text-xl mr-3">01</span>
@@ -113,7 +110,6 @@ const SmartLedSolution = () => {
                   </li>
                 </ul>
               </div>
-
             </div>
           </div>
           
@@ -123,7 +119,6 @@ const SmartLedSolution = () => {
               <svg className="w-16 h-16 text-slate-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
               <span className="text-slate-500 font-bold tracking-widest block mb-2">[ 시스템 아키텍처 다이어그램 삽입 영역 ]</span>
               <span className="text-sm text-slate-400 text-center mb-6 break-keep">로컬 서버를 중심으로 건물 내부가 선 없이 무선으로 연결된 아키텍처 다이어그램을 넣어주세요.</span>
-              
               <div className="flex items-center space-x-2 md:space-x-4 text-xs md:text-sm text-slate-500 font-bold z-10 flex-wrap justify-center mt-4">
                 <span className="bg-white px-4 py-2 border border-slate-300 rounded shadow-sm mb-2">독립형 현장 서버</span>
                 <span className="mb-2">↔</span>
@@ -157,7 +152,6 @@ const SmartLedSolution = () => {
               </tbody>
             </table>
           </div>
-          
         </section>
       </div>
     </div>

@@ -14,26 +14,24 @@ const StreetLightIntro = () => {
       </div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 flex flex-col md:flex-row gap-10">
-        
-        {/* 🚀 수정된 사이드바: 폭 확장(320px), 줄바꿈 방지 적용 */}
-        <aside className="w-full md:w-[320px] flex-shrink-0">
+        <aside className="w-full md:w-[350px] flex-shrink-0">
           <div className="border border-slate-300">
             <div className="bg-[#1eb4c8] text-white py-4 px-5">
               <h2 className="text-lg font-bold tracking-tight">가로등 제어 시스템</h2>
             </div>
             <ul className="flex flex-col">
               <li className="border-b border-slate-200">
-                <Link to="/streetlight-intro" className="flex items-center justify-between px-4 py-4 text-[14px] lg:text-[15px] tracking-tight bg-cyan-50 text-[#1eb4c8] font-bold whitespace-nowrap">
+                <Link to="/streetlight-intro" className="flex items-center justify-between px-4 py-4 text-[14px] tracking-tight bg-cyan-50 text-[#1eb4c8] font-bold whitespace-nowrap">
                   가로등 제어 시스템 <svg className="w-4 h-4 flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="square" strokeLinejoin="miter" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
                 </Link>
               </li>
               <li className="border-b border-slate-200">
-                <Link to="/lora" className="flex items-center justify-between px-4 py-4 text-[14px] lg:text-[15px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
+                <Link to="/lora" className="flex items-center justify-between px-4 py-4 text-[14px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
                   LoRa-Mesh 가로등 제어 솔루션
                 </Link>
               </li>
               <li className="border-b border-slate-200 last:border-0">
-                <Link to="/nbiot" className="flex items-center justify-between px-4 py-4 text-[14px] lg:text-[15px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
+                <Link to="/nbiot" className="flex items-center justify-between px-4 py-4 text-[14px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
                   NB-IoT 스마트 가로등 제어 솔루션
                 </Link>
               </li>
@@ -54,7 +52,6 @@ const StreetLightIntro = () => {
               <br/><br/>
               플로림(FLOLIM)은 현장의 지형, 규모, 예산 등을 꼼꼼히 분석합니다. 통신비 부담이 없는 <b>LoRa-Mesh(자가망)</b>부터 전국 어디서나 끊김 없는 <b>NB-IoT(상용망)</b>까지 현장에 최적화된 맞춤형 통신망을 설계합니다. 획기적으로 전력 낭비를 줄이고 거리의 안전을 빈틈없이 지키며 스마트시티의 기반을 완성해 보세요.
             </p>
-
             <div className="w-full aspect-video bg-slate-100 border-2 border-dashed border-slate-300 rounded-lg flex flex-col items-center justify-center text-slate-500 hover:bg-slate-50 transition-colors">
               <svg className="w-12 h-12 mb-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
               <span className="font-bold tracking-wide">[ 스마트 가로등 제어 시스템 3D 소개 영상 또는 대표 이미지 삽입 영역 ]</span>
@@ -95,24 +92,6 @@ const StreetLightIntro = () => {
               </li>
             </ul>
           </div>
-          
-          <div className="mb-14">
-            <h3 className="text-2xl font-bold text-[#1eb4c8] border-b border-slate-300 pb-2 mb-6 inline-block pr-8">System Architecture</h3>
-            <div className="w-full bg-slate-50 border-2 border-slate-200 border-dashed p-8 flex flex-col items-center justify-center min-h-[350px]">
-              <svg className="w-16 h-16 text-slate-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-              <span className="text-slate-500 font-bold tracking-widest block mb-2">[ 시스템 구성도(네트워크 토폴로지) 이미지 삽입 영역 ]</span>
-              <span className="text-sm text-slate-400 text-center mb-6">일반 사용자도 데이터 흐름을 직관적으로 이해할 수 있는 다이어그램 삽입 영역</span>
-              
-              <div className="flex items-center space-x-2 md:space-x-4 text-xs md:text-sm text-slate-500 font-bold z-10 flex-wrap justify-center mt-4">
-                <span className="bg-white px-4 py-2 border border-slate-300 rounded shadow-sm mb-2">통합 관제 플랫폼 (웹/모바일)</span>
-                <span className="mb-2">↔</span>
-                <span className="bg-cyan-50 text-[#1eb4c8] px-4 py-2 border border-cyan-200 rounded shadow-sm mb-2">무선 통신망 (LoRa/NB-IoT)</span>
-                <span className="mb-2">↔</span>
-                <span className="bg-white px-4 py-2 border border-slate-300 rounded shadow-sm mb-2">무선 제어 단말기 (스마트 가로등)</span>
-              </div>
-            </div>
-          </div>
-          
         </section>
       </div>
     </div>

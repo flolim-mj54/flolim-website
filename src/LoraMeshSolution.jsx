@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const LoraSolution = () => {
+const LoraMeshSolution = () => {
   return (
     <div className="w-full bg-white font-sans text-slate-800 pb-20">
       <div className="w-full bg-slate-50 py-12 border-b border-slate-200 border-t-4 border-t-[#1eb4c8]">
@@ -14,26 +14,24 @@ const LoraSolution = () => {
       </div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 flex flex-col md:flex-row gap-10">
-        
-        {/* 🚀 수정된 사이드바: 폭 확장(320px), 줄바꿈 방지 적용 */}
-        <aside className="w-full md:w-[320px] flex-shrink-0">
+        <aside className="w-full md:w-[350px] flex-shrink-0">
           <div className="border border-slate-300">
             <div className="bg-[#1eb4c8] text-white py-4 px-5">
               <h2 className="text-lg font-bold tracking-tight">가로등 제어 시스템</h2>
             </div>
             <ul className="flex flex-col">
               <li className="border-b border-slate-200">
-                <Link to="/streetlight-intro" className="flex items-center justify-between px-4 py-4 text-[14px] lg:text-[15px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
+                <Link to="/streetlight-intro" className="flex items-center justify-between px-4 py-4 text-[14px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
                   가로등 제어 시스템
                 </Link>
               </li>
               <li className="border-b border-slate-200">
-                <Link to="/lora" className="flex items-center justify-between px-4 py-4 text-[14px] lg:text-[15px] tracking-tight bg-cyan-50 text-[#1eb4c8] font-bold whitespace-nowrap">
+                <Link to="/lora" className="flex items-center justify-between px-4 py-4 text-[14px] tracking-tight bg-cyan-50 text-[#1eb4c8] font-bold whitespace-nowrap">
                   LoRa-Mesh 가로등 제어 솔루션 <svg className="w-4 h-4 flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="square" strokeLinejoin="miter" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
                 </Link>
               </li>
               <li className="border-b border-slate-200 last:border-0">
-                <Link to="/nbiot" className="flex items-center justify-between px-4 py-4 text-[14px] lg:text-[15px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
+                <Link to="/nbiot" className="flex items-center justify-between px-4 py-4 text-[14px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
                   NB-IoT 스마트 가로등 제어 솔루션
                 </Link>
               </li>
@@ -160,11 +158,10 @@ const LoraSolution = () => {
               </tbody>
             </table>
           </div>
-          
         </section>
       </div>
     </div>
   );
 };
 
-export default LoraSolution;
+export default LoraMeshSolution;

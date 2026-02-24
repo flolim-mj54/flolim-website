@@ -14,8 +14,6 @@ const SmartLedIntro = () => {
       </div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 flex flex-col md:flex-row gap-10">
-        
-        {/* 🚀 App.tsx 경로에 맞춰 링크 수정 (/led-intro, /esco, /led-solution) */}
         <aside className="w-full md:w-[350px] flex-shrink-0">
           <div className="border border-slate-300">
             <div className="bg-[#1eb4c8] text-white py-4 px-5">
@@ -23,17 +21,17 @@ const SmartLedIntro = () => {
             </div>
             <ul className="flex flex-col">
               <li className="border-b border-slate-200">
-                <Link to="/led-intro" className="flex items-center justify-between px-4 py-4 text-[13px] lg:text-[14px] tracking-tight bg-cyan-50 text-[#1eb4c8] font-bold whitespace-nowrap">
+                <Link to="/led-intro" className="flex items-center justify-between px-4 py-4 text-[14px] tracking-tight bg-cyan-50 text-[#1eb4c8] font-bold whitespace-nowrap">
                   스마트 LED 전등 제어 시스템 <svg className="w-4 h-4 flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="square" strokeLinejoin="miter" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
                 </Link>
               </li>
               <li className="border-b border-slate-200">
-                <Link to="/esco" className="flex items-center justify-between px-4 py-4 text-[13px] lg:text-[14px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
+                <Link to="/esco" className="flex items-center justify-between px-4 py-4 text-[14px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
                   켑코이에스(ESCO) 에너지 효율화 연계 사업
                 </Link>
               </li>
               <li className="border-b border-slate-200 last:border-0">
-                <Link to="/led-solution" className="flex items-center justify-between px-4 py-4 text-[13px] lg:text-[14px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
+                <Link to="/led-solution" className="flex items-center justify-between px-4 py-4 text-[14px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
                   스마트 LED 전등 제어 솔루션
                 </Link>
               </li>
@@ -54,7 +52,6 @@ const SmartLedIntro = () => {
               <br/><br/>
               외부 인터넷이 끊기면 조명 제어까지 멈추거나 해킹에 노출될 수 있는 기존 클라우드 방식의 불안함을 완벽히 해결했습니다. 건물 내부에 독립적인 자체 서버를 구축하여, 어떤 비상 상황에서도 조명이 꺼지지 않는 <b>100% 무중단 제어</b>를 실현합니다. 외부와 철저히 차단된 강력한 보안망을 갖춰 공공기관, 대형 빌딩, 보안 시설에 최적화된 환경을 제공합니다.
             </p>
-
             <div className="w-full aspect-video bg-slate-100 border-2 border-dashed border-slate-300 rounded-lg flex flex-col items-center justify-center text-slate-500 hover:bg-slate-50 transition-colors p-6 text-center">
               <svg className="w-12 h-12 mb-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
               <span className="font-bold tracking-wide mb-2 text-slate-600">[ 스마트 LED 로컬 보안 서버(On-Premise) 3D 조감도 삽입 영역 ]</span>
@@ -95,7 +92,6 @@ const SmartLedIntro = () => {
               </li>
             </ul>
           </div>
-          
         </section>
       </div>
     </div>
