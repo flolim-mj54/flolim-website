@@ -27,12 +27,12 @@ const StreetLightIntro = () => {
               </li>
               <li className="border-b border-slate-200">
                 <Link to="/lora" className="flex items-center justify-between px-5 py-4 text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all">
-                  LoRa-Mesh 가로등 제어
+                  LoRa-Mesh 가로등 제어 솔루션
                 </Link>
               </li>
               <li className="border-b border-slate-200 last:border-0">
                 <Link to="/nbiot" className="flex items-center justify-between px-5 py-4 text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all">
-                  NB-IoT 스마트 가로등 제어
+                  NB-IoT 스마트 가로등 제어 솔루션
                 </Link>
               </li>
             </ul>
