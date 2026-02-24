@@ -24,12 +24,12 @@ const PlatformIntro = () => {
             <ul className="flex flex-col">
               <li className="border-b border-slate-200">
                 <Link to="/platform" className="flex items-center justify-between px-5 py-4 bg-cyan-50 text-[#1eb4c8] font-bold">
-                  통합 관제 플랫폼 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="square" strokeLinejoin="miter" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
+                  플랫폼 소개 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="square" strokeLinejoin="miter" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
                 </Link>
               </li>
               <li className="border-b border-slate-200 last:border-0">
                 <Link to="/dashboard" className="flex items-center justify-between px-5 py-4 text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all">
-                  모니터링 대시보드
+                  대시보드
                 </Link>
               </li>
             </ul>
