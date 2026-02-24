@@ -22,7 +22,7 @@ const Dashboard = () => {
             <ul className="flex flex-col">
               <li className="border-b border-slate-200">
                 <Link to="/platform" className="flex items-center justify-between px-5 py-4 text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all">
-                  통합 관제 플랫폼
+                  플랫폼 소개
                 </Link>
               </li>
               <li className="border-b border-slate-200 last:border-0">
