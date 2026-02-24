@@ -17,7 +17,7 @@ const KepcoEsco = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 flex flex-col md:flex-row gap-10">
         
-        {/* 🚀 수정된 사이드바: 3가지 메뉴 모두 노출 (두 번째 메뉴 활성화) */}
+        {/* 🚀 사이드바: 3개의 정확한 링크 적용 완료 */}
         <aside className="w-full md:w-[350px] flex-shrink-0">
           <div className="border border-slate-300">
             <div className="bg-[#1eb4c8] text-white py-4 px-5">
@@ -25,7 +25,7 @@ const KepcoEsco = () => {
             </div>
             <ul className="flex flex-col">
               <li className="border-b border-slate-200">
-                <Link to="/smart-led-intro" className="flex items-center justify-between px-4 py-4 text-[13px] lg:text-[14px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
+                <Link to="/led-intro" className="flex items-center justify-between px-4 py-4 text-[13px] lg:text-[14px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
                   스마트 LED 전등 제어 시스템
                 </Link>
               </li>
@@ -44,7 +44,6 @@ const KepcoEsco = () => {
         </aside>
 
         <section className="flex-1 min-w-0">
-          {/* 🚀 H2 제목 통일: 대메뉴의 하위 메뉴 개념 명시 */}
           <h2 className="text-3xl font-black text-slate-800 tracking-tight mb-8 pb-4 border-b-2 border-slate-200">
             스마트 LED 전등 제어 시스템 <span className="text-lg text-slate-400 font-normal tracking-widest uppercase ml-2">ESCO 연계 사업</span>
           </h2>
@@ -132,6 +131,7 @@ const KepcoEsco = () => {
 
               </div>
             </div>
+
           </div>
         </section>
       </div>
