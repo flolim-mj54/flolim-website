@@ -16,14 +16,37 @@ const KepcoEsco = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 flex flex-col md:flex-row gap-10">
+<<<<<<< HEAD
+        
+        {/* 🚀 수정된 사이드바: 3가지 메뉴 모두 노출 (두 번째 메뉴 활성화) */}
+        <aside className="w-full md:w-[350px] flex-shrink-0">
+=======
         
         {/* 🚀 통일된 사이드바: 폭 확장(320px), 줄바꿈 방지 완벽 적용 */}
         <aside className="w-full md:w-[320px] flex-shrink-0">
+>>>>>>> d4e1fdbbe6a527080b96c44ae244f36f43919f21
           <div className="border border-slate-300">
             <div className="bg-[#1eb4c8] text-white py-4 px-5">
               <h2 className="text-lg font-bold tracking-tight">스마트 LED 제어 시스템</h2>
             </div>
             <ul className="flex flex-col">
+<<<<<<< HEAD
+              <li className="border-b border-slate-200">
+                <Link to="/smart-led-intro" className="flex items-center justify-between px-4 py-4 text-[13px] lg:text-[14px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
+                  스마트 LED 전등 제어 시스템
+                </Link>
+              </li>
+              <li className="border-b border-slate-200">
+                <Link to="/kepco-esco" className="flex items-center justify-between px-4 py-4 text-[13px] lg:text-[14px] tracking-tight bg-cyan-50 text-[#1eb4c8] font-bold whitespace-nowrap">
+                  켑코이에스(ESCO) 에너지 효율화 연계 사업 <svg className="w-4 h-4 flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="square" strokeLinejoin="miter" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
+                </Link>
+              </li>
+              <li className="border-b border-slate-200 last:border-0">
+                <Link to="/smart-led-solution" className="flex items-center justify-between px-4 py-4 text-[13px] lg:text-[14px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
+                  스마트 LED 전등 제어 솔루션
+                </Link>
+              </li>
+=======
               <li className="border-b border-slate-200">
                 <Link to="/led-intro" className="flex items-center justify-between px-4 py-4 text-[14px] lg:text-[15px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
                   스마트 LED 전등 제어 시스템
@@ -34,6 +57,7 @@ const KepcoEsco = () => {
                   켑코이에스(ESCO) 연계 사업 <svg className="w-4 h-4 flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="square" strokeLinejoin="miter" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
                 </Link>
               </li>
+>>>>>>> d4e1fdbbe6a527080b96c44ae244f36f43919f21
             </ul>
           </div>
         </aside>
@@ -80,8 +104,13 @@ const KepcoEsco = () => {
               <li className="flex items-start">
                 <span className="text-[#1eb4c8] mr-3 font-bold text-lg mt-[-2px]">■</span>
                 <div>
+<<<<<<< HEAD
+                  <b className="text-slate-800 block mb-1">계약 기간 내내 안심할 수 있는 완벽 무상 A/S</b>
+                  상환이 진행되는 전체 계약 기간 동안 플로림이 확실하게 책임집니다. 시스템의 안정적인 운영은 물론, 조명 램프나 통신 모듈 교체 등 든든한 사후 관리(A/S)를 무상으로 보장해 드립니다.
+=======
                   <b className="text-slate-800 block mb-1">계약 기간 내내 안심할 수 있는 완벽한 무상 A/S</b>
                   상환이 진행되는 전체 계약 기간 동안 플로림이 확실하게 책임집니다. 시스템의 안정적인 운영은 물론, 조명 램프나 통신 모듈 교체 등 든든한 사후 관리(A/S)를 무상으로 보장해 드립니다.
+>>>>>>> d4e1fdbbe6a527080b96c44ae244f36f43919f21
                 </div>
               </li>
             </ul>
@@ -89,6 +118,45 @@ const KepcoEsco = () => {
 
           <div className="mb-14">
             <h3 className="text-2xl font-bold text-[#1eb4c8] border-b border-slate-300 pb-2 mb-6 inline-block pr-8">Business Process</h3>
+<<<<<<< HEAD
+            
+            <div className="w-full bg-slate-50 border border-slate-200 p-8 rounded-lg mt-4">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-4 relative">
+                
+                <div className="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-slate-200 -z-0 -translate-y-1/2"></div>
+
+                <div className="flex flex-col items-center bg-white border-2 border-slate-200 p-4 rounded-full w-40 h-40 justify-center z-10 shadow-sm relative group hover:border-[#1eb4c8] transition-colors">
+                  <div className="text-[#1eb4c8] font-black text-xl mb-1">1단계</div>
+                  <svg className="w-8 h-8 text-slate-400 mb-2 group-hover:text-[#1eb4c8] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                  <span className="text-sm font-bold text-slate-700 text-center break-keep">무상 에너지 진단</span>
+                </div>
+
+                <div className="md:hidden text-slate-300"><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg></div>
+
+                <div className="flex flex-col items-center bg-white border-2 border-slate-200 p-4 rounded-full w-40 h-40 justify-center z-10 shadow-sm relative group hover:border-[#1eb4c8] transition-colors">
+                  <div className="text-[#1eb4c8] font-black text-xl mb-1">2단계</div>
+                  <svg className="w-8 h-8 text-slate-400 mb-2 group-hover:text-[#1eb4c8] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                  <span className="text-sm font-bold text-slate-700 text-center break-keep">켑코이에스(ESCO) 계약 체결</span>
+                </div>
+
+                <div className="md:hidden text-slate-300"><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg></div>
+
+                <div className="flex flex-col items-center bg-white border-2 border-slate-200 p-4 rounded-full w-40 h-40 justify-center z-10 shadow-sm relative group hover:border-[#1eb4c8] transition-colors">
+                  <div className="text-[#1eb4c8] font-black text-xl mb-1">3단계</div>
+                  <svg className="w-8 h-8 text-slate-400 mb-2 group-hover:text-[#1eb4c8] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                  <span className="text-sm font-bold text-slate-700 text-center break-keep">로컬 서버 및 스마트 LED 시공</span>
+                </div>
+
+                <div className="md:hidden text-slate-300"><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg></div>
+
+                <div className="flex flex-col items-center bg-white border-2 border-slate-200 p-4 rounded-full w-40 h-40 justify-center z-10 shadow-sm relative group hover:border-[#1eb4c8] transition-colors">
+                  <div className="text-[#1eb4c8] font-black text-xl mb-1">4단계</div>
+                  <svg className="w-8 h-8 text-slate-400 mb-2 group-hover:text-[#1eb4c8] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                  <span className="text-sm font-bold text-slate-700 text-center break-keep">절감액 산정 및 분할 상환</span>
+                </div>
+
+              </div>
+=======
             
             {/* 🚀 Tailwind CSS로 직접 그린 깔끔한 단계별 아이콘 다이어그램 */}
             <div className="w-full bg-slate-50 border border-slate-200 p-8 rounded-lg mt-4">
@@ -135,9 +203,14 @@ const KepcoEsco = () => {
                 </div>
 
               </div>
+>>>>>>> d4e1fdbbe6a527080b96c44ae244f36f43919f21
             </div>
+<<<<<<< HEAD
+
+=======
             {/* 끝: 다이어그램 UI */}
 
+>>>>>>> d4e1fdbbe6a527080b96c44ae244f36f43919f21
           </div>
         </section>
       </div>
