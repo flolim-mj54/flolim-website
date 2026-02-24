@@ -13,7 +13,6 @@ const Hero = () => {
         playsInline
         className="absolute inset-0 w-full h-full object-cover z-0"
       >
-        {/* 💡 요청하신 로컬 비디오 경로로 수정 완료 */}
         <source src="/video/hero-bg2.mp4" type="video/mp4" />
       </video>
 
@@ -25,14 +24,13 @@ const Hero = () => {
           Smart Lighting Infrastructure
         </div>
         
-        {/* 🚀 수정된 H1 (메인 카피): 핵심 단어에 브랜드 컬러 포인트 적용 */}
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-800 leading-tight mb-8 break-keep tracking-tight drop-shadow-sm">
           안전은 <span className="text-[#1eb4c8]">더 밝게,</span> <br className="hidden sm:block" />
           에너지는 <span className="text-[#1eb4c8]">더 가볍게.</span>
         </h1>
         
-        {/* 🚀 수정된 P (서브 카피): 읽기 편하도록 3줄로 적절히 줄바꿈 처리 */}
-        <p className="text-[17px] md:text-lg font-medium text-slate-600 mb-12 max-w-2xl mx-auto leading-relaxed break-keep">
+        {/* 🚀 수정됨: max-w-2xl을 max-w-4xl로 넓혀서 긴 문장이 밑으로 떨어지지 않게 고정했습니다 */}
+        <p className="text-[17px] md:text-lg font-medium text-slate-600 mb-12 max-w-4xl mx-auto leading-relaxed break-keep">
           밤거리의 가로등부터 실내의 스마트 LED까지, <br className="hidden md:block" />
           플로림은 꼭 필요한 곳에만 똑똑하게 빛을 채웁니다. <br className="hidden md:block" />
           발전된 통신 기술로 낭비는 줄이고 도시의 가치를 높이는 지능형 관제 솔루션을 만나보세요.
