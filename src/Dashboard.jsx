@@ -44,7 +44,7 @@ const Dashboard = () => {
             <p className="text-slate-700 leading-relaxed break-keep text-[15px] mb-8">
               관리자가 실제로 마주하게 될 플로림 관제 시스템의 프론트엔드(화면)입니다. 
               <br/>
-              복잡한 데이터와 장비 상태를 누구나 쉽게 파악할 수 있도록 <b>직관적인 데이터 시각화(Data Visualization)</b>에 초점을 맞추었으며, 눈의 피로를 덜어주는 다크 모드(Dark Mode) 테마와 사용자 맞춤형 위젯 배치를 지원합니다. PC 관제 센터는 물론, 스마트폰 모바일 브라우저에서도 깨짐 없이 완벽하게 반응형으로 작동합니다.
+              복잡한 수치와 장비 상태를 누구나 쉽게 파악할 수 있도록 <b>직관적인 데이터 시각화(Data Visualization)</b>에 초점을 맞추었습니다. 장시간 모니터링 시 눈의 피로를 덜어주는 다크 모드(Dark Mode) 테마를 기본으로 제공하며, 클라우드 환경(PC 웹)과 로컬 엣지 환경(태블릿/스마트폰) 모두에서 깨짐 없이 완벽하게 반응형으로 작동합니다.
             </p>
 
             {/* 🖼 대시보드 스크린샷 삽입 영역 */}
@@ -66,40 +66,41 @@ const Dashboard = () => {
               <div className="border border-slate-200 p-6 bg-slate-50">
                 <div className="flex items-center mb-3">
                   <span className="text-2xl mr-3">🗺️</span>
-                  <h4 className="font-bold text-slate-800 text-lg">GIS 지도 맵핑 관제</h4>
+                  <h4 className="font-bold text-slate-800 text-lg">위치 기반 맵핑 관제</h4>
                 </div>
                 <p className="text-sm text-slate-600 leading-relaxed">
-                  구글 맵/네이버 지도 API와 연동하여 단말기의 GPS 위치를 지도 상에 핀(Pin) 형태로 표시합니다. 점/소등 및 고장 상태를 직관적인 색상으로 한눈에 파악할 수 있습니다.
+                  가로등은 GIS(지도) API와 연동하여, 실내 스마트 LED는 빌딩 평면도와 연동하여 조명의 위치를 핀(Pin) 형태로 표시합니다. 점/소등 및 오프라인 상태를 직관적인 색상으로 한눈에 파악할 수 있습니다.
                 </p>
               </div>
 
               <div className="border border-slate-200 p-6 bg-slate-50">
                 <div className="flex items-center mb-3">
                   <span className="text-2xl mr-3">⚙️</span>
-                  <h4 className="font-bold text-slate-800 text-lg">초정밀 원격 디밍 & 스케줄</h4>
+                  <h4 className="font-bold text-slate-800 text-lg">원격 디밍 & 스케줄링</h4>
                 </div>
                 <p className="text-sm text-slate-600 leading-relaxed">
-                  0~100%까지 세밀한 밝기 조절(Dimming) 명령을 즉시 전송하며, 특정 시간대나 요일, 일출/일몰 데이터에 맞춘 스케줄 매크로를 간편하게 설정할 수 있습니다.
+                  개별 또는 그룹 단위로 0~100%의 세밀한 밝기 조절 명령을 즉시 전송합니다. 관리자가 특정 시간대, 요일, 일출/일몰 데이터에 맞춰 간편하게 스케줄 로직을 설정할 수 있습니다.
                 </p>
               </div>
 
+              {/* 🚀 무선 통신 환경(단말기 자체 미터기 기반)에 맞게 에러 진단 내용 현실화 */}
               <div className="border border-slate-200 p-6 bg-slate-50">
                 <div className="flex items-center mb-3">
                   <span className="text-2xl mr-3">🚨</span>
-                  <h4 className="font-bold text-slate-800 text-lg">실시간 경보 및 상태 진단</h4>
+                  <h4 className="font-bold text-slate-800 text-lg">단말기 상태 진단 및 경보</h4>
                 </div>
                 <p className="text-sm text-slate-600 leading-relaxed">
-                  전압 이상, 램프 파손, 통신 지연 등의 에러가 감지되면 대시보드 화면에 즉시 적색 알람 팝업을 띄우고, 등록된 관리자의 연락처로 SMS/메일을 자동 발송합니다.
+                  서버 응답 지연(오프라인), 단말기 내장 미터기 기반의 전압 이상(과/저전압), 비정상적 전류 강하(램프 고장 판단) 감지 시 대시보드에 적색 알람을 띄우고 담당자에게 알림을 발송합니다.
                 </p>
               </div>
 
               <div className="border border-slate-200 p-6 bg-slate-50">
                 <div className="flex items-center mb-3">
                   <span className="text-2xl mr-3">📊</span>
-                  <h4 className="font-bold text-slate-800 text-lg">통계 리포트 및 분석 추출</h4>
+                  <h4 className="font-bold text-slate-800 text-lg">전력 통계 및 리포트 추출</h4>
                 </div>
                 <p className="text-sm text-slate-600 leading-relaxed">
-                  일/주/월간 전력 사용량, 에너지 절감액, 에러 발생 빈도 등을 그래프 위젯으로 제공하며, 클릭 한 번으로 모든 데이터를 Excel 파일로 다운로드할 수 있습니다.
+                  단말기들이 보고한 데이터를 취합하여 일/주/월간 전력 사용량 및 절감률을 그래프 위젯으로 제공합니다. 관리자는 모든 로우 데이터(Raw Data)를 엑셀 파일로 다운로드하여 분석할 수 있습니다.
                 </p>
               </div>
 
