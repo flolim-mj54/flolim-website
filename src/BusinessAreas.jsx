@@ -54,7 +54,8 @@ const BusinessAreas = () => {
             </p>
           </div>
           <p className="text-slate-500 text-sm font-medium mt-4 md:mt-0 max-w-md md:text-right break-keep">
-            다양한 통신 환경과 현장에 맞춰, 가장 효율적인 맞춤형 조명 제어 솔루션을 제공합니다.
+            다양한 통신 환경과 현장에 맞춰, <br />
+            가장 효율적인 맞춤형 조명 제어 솔루션을 제공합니다.
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-b border-l border-slate-200">
