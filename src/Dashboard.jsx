@@ -7,7 +7,7 @@ const Dashboard = () => {
       <div className="w-full bg-slate-50 py-12 border-b border-slate-200 border-t-4 border-t-[#1eb4c8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-sm text-slate-500 mb-2 font-medium">
-            홈 〉 통합 관제 플랫폼 〉 <span className="text-[#1eb4c8] font-bold">모니터링 대시보드</span>
+            홈 〉 통합 관제 플랫폼 〉 <span className="text-[#1eb4c8] font-bold">대시보드</span>
           </div>
           <h1 className="text-3xl md:text-4xl font-black text-slate-800 tracking-tight">모니터링 대시보드</h1>
         </div>
@@ -27,7 +27,7 @@ const Dashboard = () => {
               </li>
               <li className="border-b border-slate-200 last:border-0">
                 <Link to="/dashboard" className="flex items-center justify-between px-5 py-4 bg-cyan-50 text-[#1eb4c8] font-bold">
-                  모니터링 대시보드 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="square" strokeLinejoin="miter" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
+                  대시보드 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="square" strokeLinejoin="miter" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
                 </Link>
               </li>
             </ul>
