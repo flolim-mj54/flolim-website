@@ -15,7 +15,7 @@ const SmartLedIntro = () => {
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 flex flex-col md:flex-row gap-10">
         
-        {/* 🚀 사이드바: 3개의 정확한 링크 적용 완료 */}
+        {/* 🚀 App.tsx 경로에 맞춰 링크 수정 (/led-intro, /esco, /led-solution) */}
         <aside className="w-full md:w-[350px] flex-shrink-0">
           <div className="border border-slate-300">
             <div className="bg-[#1eb4c8] text-white py-4 px-5">
@@ -28,12 +28,12 @@ const SmartLedIntro = () => {
                 </Link>
               </li>
               <li className="border-b border-slate-200">
-                <Link to="/kepco-esco" className="flex items-center justify-between px-4 py-4 text-[13px] lg:text-[14px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
+                <Link to="/esco" className="flex items-center justify-between px-4 py-4 text-[13px] lg:text-[14px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
                   켑코이에스(ESCO) 에너지 효율화 연계 사업
                 </Link>
               </li>
               <li className="border-b border-slate-200 last:border-0">
-                <Link to="/smart-led-solution" className="flex items-center justify-between px-4 py-4 text-[13px] lg:text-[14px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
+                <Link to="/led-solution" className="flex items-center justify-between px-4 py-4 text-[13px] lg:text-[14px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
                   스마트 LED 전등 제어 솔루션
                 </Link>
               </li>
