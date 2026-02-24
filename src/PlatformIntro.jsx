@@ -7,7 +7,7 @@ const PlatformIntro = () => {
       <div className="w-full bg-slate-50 py-12 border-b border-slate-200 border-t-4 border-t-[#1eb4c8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-sm text-slate-500 mb-2 font-medium">
-            홈 〉 <span className="text-[#1eb4c8] font-bold">플랫폼 소개</span>
+            홈 〉 통합 관제 플랫폼 〉 <span className="text-[#1eb4c8] font-bold">플랫폼 소개</span>
           </div>
           <h1 className="text-3xl md:text-4xl font-black text-slate-800 tracking-tight">
             통합 관제 플랫폼
