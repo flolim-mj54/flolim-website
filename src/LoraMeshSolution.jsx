@@ -7,7 +7,7 @@ const LoraSolution = () => {
       <div className="w-full bg-slate-50 py-12 border-b border-slate-200 border-t-4 border-t-[#1eb4c8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-sm text-slate-500 mb-2 font-medium">
-            홈 〉 가로등 제어 시스템 〉 <span className="text-[#1eb4c8] font-bold">LoRa-Mesh 솔루션</span>
+            홈 〉 가로등 제어 시스템 〉 <span className="text-[#1eb4c8] font-bold">LoRa-Mesh 가로등 제어 솔루션</span>
           </div>
           <h1 className="text-3xl md:text-4xl font-black text-slate-800 tracking-tight">LoRa-Mesh 가로등 제어 솔루션</h1>
         </div>
@@ -15,7 +15,7 @@ const LoraSolution = () => {
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 flex flex-col md:flex-row gap-10">
         
-        {/* 🚀 사이드바: 글씨 크기를 조절하여 '솔루션'까지 한 줄에 예쁘게 나오도록 수정했습니다 */}
+        {/* 🚀 수정된 사이드바 (너비 넓힘, 1줄 고정) */}
         <aside className="w-full md:w-[280px] flex-shrink-0">
           <div className="border border-slate-300">
             <div className="bg-[#1eb4c8] text-white py-4 px-5">
@@ -42,8 +42,9 @@ const LoraSolution = () => {
         </aside>
         
         <section className="flex-1 min-w-0">
+          {/* 🚀 본문 제목(H2) 통일: 가로등 제어 솔루션 추가 */}
           <h2 className="text-3xl font-black text-slate-800 tracking-tight mb-8 pb-4 border-b-2 border-slate-200">
-            LoRa-Mesh 솔루션 <span className="text-lg text-slate-400 font-normal tracking-widest uppercase ml-2">Overview</span>
+            LoRa-Mesh 가로등 제어 솔루션 <span className="text-lg text-slate-400 font-normal tracking-widest uppercase ml-2">Overview</span>
           </h2>
           
           <div className="mb-14">
@@ -59,7 +60,6 @@ const LoraSolution = () => {
           <div className="mb-14">
             <h3 className="text-2xl font-bold text-[#1eb4c8] border-b border-slate-300 pb-2 mb-6 inline-block pr-8">System Components</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              
               <div className="bg-slate-50 border border-slate-200 p-6 flex flex-col">
                 <div className="flex items-center mb-4">
                   <span className="w-10 h-10 bg-[#1eb4c8] text-white flex items-center justify-center font-bold text-xl mr-3">01</span>
@@ -95,7 +95,6 @@ const LoraSolution = () => {
                   <li className="flex items-start"><span className="text-[#1eb4c8] mr-2">✔️</span>전압, 전류 등 조명의 전력 상태를 실시간으로 측정 및 보고</li>
                 </ul>
               </div>
-
             </div>
           </div>
           

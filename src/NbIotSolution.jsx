@@ -4,11 +4,10 @@ import { Link } from "react-router-dom";
 const NbIotSolution = () => {
   return (
     <div className="w-full bg-white font-sans text-slate-800 pb-20">
-      {/* 1. 상단 배너 */}
       <div className="w-full bg-slate-50 py-12 border-b border-slate-200 border-t-4 border-t-[#1eb4c8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-sm text-slate-500 mb-2 font-medium">
-            홈 〉 가로등 제어 시스템 〉 <span className="text-[#1eb4c8] font-bold">NB-IoT 솔루션</span>
+            홈 〉 가로등 제어 시스템 〉 <span className="text-[#1eb4c8] font-bold">NB-IoT 스마트 가로등 제어 솔루션</span>
           </div>
           <h1 className="text-3xl md:text-4xl font-black text-slate-800 tracking-tight">
             NB-IoT 스마트 가로등 제어 솔루션
@@ -17,36 +16,37 @@ const NbIotSolution = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 flex flex-col md:flex-row gap-10">
-        {/* 2. 왼쪽 사이드바 */}
-        <aside className="w-full md:w-64 flex-shrink-0">
+        
+        {/* 🚀 수정된 사이드바 (너비 넓힘, 1줄 고정) */}
+        <aside className="w-full md:w-[280px] flex-shrink-0">
           <div className="border border-slate-300">
             <div className="bg-[#1eb4c8] text-white py-4 px-5">
               <h2 className="text-lg font-bold tracking-tight">가로등 제어 시스템</h2>
             </div>
             <ul className="flex flex-col">
               <li className="border-b border-slate-200">
-                <Link to="/streetlight-intro" className="flex items-center justify-between px-5 py-4 text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all">
+                <Link to="/streetlight-intro" className="flex items-center justify-between px-4 py-4 text-[14px] lg:text-[15px] text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all break-keep">
                   가로등 제어 시스템
                 </Link>
               </li>
               <li className="border-b border-slate-200">
-                <Link to="/lora" className="flex items-center justify-between px-5 py-4 text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all">
+                <Link to="/lora" className="flex items-center justify-between px-4 py-4 text-[14px] lg:text-[15px] text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all break-keep">
                   LoRa-Mesh 가로등 제어 솔루션
                 </Link>
               </li>
               <li className="border-b border-slate-200 last:border-0">
-                <Link to="/nbiot" className="flex items-center justify-between px-5 py-4 bg-cyan-50 text-[#1eb4c8] font-bold">
-                  NB-IoT 스마트 가로등 제어 솔루션 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="square" strokeLinejoin="miter" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
+                <Link to="/nbiot" className="flex items-center justify-between px-4 py-4 text-[14px] lg:text-[15px] bg-cyan-50 text-[#1eb4c8] font-bold break-keep">
+                  NB-IoT 스마트 가로등 제어 솔루션 <svg className="w-4 h-4 flex-shrink-0 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="square" strokeLinejoin="miter" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
                 </Link>
               </li>
             </ul>
           </div>
         </aside>
 
-        {/* 3. 오른쪽 메인 본문 */}
         <section className="flex-1 min-w-0">
+          {/* 🚀 본문 제목(H2) 통일: 가로등 제어 솔루션 추가 */}
           <h2 className="text-3xl font-black text-slate-800 tracking-tight mb-8 pb-4 border-b-2 border-slate-200">
-            NB-IoT 솔루션 <span className="text-lg text-slate-400 font-normal tracking-widest uppercase ml-2">Technical Specification</span>
+            NB-IoT 스마트 가로등 제어 솔루션 <span className="text-lg text-slate-400 font-normal tracking-widest uppercase ml-2">Technical Specification</span>
           </h2>
 
           <div className="mb-14">
@@ -57,7 +57,6 @@ const NbIotSolution = () => {
               가장 큰 장점은 <b>초기 중계기(Gateway) 구축 비용과 설치 공수가 전혀 발생하지 않는다</b>는 것입니다. 20dB 이상의 높은 수신 이득(Gain)을 통해 산간, 오지, 지하 차도 등 기존 통신 음영 지역에서도 안정적인 제어가 가능하며, 저전력 장거리 통신(LPWA) 기술로 수만 개의 가로등을 동시에 효율적으로 통합 관리할 수 있습니다.
             </p>
 
-            {/* 🖼️ 메인 비주얼/3D 영상 삽입 영역 */}
             <div className="w-full aspect-video bg-slate-100 border-2 border-dashed border-slate-300 rounded-lg flex flex-col items-center justify-center text-slate-500 hover:bg-slate-50 transition-colors">
               <svg className="w-12 h-12 mb-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
               <span className="font-bold tracking-wide">[ NB-IoT 스마트 시티 적용 3D 영상 또는 고화질 이미지 삽입 영역 ]</span>
@@ -71,13 +70,11 @@ const NbIotSolution = () => {
               NB-IoT 솔루션은 별도의 집중기 없이, 조명 기구의 규격에 맞춘 <b>독립형 램프 컨트롤러(단말기)</b>만을 부착하여 관제 서버와 통신합니다. 플로림은 현장의 램프 타입에 맞춰 다양한 표준 인터페이스를 지원합니다.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* NEMA 7핀 컨트롤러 */}
               <div className="bg-slate-50 border border-slate-200 p-6 flex flex-col">
                 <div className="flex items-center mb-4">
                   <span className="w-10 h-10 bg-[#1eb4c8] text-white flex items-center justify-center font-bold text-xl mr-3">A</span>
                   <h4 className="text-lg font-bold text-slate-800">표준 NEMA 7핀 컨트롤러</h4>
                 </div>
-                {/* 🖼️ 제품 이미지 삽입 영역 */}
                 <div className="w-full h-40 bg-white border border-slate-200 flex items-center justify-center text-slate-400 text-sm mb-4">
                   [ NEMA 7핀 규격 단말기 이미지 ]
                 </div>
@@ -89,13 +86,11 @@ const NbIotSolution = () => {
                 </ul>
               </div>
 
-              {/* ZHAGA 4핀 / 내장형 컨트롤러 */}
               <div className="bg-slate-50 border border-slate-200 p-6 flex flex-col">
                 <div className="flex items-center mb-4">
                   <span className="w-10 h-10 bg-[#1eb4c8] text-white flex items-center justify-center font-bold text-xl mr-3">B</span>
                   <h4 className="text-lg font-bold text-slate-800">ZHAGA 4핀 / 내장형 모듈</h4>
                 </div>
-                {/* 🖼️ 제품 이미지 삽입 영역 */}
                 <div className="w-full h-40 bg-white border border-slate-200 flex items-center justify-center text-slate-400 text-sm mb-4">
                   [ ZHAGA 규격 또는 내장형 컨트롤러 이미지 ]
                 </div>
@@ -136,7 +131,6 @@ const NbIotSolution = () => {
             </ul>
           </div>
 
-          {/* 🖼️ 다이어그램 삽입 영역 (System Architecture) */}
           <div className="mb-14">
             <h3 className="text-2xl font-bold text-[#1eb4c8] border-b border-slate-300 pb-2 mb-6 inline-block pr-8">System Architecture</h3>
             <div className="w-full bg-slate-50 border-2 border-slate-200 border-dashed p-8 flex flex-col items-center justify-center min-h-[350px]">
