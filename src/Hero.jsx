@@ -13,7 +13,7 @@ const Hero = () => {
         playsInline
         className="absolute inset-0 w-full h-full object-cover z-0"
       >
-        <source src="/video/hero-bg2.mp4" type="video/mp4" />
+        <source src="/video/hero-bg3.mp4" type="video/mp4" />
       </video>
 
       {/* 영상이 밝을 경우 텍스트 가독성을 위한 부드러운 반투명 화이트 막(Overlay) */}
