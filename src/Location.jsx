@@ -47,7 +47,7 @@ const Location = () => {
               <h2 className="text-lg font-bold tracking-tight">회사소개</h2>
             </div>
             <ul className="flex flex-col">
-              <li className="border-b border-slate-200"><Link to="/greeting" className="flex items-center justify-between px-5 py-4 text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all">인사말</Link></li>
+              <li className="border-b border-slate-200"><Link to="/greeting" className="flex items-center justify-between px-5 py-4 text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all">CEO 인사말</Link></li>
               <li className="border-b border-slate-200"><Link to="/history" className="flex items-center justify-between px-5 py-4 text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all">연혁</Link></li>
               <li className="border-b border-slate-200 last:border-0"><Link to="/location" className="flex items-center justify-between px-5 py-4 bg-cyan-50 text-[#1eb4c8] font-bold">오시는 길 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="square" strokeLinejoin="miter" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg></Link></li>
             </ul>

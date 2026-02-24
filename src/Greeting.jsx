@@ -7,9 +7,9 @@ const Greeting = () => {
       <div className="w-full bg-slate-50 py-12 border-b border-slate-200 border-t-4 border-t-[#1eb4c8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-sm text-slate-500 mb-2 font-medium">
-            홈 〉 회사소개 〉 <span className="text-[#1eb4c8] font-bold">인사말</span>
+            홈 〉 회사소개 〉 <span className="text-[#1eb4c8] font-bold">CEO 인사말</span>
           </div>
-          <h1 className="text-3xl md:text-4xl font-black text-slate-800 tracking-tight">인사말</h1>
+          <h1 className="text-3xl md:text-4xl font-black text-slate-800 tracking-tight">CEO 인사말</h1>
         </div>
       </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 flex flex-col md:flex-row gap-10">
@@ -19,7 +19,7 @@ const Greeting = () => {
               <h2 className="text-lg font-bold tracking-tight">회사소개</h2>
             </div>
             <ul className="flex flex-col">
-              <li className="border-b border-slate-200"><Link to="/greeting" className="flex items-center justify-between px-5 py-4 bg-cyan-50 text-[#1eb4c8] font-bold">인사말 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="square" strokeLinejoin="miter" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg></Link></li>
+              <li className="border-b border-slate-200"><Link to="/greeting" className="flex items-center justify-between px-5 py-4 bg-cyan-50 text-[#1eb4c8] font-bold">CEO 인사말 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="square" strokeLinejoin="miter" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg></Link></li>
               <li className="border-b border-slate-200"><Link to="/history" className="flex items-center justify-between px-5 py-4 text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all">연혁</Link></li>
               <li className="border-b border-slate-200 last:border-0"><Link to="/location" className="flex items-center justify-between px-5 py-4 text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all">오시는 길</Link></li>
             </ul>
@@ -27,7 +27,7 @@ const Greeting = () => {
         </aside>
         <section className="flex-1 min-w-0">
           <h2 className="text-3xl font-black text-slate-800 tracking-tight mb-8 pb-4 border-b-2 border-slate-200">
-            인사말 <span className="text-lg text-slate-400 font-normal tracking-widest uppercase ml-2">Greeting</span>
+            CEO 인사말 <span className="text-lg text-slate-400 font-normal tracking-widest uppercase ml-2">Greeting</span>
           </h2>
           <div className="bg-slate-50 border border-slate-200 p-10 mb-10 text-center">
             <h3 className="text-2xl font-bold text-[#1eb4c8] mb-6">"플로림과 함께 미래를 그려갑니다."</h3>

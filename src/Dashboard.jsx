@@ -42,12 +42,13 @@ const Dashboard = () => {
           <div className="mb-14">
             <h3 className="text-2xl font-bold text-[#1eb4c8] border-b border-slate-300 pb-2 mb-6 inline-block pr-8">Dashboard Concept</h3>
             <p className="text-slate-700 leading-relaxed break-keep text-[15px] mb-8">
-              관리자가 실제로 마주하게 될 플로림 관제 시스템의 프론트엔드(화면)입니다. 
-              <br/>
-              복잡한 수치와 장비 상태를 누구나 쉽게 파악할 수 있도록 <b>직관적인 데이터 시각화(Data Visualization)</b>에 초점을 맞추었습니다. 장시간 모니터링 시 눈의 피로를 덜어주는 다크 모드(Dark Mode) 테마를 기본으로 제공하며, 클라우드 환경(PC 웹)과 로컬 엣지 환경(태블릿/스마트폰) 모두에서 깨짐 없이 완벽하게 반응형으로 작동합니다.
+              {/* 🚀 수정된 카피 반영 */}
+              <strong className="text-lg text-slate-800 block mb-3">누구나 쉽게 읽고 다루는 직관적인 대시보드</strong>
+              복잡한 수치와 장비 상태를 누구나 한눈에 파악할 수 있도록 직관적인 화면 디자인에 초점을 맞추었습니다. 
+              <br/><br/>
+              장시간 화면을 쳐다봐야 하는 관리자의 눈 피로를 덜어주기 위해 고급스러운 <b>'다크 모드(Dark Mode)'</b> 테마를 기본으로 제공합니다. PC 웹 화면은 물론, 현장에서 들고 다니는 태블릿이나 스마트폰에서도 화면 깨짐 없이 완벽하게 반응하여 언제 어디서나 쾌적하게 조명을 관리할 수 있습니다.
             </p>
 
-            {/* 🖼 대시보드 스크린샷 삽입 영역 */}
             <div className="w-full bg-slate-900 border-4 border-slate-300 rounded-lg p-2 flex flex-col items-center justify-center min-h-[450px] shadow-xl relative overflow-hidden group hover:border-[#1eb4c8] transition-colors">
               <svg className="w-16 h-16 text-slate-600 mb-4 z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
               <span className="text-slate-400 font-bold tracking-widest mb-2 z-10">
@@ -63,44 +64,44 @@ const Dashboard = () => {
             <h3 className="text-2xl font-bold text-[#1eb4c8] border-b border-slate-300 pb-2 mb-6 inline-block pr-8">Key Functions</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               
+              {/* 🚀 수정된 4가지 핵심 기능 블록 반영 */}
               <div className="border border-slate-200 p-6 bg-slate-50">
                 <div className="flex items-center mb-3">
                   <span className="text-2xl mr-3">🗺️</span>
-                  <h4 className="font-bold text-slate-800 text-lg">위치 기반 맵핑 관제</h4>
+                  <h4 className="font-bold text-slate-800 text-lg">지도와 도면 위에서 한눈에 확인하는 위치 관제</h4>
                 </div>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  가로등은 GIS(지도) API와 연동하여, 실내 스마트 LED는 빌딩 평면도와 연동하여 조명의 위치를 핀(Pin) 형태로 표시합니다. 점/소등 및 오프라인 상태를 직관적인 색상으로 한눈에 파악할 수 있습니다.
+                <p className="text-sm text-slate-600 leading-relaxed break-keep">
+                  야외 가로등은 실제 지도(GIS) 위에, 실내 스마트 LED는 건물의 평면도 위에 조명의 위치를 핀(Pin) 형태로 정확히 표시합니다. 조명이 켜져 있는지, 꺼져 있는지, 통신이 끊겼는지를 색상만으로 직관적으로 파악할 수 있습니다.
                 </p>
               </div>
 
               <div className="border border-slate-200 p-6 bg-slate-50">
                 <div className="flex items-center mb-3">
                   <span className="text-2xl mr-3">⚙️</span>
-                  <h4 className="font-bold text-slate-800 text-lg">원격 디밍 & 스케줄링</h4>
+                  <h4 className="font-bold text-slate-800 text-lg">상황에 맞춰 자유롭게 조절하는 밝기와 스케줄</h4>
                 </div>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  개별 또는 그룹 단위로 0~100%의 세밀한 밝기 조절 명령을 즉시 전송합니다. 관리자가 특정 시간대, 요일, 일출/일몰 데이터에 맞춰 간편하게 스케줄 로직을 설정할 수 있습니다.
+                <p className="text-sm text-slate-600 leading-relaxed break-keep">
+                  개별 조명 하나하나 또는 특정 그룹을 묶어 0~100%까지 세밀하게 밝기를 조절할 수 있습니다. 특정 시간대, 요일, 일출과 일몰 시간에 맞춰 알아서 조명이 켜지고 꺼지도록 간편하게 자동 스케줄을 설정합니다.
                 </p>
               </div>
 
-              {/* 🚀 무선 통신 환경(단말기 자체 미터기 기반)에 맞게 에러 진단 내용 현실화 */}
               <div className="border border-slate-200 p-6 bg-slate-50">
                 <div className="flex items-center mb-3">
                   <span className="text-2xl mr-3">🚨</span>
-                  <h4 className="font-bold text-slate-800 text-lg">단말기 상태 진단 및 경보</h4>
+                  <h4 className="font-bold text-slate-800 text-lg">고장 나기 전에 미리 알려주는 스마트 알림</h4>
                 </div>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  서버 응답 지연(오프라인), 단말기 내장 미터기 기반의 전압 이상(과/저전압), 비정상적 전류 강하(램프 고장 판단) 감지 시 대시보드에 적색 알람을 띄우고 담당자에게 알림을 발송합니다.
+                <p className="text-sm text-slate-600 leading-relaxed break-keep">
+                  기기의 통신이 끊기거나, 전압 이상, 램프 고장 등 문제가 감지되면 즉시 대시보드 화면에 빨간색 경고 알람을 띄우고 담당자의 휴대전화로 알림을 발송하여 신속한 조치를 돕습니다.
                 </p>
               </div>
 
               <div className="border border-slate-200 p-6 bg-slate-50">
                 <div className="flex items-center mb-3">
                   <span className="text-2xl mr-3">📊</span>
-                  <h4 className="font-bold text-slate-800 text-lg">전력 통계 및 리포트 추출</h4>
+                  <h4 className="font-bold text-slate-800 text-lg">클릭 한 번으로 뽑아보는 에너지 절감 리포트</h4>
                 </div>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  단말기들이 보고한 데이터를 취합하여 일/주/월간 전력 사용량 및 절감률을 그래프 위젯으로 제공합니다. 관리자는 모든 로우 데이터(Raw Data)를 엑셀 파일로 다운로드하여 분석할 수 있습니다.
+                <p className="text-sm text-slate-600 leading-relaxed break-keep">
+                  조명들이 보내온 데이터를 취합하여 일간, 주간, 월간 전력 사용량과 에너지 절감률을 보기 쉬운 그래프로 제공합니다. 필요할 경우 모든 상세 데이터(Raw Data)를 엑셀 파일로 다운로드하여 보고서 작성에 바로 활용할 수 있습니다.
                 </p>
               </div>
 
