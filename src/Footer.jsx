@@ -17,7 +17,8 @@ const Footer = () => {
             <ul className="space-y-2 text-[13px] text-slate-500 mb-6 break-keep">
               <li><span className="font-semibold text-slate-700">주소:</span> 충남 천안시 서북구 2공단4로 40-11 천안G1비즈캠퍼스 1223호 주식회사 플로림</li>
               <li><span className="font-semibold text-slate-700">전화:</span> 1660-0687</li>
-              <li><span className="font-semibold text-slate-700">메일:</span> info@flolim.com</li>
+              {/* 🚀 info -> sales 로 변경 완료 */}
+              <li><span className="font-semibold text-slate-700">메일:</span> sales@flolim.com</li>
             </ul>
           </div>
           <div className="md:col-span-1">

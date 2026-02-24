@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 const Location = () => {
   const mapElement = useRef(null);
+
   useEffect(() => {
     const NAVER_CLIENT_ID = "jmxph75p6j";
     const drawMap = () => {
@@ -17,6 +18,7 @@ const Location = () => {
       });
       infoWindow.open(map, marker);
     };
+
     if (window.naver && window.naver.maps) {
       drawMap();
     } else {
@@ -69,7 +71,8 @@ const Location = () => {
                 </div>
               </li>
               <li className="flex items-start"><span className="w-24 font-bold text-slate-800 shrink-0 mt-1">대표 전화</span><span className="mt-1 text-lg font-bold text-[#1eb4c8]">1660-0687</span></li>
-              <li className="flex items-start"><span className="w-24 font-bold text-slate-800 shrink-0">이메일</span>info@flolim.com</li>
+              {/* 🚀 info -> sales 로 변경 완료 */}
+              <li className="flex items-start"><span className="w-24 font-bold text-slate-800 shrink-0">이메일</span>sales@flolim.com</li>
             </ul>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -87,4 +90,5 @@ const Location = () => {
     </div>
   );
 };
+
 export default Location;
