@@ -7,32 +7,32 @@ const StreetLightIntro = () => {
       <div className="w-full bg-slate-50 py-12 border-b border-slate-200 border-t-4 border-t-[#1eb4c8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-sm text-slate-500 mb-2 font-medium">
-            홈 〉 <span className="text-[#1eb4c8] font-bold">가로등 제어 시스템</span>
+            홈 〉 가로등 제어 시스템 〉 <span className="text-[#1eb4c8] font-bold">시스템 개요</span>
           </div>
           <h1 className="text-3xl md:text-4xl font-black text-slate-800 tracking-tight">가로등 제어 시스템</h1>
         </div>
       </div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 flex flex-col md:flex-row gap-10">
-        <aside className="w-full md:w-[350px] flex-shrink-0">
+        <aside className="w-full md:w-[280px] flex-shrink-0">
           <div className="border border-slate-300">
             <div className="bg-[#1eb4c8] text-white py-4 px-5">
               <h2 className="text-lg font-bold tracking-tight">가로등 제어 시스템</h2>
             </div>
             <ul className="flex flex-col">
               <li className="border-b border-slate-200">
-                <Link to="/streetlight-intro" className="flex items-center justify-between px-4 py-4 text-[14px] tracking-tight bg-cyan-50 text-[#1eb4c8] font-bold whitespace-nowrap">
-                  가로등 제어 시스템 <svg className="w-4 h-4 flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="square" strokeLinejoin="miter" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
+                <Link to="/streetlight-intro" className="flex items-center justify-between px-4 py-4 text-[14px] lg:text-[15px] tracking-tight bg-cyan-50 text-[#1eb4c8] font-bold whitespace-nowrap">
+                  시스템 개요 <svg className="w-4 h-4 flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="square" strokeLinejoin="miter" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
                 </Link>
               </li>
               <li className="border-b border-slate-200">
-                <Link to="/lora" className="flex items-center justify-between px-4 py-4 text-[14px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
-                  LoRa-Mesh 가로등 제어 솔루션
+                <Link to="/lora" className="flex items-center justify-between px-4 py-4 text-[14px] lg:text-[15px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
+                  LoRa-Mesh 솔루션
                 </Link>
               </li>
               <li className="border-b border-slate-200 last:border-0">
-                <Link to="/nbiot" className="flex items-center justify-between px-4 py-4 text-[14px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
-                  NB-IoT 스마트 가로등 제어 솔루션
+                <Link to="/nbiot" className="flex items-center justify-between px-4 py-4 text-[14px] lg:text-[15px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
+                  NB-IoT 솔루션
                 </Link>
               </li>
             </ul>

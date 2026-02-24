@@ -1,103 +1,170 @@
 import React, { useState } from "react";
-// 🚀 주소 이동을 담당하는 Link 컴포넌트를 가져옵니다.
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
-  // 🚀 각 메뉴 항목에 실제 이동할 주소(path)를 꼼꼼하게 매칭했습니다.
-  const menuData = [
-    { 
-      title: "회사소개", 
-      subMenu: [
-        { name: "인사말", path: "/greeting" },
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+
+  // 🚀 전체 메뉴 구조 및 라우터 주소 완벽 동기화
+  const menuItems = [
+    {
+      title: "회사소개",
+      path: "/greeting",
+      subItems: [
+        { name: "CEO 인사말", path: "/greeting" },
         { name: "연혁", path: "/history" },
-        { name: "오시는 길", path: "/location" }
-      ] 
+        { name: "오시는 길", path: "/location" },
+      ],
     },
     {
       title: "가로등 제어 시스템",
-      subMenu: [
-        { name: "가로등 제어 시스템", path: "/streetlight-intro" },
-        { name: "LoRa-Mesh 가로등 제어 솔루션", path: "/lora" },
-        { name: "NB-IoT 스마트 가로등 제어 솔루션", path: "/nbiot" },
+      path: "/streetlight-intro",
+      subItems: [
+        { name: "시스템 개요", path: "/streetlight-intro" },
+        { name: "LoRa-Mesh 솔루션", path: "/lora" },
+        { name: "NB-IoT 솔루션", path: "/nbiot" },
       ],
     },
     {
       title: "스마트 LED 전등 제어 시스템",
-      subMenu: [
-        { name: "스마트 LED 전등 제어 시스템", path: "/led-intro" },
-        { name: "켑코이에스 연계 사업", path: "/esco" },
-        { name: "스마트 LED 전등 제어 솔루션", path: "/led-solution" },
+      path: "/led-intro",
+      subItems: [
+        { name: "시스템 개요", path: "/led-intro" },
+        { name: "ESCO 연계 사업", path: "/esco" },
+        { name: "스마트 LED 솔루션", path: "/led-solution" },
       ],
     },
     {
       title: "통합 관제 플랫폼",
-      subMenu: [
-        { name: "통합 관제 플랫폼", path: "/platform" },
-        { name: "모니터링 대시보드", path: "/dashboard" },
+      path: "/platform",
+      subItems: [
+        { name: "플랫폼 소개", path: "/platform" },
+        { name: "대시보드", path: "/dashboard" },
       ],
     },
-    { 
-      title: "고객지원", 
-      subMenu: [
+    {
+      title: "고객지원",
+      path: "/archive",
+      subItems: [
         { name: "자료실", path: "/archive" },
-        { name: "온라인 문의", path: "/contact" }
-      ] 
+        { name: "문의하기", path: "/contact" },
+      ],
     },
   ];
 
-  const [activeMenu, setActiveMenu] = useState(null);
+  // 현재 경로가 해당 메뉴 그룹에 속해 있는지 확인하는 함수 (활성화 효과용)
+  const isActive = (path, subItems) => {
+    if (location.pathname === path) return true;
+    return subItems?.some((item) => location.pathname === item.path);
+  };
 
   return (
-    <header className="w-full border-b border-slate-200 bg-white relative z-50">
+    <header className="w-full bg-white shadow-sm sticky top-0 z-50 font-sans border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-24">
+        <div className="flex justify-between items-center h-20">
           
-          {/* 🚀 로고를 클릭하면 메인 화면("/")으로 이동하게 만들었습니다. */}
-          <Link to="/" className="flex-shrink-0 flex flex-col justify-center cursor-pointer hover:opacity-80 transition-opacity">
-            <div className="text-4xl font-bold tracking-tight">
-              <span className="text-[#1eb4c8]">Flo</span>
-              <span className="text-[#4a5560]">Lim</span>
-            </div>
-            <span className="text-[10px] text-slate-500 font-medium tracking-widest uppercase mt-1">
-              The beginning of smart business
-            </span>
-          </Link>
+          {/* 로고 영역 */}
+          <div className="flex-shrink-0 flex items-center">
+            <Link to="/" className="flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
+              <span className="text-2xl font-black text-[#1eb4c8] tracking-tighter">FLOLIM</span>
+            </Link>
+          </div>
 
-          <nav className="hidden lg:flex space-x-10 h-full">
-            {menuData.map((menu, index) => (
-              <div
-                key={index}
-                className="h-full flex items-center relative group"
-                onMouseEnter={() => setActiveMenu(index)}
-                onMouseLeave={() => setActiveMenu(null)}
-              >
-                <div className="flex flex-col items-center cursor-pointer px-2 py-2">
-                  {/* 메인 메뉴 타이틀 (클릭 시 첫 번째 서브메뉴로 이동하도록 만들 수도 있지만, 일단은 Hover 용도로 둡니다) */}
-                  <span className="text-[16px] font-bold text-slate-800 group-hover:text-[#1eb4c8] transition-colors">
+          {/* PC 데스크탑 메뉴 영역 */}
+          <nav className="hidden lg:flex h-full">
+            <ul className="flex space-x-8 h-full">
+              {menuItems.map((menu, index) => (
+                <li key={index} className="group relative h-full flex items-center">
+                  <Link
+                    to={menu.path}
+                    className={`text-[15px] font-bold tracking-tight transition-colors duration-200 ${
+                      isActive(menu.path, menu.subItems)
+                        ? "text-[#1eb4c8]"
+                        : "text-slate-700 hover:text-[#1eb4c8]"
+                    }`}
+                  >
                     {menu.title}
-                  </span>
-                </div>
-                
-                {activeMenu === index && (
-                  <div className="absolute top-24 left-1/2 transform -translate-x-1/2 min-w-[260px] w-auto whitespace-nowrap bg-white border-t-4 border-[#1eb4c8] shadow-lg rounded-none">
-                    {menu.subMenu.map((sub, subIndex) => (
-                      // 🚀 a 태그 대신 Link 태그를 사용하여 새로고침 없이 부드럽게 화면을 전환합니다.
-                      <Link
-                        key={subIndex}
-                        to={sub.path}
-                        className="block px-6 py-3.5 text-[14px] font-medium text-slate-600 hover:bg-cyan-50 hover:text-[#1eb4c8] hover:font-bold border-b border-slate-100 last:border-0 transition-all"
-                        onClick={() => setActiveMenu(null)} // 클릭하면 열려있던 메뉴창을 닫아줍니다.
-                      >
-                        {sub.name}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
+                  </Link>
+
+                  {/* 드롭다운 하위 메뉴 */}
+                  {menu.subItems && (
+                    <div className="absolute top-[80px] left-1/2 transform -translate-x-1/2 w-48 bg-white border border-slate-200 shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 rounded-b-md overflow-hidden">
+                      {/* 상단 포인트 라인 */}
+                      <div className="w-full h-1 bg-[#1eb4c8]"></div>
+                      <ul className="flex flex-col py-2">
+                        {menu.subItems.map((subItem, subIndex) => (
+                          <li key={subIndex}>
+                            <Link
+                              to={subItem.path}
+                              className={`block px-5 py-3 text-[14px] font-medium transition-colors ${
+                                location.pathname === subItem.path
+                                  ? "bg-cyan-50 text-[#1eb4c8]"
+                                  : "text-slate-600 hover:bg-slate-50 hover:text-[#1eb4c8]"
+                              }`}
+                            >
+                              {subItem.name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </li>
+              ))}
+            </ul>
           </nav>
+
+          {/* 모바일 햄버거 버튼 */}
+          <div className="flex lg:hidden items-center">
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="text-slate-600 hover:text-[#1eb4c8] focus:outline-none p-2"
+            >
+              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {isMobileMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
+
+      {/* 모바일 슬라이드 메뉴 */}
+      {isMobileMenuOpen && (
+        <div className="lg:hidden absolute top-20 left-0 w-full bg-white border-b border-slate-200 shadow-xl max-h-[calc(100vh-80px)] overflow-y-auto">
+          <ul className="flex flex-col divide-y divide-slate-100 px-4 pt-2 pb-6">
+            {menuItems.map((menu, index) => (
+              <li key={index} className="py-2">
+                <div className="block px-2 py-3 text-[16px] font-bold text-[#1eb4c8]">
+                  {menu.title}
+                </div>
+                {menu.subItems && (
+                  <ul className="flex flex-col pl-4 mt-1 space-y-1">
+                    {menu.subItems.map((subItem, subIndex) => (
+                      <li key={subIndex}>
+                        <Link
+                          to={subItem.path}
+                          onClick={() => setIsMobileMenuOpen(false)} // 클릭 시 메뉴 닫힘
+                          className={`block px-2 py-2.5 text-[14px] font-medium rounded-md ${
+                            location.pathname === subItem.path
+                              ? "bg-cyan-50 text-[#1eb4c8]"
+                              : "text-slate-600 hover:bg-slate-50 hover:text-[#1eb4c8]"
+                          }`}
+                        >
+                          {subItem.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </header>
   );
 };
