@@ -57,7 +57,6 @@ const StreetLightIntro = () => {
   };
 
   // --- 이미지 투명도 계산 ---
-  // 각 모드에 맞는 이미지를 기본으로 깔고, 밝기에 따라 투명도를 조절합니다.
   const getOpacity = (targetMode) => {
     if (!power) return 0;
     if (activeMode === "failure") return targetMode === "failure" ? 1 : 0;
@@ -80,7 +79,7 @@ const StreetLightIntro = () => {
       {/* 본문 영역 */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 flex flex-col md:flex-row gap-10">
         
-        {/* 좌측 LNB (사이드바 - 요청하신 내용으로 수정됨) */}
+        {/* 좌측 LNB (사이드바) */}
         <aside className="w-full md:w-[280px] flex-shrink-0">
           <div className="border border-slate-300">
             <div className="bg-[#1eb4c8] text-white py-4 px-5">
@@ -93,15 +92,13 @@ const StreetLightIntro = () => {
                 </Link>
               </li>
               <li className="border-b border-slate-200">
-                {/* 실제 경로가 준비되면 to="/" 부분을 수정해주세요 */}
                 <Link to="/lora-mesh" className="flex items-center justify-between px-4 py-4 text-[14px] lg:text-[15px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
-                  LoRa-Mesh (자가망)
+                  LoRa-Mesh 솔루션
                 </Link>
               </li>
               <li className="border-b border-slate-200 last:border-0">
-                {/* 실제 경로가 준비되면 to="/" 부분을 수정해주세요 */}
                 <Link to="/nb-iot" className="flex items-center justify-between px-4 py-4 text-[14px] lg:text-[15px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
-                  NB-IoT (상용망)
+                  NB-IoT 솔루션
                 </Link>
               </li>
             </ul>
@@ -110,7 +107,6 @@ const StreetLightIntro = () => {
         
         {/* 우측 메인 콘텐츠 */}
         <section className="flex-1 min-w-0">
-          {/* ... (Key Benefits 이전의 텍스트 내용은 동일하여 생략) ... */}
           <h2 className="text-3xl font-black text-slate-800 tracking-tight mb-8 pb-4 border-b-2 border-slate-200">
             스마트 가로등 제어 시스템 <span className="text-lg text-slate-400 font-normal tracking-widest uppercase ml-2">Overview</span>
           </h2>
@@ -120,7 +116,9 @@ const StreetLightIntro = () => {
 
             <p className="text-slate-700 leading-relaxed break-keep text-[15px] mb-8">
               <strong className="text-lg text-slate-800 block mb-3">낭비는 줄이고 안전은 더하는 스마트 가로등 제어</strong>
-              (중략... 기존 내용과 동일)
+              기존에 단순히 시간을 맞춰 켜고 끄던 방식을 넘어, 꼭 필요한 곳에만 똑똑하게 빛을 채우는 사물인터넷(IoT) 기반의 지능형 관제 솔루션입니다.
+              <br/><br/>
+              플로림(FLOLIM)은 현장의 지형, 규모, 예산 등을 꼼꼼히 분석합니다. 통신비 부담이 없는 <b>LoRa-Mesh(자가망)</b>부터 전국 어디서나 끊김 없는 <b>NB-IoT(상용망)</b>까지 현장에 최적화된 맞춤형 통신망을 설계합니다. 획기적으로 전력 낭비를 줄이고 거리의 안전을 빈틈없이 지키며 스마트시티의 기반을 완성해 보세요.
             </p>
 
             {/* =========================================
@@ -302,7 +300,7 @@ const StreetLightIntro = () => {
             
           </div>
           
-          {/* Key Benefits 영역 (기존과 동일) */}
+          {/* Key Benefits 영역 */}
           <div className="mb-14">
             <h3 className="text-2xl font-bold text-[#1eb4c8] border-b border-slate-300 pb-2 mb-6 inline-block pr-8">Key Benefits</h3>
             <ul className="space-y-6 text-[15px] text-slate-700">
