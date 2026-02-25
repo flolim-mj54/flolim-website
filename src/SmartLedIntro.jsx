@@ -5,7 +5,7 @@ const SmartLedIntro = () => {
   // --- 상태 관리 ---
   const [power, setPower] = useState(true); // 전원 (ON/OFF)
   const [brightness, setBrightness] = useState(100); // 밝기 (0~100)
-  const [activeMode, setActiveMode] = useState("manual"); // 현재 모드 (manual, auto, eco)
+  const [activeMode, setActiveMode] = useState("manual"); // manual, schedule, eco
 
   // --- 제어 핸들러 ---
   // 모드 변경
@@ -13,23 +13,28 @@ const SmartLedIntro = () => {
     setActiveMode(mode);
     setPower(true); // 모드를 누르면 무조건 전원 ON
     if (mode === "eco") setBrightness(60); // 에코 모드는 60% 밝기로 고정
+    if (mode === "schedule") setBrightness(30); // 스케줄 모드는 심야 시간 가정 30%
     if (mode === "manual") setBrightness(100); 
   };
 
-  // 밝기(디밍) 슬라이더 변경
+  // 밝기(디밍) 슬라이더 변경 (개선된 부분: 조작 시 언제든 전원 켜짐)
   const handleBrightnessChange = (e) => {
     setActiveMode("manual"); // 수동 조작 시 매뉴얼 모드로 변경
     const val = parseInt(e.target.value, 10);
     setBrightness(val);
-    if (val > 0) setPower(true);
-    else setPower(false); // 밝기가 0이 되면 전원 OFF
+    
+    if (val > 0) {
+      setPower(true); // 밝기를 올리면 즉시 전원 ON
+    } else {
+      setPower(false); // 0이 되면 전원 OFF
+    }
   };
 
-  // 전원 토글
+  // 전원 버튼 토글
   const handlePowerToggle = () => {
     const nextPower = !power;
     setPower(nextPower);
-    // 전원을 다시 켤 때, 밝기가 0이었다면 100으로 복구
+    // 전원을 다시 켤 때, 이전에 밝기가 0이었다면 100으로 자동 복구
     if (nextPower && brightness === 0) {
       setBrightness(100);
       setActiveMode("manual");
@@ -37,10 +42,8 @@ const SmartLedIntro = () => {
   };
 
   // --- 이미지 레이어 투명도 계산 ---
-  // 1. 수동/에코 모드일 때: 슬라이더 값에 따라 투명도 조절 (0.0 ~ 1.0)
-  const brightLayerOpacity = power && activeMode !== "auto" ? brightness / 100 : 0;
-  // 2. 자동 모드일 때: 자동 모드 전용 이미지만 100% 보이게 처리
-  const autoLayerOpacity = power && activeMode === "auto" ? 1 : 0;
+  // 전원이 꺼져있으면 0, 켜져있으면 슬라이더 밝기 비율만큼 켜진 이미지의 투명도를 조절
+  const brightLayerOpacity = power ? brightness / 100 : 0;
 
   return (
     <div className="w-full bg-white font-sans text-slate-800 pb-20">
@@ -105,7 +108,7 @@ const SmartLedIntro = () => {
             <div className="flex flex-col lg:flex-row gap-6 bg-slate-50 p-6 rounded-2xl border border-slate-200 mb-14 shadow-sm">
               
               {/* 1. 이미지 시뮬레이션 영역 (좌측) */}
-              <div className="relative flex-1 aspect-video rounded-xl overflow-hidden shadow-inner bg-[#0a0f16] border border-slate-300">
+              <div className="relative flex-1 aspect-video rounded-xl overflow-hidden shadow-inner bg-black border border-slate-300">
                 
                 {/* [Layer 1: 완전 소등] 항상 바닥에 깔려있는 어두운 이미지 */}
                 <div className="absolute inset-0 w-full h-full bg-black">
@@ -116,7 +119,7 @@ const SmartLedIntro = () => {
                   />
                 </div>
                 
-                {/* [Layer 2: 수동/에코 디밍] 슬라이더에 따라 투명도가 변하는 100% 밝은 이미지 */}
+                {/* [Layer 2: 점등 & 디밍] 투명도가 변하는 100% 밝은 이미지 */}
                 <div 
                   className="absolute inset-0 w-full h-full transition-opacity duration-300 ease-out"
                   style={{ opacity: brightLayerOpacity }}
@@ -128,25 +131,13 @@ const SmartLedIntro = () => {
                   />
                 </div>
 
-                {/* [Layer 3: 자동 모드] 동체 감지 시 사람 주변만 켜진 이미지 */}
-                <div 
-                  className={`absolute inset-0 w-full h-full flex flex-col items-center justify-center transition-opacity duration-500 ease-out
-                    ${autoLayerOpacity === 1 ? 'z-20' : 'pointer-events-none'}`}
-                  style={{ opacity: autoLayerOpacity }}
-                >
-                  <img 
-                    src="/images/SmartLedIntro_Auto.jpg" 
-                    className="w-full h-full object-cover absolute inset-0" 
-                    alt="자동 감지 모드 상태" 
-                  />
-                  
-                  {/* 자동 모드 활성화 시 표시되는 UI 뱃지 (이미지 위에 오버레이) */}
-                  <div className="absolute bottom-6 left-6 z-30 flex items-center gap-2 bg-cyan-900/80 backdrop-blur-sm px-4 py-2 rounded-full border border-cyan-400 shadow-lg animate-pulse">
-                    <span className="text-cyan-400 text-lg">📡</span>
-                    <span className="text-white text-sm font-bold tracking-wide">움직임 감지 연동 중</span>
+                {/* 스케줄 모드 활성화 시 표시되는 UI 뱃지 */}
+                {activeMode === "schedule" && power && (
+                  <div className="absolute bottom-6 left-6 z-30 flex items-center gap-2 bg-indigo-900/80 backdrop-blur-sm px-4 py-2 rounded-full border border-indigo-400 shadow-lg">
+                    <span className="text-indigo-300 text-lg">⏰</span>
+                    <span className="text-white text-sm font-bold tracking-wide">야간 스케줄 유지 (조도 30%)</span>
                   </div>
-                </div>
-
+                )}
               </div>
 
               {/* 2. IoT 컨트롤 패널 영역 (우측) */}
@@ -183,46 +174,44 @@ const SmartLedIntro = () => {
                     <div className="flex justify-between items-end text-sm font-bold text-slate-600 mb-3">
                       <span>밝기 디밍 제어</span>
                       <span className="text-[#1eb4c8] text-lg bg-cyan-50 px-2 py-0.5 rounded">
-                        {activeMode === 'auto' ? 'Auto' : (power ? brightness : 0)}%
+                        {power ? brightness : 0}%
                       </span>
                     </div>
+                    {/* 개선: disabled 조건을 아예 없애서 꺼져있어도 클릭/드래그가 가능하도록 함 */}
                     <input 
                       type="range" 
                       min="0" max="100" 
-                      value={activeMode === 'auto' ? 100 : (power ? brightness : 0)} 
+                      value={power ? brightness : 0} 
                       onChange={handleBrightnessChange}
-                      disabled={activeMode === "auto" || !power}
-                      className="w-full h-2.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#1eb4c8] disabled:opacity-40 disabled:cursor-not-allowed"
+                      className="w-full h-2.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#1eb4c8] hover:accent-cyan-400 transition-all"
                     />
                   </div>
                 </div>
 
-                {/* 스마트 환경 모드 (자동 / 에코) */}
+                {/* 스마트 환경 모드 (스케줄 / 에코) */}
                 <div>
                   <p className="text-xs font-bold text-slate-400 mb-3 uppercase tracking-wider">Smart Mode</p>
                   <div className="grid grid-cols-2 gap-3">
-                    {/* 제어 버튼 3: 자동 모드 */}
+                    {/* 제어 버튼 3: 스케줄 모드 */}
                     <button 
-                      onClick={() => handleModeChange("auto")}
-                      disabled={!power}
+                      onClick={() => handleModeChange("schedule")}
                       className={`py-3 px-2 text-sm font-bold rounded-xl border-2 transition-all flex flex-col items-center gap-1
-                        ${activeMode === "auto" 
-                          ? 'bg-[#1eb4c8]/10 border-[#1eb4c8] text-[#1eb4c8]' 
+                        ${activeMode === "schedule" && power
+                          ? 'bg-indigo-50 border-indigo-400 text-indigo-600' 
                           : 'bg-white border-slate-100 text-slate-500 hover:border-slate-300 hover:bg-slate-50'} 
-                        disabled:opacity-40 disabled:cursor-not-allowed`}
+                      `}
                     >
-                      <span className="text-xl">📡</span>
-                      자동 센서
+                      <span className="text-xl">⏰</span>
+                      스케줄(30%)
                     </button>
                     {/* 제어 버튼 4: 에코 모드 */}
                     <button 
                       onClick={() => handleModeChange("eco")}
-                      disabled={!power}
                       className={`py-3 px-2 text-sm font-bold rounded-xl border-2 transition-all flex flex-col items-center gap-1
-                        ${activeMode === "eco" 
+                        ${activeMode === "eco" && power
                           ? 'bg-green-50 border-green-500 text-green-600' 
                           : 'bg-white border-slate-100 text-slate-500 hover:border-slate-300 hover:bg-slate-50'}
-                        disabled:opacity-40 disabled:cursor-not-allowed`}
+                      `}
                     >
                       <span className="text-xl">🌱</span>
                       에코(60%)
