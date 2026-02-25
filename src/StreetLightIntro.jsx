@@ -4,24 +4,27 @@ import { Link } from "react-router-dom";
 const StreetLightIntro = () => {
   // --- 상태 관리 ---
   const [power, setPower] = useState(true); 
-  const [brightness, setBrightness] = useState(100); 
+  const [brightness, setBrightness] = useState(70); // 초기 밝기를 일몰(70%)로 설정
   const [activeMode, setActiveMode] = useState("sunset"); // manual, sunset, midnight
-  const [isFailure, setIsFailure] = useState(false); // 고장 시뮬레이션 상태
+  const [isFailure, setIsFailure] = useState(false); 
+  
+  // 고장 발생 직전의 상태를 기억하기 위한 상태 추가
+  const [prevMode, setPrevMode] = useState("sunset");
+  const [prevBrightness, setPrevBrightness] = useState(70);
 
   // --- 제어 핸들러 ---
   const handleModeChange = (mode) => {
     setActiveMode(mode);
     setPower(true);
-    setIsFailure(false); // 일반 모드로 변경 시 고장 상태 해제
+    setIsFailure(false); 
 
-    if (mode === "sunset") setBrightness(100); // 일몰: 100% 점등
-    if (mode === "midnight") setBrightness(40); // 심야 절전: 40% 점등
-    if (mode === "manual") setBrightness(100); 
+    if (mode === "sunset") setBrightness(70); // 일몰: 현실적으로 70% 조도로 점등
+    if (mode === "midnight") setBrightness(40); // 심야 절전: 40% 조도로 점등
   };
 
   const handleBrightnessChange = (e) => {
     setActiveMode("manual");
-    setIsFailure(false); // 수동 조작 시 고장 상태 해제
+    setIsFailure(false); 
     const val = parseInt(e.target.value, 10);
     setBrightness(val);
     
@@ -35,18 +38,34 @@ const StreetLightIntro = () => {
   const handlePowerToggle = () => {
     const nextPower = !power;
     setPower(nextPower);
-    setIsFailure(false); // 전원 조작 시 고장 상태 해제
+    setIsFailure(false); 
+    // 전원을 켤 때 이전 밝기가 0이었다면 수동 100%로 켜짐
     if (nextPower && brightness === 0) {
       setBrightness(100);
-      setActiveMode("sunset");
+      setActiveMode("manual");
     }
   };
 
+  // 고장 발생 테스트 핸들러
   const handleFailureTest = () => {
+    if (!isFailure) {
+      // 고장 직전의 상태를 백업
+      setPrevMode(activeMode);
+      setPrevBrightness(brightness);
+      
+      setIsFailure(true);
+      setPower(true); // 이미지가 보이도록 전원 강제 ON
+      setBrightness(100); // 고장 이미지가 100% 점등 기반이므로 100%로 세팅
+      setActiveMode("failure");
+    }
+  };
+
+  // 시스템 복구 핸들러 (0%가 아닌 이전 상태로 완벽 복구)
+  const handleRecovery = () => {
+    setIsFailure(false);
     setPower(true);
-    setBrightness(100); // 고장 이미지가 100% 켜진 상태를 기반으로 하므로 밝기 동기화
-    setActiveMode("manual");
-    setIsFailure(true);
+    setBrightness(prevBrightness); // 백업해둔 밝기로 복귀
+    setActiveMode(prevMode); // 백업해둔 모드로 복귀
   };
 
   // --- 이미지 레이어 투명도 계산 ---
@@ -68,7 +87,7 @@ const StreetLightIntro = () => {
       {/* 본문 영역 */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 flex flex-col md:flex-row gap-10">
         
-        {/* 좌측 LNB (사이드바) */}
+        {/* 좌측 LNB (사이드바 - 예전 LED 버전 상태로 복구) */}
         <aside className="w-full md:w-[280px] flex-shrink-0">
           <div className="border border-slate-300">
             <div className="bg-[#1eb4c8] text-white py-4 px-5">
@@ -76,13 +95,18 @@ const StreetLightIntro = () => {
             </div>
             <ul className="flex flex-col">
               <li className="border-b border-slate-200">
-                <Link to="/streetlight-intro" className="flex items-center justify-between px-4 py-4 text-[14px] lg:text-[15px] tracking-tight bg-cyan-50 text-[#1eb4c8] font-bold whitespace-nowrap">
+                <Link to="/led-intro" className="flex items-center justify-between px-4 py-4 text-[14px] lg:text-[15px] tracking-tight bg-cyan-50 text-[#1eb4c8] font-bold whitespace-nowrap">
                   시스템 개요 <svg className="w-4 h-4 flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="square" strokeLinejoin="miter" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
                 </Link>
               </li>
               <li className="border-b border-slate-200">
-                <Link to="/streetlight-solution" className="flex items-center justify-between px-4 py-4 text-[14px] lg:text-[15px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
-                  지능형 관제 솔루션
+                <Link to="/esco" className="flex items-center justify-between px-4 py-4 text-[14px] lg:text-[15px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
+                  ESCO 연계 사업
+                </Link>
+              </li>
+              <li className="border-b border-slate-200 last:border-0">
+                <Link to="/led-solution" className="flex items-center justify-between px-4 py-4 text-[14px] lg:text-[15px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
+                  스마트 LED 솔루션
                 </Link>
               </li>
             </ul>
@@ -145,17 +169,39 @@ const StreetLightIntro = () => {
                     className="w-full h-full object-cover absolute inset-0" 
                     alt="가로등 고장 연출" 
                   />
+                  
+                  {/* 🔥 고장 위치를 알려주는 시각적 핀 마커 (대략적인 3번째 가로등 위치 우측) */}
+                  {isFailure && (
+                    <div className="absolute top-[35%] right-[22%] flex flex-col items-center">
+                      <div className="relative">
+                        <span className="text-3xl filter drop-shadow-md animate-bounce inline-block">📍</span>
+                        <div className="absolute -inset-2 bg-red-500 rounded-full opacity-30 animate-ping"></div>
+                      </div>
+                      <span className="bg-red-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-full mt-1 shadow-lg border border-red-400">
+                        고장 발생 위치
+                      </span>
+                    </div>
+                  )}
+
                   {/* 고장 시 화면에 뜨는 중앙 경고 UI */}
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                    <div className="bg-red-900/80 backdrop-blur-sm px-6 py-3 rounded-xl border border-red-500 shadow-[0_0_20px_rgba(239,68,68,0.5)] animate-pulse flex items-center gap-3">
-                      <span className="text-3xl">🚨</span>
+                    <div className="bg-red-900/90 backdrop-blur-sm px-6 py-4 rounded-xl border border-red-500 shadow-[0_0_30px_rgba(239,68,68,0.5)] flex items-center gap-4">
+                      <span className="text-4xl animate-pulse">🚨</span>
                       <div className="text-left">
-                        <p className="text-red-100 text-xs font-bold uppercase tracking-wider">System Alert</p>
-                        <p className="text-white text-base font-bold">2구역 가로등 램프 고장 감지!</p>
+                        <p className="text-red-200 text-xs font-bold uppercase tracking-widest mb-1">System Alert</p>
+                        <p className="text-white text-lg font-bold">2구역-C열 가로등 램프 고장!</p>
                       </div>
                     </div>
                   </div>
                 </div>
+
+                {/* 일몰 모드 뱃지 */}
+                {activeMode === "sunset" && power && !isFailure && (
+                  <div className="absolute bottom-6 left-6 z-30 flex items-center gap-2 bg-orange-900/80 backdrop-blur-sm px-4 py-2 rounded-full border border-orange-400 shadow-lg transition-all duration-500">
+                    <span className="text-orange-300 text-lg">🌆</span>
+                    <span className="text-white text-sm font-bold tracking-wide">초저녁 일몰 모드 <span className="text-orange-200 ml-1">(조도 70%)</span></span>
+                  </div>
+                )}
 
                 {/* 심야 절전 모드 뱃지 */}
                 {activeMode === "midnight" && power && !isFailure && (
@@ -182,7 +228,7 @@ const StreetLightIntro = () => {
                     <div className="flex justify-between items-center">
                       <span className="font-medium text-slate-300">환경 연동</span>
                       <span className="font-bold">
-                        {activeMode === 'midnight' ? '🌙 심야 (23:45)' : '🌆 일몰 (18:30)'}
+                        {activeMode === 'midnight' ? '🌙 심야 (23:45)' : activeMode === 'sunset' ? '🌆 일몰 (18:30)' : '⚙️ 수동 제어'}
                       </span>
                     </div>
                   </div>
@@ -200,7 +246,8 @@ const StreetLightIntro = () => {
                       min="0" max="100" 
                       value={power && !isFailure ? brightness : 0} 
                       onChange={handleBrightnessChange}
-                      className="w-full h-2.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#1eb4c8] hover:accent-cyan-400 transition-all"
+                      disabled={isFailure} // 고장 상태일때는 슬라이더 잠금
+                      className="w-full h-2.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#1eb4c8] disabled:opacity-50 disabled:cursor-not-allowed hover:accent-cyan-400 transition-all"
                     />
                   </div>
                 </div>
@@ -211,21 +258,25 @@ const StreetLightIntro = () => {
                   <div className="grid grid-cols-2 gap-3">
                     <button 
                       onClick={() => handleModeChange("sunset")}
+                      disabled={isFailure} // 고장 상태일때 모드 변경 불가
                       className={`py-3 px-2 text-sm font-bold rounded-xl border-2 transition-all flex flex-col items-center gap-1
                         ${activeMode === "sunset" && power && !isFailure
                           ? 'bg-orange-50 border-orange-400 text-orange-600' 
                           : 'bg-white border-slate-100 text-slate-500 hover:border-slate-300 hover:bg-slate-50'} 
+                        disabled:opacity-50 disabled:cursor-not-allowed
                       `}
                     >
                       <span className="text-xl">🌆</span>
-                      일몰(100%)
+                      일몰(70%)
                     </button>
                     <button 
                       onClick={() => handleModeChange("midnight")}
+                      disabled={isFailure}
                       className={`py-3 px-2 text-sm font-bold rounded-xl border-2 transition-all flex flex-col items-center gap-1
                         ${activeMode === "midnight" && power && !isFailure
                           ? 'bg-indigo-50 border-indigo-400 text-indigo-600' 
                           : 'bg-white border-slate-100 text-slate-500 hover:border-slate-300 hover:bg-slate-50'}
+                        disabled:opacity-50 disabled:cursor-not-allowed
                       `}
                     >
                       <span className="text-xl">🌃</span>
@@ -237,7 +288,7 @@ const StreetLightIntro = () => {
                 {/* 선제적 유지보수 (고장 테스트) */}
                 <div className="pt-5 border-t border-slate-100">
                   <button 
-                    onClick={isFailure ? handlePowerToggle : handleFailureTest}
+                    onClick={isFailure ? handleRecovery : handleFailureTest}
                     className={`w-full py-3.5 rounded-xl font-bold transition-all flex justify-center items-center gap-2 shadow-sm
                       ${isFailure 
                         ? 'bg-slate-800 text-white hover:bg-slate-700' 
@@ -248,7 +299,7 @@ const StreetLightIntro = () => {
                     {isFailure ? (
                       <>
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
-                        시스템 복구 및 초기화
+                        시스템 복구 및 정상화
                       </>
                     ) : (
                       <>
@@ -260,7 +311,7 @@ const StreetLightIntro = () => {
                   {/* 고장 상태일 때 우측 패널 하단에 뜨는 SMS 알림 연출 */}
                   {isFailure && (
                     <div className="mt-3 p-3 bg-red-100 border-l-4 border-red-500 rounded text-xs text-red-800 font-medium">
-                      ✓ 담당자에게 SMS 및 푸시 알림이 즉각 발송되었습니다.
+                      ✓ 담당자에게 고장 위치 SMS가 즉각 발송되었습니다.
                     </div>
                   )}
                 </div>
