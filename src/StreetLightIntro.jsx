@@ -56,14 +56,14 @@ const StreetLightIntro = () => {
     setPower(true);
   };
 
-  // --- 🔥 수정된 부분: 조명 레이어 투명도 계산 함수 ---
+  // --- 조명 레이어 투명도 계산 함수 ---
   const getLightingOpacity = (targetMode) => {
     if (!power) return 0; 
     if (targetMode !== bgMode) return 0;
 
     const baseOpacity = brightness / 100;
     
-    // 일출 모드에서도 변화가 잘 보이도록 가시성을 대폭 높였습니다. (0.3 -> 0.85)
+    // 일출 모드 가시성 확보용 투명도 제한 (최대 85%)
     if (targetMode === "sunrise") {
       return baseOpacity * 0.85; 
     }
@@ -78,9 +78,9 @@ const StreetLightIntro = () => {
       <div className="w-full bg-slate-50 py-12 border-b border-slate-200 border-t-4 border-t-[#1eb4c8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-sm text-slate-500 mb-2 font-medium">
-            홈 〉 스마트 가로등 제어 시스템 〉 <span className="text-[#1eb4c8] font-bold">시스템 개요</span>
+            홈 〉 가로등 제어 시스템 〉 <span className="text-[#1eb4c8] font-bold">시스템 개요</span>
           </div>
-          <h1 className="text-3xl md:text-4xl font-black text-slate-800 tracking-tight">스마트 가로등 제어 시스템</h1>
+          <h1 className="text-3xl md:text-4xl font-black text-slate-800 tracking-tight">가로등 제어 시스템</h1>
         </div>
       </div>
       
@@ -91,7 +91,7 @@ const StreetLightIntro = () => {
         <aside className="w-full md:w-[280px] flex-shrink-0">
           <div className="border border-slate-300">
             <div className="bg-[#1eb4c8] text-white py-4 px-5">
-              <h2 className="text-lg font-bold tracking-tight">통신망 솔루션</h2>
+              <h2 className="text-lg font-bold tracking-tight">가로등 제어 시스템</h2>
             </div>
             <ul className="flex flex-col">
               <li>
@@ -112,7 +112,7 @@ const StreetLightIntro = () => {
         {/* 우측 메인 콘텐츠 */}
         <section className="flex-1 min-w-0">
           <h2 className="text-3xl font-black text-slate-800 mb-8 pb-4 border-b-2 border-slate-200 tracking-tight">
-            스마트 가로등 제어 시스템 <span className="text-lg text-slate-400 font-normal ml-2 tracking-widest uppercase">Overview</span>
+            가로등 제어 시스템 <span className="text-lg text-slate-400 font-normal ml-2 tracking-widest uppercase">Overview</span>
           </h2>
           
           <div className="mb-14">
@@ -175,7 +175,7 @@ const StreetLightIntro = () => {
                       <span className="text-3xl">🚨</span>
                       <div>
                         <p className="text-red-200 text-xs font-bold mb-0.5">고장 탐지</p>
-                        <p className="text-white text-sm font-bold">구역 A<br/>가로등 #4, #5, #6 꺼짐</p>
+                        <p className="text-white text-sm font-bold">구역 A<br/>가로등 #4, #5, #6, #7 꺼짐</p>
                       </div>
                     </div>
                   </div>
