@@ -8,10 +8,6 @@ const StreetLightIntro = () => {
   const [activeMode, setActiveMode] = useState("sunset"); // sunset, sunrise, failure, manual
   const [isRecovered, setIsRecovered] = useState(false); // 복구 완료 상태 추가
 
-  // 고장 직전 상태 기억용 (복구 시 사용하지 않게 됨)
-  const [prevMode, setPrevMode] = useState("sunset");
-  const [prevBrightness, setPrevBrightness] = useState(70);
-
   // --- 제어 핸들러 ---
   const handleModeChange = (mode) => {
     setActiveMode(mode);
@@ -45,8 +41,6 @@ const StreetLightIntro = () => {
   // 고장 시뮬레이션 핸들러 (뷰 전환)
   const handleFailureTest = () => {
     if (activeMode !== "failure") {
-      setPrevMode(activeMode === "manual" ? "sunset" : activeMode); 
-      setPrevBrightness(brightness);
       setActiveMode("failure");
       setPower(true);
       setBrightness(100); 
@@ -54,16 +48,11 @@ const StreetLightIntro = () => {
     }
   };
 
-  // 복구 핸들러 (수정됨: 정상 드론 뷰로 고정)
+  // 복구 핸들러 (정상 드론 뷰로 고정)
   const handleRecovery = () => {
-    // 기존: 이전 상태로 복귀 (주석 처리)
-    // setActiveMode(prevMode);
-    // setBrightness(prevBrightness);
-    
-    // 변경: 복구 완료 상태로 설정하고 정상 드론 뷰(100%) 표시
     setIsRecovered(true);
-    setActiveMode("manual"); // 모드는 수동으로 변경
-    setBrightness(100); // 밝기는 100%
+    setActiveMode("manual"); // 모드는 수동으로 변경하여 일반 제어 가능상태로
+    setBrightness(100); // 항공 뷰 기준 밝기는 100%
     setPower(true);
   };
 
@@ -172,7 +161,6 @@ const StreetLightIntro = () => {
                 {/* ----------------------------------------------------
                     View 2: 항공 관제 뷰 (고장 시뮬레이션 전용) 
                     - 고장 모드일 때만 페이드인 됩니다.
-                    - 🔥 중요: 고장 이미지를 image_92.png로 변경했습니다.
                 ----------------------------------------------------- */}
                 <div className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out z-20
                   ${activeMode === "failure" && !isRecovered ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
@@ -184,20 +172,20 @@ const StreetLightIntro = () => {
                     alt="항공 관제 정상 뷰" 
                   />
 
-                  {/* Overlay 드론 뷰 (고장 핀 포인트 이미지 - image_92.png 사용) */}
+                  {/* Overlay 드론 뷰 (빨간 점 3개 있는 고장 이미지) */}
                   <img 
-                    src="/images/streetlightintro_failure.jpg" // 🔥 사용자가 제공한 새 이미지 파일명
+                    src="/images/streetlightintro_failure.jpg" 
                     className={`w-full h-full object-cover absolute inset-0 transition-opacity duration-500 delay-300 ease-out
                       ${activeMode === "failure" ? 'opacity-100' : 'opacity-0'}`}
                     alt="고장 발생 핀 포인트" 
                   />
                   
-                  {/* 고장 경고 알림 UI (한글로 변경됨) */}
+                  {/* 고장 경고 알림 UI (우측 하단) */}
                   <div className="absolute bottom-[10%] right-[5%] flex items-center justify-center pointer-events-none animate-pulse z-30">
                     <div className="bg-red-900/90 backdrop-blur-sm px-5 py-3 rounded-xl border border-red-500 shadow-[0_0_30px_rgba(239,68,68,0.6)] flex items-center gap-3">
                       <span className="text-3xl">🚨</span>
                       <div className="text-left">
-                        <p className="text-red-200 text-xs font-bold uppercase tracking-widest mb-0.5">고장 탐지</p> {/* 🔥 한글 변경 */}
+                        <p className="text-red-200 text-xs font-bold uppercase tracking-widest mb-0.5">고장 탐지</p>
                         <p className="text-white text-sm font-bold leading-tight">구역 A<br/>가로등 #4, #5, #6 꺼짐</p>
                       </div>
                     </div>
@@ -205,9 +193,9 @@ const StreetLightIntro = () => {
                 </div>
 
                 {/* ----------------------------------------------------
-                    View 3: 복구 완료 뷰 (새로 추가)
+                    View 3: 복구 완료 뷰 
                     - 복구 버튼을 눌렀을 때 (isRecovered === true) 페이드인 됩니다.
-                    - 정상 드론 뷰를 100% 밝기로 보여줍니다.
+                    - 정상 드론 뷰를 보여줍니다.
                 ----------------------------------------------------- */}
                 <div className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out z-30
                   ${isRecovered ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
@@ -301,7 +289,7 @@ const StreetLightIntro = () => {
                   </div>
                 </div>
 
-                {/* 고장 시뮬레이션 버튼 (텍스트 변경됨) */}
+                {/* 고장 시뮬레이션 및 복구 버튼 */}
                 <div className="pt-5 border-t border-slate-100">
                   <button 
                     onClick={activeMode === "failure" ? handleRecovery : handleFailureTest}
@@ -315,7 +303,7 @@ const StreetLightIntro = () => {
                     {activeMode === "failure" ? (
                       <>
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
-                        시스템 복구 완료 {/* 🔥 텍스트 변경 */}
+                        시스템 복구 완료
                       </>
                     ) : (
                       <>
