@@ -1,9 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const SmartLedIntro = () => {
+  // --- 상태 관리 ---
+  const [power, setPower] = useState(true); // 전원 (ON/OFF)
+  const [brightness, setBrightness] = useState(100); // 밝기 (0~100)
+  const [activeMode, setActiveMode] = useState("manual"); // 현재 모드 (manual, auto, eco)
+
+  // --- 제어 핸들러 ---
+  // 모드 변경
+  const handleModeChange = (mode) => {
+    setActiveMode(mode);
+    setPower(true); // 모드를 누르면 무조건 전원 ON
+    if (mode === "eco") setBrightness(60); // 에코 모드는 60% 밝기로 고정
+    if (mode === "manual") setBrightness(100); 
+  };
+
+  // 밝기(디밍) 슬라이더 변경
+  const handleBrightnessChange = (e) => {
+    setActiveMode("manual"); // 수동 조작 시 매뉴얼 모드로 변경
+    const val = parseInt(e.target.value, 10);
+    setBrightness(val);
+    if (val > 0) setPower(true);
+    else setPower(false); // 밝기가 0이 되면 전원 OFF
+  };
+
+  // 전원 토글
+  const handlePowerToggle = () => {
+    const nextPower = !power;
+    setPower(nextPower);
+    // 전원을 다시 켤 때, 밝기가 0이었다면 100으로 복구
+    if (nextPower && brightness === 0) {
+      setBrightness(100);
+      setActiveMode("manual");
+    }
+  };
+
+  // --- 이미지 레이어 투명도 계산 ---
+  // 전원이 꺼져있거나 자동 모드일 때는 기본 밝은 이미지를 안 보이게(0) 처리
+  const brightLayerOpacity = power && activeMode !== "auto" ? brightness / 100 : 0;
+  // 자동 모드일 때만 자동 모드 전용 이미지를 보이게(1) 처리
+  const autoLayerOpacity = power && activeMode === "auto" ? 1 : 0;
+
   return (
     <div className="w-full bg-white font-sans text-slate-800 pb-20">
+      {/* 상단 타이틀 영역 */}
       <div className="w-full bg-slate-50 py-12 border-b border-slate-200 border-t-4 border-t-[#1eb4c8]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-sm text-slate-500 mb-2 font-medium">
@@ -13,7 +54,10 @@ const SmartLedIntro = () => {
         </div>
       </div>
       
+      {/* 본문 영역 */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 flex flex-col md:flex-row gap-10">
+        
+        {/* 좌측 LNB (사이드바) */}
         <aside className="w-full md:w-[280px] flex-shrink-0">
           <div className="border border-slate-300">
             <div className="bg-[#1eb4c8] text-white py-4 px-5">
@@ -39,6 +83,7 @@ const SmartLedIntro = () => {
           </div>
         </aside>
         
+        {/* 우측 메인 콘텐츠 */}
         <section className="flex-1 min-w-0">
           <h2 className="text-3xl font-black text-slate-800 tracking-tight mb-8 pb-4 border-b-2 border-slate-200">
             스마트 LED 전등 제어 시스템 <span className="text-lg text-slate-400 font-normal tracking-widest uppercase ml-2">Overview</span>
@@ -46,15 +91,6 @@ const SmartLedIntro = () => {
           
           <div className="mb-14">
             <h3 className="text-2xl font-bold text-[#1eb4c8] border-b border-slate-300 pb-2 mb-6 inline-block pr-8">Overview</h3>
-            
-            {/* 스마트 조명 제어의 편리함을 보여주는 이미지 삽입 */}
-            <div className="w-full mb-8 rounded-xl overflow-hidden shadow-md">
-              <img 
-                src="http://googleusercontent.com/image_generation_content/16" 
-                alt="스마트폰 터치 한 번으로 사무실 조명을 제어하는 모습" 
-                className="w-full h-auto object-cover max-h-[400px]"
-              />
-            </div>
 
             <p className="text-slate-700 leading-relaxed break-keep text-[15px] mb-8">
               <strong className="text-lg text-slate-800 block mb-3">끊기지 않는 연결, 샐 틈 없는 보안의 스마트 조명 제어</strong>
@@ -63,17 +99,133 @@ const SmartLedIntro = () => {
               외부 인터넷이 끊기면 조명 제어까지 멈추거나 해킹에 노출될 수 있는 기존 클라우드 방식의 불안함을 완벽히 해결했습니다. 건물 내부에 독립적인 자체 서버를 구축하여, 어떤 비상 상황에서도 조명이 꺼지지 않는 <b>100% 무중단 제어</b>를 실현합니다. 외부와 철저히 차단된 강력한 보안망을 갖춰 공공기관, 대형 빌딩, 보안 시설에 최적화된 환경을 제공합니다.
             </p>
 
-            {/* 스마트 LED 로컬 보안 서버(On-Premise) 3D 조감도 영상 삽입 */}
-            <div className="w-full rounded-xl overflow-hidden shadow-lg border border-slate-200">
-              <video 
-                src="http://googleusercontent.com/generated_video_content/6168353440817336210" 
-                autoPlay 
-                loop 
-                muted 
-                playsInline 
-                className="w-full h-auto object-cover max-h-[450px]"
-              />
+            {/* =========================================
+                🔥 대시보드 시뮬레이터 UI 시작
+            ========================================= */}
+            <div className="flex flex-col lg:flex-row gap-6 bg-slate-50 p-6 rounded-2xl border border-slate-200 mb-14 shadow-sm">
+              
+              {/* 1. 이미지 시뮬레이션 영역 (좌측) */}
+              <div className="relative flex-1 aspect-video rounded-xl overflow-hidden shadow-inner bg-[#0a0f16] border border-slate-300">
+                
+                {/* [Layer 1: 완전 소등] 항상 바닥에 깔려있는 어두운 이미지 */}
+                <div className="absolute inset-0 w-full h-full flex items-center justify-center text-slate-500 bg-[#0a0f16]">
+                  <span className="z-10 text-sm">Layer 1: 완전 소등 (bg-off.jpg 삽입 예정)</span>
+                  {/* <img src="/images/bg-off.jpg" className="w-full h-full object-cover absolute inset-0" alt="소등" /> */}
+                </div>
+                
+                {/* [Layer 2: 수동/에코 디밍] 슬라이더에 따라 투명도가 변하는 100% 밝은 이미지 */}
+                <div 
+                  className="absolute inset-0 w-full h-full bg-white/10 flex items-center justify-center text-slate-800 transition-opacity duration-200 ease-out"
+                  style={{ opacity: brightLayerOpacity }}
+                >
+                  <div className="w-full h-full bg-white/80 absolute inset-0"></div> {/* 임시 배경 (이미지 삽입 시 삭제) */}
+                  <span className="z-10 font-bold">Layer 2: 100% 점등 (bg-on.jpg 삽입 예정)</span>
+                  {/* <img src="/images/bg-on.jpg" className="w-full h-full object-cover absolute inset-0" alt="점등" /> */}
+                </div>
+
+                {/* [Layer 3: 자동 모드] 동체 감지 시 사람 주변만 켜진 이미지 */}
+                <div 
+                  className={`absolute inset-0 w-full h-full flex flex-col items-center justify-center text-white transition-opacity duration-500 ease-out
+                    ${autoLayerOpacity === 1 ? 'z-20' : 'pointer-events-none'}`}
+                  style={{ opacity: autoLayerOpacity }}
+                >
+                  <div className="w-full h-full bg-cyan-900/80 absolute inset-0"></div> {/* 임시 배경 (이미지 삽입 시 삭제) */}
+                  <span className="z-10 font-bold mb-2">Layer 3: 자동 센서 감지 점등 (bg-auto.jpg 삽입 예정)</span>
+                  <span className="z-10 text-xs bg-cyan-500/80 px-4 py-1.5 rounded-full animate-pulse shadow-[0_0_10px_rgba(6,182,212,0.5)]">
+                    📡 움직임 감지 중...
+                  </span>
+                  {/* <img src="/images/bg-auto.jpg" className="w-full h-full object-cover absolute inset-0" alt="자동 감지" /> */}
+                </div>
+
+              </div>
+
+              {/* 2. IoT 컨트롤 패널 영역 (우측) */}
+              <div className="w-full lg:w-[300px] bg-white rounded-xl shadow-md border border-slate-200 p-6 flex flex-col justify-between">
+                
+                {/* 패널 헤더 (상태 표시) */}
+                <div>
+                  <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
+                    <h4 className="font-bold text-slate-800 text-lg tracking-tight">로컬 관제 패널</h4>
+                    <span className={`text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1.5 ${power ? 'bg-green-50 text-green-600' : 'bg-slate-100 text-slate-500'}`}>
+                      <span className={`block w-2 h-2 rounded-full ${power ? 'bg-green-500 animate-pulse' : 'bg-slate-400'}`}></span>
+                      {power ? 'Online' : 'Offline'}
+                    </span>
+                  </div>
+
+                  {/* 제어 버튼 1: 전원 ON/OFF */}
+                  <button 
+                    onClick={handlePowerToggle}
+                    className={`w-full py-3.5 rounded-xl font-bold transition-all flex justify-center items-center gap-2 mb-6 shadow-sm
+                      ${power 
+                        ? 'bg-slate-800 text-white hover:bg-slate-700' 
+                        : 'bg-white text-slate-600 border-2 border-slate-200 hover:border-[#1eb4c8] hover:text-[#1eb4c8]'
+                      }
+                    `}
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                    {power ? "시스템 전원 끄기" : "시스템 전원 켜기"}
+                  </button>
+
+                  {/* 제어 버튼 2: 수동 디밍 조절 */}
+                  <div className="mb-8">
+                    <div className="flex justify-between items-end text-sm font-bold text-slate-600 mb-3">
+                      <span>밝기 디밍 제어</span>
+                      <span className="text-[#1eb4c8] text-lg bg-cyan-50 px-2 py-0.5 rounded">
+                        {activeMode === 'auto' ? 'Auto' : (power ? brightness : 0)}%
+                      </span>
+                    </div>
+                    <input 
+                      type="range" 
+                      min="0" max="100" 
+                      value={activeMode === 'auto' ? 100 : (power ? brightness : 0)} 
+                      onChange={handleBrightnessChange}
+                      disabled={activeMode === "auto" || !power}
+                      className="w-full h-2.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#1eb4c8] disabled:opacity-40 disabled:cursor-not-allowed"
+                    />
+                  </div>
+                </div>
+
+                {/* 스마트 환경 모드 (자동 / 에코) */}
+                <div>
+                  <p className="text-xs font-bold text-slate-400 mb-3 uppercase tracking-wider">Smart Mode</p>
+                  <div className="grid grid-cols-2 gap-3">
+                    {/* 제어 버튼 3: 자동 모드 */}
+                    <button 
+                      onClick={() => handleModeChange("auto")}
+                      disabled={!power}
+                      className={`py-3 px-2 text-sm font-bold rounded-xl border-2 transition-all flex flex-col items-center gap-1
+                        ${activeMode === "auto" 
+                          ? 'bg-[#1eb4c8]/10 border-[#1eb4c8] text-[#1eb4c8]' 
+                          : 'bg-white border-slate-100 text-slate-500 hover:border-slate-300 hover:bg-slate-50'} 
+                        disabled:opacity-40 disabled:cursor-not-allowed`}
+                    >
+                      <span className="text-xl">📡</span>
+                      자동 센서
+                    </button>
+                    {/* 제어 버튼 4: 에코 모드 */}
+                    <button 
+                      onClick={() => handleModeChange("eco")}
+                      disabled={!power}
+                      className={`py-3 px-2 text-sm font-bold rounded-xl border-2 transition-all flex flex-col items-center gap-1
+                        ${activeMode === "eco" 
+                          ? 'bg-green-50 border-green-500 text-green-600' 
+                          : 'bg-white border-slate-100 text-slate-500 hover:border-slate-300 hover:bg-slate-50'}
+                        disabled:opacity-40 disabled:cursor-not-allowed`}
+                    >
+                      <span className="text-xl">🌱</span>
+                      에코(60%)
+                    </button>
+                  </div>
+                </div>
+                
+              </div>
             </div>
+            {/* =========================================
+                대시보드 시뮬레이터 UI 끝
+            ========================================= */}
+            
           </div>
           
           <div className="mb-14">
