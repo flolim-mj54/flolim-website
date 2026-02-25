@@ -186,7 +186,7 @@ const StreetLightIntro = () => {
 
                   {/* Overlay 드론 뷰 (고장 핀 포인트 이미지 - image_92.png 사용) */}
                   <img 
-                    src="/images/image_92.png" // 🔥 사용자가 제공한 새 이미지 파일명
+                    src="/images/streetlightintro_failure.jpg" // 🔥 사용자가 제공한 새 이미지 파일명
                     className={`w-full h-full object-cover absolute inset-0 transition-opacity duration-500 delay-300 ease-out
                       ${activeMode === "failure" ? 'opacity-100' : 'opacity-0'}`}
                     alt="고장 발생 핀 포인트" 
