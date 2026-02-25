@@ -52,11 +52,20 @@ const StreetLightIntro = () => {
               <br/><br/>
               플로림(FLOLIM)은 현장의 지형, 규모, 예산 등을 꼼꼼히 분석합니다. 통신비 부담이 없는 <b>LoRa-Mesh(자가망)</b>부터 전국 어디서나 끊김 없는 <b>NB-IoT(상용망)</b>까지 현장에 최적화된 맞춤형 통신망을 설계합니다. 획기적으로 전력 낭비를 줄이고 거리의 안전을 빈틈없이 지키며 스마트시티의 기반을 완성해 보세요.
             </p>
-            <div className="w-full aspect-video bg-slate-100 border-2 border-dashed border-slate-300 rounded-lg flex flex-col items-center justify-center text-slate-500 hover:bg-slate-50 transition-colors">
-              <svg className="w-12 h-12 mb-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-              <span className="font-bold tracking-wide">[ 스마트 가로등 제어 시스템 3D 소개 영상 또는 대표 이미지 삽입 영역 ]</span>
-              <span className="text-sm mt-1">도심 전체의 조명이 지능적으로 제어되는 역동적인 시각 자료를 추천합니다.</span>
+            
+            {/* 🚀 이미지가 삽입되는 영역입니다 */}
+            <div className="w-full rounded-lg overflow-hidden shadow-md border border-slate-200">
+              <img 
+                src="/images/streetlightintro.jpg" 
+                alt="스마트 가로등 제어 시스템 조감도" 
+                className="w-full h-auto object-cover hover:scale-105 transition-transform duration-700"
+              />
             </div>
+            {/* 이미지 설명 캡션 (선택 사항) */}
+            <p className="text-center text-sm text-slate-500 mt-3">
+              ▲ 도심 전체를 하나로 묶어 지능적으로 제어하는 스마트시티 네트워크 구조
+            </p>
+
           </div>
           
           <div className="mb-14">
