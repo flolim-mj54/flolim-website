@@ -13,36 +13,33 @@ const IMG_DRONE_FAILURE = `${IMG_PATH}streetlightintro_failure.jpg`;
 const StreetLightIntro = () => {
   // --- 상태 관리 ---
   const [power, setPower] = useState(true);
-  const [brightness, setBrightness] = useState(70); // 초기 밝기
-  const [activeMode, setActiveMode] = useState("sunset"); // sunset, sunrise, failure, manual
-  const [bgMode, setBgMode] = useState("sunset"); // 🔥 추가: 배경 이미지 고정용 상태 (sunset 또는 sunrise)
-  const [isRecovered, setIsRecovered] = useState(false); // 복구 완료 상태
+  const [brightness, setBrightness] = useState(70); 
+  const [activeMode, setActiveMode] = useState("sunset"); 
+  const [bgMode, setBgMode] = useState("sunset"); 
+  const [isRecovered, setIsRecovered] = useState(false); 
 
   // --- 제어 핸들러 ---
   const handleModeChange = (mode) => {
     setActiveMode(mode);
-    setBgMode(mode); // 버튼을 누를 때만 배경 변경
+    setBgMode(mode); 
     setPower(true);
     setIsRecovered(false);
     
-    // 모드별 초기 밝기 설정
     if (mode === "sunset") setBrightness(70);
     if (mode === "sunrise") setBrightness(20);
   };
 
   const handleBrightnessChange = (e) => {
-    if (activeMode === "failure") return; // 고장 모드에서는 조작 불가
+    if (activeMode === "failure") return; 
     
-    // 🔥 슬라이더 조작 시 activeMode는 manual이 되지만, bgMode는 이전 상태(sunset or sunrise)를 그대로 유지함!
     setActiveMode("manual"); 
     setIsRecovered(false);
     
     const val = parseInt(e.target.value, 10);
     setBrightness(val);
-    setPower(val > 0); // 밝기 0이면 전원 OFF 처리
+    setPower(val > 0); 
   };
 
-  // 고장 시뮬레이션 모드 진입
   const handleFailureTest = () => {
     if (activeMode !== "failure") {
       setActiveMode("failure");
@@ -52,7 +49,6 @@ const StreetLightIntro = () => {
     }
   };
 
-  // 시스템 복구 처리
   const handleRecovery = () => {
     setIsRecovered(true);
     setActiveMode("manual");
@@ -60,18 +56,16 @@ const StreetLightIntro = () => {
     setPower(true);
   };
 
-  // --- 조명 레이어 투명도 계산 함수 ---
+  // --- 🔥 수정된 부분: 조명 레이어 투명도 계산 함수 ---
   const getLightingOpacity = (targetMode) => {
-    if (!power) return 0; // 전원 OFF시 무조건 투명도 0
-
-    // 계산하려는 조명 레이어가 현재 깔려있는 배경(bgMode)과 다르면 숨김
+    if (!power) return 0; 
     if (targetMode !== bgMode) return 0;
 
     const baseOpacity = brightness / 100;
     
-    // 일출 모드는 주변이 밝으므로 조명 최대 밝기를 낮게 제한 (30% max)
+    // 일출 모드에서도 변화가 잘 보이도록 가시성을 대폭 높였습니다. (0.3 -> 0.85)
     if (targetMode === "sunrise") {
-      return baseOpacity * 0.3; 
+      return baseOpacity * 0.85; 
     }
     
     // 일몰 모드는 0~100% 그대로 반영
@@ -130,29 +124,24 @@ const StreetLightIntro = () => {
               플로림(FLOLIM)은 현장의 지형, 규모, 예산 등을 꼼꼼히 분석합니다. 통신비 부담이 없는 <b>LoRa-Mesh(자가망)</b>부터 전국 어디서나 끊김 없는 <b>NB-IoT(상용망)</b>까지 현장에 최적화된 맞춤형 통신망을 설계합니다. 획기적으로 전력 낭비를 줄이고 거리의 안전을 빈틈없이 지키며 스마트시티의 기반을 완성해 보세요.
             </p>
 
-            {/* =========================================
-                🔥 대시보드 시뮬레이터 UI
-            ========================================= */}
+            {/* 대시보드 시뮬레이터 UI */}
             <div className="flex flex-col lg:flex-row gap-6 bg-slate-50 p-6 rounded-2xl border border-slate-200 mb-14 shadow-sm">
               
               {/* 1. 이미지 시뮬레이션 영역 (좌측) */}
               <div className="relative flex-1 aspect-video rounded-xl overflow-hidden shadow-inner bg-black border border-slate-300">
                 
-                {/* ----------------------------------------------------
-                    VIEW 1: 일상 제어 뷰 (일몰/일출 겹치기 구현)
-                    - 고장 모드가 아니고, 복구 완료 상태가 아닐 때 표시
-                ----------------------------------------------------- */}
+                {/* VIEW 1: 일상 제어 뷰 */}
                 <div className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out z-10
                   ${activeMode !== "failure" && !isRecovered ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
                   
-                  {/* === A. 일몰(Sunset) 그룹 === */}
+                  {/* 일몰(Sunset) 그룹 */}
                   <div className={`absolute inset-0 w-full h-full transition-opacity duration-700 ${bgMode === 'sunset' ? 'opacity-100' : 'opacity-0'}`}>
                     <img src={IMG_SUNSET_BASE} className="absolute inset-0 w-full h-full object-cover" alt="일몰 배경(OFF)" />
                     <img src={IMG_SUNSET_ON} className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ease-linear"
                          style={{ opacity: getLightingOpacity('sunset') }} alt="일몰 조명(ON)" />
                   </div>
 
-                  {/* === B. 일출(Sunrise) 그룹 === */}
+                  {/* 일출(Sunrise) 그룹 */}
                   <div className={`absolute inset-0 w-full h-full transition-opacity duration-700 ${bgMode === 'sunrise' ? 'opacity-100' : 'opacity-0'}`}>
                     <img src={IMG_SUNRISE_BASE} className="absolute inset-0 w-full h-full object-cover" alt="일출 배경(OFF)" />
                     <img src={IMG_SUNRISE_ON} className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ease-linear"
@@ -172,9 +161,7 @@ const StreetLightIntro = () => {
                   )}
                 </div>
 
-                {/* ----------------------------------------------------
-                    VIEW 2: 고장 시뮬레이션 뷰 (항공 사진)
-                ----------------------------------------------------- */}
+                {/* VIEW 2: 고장 시뮬레이션 뷰 */}
                 <div className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out z-20
                   ${activeMode === "failure" && !isRecovered ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
                   
@@ -194,9 +181,7 @@ const StreetLightIntro = () => {
                   </div>
                 </div>
 
-                {/* ----------------------------------------------------
-                    VIEW 3: 복구 완료 뷰
-                ----------------------------------------------------- */}
+                {/* VIEW 3: 복구 완료 뷰 */}
                 <div className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out z-30
                   ${isRecovered ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
                    <img src={IMG_DRONE_NORMAL} className="w-full h-full object-cover absolute inset-0" alt="복구 완료 뷰" />
@@ -270,15 +255,10 @@ const StreetLightIntro = () => {
                 </div>
               </div>
             </div>
-            {/* =========================================
-                대시보드 시뮬레이터 UI 끝
-            ========================================= */}
             
           </div>
           
-          {/* =========================================
-              🔥 복구된 Key Benefits 영역 
-          ========================================= */}
+          {/* Key Benefits 영역 */}
           <div className="mb-14">
             <h3 className="text-2xl font-bold text-[#1eb4c8] border-b border-slate-300 pb-2 mb-6 inline-block pr-8">Key Benefits</h3>
             <ul className="space-y-6 text-[15px] text-slate-700">
@@ -312,8 +292,6 @@ const StreetLightIntro = () => {
               </li>
             </ul>
           </div>
-          {/* Key Benefits 끝 */}
-
         </section>
       </div>
     </div>
