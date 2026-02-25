@@ -37,9 +37,9 @@ const SmartLedIntro = () => {
   };
 
   // --- 이미지 레이어 투명도 계산 ---
-  // 전원이 꺼져있거나 자동 모드일 때는 기본 밝은 이미지를 안 보이게(0) 처리
+  // 1. 수동/에코 모드일 때: 슬라이더 값에 따라 투명도 조절 (0.0 ~ 1.0)
   const brightLayerOpacity = power && activeMode !== "auto" ? brightness / 100 : 0;
-  // 자동 모드일 때만 자동 모드 전용 이미지를 보이게(1) 처리
+  // 2. 자동 모드일 때: 자동 모드 전용 이미지만 100% 보이게 처리
   const autoLayerOpacity = power && activeMode === "auto" ? 1 : 0;
 
   return (
@@ -108,46 +108,56 @@ const SmartLedIntro = () => {
               <div className="relative flex-1 aspect-video rounded-xl overflow-hidden shadow-inner bg-[#0a0f16] border border-slate-300">
                 
                 {/* [Layer 1: 완전 소등] 항상 바닥에 깔려있는 어두운 이미지 */}
-                <div className="absolute inset-0 w-full h-full flex items-center justify-center text-slate-500 bg-[#0a0f16]">
-                  <span className="z-10 text-sm">Layer 1: 완전 소등 (bg-off.jpg 삽입 예정)</span>
-                  {/* <img src="/images/bg-off.jpg" className="w-full h-full object-cover absolute inset-0" alt="소등" /> */}
+                <div className="absolute inset-0 w-full h-full bg-black">
+                  <img 
+                    src="/images/SmartLedIntro_Off.jpg" 
+                    className="w-full h-full object-cover absolute inset-0" 
+                    alt="사무실 소등 상태" 
+                  />
                 </div>
                 
                 {/* [Layer 2: 수동/에코 디밍] 슬라이더에 따라 투명도가 변하는 100% 밝은 이미지 */}
                 <div 
-                  className="absolute inset-0 w-full h-full bg-white/10 flex items-center justify-center text-slate-800 transition-opacity duration-200 ease-out"
+                  className="absolute inset-0 w-full h-full transition-opacity duration-300 ease-out"
                   style={{ opacity: brightLayerOpacity }}
                 >
-                  <div className="w-full h-full bg-white/80 absolute inset-0"></div> {/* 임시 배경 (이미지 삽입 시 삭제) */}
-                  <span className="z-10 font-bold">Layer 2: 100% 점등 (bg-on.jpg 삽입 예정)</span>
-                  {/* <img src="/images/bg-on.jpg" className="w-full h-full object-cover absolute inset-0" alt="점등" /> */}
+                  <img 
+                    src="/images/SmartLedIntro_On.jpg" 
+                    className="w-full h-full object-cover absolute inset-0" 
+                    alt="사무실 점등 상태" 
+                  />
                 </div>
 
                 {/* [Layer 3: 자동 모드] 동체 감지 시 사람 주변만 켜진 이미지 */}
                 <div 
-                  className={`absolute inset-0 w-full h-full flex flex-col items-center justify-center text-white transition-opacity duration-500 ease-out
+                  className={`absolute inset-0 w-full h-full flex flex-col items-center justify-center transition-opacity duration-500 ease-out
                     ${autoLayerOpacity === 1 ? 'z-20' : 'pointer-events-none'}`}
                   style={{ opacity: autoLayerOpacity }}
                 >
-                  <div className="w-full h-full bg-cyan-900/80 absolute inset-0"></div> {/* 임시 배경 (이미지 삽입 시 삭제) */}
-                  <span className="z-10 font-bold mb-2">Layer 3: 자동 센서 감지 점등 (bg-auto.jpg 삽입 예정)</span>
-                  <span className="z-10 text-xs bg-cyan-500/80 px-4 py-1.5 rounded-full animate-pulse shadow-[0_0_10px_rgba(6,182,212,0.5)]">
-                    📡 움직임 감지 중...
-                  </span>
-                  {/* <img src="/images/bg-auto.jpg" className="w-full h-full object-cover absolute inset-0" alt="자동 감지" /> */}
+                  <img 
+                    src="/images/SmartLedIntro_Auto.jpg" 
+                    className="w-full h-full object-cover absolute inset-0" 
+                    alt="자동 감지 모드 상태" 
+                  />
+                  
+                  {/* 자동 모드 활성화 시 표시되는 UI 뱃지 (이미지 위에 오버레이) */}
+                  <div className="absolute bottom-6 left-6 z-30 flex items-center gap-2 bg-cyan-900/80 backdrop-blur-sm px-4 py-2 rounded-full border border-cyan-400 shadow-lg animate-pulse">
+                    <span className="text-cyan-400 text-lg">📡</span>
+                    <span className="text-white text-sm font-bold tracking-wide">움직임 감지 연동 중</span>
+                  </div>
                 </div>
 
               </div>
 
               {/* 2. IoT 컨트롤 패널 영역 (우측) */}
-              <div className="w-full lg:w-[300px] bg-white rounded-xl shadow-md border border-slate-200 p-6 flex flex-col justify-between">
+              <div className="w-full lg:w-[300px] bg-white rounded-xl shadow-md border border-slate-200 p-6 flex flex-col justify-between z-10">
                 
                 {/* 패널 헤더 (상태 표시) */}
                 <div>
                   <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
                     <h4 className="font-bold text-slate-800 text-lg tracking-tight">로컬 관제 패널</h4>
                     <span className={`text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1.5 ${power ? 'bg-green-50 text-green-600' : 'bg-slate-100 text-slate-500'}`}>
-                      <span className={`block w-2 h-2 rounded-full ${power ? 'bg-green-500 animate-pulse' : 'bg-slate-400'}`}></span>
+                      <span className={`block w-2 h-2 rounded-full ${power ? 'bg-green-500 animate-pulse shadow-[0_0_5px_#22c55e]' : 'bg-slate-400'}`}></span>
                       {power ? 'Online' : 'Offline'}
                     </span>
                   </div>
