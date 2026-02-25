@@ -38,30 +38,28 @@ const StreetLightIntro = () => {
     }
   };
 
-  // 고장 시뮬레이션 핸들러
+  // 고장 시뮬레이션 핸들러 (뷰 전환)
   const handleFailureTest = () => {
     if (activeMode !== "failure") {
       setPrevMode(activeMode === "manual" ? "sunset" : activeMode); // 수동일 경우 기본 복귀는 일몰로
       setPrevBrightness(brightness);
       setActiveMode("failure");
       setPower(true);
-      setBrightness(100); // 고장 시뮬레이션은 100% 밝기 사진 기준
+      setBrightness(100); 
     }
   };
 
-  // 복구 핸들러
+  // 복구 핸들러 (원래 뷰로 복귀)
   const handleRecovery = () => {
     setActiveMode(prevMode);
     setBrightness(prevBrightness);
     setPower(true);
   };
 
-  // --- 이미지 투명도 계산 ---
-  const getOpacity = (targetMode) => {
+  // --- 이미지 투명도 계산 (일상 뷰 용) ---
+  const getNormalOpacity = () => {
     if (!power) return 0;
-    if (activeMode === "failure") return targetMode === "failure" ? 1 : 0;
-    if (activeMode === "manual") return brightness / 100; // 수동일 때는 현재 밝기 비율만큼
-    return activeMode === targetMode ? brightness / 100 : 0;
+    return brightness / 100;
   };
 
   return (
@@ -79,7 +77,7 @@ const StreetLightIntro = () => {
       {/* 본문 영역 */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 flex flex-col md:flex-row gap-10">
         
-        {/* 좌측 LNB (사이드바) */}
+        {/* 좌측 LNB (사이드바) - App.tsx 라우터 주소에 맞게 완벽 수정됨 */}
         <aside className="w-full md:w-[280px] flex-shrink-0">
           <div className="border border-slate-300">
             <div className="bg-[#1eb4c8] text-white py-4 px-5">
@@ -92,12 +90,12 @@ const StreetLightIntro = () => {
                 </Link>
               </li>
               <li className="border-b border-slate-200">
-                <Link to="/lora-mesh-solution" className="flex items-center justify-between px-4 py-4 text-[14px] lg:text-[15px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
+                <Link to="/lora" className="flex items-center justify-between px-4 py-4 text-[14px] lg:text-[15px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
                   LoRa-Mesh 솔루션
                 </Link>
               </li>
               <li className="border-b border-slate-200 last:border-0">
-                <Link to="/nb-iot-solution" className="flex items-center justify-between px-4 py-4 text-[14px] lg:text-[15px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
+                <Link to="/nbiot" className="flex items-center justify-between px-4 py-4 text-[14px] lg:text-[15px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
                   NB-IoT 솔루션
                 </Link>
               </li>
@@ -129,45 +127,60 @@ const StreetLightIntro = () => {
               {/* 1. 이미지 시뮬레이션 영역 (좌측) */}
               <div className="relative flex-1 aspect-video rounded-xl overflow-hidden shadow-inner bg-black border border-slate-300">
                 
-                {/* [Layer 1: 베이스 (완전 소등 - 검은 배경)] */}
-                <div className="absolute inset-0 w-full h-full bg-black z-0"></div>
-                
-                {/* [Layer 2: 일몰 모드 (70% 밝기 기준)] */}
-                <div 
-                  className="absolute inset-0 w-full h-full transition-opacity duration-500 ease-out z-10"
-                  style={{ opacity: getOpacity("sunset") }}
-                >
+                {/* ----------------------------------------------------
+                    View 1: 일상 제어 (일출, 일몰, 수동 디밍) 
+                    - 고장 모드가 아닐 때만 보입니다.
+                ----------------------------------------------------- */}
+                <div className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out z-10
+                  ${activeMode !== "failure" ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+                  
+                  {/* Base: 완전 소등 상태 이미지 */}
+                  <img src="/images/streetlightintro_off.jpg" className="w-full h-full object-cover absolute inset-0" alt="가로등 소등 상태" />
+                  
+                  {/* Overlay: 점등 이미지 (opacity로 밝기 디밍 조절) */}
                   <img 
-                    src="/images/StreetLightIntro_Sunset.jpg" 
-                    className="w-full h-full object-cover absolute inset-0" 
-                    alt="일몰 모드 (70%)" 
+                    src="/images/streetlightintro_on.jpg" 
+                    className="w-full h-full object-cover absolute inset-0 transition-opacity duration-500 ease-out" 
+                    style={{ opacity: getNormalOpacity() }}
+                    alt="가로등 점등/디밍 상태" 
                   />
+
+                  {/* 모드별 상태 뱃지 */}
+                  {power && (activeMode === "sunset" || activeMode === "sunrise") && (
+                    <div className={`absolute bottom-6 left-6 z-30 flex items-center gap-2 backdrop-blur-sm px-4 py-2 rounded-full border shadow-lg transition-all duration-500
+                      ${activeMode === "sunset" ? 'bg-orange-900/80 border-orange-400' : 'bg-indigo-900/80 border-indigo-400'}`}>
+                      <span className="text-2xl">{activeMode === "sunset" ? "🌆" : "🌅"}</span>
+                      <span className="text-white text-sm font-bold tracking-wide">
+                        {activeMode === "sunset" ? "일몰 모드" : "일출 모드"} 
+                        <span className={activeMode === "sunset" ? "text-orange-200" : "text-indigo-200"}> (조도 {brightness}%)</span>
+                      </span>
+                    </div>
+                  )}
                 </div>
 
-                {/* [Layer 3: 일출 모드 (20% 밝기 기준)] */}
-                <div 
-                  className="absolute inset-0 w-full h-full transition-opacity duration-500 ease-out z-10"
-                  style={{ opacity: getOpacity("sunrise") }}
-                >
+                {/* ----------------------------------------------------
+                    View 2: 항공 관제 뷰 (고장 시뮬레이션 전용) 
+                    - 고장 모드일 때만 페이드인 됩니다.
+                ----------------------------------------------------- */}
+                <div className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out z-20
+                  ${activeMode === "failure" ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+                  
+                  {/* Base 드론 뷰 (정상) */}
                   <img 
-                    src="/images/StreetLightIntro_Sunrise.jpg" 
+                    src="/images/streetlightintro_normal.jpg" 
                     className="w-full h-full object-cover absolute inset-0" 
-                    alt="일출 모드 (20%)" 
+                    alt="항공 관제 정상 뷰" 
                   />
-                </div>
 
-                {/* [Layer 4: 고장 시뮬레이션 (100% 밝기 + 고장 구역 소등)] */}
-                <div 
-                  className={`absolute inset-0 w-full h-full transition-opacity duration-300 ease-out z-20
-                    ${activeMode === "failure" ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
-                >
+                  {/* Overlay 드론 뷰 (고장 핀 포함) */}
                   <img 
-                    src="/images/StreetLightIntro_Failure.jpg" 
-                    className="w-full h-full object-cover absolute inset-0" 
+                    src="/images/streetlightintro_failure.jpg" 
+                    className={`w-full h-full object-cover absolute inset-0 transition-opacity duration-500 delay-300 ease-out
+                      ${activeMode === "failure" ? 'opacity-100' : 'opacity-0'}`}
                     alt="고장 발생 시뮬레이션" 
                   />
                   
-                  {/* 고장 경고 UI (우측 하단에 배치 - 새 이미지 상황에 맞춤) */}
+                  {/* 고장 경고 알림 UI (우측 하단) */}
                   <div className="absolute bottom-[10%] right-[5%] flex items-center justify-center pointer-events-none animate-pulse z-30">
                     <div className="bg-red-900/90 backdrop-blur-sm px-5 py-3 rounded-xl border border-red-500 shadow-[0_0_30px_rgba(239,68,68,0.6)] flex items-center gap-3">
                       <span className="text-3xl">🚨</span>
@@ -179,17 +192,6 @@ const StreetLightIntro = () => {
                   </div>
                 </div>
 
-                {/* 모드별 상태 뱃지 */}
-                {power && activeMode !== "failure" && (
-                  <div className={`absolute bottom-6 left-6 z-30 flex items-center gap-2 backdrop-blur-sm px-4 py-2 rounded-full border shadow-lg transition-all duration-500
-                    ${activeMode === "sunset" ? 'bg-orange-900/80 border-orange-400' : 'bg-indigo-900/80 border-indigo-400'}`}>
-                    <span className="text-2xl">{activeMode === "sunset" ? "🌆" : "🌅"}</span>
-                    <span className="text-white text-sm font-bold tracking-wide">
-                      {activeMode === "sunset" ? "일몰 모드" : "일출 모드"} 
-                      <span className={activeMode === "sunset" ? "text-orange-200" : "text-indigo-200"}> (조도 {brightness}%)</span>
-                    </span>
-                  </div>
-                )}
               </div>
 
               {/* 2. IoT 컨트롤 패널 영역 (우측) */}
