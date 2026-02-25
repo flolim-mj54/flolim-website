@@ -92,12 +92,12 @@ const StreetLightIntro = () => {
                 </Link>
               </li>
               <li className="border-b border-slate-200">
-                <Link to="/lora-mesh" className="flex items-center justify-between px-4 py-4 text-[14px] lg:text-[15px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
+                <Link to="/lora-mesh-solution" className="flex items-center justify-between px-4 py-4 text-[14px] lg:text-[15px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
                   LoRa-Mesh 솔루션
                 </Link>
               </li>
               <li className="border-b border-slate-200 last:border-0">
-                <Link to="/nb-iot" className="flex items-center justify-between px-4 py-4 text-[14px] lg:text-[15px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
+                <Link to="/nb-iot-solution" className="flex items-center justify-between px-4 py-4 text-[14px] lg:text-[15px] tracking-tight text-slate-600 hover:text-[#1eb4c8] hover:bg-slate-50 transition-all whitespace-nowrap">
                   NB-IoT 솔루션
                 </Link>
               </li>
@@ -156,7 +156,7 @@ const StreetLightIntro = () => {
                   />
                 </div>
 
-                {/* [Layer 4: 고장 시뮬레이션 (100% 밝기 + 우측 하단 2개 소등)] */}
+                {/* [Layer 4: 고장 시뮬레이션 (100% 밝기 + 고장 구역 소등)] */}
                 <div 
                   className={`absolute inset-0 w-full h-full transition-opacity duration-300 ease-out z-20
                     ${activeMode === "failure" ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
@@ -167,13 +167,13 @@ const StreetLightIntro = () => {
                     alt="고장 발생 시뮬레이션" 
                   />
                   
-                  {/* 고장 경고 UI (우측 하단 고장 위치 근처에 배치) */}
+                  {/* 고장 경고 UI (우측 하단에 배치 - 새 이미지 상황에 맞춤) */}
                   <div className="absolute bottom-[10%] right-[5%] flex items-center justify-center pointer-events-none animate-pulse z-30">
                     <div className="bg-red-900/90 backdrop-blur-sm px-5 py-3 rounded-xl border border-red-500 shadow-[0_0_30px_rgba(239,68,68,0.6)] flex items-center gap-3">
                       <span className="text-3xl">🚨</span>
                       <div className="text-left">
                         <p className="text-red-200 text-xs font-bold uppercase tracking-widest mb-0.5">Failure Alert</p>
-                        <p className="text-white text-sm font-bold leading-tight">우측 하단<br/>가로등 2기 고장!</p>
+                        <p className="text-white text-sm font-bold leading-tight">구역 A<br/>가로등 #4, #5, #6 꺼짐</p>
                       </div>
                     </div>
                   </div>
