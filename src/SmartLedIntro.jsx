@@ -3,46 +3,40 @@ import { Link } from "react-router-dom";
 
 const SmartLedIntro = () => {
   // --- 상태 관리 ---
-  const [power, setPower] = useState(true); // 전원 (ON/OFF)
-  const [brightness, setBrightness] = useState(100); // 밝기 (0~100)
+  const [power, setPower] = useState(true); 
+  const [brightness, setBrightness] = useState(100); 
   const [activeMode, setActiveMode] = useState("manual"); // manual, schedule, eco
 
   // --- 제어 핸들러 ---
-  // 모드 변경
   const handleModeChange = (mode) => {
     setActiveMode(mode);
-    setPower(true); // 모드를 누르면 무조건 전원 ON
-    if (mode === "eco") setBrightness(60); // 에코 모드는 60% 밝기로 고정
-    if (mode === "schedule") setBrightness(30); // 스케줄 모드는 심야 시간 가정 30%
+    setPower(true); 
+    if (mode === "eco") setBrightness(60); 
+    if (mode === "schedule") setBrightness(30); 
     if (mode === "manual") setBrightness(100); 
   };
 
-  // 밝기(디밍) 슬라이더 변경 (개선된 부분: 조작 시 언제든 전원 켜짐)
   const handleBrightnessChange = (e) => {
-    setActiveMode("manual"); // 수동 조작 시 매뉴얼 모드로 변경
+    setActiveMode("manual"); 
     const val = parseInt(e.target.value, 10);
     setBrightness(val);
     
     if (val > 0) {
-      setPower(true); // 밝기를 올리면 즉시 전원 ON
+      setPower(true); 
     } else {
-      setPower(false); // 0이 되면 전원 OFF
+      setPower(false); 
     }
   };
 
-  // 전원 버튼 토글
   const handlePowerToggle = () => {
     const nextPower = !power;
     setPower(nextPower);
-    // 전원을 다시 켤 때, 이전에 밝기가 0이었다면 100으로 자동 복구
     if (nextPower && brightness === 0) {
       setBrightness(100);
       setActiveMode("manual");
     }
   };
 
-  // --- 이미지 레이어 투명도 계산 ---
-  // 전원이 꺼져있으면 0, 켜져있으면 슬라이더 밝기 비율만큼 켜진 이미지의 투명도를 조절
   const brightLayerOpacity = power ? brightness / 100 : 0;
 
   return (
@@ -131,11 +125,19 @@ const SmartLedIntro = () => {
                   />
                 </div>
 
-                {/* 스케줄 모드 활성화 시 표시되는 UI 뱃지 */}
+                {/* 🔥 스케줄 모드 활성화 시 표시되는 UI 뱃지 */}
                 {activeMode === "schedule" && power && (
-                  <div className="absolute bottom-6 left-6 z-30 flex items-center gap-2 bg-indigo-900/80 backdrop-blur-sm px-4 py-2 rounded-full border border-indigo-400 shadow-lg">
+                  <div className="absolute bottom-6 left-6 z-30 flex items-center gap-2 bg-indigo-900/80 backdrop-blur-sm px-4 py-2 rounded-full border border-indigo-400 shadow-lg animate-fade-in-up">
                     <span className="text-indigo-300 text-lg">⏰</span>
                     <span className="text-white text-sm font-bold tracking-wide">야간 스케줄 유지 (조도 30%)</span>
+                  </div>
+                )}
+
+                {/* 🔥 에코 모드 활성화 시 표시되는 UI 뱃지 (추가됨) */}
+                {activeMode === "eco" && power && (
+                  <div className="absolute bottom-6 left-6 z-30 flex items-center gap-2 bg-green-900/80 backdrop-blur-sm px-4 py-2 rounded-full border border-green-400 shadow-lg animate-fade-in-up">
+                    <span className="text-green-300 text-lg">🌱</span>
+                    <span className="text-white text-sm font-bold tracking-wide">에코 절전 모드 (조도 60%)</span>
                   </div>
                 )}
               </div>
@@ -177,7 +179,6 @@ const SmartLedIntro = () => {
                         {power ? brightness : 0}%
                       </span>
                     </div>
-                    {/* 개선: disabled 조건을 아예 없애서 꺼져있어도 클릭/드래그가 가능하도록 함 */}
                     <input 
                       type="range" 
                       min="0" max="100" 
