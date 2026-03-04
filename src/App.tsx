@@ -1,78 +1,91 @@
-// @ts-nocheck
-import React from "react";
-// 🚀 진짜 라우팅을 위한 도구들을 가져옵니다.
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-// 공통 컴포넌트
-import Header from "./Header";
-import Footer from "./Footer";
+// --- 공통 컴포넌트 ---
+import Header from './components/Header';
+import Footer from './components/Footer';
 
-// 페이지 컴포넌트 모음
-import Hero from "./Hero";
-import BusinessAreas from "./BusinessAreas";
-import Greeting from "./Greeting";
-import History from "./History";
-import Location from "./Location";
-import StreetLightIntro from "./StreetLightIntro";
-import LoraMeshSolution from "./LoraMeshSolution";
-import NbIotSolution from "./NbIotSolution";
-import SmartLedIntro from "./SmartLedIntro";
-import KepcoEsco from "./KepcoEsco";
-import SmartLedSolution from "./SmartLedSolution";
-import PlatformIntro from "./PlatformIntro";
-import Dashboard from "./Dashboard";
-import Archive from "./Archive";
-import ContactUs from "./ContactUs";
+// --- 메인 페이지 ---
+import Home from './pages/Home';
 
-export default function App() {
+// --- 1. 회사 소개 (Company) ---
+import CompanyCeo from './pages/Company/CompanyCeo';
+import CompanyIntro from './pages/Company/CompanyIntro';
+import CompanyCert from './pages/Company/CompanyCert';
+import CompanyHistory from './pages/Company/CompanyHistory';
+import CompanyLocation from './pages/Company/CompanyLocation';
+
+// --- 2. 핵심 사업 모델 (Business) ---
+import BusinessEsco from './pages/Business/BusinessEsco';
+import BusinessSimulation from './pages/Business/BusinessSimulation';
+
+// --- 3. 스마트 시티 솔루션 (SmartCity) ---
+import SmartCityIntro from './pages/SmartCity/SmartCityIntro';
+import SmartCityLora from './pages/SmartCity/SmartCityLora';
+import SmartCityNbIot from './pages/SmartCity/SmartCityNbIot';
+import SmartCityDmx from './pages/SmartCity/SmartCityDmx';
+
+// --- 4. 스마트 빌딩 솔루션 (SmartBuilding) ---
+import SmartBuildingIntro from './pages/SmartBuilding/SmartBuildingIntro';
+import SmartBuildingSensor from './pages/SmartBuilding/SmartBuildingSensor';
+
+// --- 5. 통합 관제 플랫폼 (Platform) ---
+import PlatformDashboard from './pages/Platform/PlatformDashboard';
+import PlatformEsg from './pages/Platform/PlatformEsg';
+
+// --- 6. 고객 지원 (Support) ---
+import SupportReferences from './pages/Support/SupportReferences';
+import SupportArchive from './pages/Support/SupportArchive';
+import SupportContact from './pages/Support/SupportContact';
+
+function App() {
   return (
-    // 🚀 Router가 전체 앱을 감싸면서 라우팅 기능을 활성화합니다.
     <Router>
-      <div className="w-full min-h-screen bg-white flex flex-col font-sans">
-        
-        {/* 상단 메뉴바는 모든 페이지에 고정으로 보여줍니다. */}
+      <div className="flex flex-col min-h-screen">
+        {/* 상단 네비게이션 */}
         <Header />
-
-        <main className="flex-1">
-          {/* 🚀 주소(URL)에 따라 알맞은 화면(element)을 보여주는 영역입니다. */}
+        
+        {/* 본문 영역 */}
+        <main className="flex-grow pt-20">
           <Routes>
-            {/* 메인 화면 (주소가 '/' 일 때) */}
-            <Route path="/" element={
-              <>
-                <Hero />
-                <BusinessAreas />
-              </>
-            } />
+            <Route path="/" element={<Home />} />
 
-            {/* 회사소개 */}
-            <Route path="/greeting" element={<Greeting />} />
-            <Route path="/history" element={<History />} />
-            <Route path="/location" element={<Location />} />
+            {/* 회사 소개 라우팅 */}
+            <Route path="/company/ceo" element={<CompanyCeo />} />
+            <Route path="/company/intro" element={<CompanyIntro />} />
+            <Route path="/company/cert" element={<CompanyCert />} />
+            <Route path="/company/history" element={<CompanyHistory />} />
+            <Route path="/company/location" element={<CompanyLocation />} />
 
-            {/* 가로등 제어 시스템 */}
-            <Route path="/streetlight-intro" element={<StreetLightIntro />} />
-            <Route path="/lora" element={<LoraMeshSolution />} />
-            <Route path="/nbiot" element={<NbIotSolution />} />
+            {/* 핵심 사업 모델 라우팅 */}
+            <Route path="/business/esco" element={<BusinessEsco />} />
+            <Route path="/business/simulation" element={<BusinessSimulation />} />
 
-            {/* 스마트 LED 제어 시스템 */}
-            <Route path="/led-intro" element={<SmartLedIntro />} />
-            <Route path="/esco" element={<KepcoEsco />} />
-            <Route path="/led-solution" element={<SmartLedSolution />} />
+            {/* 스마트 시티 솔루션 라우팅 */}
+            <Route path="/smart-city/intro" element={<SmartCityIntro />} />
+            <Route path="/smart-city/lora" element={<SmartCityLora />} />
+            <Route path="/smart-city/nb-iot" element={<SmartCityNbIot />} />
+            <Route path="/smart-city/dmx" element={<SmartCityDmx />} />
 
-            {/* 통합 관제 플랫폼 */}
-            <Route path="/platform" element={<PlatformIntro />} />
-            <Route path="/dashboard" element={<Dashboard />} />
+            {/* 스마트 빌딩 솔루션 라우팅 */}
+            <Route path="/smart-building/intro" element={<SmartBuildingIntro />} />
+            <Route path="/smart-building/sensor" element={<SmartBuildingSensor />} />
 
-            {/* 고객지원 */}
-            <Route path="/archive" element={<Archive />} />
-            <Route path="/contact" element={<ContactUs />} />
+            {/* 통합 관제 플랫폼 라우팅 */}
+            <Route path="/platform/dashboard" element={<PlatformDashboard />} />
+            <Route path="/platform/esg" element={<PlatformEsg />} />
+
+            {/* 고객 지원 라우팅 */}
+            <Route path="/support/references" element={<SupportReferences />} />
+            <Route path="/support/archive" element={<SupportArchive />} />
+            <Route path="/support/contact" element={<SupportContact />} />
           </Routes>
         </main>
-
-        {/* 하단 정보도 모든 페이지에 고정으로 보여줍니다. */}
-        <Footer />
         
+        {/* 하단 정보 */}
+        <Footer />
       </div>
     </Router>
   );
 }
+
+export default App;
