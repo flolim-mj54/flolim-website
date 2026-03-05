@@ -1,66 +1,82 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className="bg-slate-50 text-slate-600 py-16 border-t-4 border-[#1eb4c8]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 border-b border-slate-200 pb-12">
-          <div className="md:col-span-1">
-            {/* 🚀 상단 메인 페이지(Header)와 동일한 텍스트 로고 스타일로 교체 완료 */}
-            <div className="mb-2">
-              <Link to="/" className="inline-block">
-                <span className="text-3xl font-black text-[#1eb4c8] tracking-tighter">FLOLIM</span>
-              </Link>
-            </div>
-            <p className="text-[11px] text-slate-400 font-medium tracking-widest uppercase mb-6">
+    <footer className="bg-slate-900 text-slate-300 py-12 lg:py-16 border-t-4 border-blue-600">
+      <div className="container mx-auto px-4 max-w-7xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+          
+          {/* 1. 기업 정보 영역 (넓은 영역 차지) */}
+          <div className="lg:col-span-2">
+            <Link to="/" className="inline-block mb-2">
+              <h2 className="text-3xl font-black text-white tracking-wider">FLOLIM</h2>
+            </Link>
+            <p className="text-sm text-cyan-500 font-bold mb-8 uppercase tracking-widest">
               The beginning of smart business
             </p>
-            <ul className="space-y-2 text-[13px] text-slate-500 mb-6 break-keep">
-              <li><span className="font-semibold text-slate-700">주소:</span> 충남 천안시 서북구 2공단4로 40-11 천안G1비즈캠퍼스 1223호 주식회사 플로림</li>
-              <li><span className="font-semibold text-slate-700">전화:</span> 1660-0687</li>
-              <li><span className="font-semibold text-slate-700">메일:</span> sales@flolim.com</li>
+            <ul className="space-y-4 text-sm font-light text-slate-400">
+              <li className="flex items-start gap-3">
+                <span className="mt-0.5 text-slate-500">📍</span>
+                <span className="leading-relaxed">
+                  [본사] 충남 천안시 서북구 2공단4로 40-11<br />
+                  천안G1비즈캠퍼스 1223호 주식회사 플로림
+                </span>
+              </li>
+              <li className="flex items-center gap-3">
+                <span className="text-slate-500">📞</span>
+                <span className="font-mono text-base text-slate-200">1660-0687</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <span className="text-slate-500">✉️</span>
+                <a href="mailto:sales@flolim.com" className="hover:text-cyan-400 transition-colors">
+                  sales@flolim.com
+                </a>
+              </li>
             </ul>
           </div>
-          
-          <div className="md:col-span-1">
-            <h4 className="text-slate-800 font-bold mb-6 text-sm border-l-2 border-[#1eb4c8] pl-2">가로등 제어 시스템</h4>
-            <ul className="space-y-3 text-sm">
-              <li><Link to="/streetlight-intro" className="hover:text-[#1eb4c8] transition-colors">시스템 개요</Link></li>
-              <li><Link to="/lora" className="hover:text-[#1eb4c8] transition-colors">LoRa-Mesh 솔루션</Link></li>
-              <li><Link to="/nbiot" className="hover:text-[#1eb4c8] transition-colors">NB-IoT 솔루션</Link></li>
+
+          {/* 2. 사이트맵 - 핵심 솔루션 */}
+          <div>
+            <h3 className="text-white font-bold mb-5 border-b border-slate-700 pb-2 inline-block">솔루션</h3>
+            <ul className="space-y-3 text-sm font-light">
+              <li><Link to="/smart-city/intro" className="hover:text-cyan-400 transition-colors">스마트 시티 (가로등)</Link></li>
+              <li><Link to="/smart-building/intro" className="hover:text-cyan-400 transition-colors">스마트 빌딩 (실내 LED)</Link></li>
+              <li><Link to="/smart-city/lora" className="hover:text-cyan-400 transition-colors">LoRa-Mesh 자가망 통신</Link></li>
+              <li><Link to="/smart-city/nb-iot" className="hover:text-cyan-400 transition-colors">NB-IoT 상용망 통신</Link></li>
+              <li><Link to="/smart-building/sensor" className="hover:text-cyan-400 transition-colors">IoT 센서 자동 제어</Link></li>
             </ul>
           </div>
-          
-          <div className="md:col-span-1">
-            <h4 className="text-slate-800 font-bold mb-6 text-sm border-l-2 border-[#1eb4c8] pl-2">스마트 LED 전등 제어 시스템</h4>
-            <ul className="space-y-3 text-sm">
-              <li><Link to="/led-intro" className="hover:text-[#1eb4c8] transition-colors">시스템 개요</Link></li>
-              <li><Link to="/esco" className="hover:text-[#1eb4c8] transition-colors">ESCO 연계 사업</Link></li>
-              <li><Link to="/led-solution" className="hover:text-[#1eb4c8] transition-colors">스마트 LED 솔루션</Link></li>
+
+          {/* 3. 사이트맵 - 플랫폼 및 비즈니스 */}
+          <div>
+            <h3 className="text-white font-bold mb-5 border-b border-slate-700 pb-2 inline-block">플랫폼 & 비즈니스</h3>
+            <ul className="space-y-3 text-sm font-light">
+              <li><Link to="/platform/dashboard" className="hover:text-cyan-400 transition-colors">통합 관제 대시보드</Link></li>
+              <li><Link to="/platform/esg" className="hover:text-cyan-400 transition-colors">ESG 경영 성과 리포트</Link></li>
+              <li><Link to="/business/esco" className="hover:text-cyan-400 transition-colors">KEPCO 연계 ESCO</Link></li>
+              <li><Link to="/business/simulation" className="hover:text-cyan-400 transition-colors">에너지 절감 시뮬레이션</Link></li>
             </ul>
           </div>
-          
-          <div className="md:col-span-1">
-            <h4 className="text-slate-800 font-bold mb-6 text-sm border-l-2 border-[#1eb4c8] pl-2">통합 관제 플랫폼</h4>
-            <ul className="space-y-3 text-sm mb-8">
-              {/* 🚀 '플랫폼 소' 오타를 '플랫폼 소개'로 수정 완료 */}
-              <li><Link to="/platform" className="hover:text-[#1eb4c8] transition-colors">플랫폼 소개</Link></li>
-              <li><Link to="/dashboard" className="hover:text-[#1eb4c8] transition-colors">대시보드</Link></li>
-            </ul>
-            <h4 className="text-slate-800 font-bold mb-4 text-sm border-l-2 border-[#1eb4c8] pl-2">고객지원</h4>
-            <ul className="space-y-3 text-sm">
-              <li><Link to="/archive" className="hover:text-[#1eb4c8] transition-colors">자료실</Link></li>
-              <li><Link to="/contact" className="hover:text-[#1eb4c8] transition-colors">온라인 문의</Link></li>
+
+          {/* 4. 사이트맵 - 기업 및 지원 */}
+          <div>
+            <h3 className="text-white font-bold mb-5 border-b border-slate-700 pb-2 inline-block">플로림 & 지원</h3>
+            <ul className="space-y-3 text-sm font-light">
+              <li><Link to="/company/intro" className="hover:text-cyan-400 transition-colors">회사 소개</Link></li>
+              <li><Link to="/support/references" className="hover:text-cyan-400 transition-colors">구축 사례 (레퍼런스)</Link></li>
+              <li><Link to="/support/archive" className="hover:text-cyan-400 transition-colors">자료실 (인증/성적서)</Link></li>
+              <li><Link to="/support/contact" className="hover:text-cyan-400 font-bold transition-colors">온라인 도입 문의 →</Link></li>
             </ul>
           </div>
+
         </div>
-        
-        <div className="mt-8 text-sm text-slate-400 text-center flex flex-col md:flex-row justify-between items-center">
+
+        {/* 하단 카피라이트 및 약관 */}
+        <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500 font-light">
           <p>Copyright © {new Date().getFullYear()} FloLim Co., Ltd. All rights reserved.</p>
-          <div className="mt-4 md:mt-0 space-x-6">
-            <a href="#" className="hover:text-slate-600 transition-colors">개인정보처리방침</a>
-            <a href="#" className="hover:text-slate-600 transition-colors">이용약관</a>
+          <div className="flex gap-6">
+            <Link to="#" className="hover:text-white transition-colors">개인정보처리방침</Link>
+            <Link to="#" className="hover:text-white transition-colors">이용약관</Link>
           </div>
         </div>
       </div>
