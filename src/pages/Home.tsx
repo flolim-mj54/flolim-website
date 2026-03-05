@@ -30,8 +30,8 @@ export default function Home() {
         
         <div className="relative container mx-auto max-w-6xl text-center z-10">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-black mb-6 tracking-tight leading-tight">
-            <span className="text-flolim">스마트 IoT</span> 제어시스템 솔루션
-          </h1>
+  <span className="text-amber-400">스마트 IoT</span> 제어시스템 솔루션
+</h1>
           <p className="text-xl md:text-2xl mb-12 text-slate-300 font-light drop-shadow-md">
             에너지 소모는 줄이고 경영 효율은 더하는 <strong className="text-white font-bold">통합 관제 플랫폼</strong>
           </p>
