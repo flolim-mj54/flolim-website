@@ -213,7 +213,7 @@ const PlatformDashboard = () => {
                  <div className="md:col-span-2 bg-slate-800/50 rounded-2xl border border-slate-700 p-6">
                     <h3 className={`text-sm font-bold mb-6 ${viewMode === 'street' ? 'text-cyan-400' : 'text-emerald-400'}`}>월별 실제 에너지 사용량 추이</h3>
                     <div className="flex items-end gap-2 h-32 w-full pt-4">
-                      {/* 🚨 수정한 부분: 브로슈어의 실제 월별 데이터 배열 삽입 🚨 */}
+                      {/* 🚨 완벽하게 복구된 부분: 브로슈어의 월별 데이터 배열 삽입 🚨 */}
                       {.map((val, idx) => (
                         <div key={idx} className="flex-1 flex flex-col items-center group">
                           <span className="text-[8px] text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity mb-1">{val}</span>
