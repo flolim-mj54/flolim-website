@@ -3,11 +3,27 @@ import { Link } from 'react-router-dom';
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
-      {/* 1. Hero Section (메인 배너) */}
-      <section className="relative bg-slate-900 text-white py-32 px-4 flex items-center min-h-[70vh] overflow-hidden">
+      {/* 1. Hero Section (메인 배너 - 비디오 배경) */}
+      <section className="relative text-white py-32 px-4 flex items-center min-h-[70vh] overflow-hidden">
+        
+        {/* 비디오 배경 및 오버레이 */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 opacity-90"></div>
-          {/* 빛 번짐 효과 장식 */}
+          {/* 💡 주의: /video/ 폴더 안의 실제 파일명으로 'your-video-file.mp4'를 변경해 주세요! */}
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source src="/video/hero-bg3.mp4" type="video/mp4" />
+            브라우저가 비디오 태그를 지원하지 않습니다.
+          </video>
+          
+          {/* 비디오 위에 깔리는 반투명 다크 오버레이 (글자 가독성 확보) */}
+          <div className="absolute inset-0 bg-slate-900/70"></div>
+          
+          {/* 은은한 빛 번짐 효과 (디자인 포인트) */}
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-flolim rounded-full blur-[120px] opacity-20"></div>
           <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-blue-500 rounded-full blur-[100px] opacity-20"></div>
         </div>
@@ -16,14 +32,14 @@ export default function Home() {
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-black mb-6 tracking-tight leading-tight">
             <span className="text-flolim">스마트 IoT</span> 제어시스템 솔루션
           </h1>
-          <p className="text-xl md:text-2xl mb-12 text-slate-300 font-light">
+          <p className="text-xl md:text-2xl mb-12 text-slate-300 font-light drop-shadow-md">
             에너지 소모는 줄이고 경영 효율은 더하는 <strong className="text-white font-bold">통합 관제 플랫폼</strong>
           </p>
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
             <Link to="/business/esco" className="bg-flolim hover:opacity-90 text-white font-bold py-4 px-10 rounded-full transition-all shadow-lg shadow-flolim/30 text-lg w-full sm:w-auto">
               초기비용 0원 도입 상담
             </Link>
-            <Link to="/company/intro" className="bg-transparent border-2 border-slate-600 hover:border-white text-white font-bold py-4 px-10 rounded-full transition-all text-lg w-full sm:w-auto">
+            <Link to="/company/intro" className="bg-transparent backdrop-blur-sm border-2 border-slate-400 hover:border-white text-white font-bold py-4 px-10 rounded-full transition-all text-lg w-full sm:w-auto">
               플로림 솔루션 보기
             </Link>
           </div>
