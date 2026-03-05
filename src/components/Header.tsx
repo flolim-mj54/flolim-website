@@ -9,8 +9,8 @@ const Header = () => {
           
           {/* 1. 로고 영역 (브랜드 컬러 적용) */}
           <Link to="/" className="text-3xl font-black tracking-tight flex items-center">
-            <span className="text-flolim">Flo</span>
-            <span className="text-slate-700">Lim</span>
+            <span className="text-flolim">FLO</span>
+            <span className="text-slate-700">LIM</span>
           </Link>
 
           {/* 2. 데스크톱 메뉴 영역 */}

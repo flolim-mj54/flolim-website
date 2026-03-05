@@ -10,7 +10,7 @@ const Footer = () => {
           <div className="lg:col-span-2">
             <Link to="/" className="inline-block mb-3">
               <h2 className="text-4xl font-black tracking-tight">
-                <span className="text-flolim">Flo</span><span className="text-white">Lim</span>
+                <span className="text-flolim">FLO</span><span className="text-white">LIM</span>
               </h2>
             </Link>
             <p className="text-sm text-flolim font-bold mb-8 uppercase tracking-widest">
