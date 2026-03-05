@@ -18,7 +18,7 @@ const PlatformDashboard = () => {
           </p>
         </div>
 
-        {/* 1. 대시보드 시뮬레이터 (다크 모드 UI) - 브로슈어 목업 데이터 반영 */}
+        {/* 1. 대시보드 시뮬레이터 (다크 모드 UI) */}
         <section className="mb-20">
           {/* 뷰 모드 전환 탭 */}
           <div className="flex justify-center gap-4 mb-8">
@@ -58,7 +58,6 @@ const PlatformDashboard = () => {
               
               {/* 좌측: 지도/도면 뷰어 (큰 영역) */}
               <div className="lg:col-span-2 bg-slate-800/50 rounded-2xl border border-slate-700 relative overflow-hidden aspect-video lg:aspect-auto min-h-[400px] flex items-center justify-center">
-                {/* 뷰 모드에 따른 배경 및 데이터 시각화 */}
                 {viewMode === 'street' ? (
                   // 가로등: 지도 네온 라인 시각화
                   <div className="absolute inset-0 p-8">
@@ -214,7 +213,7 @@ const PlatformDashboard = () => {
                  <div className="md:col-span-2 bg-slate-800/50 rounded-2xl border border-slate-700 p-6">
                     <h3 className={`text-sm font-bold mb-6 ${viewMode === 'street' ? 'text-cyan-400' : 'text-emerald-400'}`}>월별 실제 에너지 사용량 추이</h3>
                     <div className="flex items-end gap-2 h-32 w-full pt-4">
-                      {/* 수정한 부분: 명시적인 배열 데이터 추가 */}
+                      {/* 🚨 수정한 부분: 브로슈어의 실제 월별 데이터 배열 삽입 🚨 */}
                       {.map((val, idx) => (
                         <div key={idx} className="flex-1 flex flex-col items-center group">
                           <span className="text-[8px] text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity mb-1">{val}</span>
