@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const PlatformDashboard = () => {
   // 대시보드 뷰 모드 상태 (street: 실외 가로등, building: 실내 LED)
   const [viewMode, setViewMode] = useState<'street' | 'building'>('street');
+
+  // 🚨 브로슈어의 실제 월별 에너지 사용량 데이터 (1월~12월) 명시적 선언
+  const monthlyData: number[] = ;
 
   return (
     <div className="bg-gray-50 min-h-screen py-20">
@@ -213,8 +216,8 @@ const PlatformDashboard = () => {
                  <div className="md:col-span-2 bg-slate-800/50 rounded-2xl border border-slate-700 p-6">
                     <h3 className={`text-sm font-bold mb-6 ${viewMode === 'street' ? 'text-cyan-400' : 'text-emerald-400'}`}>월별 실제 에너지 사용량 추이</h3>
                     <div className="flex items-end gap-2 h-32 w-full pt-4">
-                      {/* 🚨 완벽하게 복구된 부분: 브로슈어의 월별 데이터 배열 삽입 🚨 */}
-                      {.map((val, idx) => (
+                      {/* 🚨 완벽하게 복구된 부분: 선언된 배열 사용 및 매개변수(val, idx)에 number 타입 부여 🚨 */}
+                      {monthlyData.map((val: number, idx: number) => (
                         <div key={idx} className="flex-1 flex flex-col items-center group">
                           <span className="text-[8px] text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity mb-1">{val}</span>
                           <div 
