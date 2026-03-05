@@ -16,7 +16,7 @@ export default function Home() {
             playsInline
             className="w-full h-full object-cover"
           >
-            <source src="/video/hero-bg3.mp4" type="video/mp4" />
+            <source src="/video/hero-bg2.mp4" type="video/mp4" />
             브라우저가 비디오 태그를 지원하지 않습니다.
           </video>
           
