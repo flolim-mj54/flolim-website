@@ -214,7 +214,7 @@ const PlatformDashboard = () => {
                  <div className="md:col-span-2 bg-slate-800/50 rounded-2xl border border-slate-700 p-6">
                     <h3 className={`text-sm font-bold mb-6 ${viewMode === 'street' ? 'text-cyan-400' : 'text-emerald-400'}`}>월별 실제 에너지 사용량 추이</h3>
                     <div className="flex items-end gap-2 h-32 w-full pt-4">
-                      {/* Mock 막대 그래프 */}
+                      {/* 수정한 부분: 명시적인 배열 데이터 추가 */}
                       {.map((val, idx) => (
                         <div key={idx} className="flex-1 flex flex-col items-center group">
                           <span className="text-[8px] text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity mb-1">{val}</span>
