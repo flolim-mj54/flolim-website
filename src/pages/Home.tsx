@@ -16,14 +16,14 @@ export default function Home() {
             playsInline
             className="w-full h-full object-cover"
           >
-            <source src="/video/hero-bg2.mp4" type="video/mp4" />
+            <source src="/video/hero-bg.mp4" type="video/mp4" />
             브라우저가 비디오 태그를 지원하지 않습니다.
           </video>
           
-          {/* 비디오 위에 깔리는 반투명 다크 오버레이 (글자 가독성 확보) */}
+          {/* 비디오 위에 깔리는 반투명 다크 오버레이 */}
           <div className="absolute inset-0 bg-slate-900/70"></div>
           
-          {/* 은은한 빛 번짐 효과 (디자인 포인트) */}
+          {/* 은은한 빛 번짐 효과 */}
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-flolim rounded-full blur-[120px] opacity-20"></div>
           <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-blue-500 rounded-full blur-[100px] opacity-20"></div>
         </div>
@@ -46,7 +46,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 2. 핵심 비즈니스 모델 (3가지 카드) */}
+      {/* 2. 핵심 비즈니스 모델 (3가지 카드 - 전체 클릭 가능하게 변경됨) */}
       <section className="py-24 bg-gray-50 px-4">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
@@ -55,41 +55,42 @@ export default function Home() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* 카드 1: ESCO 사업 */}
-            <div className="bg-white p-10 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group">
+            {/* 카드 1: ESCO 사업 (카드 전체가 Link) */}
+            <Link to="/business/esco" className="block bg-white p-10 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer">
               <div className="text-flolim text-5xl mb-6 transform group-hover:scale-110 transition-transform origin-left">💰</div>
               <h3 className="text-2xl font-bold text-slate-800 mb-4 group-hover:text-flolim transition-colors">초기비용 0원, ESCO 모델</h3>
               <p className="text-slate-600 mb-8 leading-relaxed">
                 켑코이에스 100% 지원으로 초기 투자비 부담 제로. 노후 설비를 초고효율 LED와 스마트 제어로 교체하여 매월 최대 70%의 전기료를 절감합니다.
               </p>
-              <Link to="/business/esco" className="inline-flex items-center text-flolim font-bold hover:opacity-80 transition-opacity">
+              {/* 내부 Link 태그를 span으로 변경하여 HTML 중첩 오류 방지 */}
+              <span className="inline-flex items-center text-flolim font-bold group-hover:opacity-80 transition-opacity">
                 자세히 보기 <span className="ml-2 group-hover:translate-x-2 transition-transform">→</span>
-              </Link>
-            </div>
+              </span>
+            </Link>
 
-            {/* 카드 2: 스마트 시티 */}
-            <div className="bg-white p-10 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group">
+            {/* 카드 2: 스마트 시티 (카드 전체가 Link) */}
+            <Link to="/smart-city/intro" className="block bg-white p-10 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer">
               <div className="text-flolim text-5xl mb-6 transform group-hover:scale-110 transition-transform origin-left">🏙️</div>
               <h3 className="text-2xl font-bold text-slate-800 mb-4 group-hover:text-flolim transition-colors">스마트 시티 제어망</h3>
               <p className="text-slate-600 mb-8 leading-relaxed">
                 LoRa-Mesh 및 NB-IoT 통신망을 활용하여 도시 전체의 실외 가로등을 중앙에서 실시간 관제하고 유지보수 예산을 혁신적으로 줄입니다.
               </p>
-              <Link to="/smart-city/intro" className="inline-flex items-center text-flolim font-bold hover:opacity-80 transition-opacity">
+              <span className="inline-flex items-center text-flolim font-bold group-hover:opacity-80 transition-opacity">
                 자세히 보기 <span className="ml-2 group-hover:translate-x-2 transition-transform">→</span>
-              </Link>
-            </div>
+              </span>
+            </Link>
 
-            {/* 카드 3: 스마트 빌딩 */}
-            <div className="bg-white p-10 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group">
+            {/* 카드 3: 스마트 빌딩 (카드 전체가 Link) */}
+            <Link to="/smart-building/intro" className="block bg-white p-10 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer">
               <div className="text-flolim text-5xl mb-6 transform group-hover:scale-110 transition-transform origin-left">🏢</div>
               <h3 className="text-2xl font-bold text-slate-800 mb-4 group-hover:text-flolim transition-colors">스마트 빌딩 자동화</h3>
               <p className="text-slate-600 mb-8 leading-relaxed">
                 초고효율 조명과 재실/조도 감지 지능형 IoT 센서를 결합하여, 사람이 신경 쓰지 않아도 실내 에너지를 스스로 통제하고 절감합니다.
               </p>
-              <Link to="/smart-building/intro" className="inline-flex items-center text-flolim font-bold hover:opacity-80 transition-opacity">
+              <span className="inline-flex items-center text-flolim font-bold group-hover:opacity-80 transition-opacity">
                 자세히 보기 <span className="ml-2 group-hover:translate-x-2 transition-transform">→</span>
-              </Link>
-            </div>
+              </span>
+            </Link>
           </div>
         </div>
       </section>
@@ -117,7 +118,9 @@ export default function Home() {
             </Link>
           </div>
           <div className="md:w-1/2 w-full">
-            <div className="bg-slate-100 rounded-3xl h-96 flex flex-col items-center justify-center shadow-inner border border-slate-200">
+            <div className="bg-slate-100 rounded-3xl h-96 flex flex-col items-center justify-center shadow-inner border border-slate-200 overflow-hidden">
+              {/* 플랫폼 대시보드 이미지 삽입 시 아래 주석 해제 및 경로 수정 */}
+              {/* <img src="/images/your-dashboard-image.png" alt="통합 관제 플랫폼" className="w-full h-full object-cover" /> */}
               <span className="text-4xl mb-4">📊</span>
               <span className="text-slate-500 font-semibold">플랫폼 대시보드 화면 영역</span>
             </div>
