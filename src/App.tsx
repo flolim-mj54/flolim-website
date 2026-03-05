@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // --- 공통 컴포넌트 ---
 import Header from './components/Header';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop'; // 💡 새로 추가된 부분!
 
 // --- 메인 페이지 ---
 import Home from './pages/Home';
@@ -40,6 +41,9 @@ import SupportContact from './pages/06_Support/SupportContact';
 function App() {
   return (
     <Router>
+      {/* 💡 라우터 내부에 ScrollToTop을 배치하여 페이지 이동 시 스크롤을 맨 위로 올립니다. */}
+      <ScrollToTop />
+      
       <div className="flex flex-col min-h-screen">
         {/* 상단 네비게이션 */}
         <Header />
