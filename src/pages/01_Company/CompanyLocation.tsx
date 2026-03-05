@@ -12,8 +12,8 @@ const CompanyLocation = () => {
   const mapElement = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // 플로림 전용 네이버 클라이언트 ID
-    const NAVER_CLIENT_ID = "jmxph75p6j";
+    // 💡 변경된 부분: 하드코딩된 ID 대신 Vite 환경 변수에서 값을 불러옵니다.
+    const NAVER_CLIENT_ID = import.meta.env.VITE_NAVER_MAP_CLIENT_ID;
 
     const drawMap = () => {
       if (!mapElement.current || !window.naver || !window.naver.maps) return;
@@ -51,6 +51,7 @@ const CompanyLocation = () => {
       drawMap();
     } else {
       const script = document.createElement("script");
+      // 💡 불러온 환경 변수를 스크립트 URL에 삽입합니다.
       script.src = `https://openapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${NAVER_CLIENT_ID}`;
       script.async = true;
       document.head.appendChild(script);
