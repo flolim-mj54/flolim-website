@@ -6,7 +6,7 @@ const PlatformDashboard = () => {
   const [viewMode, setViewMode] = useState<'street' | 'building'>('street');
 
   // 🚨 브로슈어의 실제 월별 에너지 사용량 데이터 (1월~12월) 명시적 선언
-  const monthlyData: number[] = ;
+  const monthlyData: number[] = new Array(450, 420, 330, 550, 670, 890, 850, 720, 680, 550, 790, 920);
 
   return (
     <div className="bg-gray-50 min-h-screen py-20">
