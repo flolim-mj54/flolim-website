@@ -1,182 +1,382 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import PageHeader from '../../components/PageHeader';
+import BottomNav from '../../components/BottomNav';
+
+declare global {
+  interface Window {
+    naver: any;
+  }
+}
 
 const SmartCityNbIot = () => {
+  const mapContainerRef = useRef<HTMLDivElement>(null);
+  const mapInstanceRef = useRef<any>(null);
+  const [isMapLoaded, setIsMapLoaded] = useState(false);
+
+  useEffect(() => {
+    const clientId = import.meta.env.VITE_NAVER_MAP_CLIENT_ID;
+
+    const initMap = () => {
+      if (!mapContainerRef.current || !window.naver) return;
+
+      // 📡 지도 초기화 (천안시 전체가 넓게 보이도록 줌 레벨 설정)
+      const map = new window.naver.maps.Map(mapContainerRef.current, {
+        center: new window.naver.maps.LatLng(36.8150, 127.1150),
+        zoom: 13, 
+        zoomControl: false, 
+        mapDataControl: false,
+        scaleControl: false,
+      });
+      
+      mapInstanceRef.current = map;
+
+      // 💡 1. 듀얼 통신사 기지국(Base Station) 좌표 설정
+      const bs1Coord = new window.naver.maps.LatLng(36.8280, 127.0900); // 1번 기지국 (서북 방향)
+      const bs2Coord = new window.naver.maps.LatLng(36.8000, 127.1400); // 2번 기지국 (동남 방향)
+
+      // 💡 2. 광역으로 흩어진 20개의 가로등 노드 좌표 (산간, 외곽, 도심 등)
+      const isolatedNodes = [
+        // 1번 기지국 인근 무리
+        new window.naver.maps.LatLng(36.8350, 127.0800),
+        new window.naver.maps.LatLng(36.8300, 127.1000),
+        new window.naver.maps.LatLng(36.8200, 127.0750),
+        new window.naver.maps.LatLng(36.8150, 127.0950),
+        new window.naver.maps.LatLng(36.8400, 127.0900),
+        new window.naver.maps.LatLng(36.8250, 127.1050),
+        new window.naver.maps.LatLng(36.8300, 127.0600), // 먼 서쪽
+        new window.naver.maps.LatLng(36.8100, 127.0850), // 남서쪽
+        new window.naver.maps.LatLng(36.8450, 127.0700), // 북서쪽 외곽
+        
+        // 2번 기지국 인근 무리
+        new window.naver.maps.LatLng(36.7950, 127.1300),
+        new window.naver.maps.LatLng(36.8100, 127.1500),
+        new window.naver.maps.LatLng(36.7900, 127.1450),
+        new window.naver.maps.LatLng(36.8000, 127.1250),
+        new window.naver.maps.LatLng(36.8150, 127.1350),
+        new window.naver.maps.LatLng(36.7850, 127.1550),
+        new window.naver.maps.LatLng(36.7800, 127.1300), // 먼 남쪽
+        new window.naver.maps.LatLng(36.7900, 127.1600), // 먼 동쪽
+        
+        // 중앙/애매한 위치 (알아서 가까운 곳으로 붙음)
+        new window.naver.maps.LatLng(36.8150, 127.1150),
+        new window.naver.maps.LatLng(36.8050, 127.1050),
+        new window.naver.maps.LatLng(36.8200, 127.1200),
+      ];
+
+      // 💡 3. 마커 렌더링 함수
+      const createMarker = (position: any, label: string, isBaseStation: boolean, delay: number) => {
+        const dotSize = isBaseStation ? 18 : 7; 
+        
+        // 기지국 전용 거대 레이더 파동 애니메이션
+        const radarEffect = isBaseStation 
+          ? `
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 180px; height: 180px; border: 2px solid #18A9C6; border-radius: 50%; animation: ping 3s cubic-bezier(0, 0, 0.2, 1) infinite; opacity: 0.3;"></div>
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 300px; border: 1px solid #18A9C6; border-radius: 50%; animation: ping 3s cubic-bezier(0, 0, 0.2, 1) infinite; animation-delay: 1s; opacity: 0.15;"></div>
+            `
+          : `<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 20px; height: 20px; border: 2px solid #18A9C6; border-radius: 50%; animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite; animation-delay: ${delay}s; opacity: 0.7;"></div>`;
+
+        // 기지국 아이콘 (안테나) vs 일반 노드 (흰색 점 코어)
+        const coreElement = isBaseStation
+          ? `<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 36px; height: 36px; background-color: #0f172a; border: 3px solid #18A9C6; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 20px rgba(24,169,198,1); z-index: 10;">
+               <svg viewBox="0 0 24 24" fill="none" style="width: 20px; height: 20px; stroke: #18A9C6; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;">
+                 <path d="M4 8a10 10 0 0 1 16 0"/><path d="M8 12a4 4 0 0 1 8 0"/><line x1="12" y1="16" x2="12" y2="22"/>
+               </svg>
+             </div>`
+          : `<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: ${dotSize}px; height: ${dotSize}px; background-color: #ffffff; border: 2px solid #18A9C6; border-radius: 50%; box-shadow: 0 0 15px rgba(24,169,198,1); z-index: 10;"></div>`;
+
+        const labelHtml = isBaseStation 
+          ? `<div style="position: absolute; top: 30px; left: 50%; transform: translateX(-50%); background-color: rgba(15,23,42,0.9); color: #18A9C6; font-size: 11px; font-weight: bold; padding: 4px 8px; border-radius: 6px; border: 1px solid #18A9C6; white-space: nowrap; z-index: 11; box-shadow: 0 4px 6px rgba(0,0,0,0.5);">${label}</div>`
+          : '';
+
+        const contentString = `
+          <div style="filter: invert(100%) hue-rotate(180deg); width: 20px; height: 20px; position: relative; pointer-events: none;">
+            ${radarEffect}
+            ${coreElement}
+            ${labelHtml}
+          </div>
+        `;
+        
+        new window.naver.maps.Marker({
+          position: position,
+          map: map,
+          icon: { 
+            content: contentString, 
+            size: new window.naver.maps.Size(20, 20), 
+            anchor: new window.naver.maps.Point(10, 10) 
+          }
+        });
+      };
+
+      // 💡 마커 찍기 (기지국 2개 + 가로등 20개)
+      createMarker(bs1Coord, '통신사 기지국 A', true, 0);
+      createMarker(bs2Coord, '통신사 기지국 B', true, 0.5);
+      isolatedNodes.forEach((coord, idx) => createMarker(coord, '', false, idx * 0.1));
+
+      // 💡 4. 다이렉트 빔 연결선 그리기 함수
+      const drawDirectLine = (p1: any, p2: any) => {
+        // 야광 배경선
+        new window.naver.maps.Polyline({
+          map: map,
+          path: [p1, p2],
+          strokeColor: '#18A9C6',
+          strokeWeight: 4,
+          strokeOpacity: 0.15,
+          strokeLineCap: 'round',
+          strokeLineJoin: 'round'
+        });
+        // 코어 점선 (Mesh보다 선을 길게 뽑아서 전파 쏘는 느낌 강조)
+        new window.naver.maps.Polyline({
+          map: map,
+          path: [p1, p2],
+          strokeColor: '#18A9C6',
+          strokeWeight: 1.5,
+          strokeStyle: 'longdash', 
+          strokeOpacity: 0.7,
+          strokeLineCap: 'round',
+          strokeLineJoin: 'round'
+        });
+      };
+
+      // 💡 5. 오토 타겟팅 로직: 가장 가까운 기지국을 찾아서 연결
+      const getDistance = (p1: any, p2: any) => {
+        return Math.pow(p1.lat() - p2.lat(), 2) + Math.pow(p1.lng() - p2.lng(), 2);
+      };
+
+      isolatedNodes.forEach(coord => {
+        const dist1 = getDistance(coord, bs1Coord);
+        const dist2 = getDistance(coord, bs2Coord);
+        
+        // 더 가까운 기지국에 선을 긋습니다 (Star Topology)
+        if (dist1 < dist2) {
+          drawDirectLine(bs1Coord, coord);
+        } else {
+          drawDirectLine(bs2Coord, coord);
+        }
+      });
+
+      setIsMapLoaded(true);
+    };
+
+    if (window.naver && window.naver.maps) {
+      initMap();
+    } else if (clientId) {
+      const script = document.createElement('script');
+      script.src = `https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${clientId}`;
+      script.async = true;
+      script.onload = () => initMap();
+      document.head.appendChild(script);
+    }
+  }, []);
+
+  const handleZoomIn = () => {
+    if (mapInstanceRef.current) {
+      const currentZoom = mapInstanceRef.current.getZoom();
+      mapInstanceRef.current.setZoom(currentZoom + 1, true);
+    }
+  };
+
+  const handleZoomOut = () => {
+    if (mapInstanceRef.current) {
+      const currentZoom = mapInstanceRef.current.getZoom();
+      mapInstanceRef.current.setZoom(currentZoom - 1, true);
+    }
+  };
+
   return (
-    <div className="bg-gray-50 min-h-screen py-20">
+    <div className="pb-10">
+      <PageHeader 
+        category="Network Solution"
+        title="NB-IoT 가로등 제어 솔루션"
+        subtitle={
+          <>
+            중계기 설치 없이, 거리 제한 없이! <strong className="text-flolim font-bold">전국 어디서나 터지는</strong> 상용망 직결 시스템
+          </>
+        }
+      />
+
       <div className="container mx-auto px-4 max-w-6xl">
         
-        {/* 페이지 타이틀 */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">NB-IoT 기반 가로등 제어 솔루션</h1>
-          <div className="w-24 h-1 bg-blue-600 mx-auto mb-6"></div>
-          <p className="text-xl text-gray-600 font-light max-w-3xl mx-auto leading-relaxed">
-            추가 중계기 장비 없이, 전국 통신망을 활용해 <strong className="text-blue-600 font-bold">사각지대 없이 기지국과 직접 연결</strong>됩니다.
-          </p>
-        </div>
-
-        {/* 1. 핵심 Overview 섹션 (브로슈어 내용 반영) */}
-        <section className="bg-white rounded-3xl p-10 md:p-16 shadow-lg border border-gray-200 mb-16 flex flex-col-reverse md:flex-row gap-12 items-center">
-          <div className="md:w-1/2 w-full flex justify-center">
-            {/* 기지국 1:1 직접 통신(Star Topology)을 보여주는 시각적 장치 */}
-            <div className="relative w-full aspect-square max-w-md bg-slate-50 rounded-full shadow-inner flex items-center justify-center p-6 border-4 border-slate-100 overflow-hidden">
-               {/* 기지국 파동 애니메이션 */}
-               <div className="absolute w-full h-full border-2 border-blue-200 rounded-full animate-[ping_3s_infinite_ease-out]"></div>
-               <div className="absolute w-3/4 h-3/4 border-2 border-blue-300 rounded-full animate-[ping_3s_infinite_ease-out_1s]"></div>
-               <div className="absolute w-1/2 h-1/2 border-2 border-blue-400 rounded-full animate-[ping_3s_infinite_ease-out_2s]"></div>
-               
-               {/* 중앙 통신사 기지국 아이콘 */}
-               <div className="relative z-10 w-20 h-20 bg-blue-900 rounded-2xl flex items-center justify-center text-white text-4xl shadow-xl">
-                 📡
-               </div>
-
-               {/* 주변 개별 가로등 노드 (1:1 직접 연결) */}
-               <div className="absolute top-10 left-20 w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center text-blue-600 border-2 border-blue-200 z-20">💡</div>
-               <div className="absolute top-20 right-12 w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center text-blue-600 border-2 border-blue-200 z-20">💡</div>
-               <div className="absolute bottom-16 left-12 w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center text-blue-600 border-2 border-blue-200 z-20">💡</div>
-               <div className="absolute bottom-12 right-24 w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center text-blue-600 border-2 border-blue-200 z-20">💡</div>
-               
-               {/* 중앙 기지국과 노드들을 잇는 직접 연결 선 */}
-               <svg className="absolute inset-0 w-full h-full z-0 opacity-50">
-                 <line x1="50%" y1="50%" x2="25%" y2="20%" stroke="#3b82f6" strokeWidth="3" />
-                 <line x1="50%" y1="50%" x2="80%" y2="35%" stroke="#3b82f6" strokeWidth="3" />
-                 <line x1="50%" y1="50%" x2="20%" y2="75%" stroke="#3b82f6" strokeWidth="3" />
-                 <line x1="50%" y1="50%" x2="70%" y2="80%" stroke="#3b82f6" strokeWidth="3" />
-               </svg>
-            </div>
-          </div>
-
-          <div className="md:w-1/2">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6 leading-tight">
-              통신사망(LTE)을 그대로 활용하여<br />압도적인 통신 품질을 보장합니다
+        {/* 1. 핵심 Overview 및 라이브 맵 섹션 */}
+        <section className="bg-slate-900/50 backdrop-blur-sm rounded-3xl p-10 md:p-12 shadow-xl border border-slate-800 mb-24 flex flex-col lg:flex-row gap-12 items-center hover:border-flolim/50 transition-colors duration-500">
+          <div className="lg:w-5/12">
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-6 leading-tight">
+              통신사 기지국과 직접 연결되는<br />
+              <span className="text-flolim">다이렉트 광역 통신망</span>
             </h2>
-            <ul className="space-y-5 text-gray-600 leading-relaxed">
-              <li className="flex items-start">
-                <span className="text-blue-600 mr-3 text-xl font-bold">•</span>
-                <span><strong>초기 인프라 구축 비용 혁신적 절감:</strong> 개별 가로등이 통신사 기지국과 1:1로 직접 통신하므로, 데이터를 모아주는 별도의 중계기(Gateway) 장비를 설치할 필요가 없습니다.</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-blue-600 mr-3 text-xl font-bold">•</span>
-                <span><strong>극한 환경에서도 끊김 없는 연결:</strong> 전파 투과력이 뛰어나 빌딩 숲, 산간 오지, 지하차도 등 통신 사각지대에서도 완벽한 제어와 모니터링이 가능합니다.</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-blue-600 mr-3 text-xl font-bold">•</span>
-                <span><strong>가장 안전한 최고 수준의 보안망:</strong> 상용 통신사(SKT, KT, LGU+)의 강력한 보안망을 그대로 적용하여 해킹 및 데이터 유출 위험을 원천 차단합니다.</span>
-              </li>
-            </ul>
-          </div>
-        </section>
-
-        {/* 2. 단말기 구성 요소 (Terminal Components) */}
-        <section className="mb-20">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">현장에 맞춘 단일 램프 컨트롤러</h2>
-            <p className="text-gray-600">복잡한 중계 장비 없이, 가로등에 컨트롤러 하나만 달면 통신사 기지국과 즉시 연결됩니다.</p>
+            <p className="text-slate-400 leading-relaxed mb-6 font-light">
+              플로림의 NB-IoT 솔루션은 스마트폰처럼 가로등 단말기 자체가 독립적인 유심(USIM)을 보유합니다. 중간에 게이트웨이(중계기)를 거칠 필요 없이, 가장 가까운 통신사(SKT/KT/LGU+) 기지국으로 데이터를 직접 전송합니다.
+            </p>
+            <div className="bg-slate-800/80 border-l-4 border-flolim p-5 rounded-r-xl shadow-inner">
+              <p className="text-sm text-slate-300 font-medium leading-relaxed">
+                가로등 간 통신이 불가능할 정도로 <strong className="text-flolim">멀리 떨어진 외곽 지역, 산간, 단독 가로등</strong>에도 제약 없이 설치가 가능하며, 전국망 커버리지를 통해 안정적인 제어 환경을 제공합니다.
+              </p>
+            </div>
           </div>
           
+          <div className="lg:w-7/12 w-full flex justify-center">
+            
+            {/* 라이브 인터랙티브 맵 영역 */}
+            <div className="relative w-full h-[500px] bg-slate-900 rounded-2xl shadow-2xl overflow-hidden border-4 border-slate-800 flex items-center justify-center">
+              
+              {!import.meta.env.VITE_NAVER_MAP_CLIENT_ID && !isMapLoaded && (
+                 <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-900 text-slate-400 font-light text-sm z-30">
+                   <svg className="w-12 h-12 mb-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                   네이버 지도 API 키(.env) 설정이 필요합니다.
+                 </div>
+              )}
+
+              {/* CSS 필터 매직: 다크 모드 관제 맵 변환 */}
+              <div 
+                ref={mapContainerRef} 
+                className="w-full h-full"
+                style={{ filter: 'invert(100%) hue-rotate(180deg) brightness(85%) contrast(110%) grayscale(20%)' }}
+              ></div>
+
+              {/* 상태 표시 뱃지 */}
+              <div className="absolute top-4 left-4 flex items-center gap-2 bg-slate-900/90 backdrop-blur-md px-4 py-2 rounded-lg border border-slate-700 z-20 pointer-events-none shadow-lg">
+                <span className="w-2 h-2 bg-flolim rounded-full animate-pulse shadow-[0_0_10px_rgba(24,169,198,1)]"></span>
+                <span className="text-[10px] font-bold text-white tracking-widest">NB-IoT 광역 커버리지 맵 (Star Topology)</span>
+              </div>
+
+              {/* 줌 컨트롤 버튼 */}
+              <div className="absolute top-4 right-4 flex flex-col gap-2 z-20">
+                <button 
+                  onClick={handleZoomIn} 
+                  className="w-10 h-10 bg-slate-800/90 backdrop-blur-md border border-slate-600 text-white rounded-xl shadow-lg flex items-center justify-center hover:bg-flolim hover:border-flolim transition-all duration-300"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                </button>
+                <button 
+                  onClick={handleZoomOut} 
+                  className="w-10 h-10 bg-slate-800/90 backdrop-blur-md border border-slate-600 text-white rounded-xl shadow-lg flex items-center justify-center hover:bg-flolim hover:border-flolim transition-all duration-300"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M20 12H4"></path></svg>
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+
+        {/* 2. 시스템 구성 요소 */}
+        <section className="mb-24">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-white mb-4">가장 심플하고 강력한 하드웨어 구성</h2>
+            <p className="text-slate-400 font-light">복잡한 중계기가 사라져, 초기 구축 비용과 시공 기간이 획기적으로 줄어듭니다.</p>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* NEMA 7핀 */}
-            <div className="bg-white rounded-3xl p-10 border border-gray-100 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
-              <div className="absolute -right-6 -top-6 w-24 h-24 bg-blue-50 rounded-full z-0"></div>
-              <h3 className="text-2xl font-bold text-blue-900 mb-2 relative z-10">외장형 컨트롤러 (NEMA)</h3>
-              <p className="text-gray-500 mb-8 font-medium relative z-10">국제 표준 NEMA 7핀 기반 실시간 모니터링</p>
-              
-              <ul className="space-y-4 text-sm text-gray-700 relative z-10">
-                <li className="flex items-start"><span className="text-blue-500 mr-3 font-bold">✓</span> 꽂기만 하면 바로 작동하는 플러그 앤 플레이(Plug & Play) 방식</li>
-                <li className="flex items-start"><span className="text-blue-500 mr-3 font-bold">✓</span> 세밀한 밝기 조절(DALI 2.0 및 0-10V) 완벽 지원</li>
-                <li className="flex items-start"><span className="text-blue-500 mr-3 font-bold">✓</span> 위치를 파악하는 GPS와 주변 밝기를 감지하는 광전지 센서 내장</li>
-                <li className="flex items-start"><span className="text-blue-500 mr-3 font-bold">✓</span> 비바람에 강한 방수·방진(IP65) 및 정전 시 이전 상태 자동 복구</li>
-              </ul>
+            <div className="bg-slate-900/50 p-10 rounded-3xl border border-slate-800 hover:border-flolim/50 transition-all duration-300 group opacity-50 relative overflow-hidden">
+              <div className="absolute inset-0 bg-slate-900/80 backdrop-blur-[2px] z-10 flex items-center justify-center">
+                <span className="bg-red-500/20 text-red-400 border border-red-500/50 px-4 py-2 rounded-lg font-bold tracking-widest rotate-[-15deg] shadow-lg">NOT REQUIRED</span>
+              </div>
+              <div className="flex items-center gap-5 mb-6">
+                <div className="w-14 h-14 bg-slate-800 border border-slate-700 text-slate-500 rounded-2xl flex items-center justify-center text-2xl font-black shadow-sm">01</div>
+                <div>
+                  <h3 className="text-xl font-bold text-slate-400 line-through decoration-red-500 decoration-2">현장을 지휘하는 중계기</h3>
+                  <span className="text-slate-500 text-sm font-bold uppercase tracking-wider line-through">IoT Gateway</span>
+                </div>
+              </div>
+              <p className="text-slate-500 mb-8 font-light leading-relaxed line-through">
+                현장의 데이터를 모아 관제 서버로 전송하는 복잡한 라우팅 장비나 전용 전봇대가 필요했습니다.
+              </p>
             </div>
 
-            {/* ZHAGA 4핀 */}
-            <div className="bg-white rounded-3xl p-10 border border-gray-100 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
-              <div className="absolute -right-6 -top-6 w-24 h-24 bg-indigo-50 rounded-full z-0"></div>
-              <h3 className="text-2xl font-bold text-indigo-900 mb-2 relative z-10">내장형 컨트롤러 (ZHAGA)</h3>
-              <p className="text-gray-500 mb-8 font-medium relative z-10">유럽 표준 ZHAGA 4핀 기반 정밀 고장 검출</p>
-              
-              <ul className="space-y-4 text-sm text-gray-700 relative z-10">
-                <li className="flex items-start"><span className="text-indigo-500 mr-3 font-bold">✓</span> 유럽 표준 규격(ZHAGA)에 최적화된 소형 디자인 및 뛰어난 호환성</li>
-                <li className="flex items-start"><span className="text-indigo-500 mr-3 font-bold">✓</span> 통신 단절 시에도 자체 시계(RTC)로 정해진 조명 스케줄 정상 실행</li>
-                <li className="flex items-start"><span className="text-indigo-500 mr-3 font-bold">✓</span> 가로등의 기울어짐이나 온도 변화를 감지하는 안전 센서 추가 연동</li>
-                <li className="flex items-start"><span className="text-indigo-500 mr-3 font-bold">✓</span> 조명 기구 내부에 완벽히 매립되는 크기와 강력한 방수·방진(IP66/IP67)</li>
+            <div className="bg-slate-900/50 p-10 rounded-3xl border border-slate-800 hover:border-flolim/50 transition-all duration-300 group shadow-[0_0_30px_rgba(24,169,198,0.1)]">
+              <div className="flex items-center gap-5 mb-6">
+                <div className="w-14 h-14 bg-flolim border border-flolim text-white rounded-2xl flex items-center justify-center text-2xl font-black shadow-lg">01</div>
+                <div>
+                  <h3 className="text-xl font-bold text-white">독립 통신 스마트 단말기</h3>
+                  <span className="text-flolim text-sm font-bold uppercase tracking-wider">NB-IoT Node</span>
+                </div>
+              </div>
+              <p className="text-slate-400 mb-8 font-light leading-relaxed">
+                스마트폰처럼 기기 내부에 통신사 USIM이 내장되어 있어, 전원만 공급되면 즉시 상용망에 붙어 관제 서버와 양방향 통신을 시작합니다.
+              </p>
+              <ul className="space-y-4 text-sm text-slate-300 bg-slate-800/50 p-6 rounded-2xl border border-slate-700">
+                <li className="flex items-start"><svg className="w-5 h-5 text-flolim mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path></svg>단독 설치 및 개별 통신 지원 (외곽 지역 최적화)</li>
+                <li className="flex items-start"><svg className="w-5 h-5 text-flolim mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path></svg>NEMA 7핀(외장형) 및 ZHAGA 4핀(내장형) 규격 완벽 지원</li>
+                <li className="flex items-start"><svg className="w-5 h-5 text-flolim mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path></svg>전압, 전류 등 조명 전력 상태 실시간 측정 및 즉각 보고</li>
               </ul>
             </div>
           </div>
         </section>
 
-        {/* 3. 시스템 아키텍처 및 강점 */}
-        <section className="bg-gray-800 text-white rounded-3xl p-10 md:p-16 mb-20 shadow-xl">
-          <h2 className="text-2xl font-bold text-blue-300 mb-8 text-center tracking-widest uppercase text-sm">System Architecture</h2>
-          <div className="flex flex-col md:flex-row justify-center items-center gap-6 md:gap-12 mb-16 text-center font-bold text-lg md:text-xl">
-             <div className="bg-gray-700 py-4 px-8 rounded-xl border border-gray-600 w-full md:w-auto shadow-inner">
-               플로림 통합 관제 서버
-             </div>
-             <div className="text-blue-400 rotate-90 md:rotate-0 text-3xl">⇌</div>
-             <div className="bg-blue-900 py-4 px-8 rounded-xl border border-blue-500 w-full md:w-auto shadow-[0_0_20px_rgba(59,130,246,0.3)]">
-               통신사 이동통신 기지국 (LTE망)
-             </div>
-             <div className="text-blue-400 rotate-90 md:rotate-0 text-3xl">⇌</div>
-             <div className="bg-gray-700 py-4 px-8 rounded-xl border border-gray-600 w-full md:w-auto shadow-inner">
-               개별 무선 단말기 (스마트 가로등)
-             </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 border-t border-gray-600 pt-12">
-            <div>
-              <h3 className="text-xl font-bold text-white mb-3 flex items-center"><span className="text-2xl mr-3">🔌</span> 꼼꼼한 전력 측정과 모니터링</h3>
-              <p className="text-gray-300 text-sm leading-relaxed">
-                단말기에 내장된 스마트 미터기가 전압, 전류, 소비 전력 등을 실시간으로 정밀하게 측정합니다. 과전압 등 전원에 이상이 생기면 관리자에게 즉시 알림을 발송하여 고장과 안전사고를 미리 예방합니다.
+        {/* 3. 핵심 강점 */}
+        <section className="bg-slate-900 text-white rounded-3xl p-10 md:p-16 mb-24 shadow-xl border border-slate-800 relative overflow-hidden group hover:border-flolim/50 transition-colors">
+          <div className="absolute top-0 right-0 w-80 h-80 bg-flolim rounded-full blur-[100px] opacity-10 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none -translate-y-1/4 translate-x-1/4"></div>
+          
+          <h2 className="text-3xl font-bold mb-12 relative z-10 text-center">왜 플로림 NB-IoT 솔루션인가요?</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+            <div className="bg-slate-800/50 backdrop-blur-sm p-8 rounded-2xl border border-slate-700 hover:border-flolim/50 transition-colors">
+              <div className="w-12 h-12 bg-slate-800 rounded-xl flex items-center justify-center text-flolim mb-5 shadow-inner">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path></svg>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3">초기 구축비용 최소화</h3>
+              <p className="text-slate-400 text-sm font-light leading-relaxed">
+                비싼 게이트웨이(집중기)를 구매하고 전봇대에 설치하는 공사 비용이 완전히 사라집니다. 단말기만 달면 즉시 관제가 시작됩니다.
               </p>
             </div>
-            <div>
-              <h3 className="text-xl font-bold text-white mb-3 flex items-center"><span className="text-2xl mr-3">🔄</span> 현장 방문 없는 무선 원격 관리 (OTA)</h3>
-              <p className="text-gray-300 text-sm leading-relaxed">
-                시스템 기능 업데이트나 펌웨어 패치가 필요할 때, 직원이 직접 고소작업차를 타고 가로등에 올라갈 필요 없이 통신망을 통해 원격으로 소프트웨어를 업그레이드하여 유지보수 비용을 크게 아껴줍니다.
+            
+            <div className="bg-slate-800/50 backdrop-blur-sm p-8 rounded-2xl border border-slate-700 hover:border-flolim/50 transition-colors">
+              <div className="w-12 h-12 bg-slate-800 rounded-xl flex items-center justify-center text-flolim mb-5 shadow-inner">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3">전국망 커버리지 지원</h3>
+              <p className="text-slate-400 text-sm font-light leading-relaxed">
+                SKT, KT, LGU+의 거대한 통신 기지국을 그대로 사용하므로, 산간 오지나 바닷가 등 휴대폰이 터지는 곳이라면 어디든 100% 제어할 수 있습니다.
+              </p>
+            </div>
+            
+            <div className="bg-slate-800/50 backdrop-blur-sm p-8 rounded-2xl border border-slate-700 hover:border-flolim/50 transition-colors">
+              <div className="w-12 h-12 bg-slate-800 rounded-xl flex items-center justify-center text-flolim mb-5 shadow-inner">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3">최고 수준의 보안성</h3>
+              <p className="text-slate-400 text-sm font-light leading-relaxed">
+                글로벌 통신사가 관리하는 국가 기간망 수준의 3GPP 표준 암호화 기술이 적용되어 해킹과 데이터 위변조로부터 완벽하게 안전합니다.
               </p>
             </div>
           </div>
         </section>
 
-        {/* 4. 기술 사양 (Tech Specs) */}
+        {/* 4. 제품 기술 사양 */}
         <section className="mb-16">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6 px-4 border-l-4 border-blue-600">Technical Specifications</h2>
-          <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
-            <table className="w-full text-left border-collapse">
+          <h2 className="text-2xl font-bold text-white mb-6 px-4 border-l-4 border-flolim">Technical Specifications</h2>
+          <div className="bg-slate-900/50 rounded-2xl shadow-sm border border-slate-800 overflow-hidden hover:border-flolim/50 transition-colors">
+            <table className="w-full text-left border-collapse text-sm">
               <tbody>
-                <tr className="border-b border-gray-100">
-                  <th className="py-5 px-6 bg-gray-50 text-gray-700 font-bold w-1/3 md:w-1/4">네트워크 기술</th>
-                  <td className="py-5 px-6 text-gray-600">LTE Cat NB1, Cat M1, EGPRS / 1:1 직접 통신(Star Topology)</td>
+                <tr className="border-b border-slate-800 hover:bg-slate-800/30 transition-colors">
+                  <th className="py-5 px-6 bg-slate-800/50 text-slate-300 font-bold w-1/3 md:w-1/4">통신 속도 / 거리</th>
+                  <td className="py-5 px-6 text-slate-400 font-light">Up to 250 Kbps / <strong className="text-flolim">거리 무제한 (통신사 기지국 커버리지 내)</strong></td>
                 </tr>
-                <tr className="border-b border-gray-100">
-                  <th className="py-5 px-6 bg-gray-50 text-gray-700 font-bold">지원 주파수 대역</th>
-                  <td className="py-5 px-6 text-gray-600">통신사 허가 대역 (LTE-FDD B1 / B3 / B5 / B8 등 상용망 완벽 호환)</td>
+                <tr className="border-b border-slate-800 hover:bg-slate-800/30 transition-colors">
+                  <th className="py-5 px-6 bg-slate-800/50 text-slate-300 font-bold">무선 주파수</th>
+                  <td className="py-5 px-6 text-slate-400 font-light">이동통신사 할당 면허 대역 (Licensed Band) 사용으로 간섭 원천 차단</td>
                 </tr>
-                <tr className="border-b border-gray-100">
-                  <th className="py-5 px-6 bg-gray-50 text-gray-700 font-bold">디밍(밝기) 제어 규격</th>
-                  <td className="py-5 px-6 text-gray-600">DALI 2.0 프로토콜, 0-10V DC, PWM 완벽 지원</td>
+                <tr className="border-b border-slate-800 hover:bg-slate-800/30 transition-colors">
+                  <th className="py-5 px-6 bg-slate-800/50 text-slate-300 font-bold">네트워크 기술</th>
+                  <td className="py-5 px-6 text-slate-400 font-light">3GPP Release 13 기반 협대역 사물인터넷 (NarrowBand-Internet of Things)</td>
                 </tr>
-                <tr>
-                  <th className="py-5 px-6 bg-gray-50 text-gray-700 font-bold">동작 전압 및 릴레이</th>
-                  <td className="py-5 px-6 text-gray-600">AC 96~264V (50/60Hz) / 16A 내장 릴레이 스위치 적용</td>
+                <tr className="border-b border-slate-800 hover:bg-slate-800/30 transition-colors">
+                  <th className="py-5 px-6 bg-slate-800/50 text-slate-300 font-bold">동작 전압</th>
+                  <td className="py-5 px-6 text-slate-400 font-light">단말기 AC 96~264V</td>
+                </tr>
+                <tr className="hover:bg-slate-800/30 transition-colors">
+                  <th className="py-5 px-6 bg-slate-800/50 text-slate-300 font-bold">통신비</th>
+                  <td className="py-5 px-6 text-slate-400 font-light">기기당 소정의 월 통신 요금 발생 (SKT, KT, LGU+ 요금제 기반)</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </section>
 
-        {/* 다른 솔루션으로 이동하는 하단 네비게이션 */}
-        <div className="flex justify-between items-center bg-gray-100 rounded-2xl p-6 border border-gray-200">
-          <Link to="/smart-city/lora" className="flex flex-col text-left group">
-            <span className="text-xs font-bold text-gray-400 group-hover:text-blue-600 transition-colors mb-1">← 이전 페이지</span>
-            <span className="text-gray-700 font-bold group-hover:text-blue-700 transition-colors">LoRa-Mesh 제어 솔루션</span>
-          </Link>
-          <Link to="/smart-city/dmx" className="flex flex-col text-right group">
-            <span className="text-xs font-bold text-gray-400 group-hover:text-blue-600 transition-colors mb-1">다음 페이지 →</span>
-            <span className="text-gray-700 font-bold group-hover:text-blue-700 transition-colors">DMX 경관조명 제어 솔루션</span>
-          </Link>
-        </div>
-
+        <BottomNav 
+          prev={{ label: '이전 페이지', title: 'LoRa-Mesh 제어 솔루션', path: '/smart-city/lora' }}
+          next={{ label: '다음 페이지', title: '설치 사례', path: '/smart-city/cases' }}
+        />
       </div>
     </div>
   );

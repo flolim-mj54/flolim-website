@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // --- 공통 컴포넌트 ---
 import Header from './components/Header';
 import Footer from './components/Footer';
-import ScrollToTop from './components/ScrollToTop'; // 💡 새로 추가된 부분!
+import ScrollToTop from './components/ScrollToTop';
 
 // --- 메인 페이지 ---
 import Home from './pages/Home';
@@ -41,51 +41,49 @@ import SupportContact from './pages/06_Support/SupportContact';
 function App() {
   return (
     <Router>
-      {/* 💡 라우터 내부에 ScrollToTop을 배치하여 페이지 이동 시 스크롤을 맨 위로 올립니다. */}
       <ScrollToTop />
       
-      <div className="flex flex-col min-h-screen">
-        {/* 상단 네비게이션 */}
+      {/* 💡 전체 배경을 프리미엄 다크(slate-950)로 변경하고, 글씨를 밝게(slate-200) 설정합니다. */}
+      <div className="flex flex-col min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-flolim/30">
+        
         <Header />
         
-        {/* 본문 영역 */}
         <main className="flex-grow pt-20">
           <Routes>
             <Route path="/" element={<Home />} />
 
-            {/* 회사 소개 라우팅 */}
+            {/* 회사 소개 */}
             <Route path="/company/ceo" element={<CompanyCeo />} />
             <Route path="/company/intro" element={<CompanyIntro />} />
             <Route path="/company/cert" element={<CompanyCert />} />
             <Route path="/company/history" element={<CompanyHistory />} />
             <Route path="/company/location" element={<CompanyLocation />} />
 
-            {/* 핵심 사업 모델 라우팅 */}
+            {/* 핵심 사업 모델 */}
             <Route path="/business/esco" element={<BusinessEsco />} />
             <Route path="/business/simulation" element={<BusinessSimulation />} />
 
-            {/* 스마트 시티 솔루션 라우팅 */}
+            {/* 스마트 시티 솔루션 */}
             <Route path="/smart-city/intro" element={<SmartCityIntro />} />
             <Route path="/smart-city/lora" element={<SmartCityLora />} />
             <Route path="/smart-city/nb-iot" element={<SmartCityNbIot />} />
             <Route path="/smart-city/dmx" element={<SmartCityDmx />} />
 
-            {/* 스마트 빌딩 솔루션 라우팅 */}
+            {/* 스마트 빌딩 솔루션 */}
             <Route path="/smart-building/intro" element={<SmartBuildingIntro />} />
             <Route path="/smart-building/sensor" element={<SmartBuildingSensor />} />
 
-            {/* 통합 관제 플랫폼 라우팅 */}
+            {/* 통합 관제 플랫폼 */}
             <Route path="/platform/dashboard" element={<PlatformDashboard />} />
             <Route path="/platform/esg" element={<PlatformEsg />} />
 
-            {/* 고객 지원 라우팅 */}
+            {/* 고객 지원 */}
             <Route path="/support/references" element={<SupportReferences />} />
             <Route path="/support/archive" element={<SupportArchive />} />
             <Route path="/support/contact" element={<SupportContact />} />
           </Routes>
         </main>
         
-        {/* 하단 정보 */}
         <Footer />
       </div>
     </Router>

@@ -1,242 +1,198 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import PageHeader from '../../components/PageHeader';
+import BottomNav from '../../components/BottomNav';
 
 const PlatformEsg = () => {
   return (
-    <div className="bg-gray-50 min-h-screen py-20">
-      <div className="container mx-auto px-4 max-w-7xl">
-        
-        {/* 페이지 타이틀 */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">ESG 경영 성과 리포트</h1>
-          <div className="w-24 h-1 bg-green-600 mx-auto mb-6"></div>
-          <p className="text-xl text-gray-600 font-light max-w-3xl mx-auto leading-relaxed">
-            데이터 기반의 투명한 에너지 관리로 <strong className="text-green-700 font-bold">지속가능경영(ESG) 목표 달성을 증명</strong>합니다.
-          </p>
-        </div>
+    <div className="pb-10">
+      <PageHeader 
+        category="ESG & Sustainability"
+        title="통합 경영 및 ESG 리포트"
+        subtitle={
+          <>
+            수집된 모든 데이터를 분석하여 <strong className="text-flolim font-bold">탄소 감축 성과와 예산 절감액을 공식 리포트로 제공</strong>합니다.
+          </>
+        }
+      />
 
-        {/* 1. ESG 리포트 대시보드 UI (브로슈어 목업 데이터 100% 반영) */}
+      <div className="container mx-auto px-4 max-w-6xl">
         <section className="mb-20">
-          <div className="bg-slate-900 rounded-[2rem] p-6 md:p-10 shadow-2xl border border-slate-700 overflow-hidden text-white font-sans">
+          <div className="bg-[#0a1128] rounded-3xl p-8 md:p-12 shadow-2xl border border-slate-800 relative overflow-hidden">
             
-            {/* 대시보드 헤더 */}
-            <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4 border-b border-slate-700/50 pb-6">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-emerald-600 rounded-xl flex items-center justify-center text-xl shadow-[0_0_15px_rgba(52,211,153,0.4)]">
-                  🌱
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 border-b border-slate-800 pb-6 relative z-10">
+              <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-flolim/10 border border-flolim/30 text-flolim text-xs font-bold tracking-wider mb-3">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                  MONTHLY REPORT
                 </div>
-                <h2 className="text-2xl font-bold tracking-wide text-white">ESG 성과 분석 보고서</h2>
+                <h2 className="text-2xl font-bold text-white">5월 에너지 및 탄소 저감 분석 리포트</h2>
+                <p className="text-slate-400 text-sm mt-1 font-mono">발행일: 2026.06.01 / 대상: 스마트허브 A지구</p>
               </div>
-              <div className="flex items-center gap-3">
-                <div className="bg-slate-800 border border-slate-600 px-4 py-2 rounded-lg text-sm text-slate-300 flex items-center cursor-pointer hover:bg-slate-700 transition">
-                  🗓️ 2026.05.01 - 2026.05.31 ⌵
-                </div>
-                <button className="bg-slate-800 border border-slate-600 px-4 py-2 rounded-lg text-sm text-slate-300 hover:bg-slate-700 hover:text-white transition flex items-center gap-2">
-                  📄 PDF 내보내기
+              <div className="flex gap-3 mt-4 md:mt-0">
+                <button className="flex items-center gap-2 px-4 py-2 bg-slate-900 hover:bg-slate-800 text-flolim rounded-lg text-sm font-bold border border-slate-700 hover:border-flolim/50 transition-colors">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                  Excel 다운로드
                 </button>
-                <button className="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2 rounded-lg text-sm font-bold transition flex items-center gap-2 shadow-lg shadow-emerald-600/20">
-                  📊 Excel 다운로드
+                <button className="flex items-center gap-2 px-4 py-2 bg-flolim hover:bg-cyan-400 text-slate-900 rounded-lg text-sm font-bold shadow-[0_0_15px_rgba(24,169,198,0.4)] transition-colors">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                  PDF 내보내기
                 </button>
               </div>
             </div>
 
-            {/* 핵심 ESG 지표 3단 카드 */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              {/* E: Environment */}
-              <div className="bg-gradient-to-br from-emerald-900/40 to-slate-800/80 rounded-2xl border border-emerald-500/30 p-6 relative overflow-hidden group hover:border-emerald-400/50 transition-all">
-                <div className="absolute -right-4 -top-4 text-7xl opacity-10 group-hover:scale-110 transition-transform">🍃</div>
-                <h3 className="text-emerald-400 font-bold mb-4 flex items-center gap-2">
-                  <span className="bg-emerald-500/20 p-1.5 rounded-lg">🌱</span> Environment: 탄소 배출 저감량
-                </h3>
-                <div className="flex items-end gap-2 mb-2">
-                  <span className="text-4xl font-black text-white drop-shadow-md">608</span>
-                  <span className="text-lg text-slate-300 font-medium mb-1">kg CO2eq</span>
-                </div>
-                <p className="text-sm text-emerald-300 mb-4 font-medium flex items-center gap-1">
-                  <span className="text-lg">↘</span> 전월 대비 5% 추가 감소
-                </p>
-                <div className="bg-emerald-950/50 rounded-lg p-3 text-xs text-emerald-200 flex items-center justify-center border border-emerald-800">
-                  🌲 소나무 92그루 식재 효과
-                </div>
-              </div>
-
-              {/* S: Social */}
-              <div className="bg-gradient-to-br from-blue-900/40 to-slate-800/80 rounded-2xl border border-blue-500/30 p-6 relative overflow-hidden group hover:border-blue-400/50 transition-all">
-                <div className="absolute -right-4 -top-4 text-7xl opacity-10 group-hover:scale-110 transition-transform">🛡️</div>
-                <h3 className="text-blue-400 font-bold mb-4 flex items-center gap-2">
-                  <span className="bg-blue-500/20 p-1.5 rounded-lg">💡</span> Social: 시민 안전 및 빛 공해 저감
-                </h3>
-                <div className="flex items-end gap-2 mb-2">
-                  <span className="text-4xl font-black text-white drop-shadow-md">120</span>
-                  <span className="text-lg text-slate-300 font-medium mb-1">시간</span>
-                </div>
-                <p className="text-sm text-blue-300 mb-4 font-medium">심야 디밍 적용 시간</p>
-                <div className="bg-blue-950/50 rounded-lg p-3 text-xs text-blue-200 flex items-center justify-center border border-blue-800">
-                  🚨 가동률 100% / 보행자 안전 확보 1,240명
-                </div>
-              </div>
-
-              {/* G & E: Governance & Economy */}
-              <div className="bg-gradient-to-br from-amber-900/40 to-slate-800/80 rounded-2xl border border-amber-500/30 p-6 relative overflow-hidden group hover:border-amber-400/50 transition-all">
-                <div className="absolute -right-4 -top-4 text-7xl opacity-10 group-hover:scale-110 transition-transform">💰</div>
-                <h3 className="text-amber-400 font-bold mb-4 flex items-center gap-2">
-                  <span className="bg-amber-500/20 p-1.5 rounded-lg">🏛️</span> Governance & Economy: 예산 절감
-                </h3>
-                <div className="flex items-end gap-2 mb-2">
-                  <span className="text-4xl font-black text-white drop-shadow-md">162,000</span>
-                  <span className="text-lg text-slate-300 font-medium mb-1">원</span>
-                </div>
-                <p className="text-sm text-amber-300 mb-4 font-medium">월간 기준</p>
-                <div className="bg-amber-950/50 rounded-lg p-3 text-xs text-amber-200 flex items-center justify-center border border-amber-800">
-                  ⚡ 전력 45% (1,350 kWh) 감소
-                </div>
-              </div>
-            </div>
-
-            {/* 하단 상세 차트 영역 */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 relative z-10">
               
-              {/* 좌측 차트: 에너지 및 탄소 저감 추이 */}
-              <div className="lg:col-span-2 bg-slate-800/50 border border-slate-700 rounded-2xl p-6 relative">
-                <h3 className="text-sm font-bold text-slate-300 mb-6">에너지 및 탄소 저감 상세 분석</h3>
-                
-                {/* 차트 범례 */}
-                <div className="absolute top-6 right-6 flex gap-4 text-[10px]">
-                  <div className="flex items-center gap-1"><div className="w-3 h-3 bg-slate-600 rounded-sm"></div>Baseline (예상)</div>
-                  <div className="flex items-center gap-1"><div className="w-3 h-3 bg-emerald-500 rounded-sm"></div>Smart (실제)</div>
+              <div className="lg:col-span-1 flex flex-col gap-6">
+                <div className="bg-slate-900 border border-slate-800 p-6 rounded-2xl flex-1 shadow-inner relative overflow-hidden group hover:border-flolim/50 transition-colors">
+                  <div className="absolute -right-4 -bottom-4 opacity-5 group-hover:opacity-10 transition-opacity text-flolim">
+                    <svg className="w-32 h-32" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                  </div>
+                  <h3 className="text-flolim/80 font-bold text-xs tracking-wider mb-2 uppercase">Environment</h3>
+                  <p className="text-white font-bold mb-4">소나무 식재 효과</p>
+                  <div className="text-4xl font-black text-flolim mb-2">92 <span className="text-xl font-bold">그루</span></div>
+                  <div className="text-xs text-slate-400">
+                    월간 탄소 배출량 <strong className="text-flolim">5% 추가 감소</strong>
+                  </div>
                 </div>
 
-                {/* Mock 혼합 차트 (막대 + 꺾은선) */}
-                <div className="h-48 w-full flex items-end gap-4 relative mt-8">
-                  {/* 꺾은선 궤적 (가상 SVG) */}
-                  <svg className="absolute inset-0 w-full h-full z-10" preserveAspectRatio="none">
-                    <path d="M 5% 20% L 25% 30% L 45% 40% L 65% 55% L 85% 70%" fill="none" stroke="#34d399" strokeWidth="2" strokeDasharray="4 4" className="drop-shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
-                  </svg>
-                  
-                  {/* 월별 막대 데이터 */}
-                  {[
-                    { b: 80, s: 70, m: 'Jan' },
-                    { b: 85, s: 72, m: 'Feb' },
-                    { b: 75, s: 60, m: 'Mar' },
-                    { b: 70, s: 50, m: 'Apr' },
-                    { b: 90, s: 45, m: 'May', highlight: true },
-                  ].map((data, idx) => (
-                    <div key={idx} className="flex-1 flex justify-center items-end gap-1 h-full relative group">
-                      {/* Baseline */}
-                      <div className="w-1/3 bg-slate-600/50 rounded-t-sm transition-all" style={{ height: `${data.b}%` }}></div>
-                      {/* Smart (실제) */}
-                      <div className={`w-1/3 rounded-t-sm transition-all relative z-20 ${data.highlight ? 'bg-emerald-400 shadow-[0_0_15px_rgba(52,211,153,0.6)]' : 'bg-emerald-600'}`} style={{ height: `${data.s}%` }}>
-                        {data.highlight && (
-                          <div className="absolute -top-10 -left-10 w-28 bg-emerald-900 text-emerald-100 text-[10px] p-1.5 rounded border border-emerald-500 text-center shadow-lg">
-                            5월 절감: 1,350 kWh
-                          </div>
-                        )}
-                      </div>
-                      <span className="absolute -bottom-6 text-xs text-slate-400">{data.m}</span>
-                    </div>
-                  ))}
+                <div className="bg-slate-900 border border-slate-800 p-6 rounded-2xl flex-1 shadow-inner hover:border-flolim/50 transition-colors">
+                  <h3 className="text-flolim/80 font-bold text-xs tracking-wider mb-2 uppercase">Economy</h3>
+                  <p className="text-white font-bold mb-4">월간 예산 절감액</p>
+                  <div className="text-3xl font-black text-flolim mb-2">162,000 <span className="text-lg font-bold">원</span></div>
+                  <div className="text-xs text-slate-400">
+                    전력 사용량 <strong className="text-flolim">45% (1,350 kWh) 감소</strong>
+                  </div>
                 </div>
               </div>
 
-              {/* 우측 패널: 기여도 & 로그 & AI 인사이트 */}
-              <div className="flex flex-col gap-6">
-                
-                {/* 상단 2분할 (기여도 / 로그) */}
-                <div className="grid grid-cols-2 gap-4">
-                  {/* 시스템 기여도 도넛 차트 */}
-                  <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-4 flex flex-col items-center justify-center">
-                    <h3 className="text-[11px] font-bold text-slate-300 mb-4 w-full text-left">시스템 에너지 기여도</h3>
-                    <div className="w-20 h-20 rounded-full border-[6px] border-slate-700 relative mb-4">
-                      {/* 도넛 차트 색상 구분 (가상) */}
-                      <div className="absolute inset-0 rounded-full border-[6px] border-emerald-500" style={{ clipPath: 'polygon(50% 50%, 100% 0, 100% 100%, 0 100%, 0 70%)' }}></div>
-                      <div className="absolute inset-0 rounded-full border-[6px] border-blue-500" style={{ clipPath: 'polygon(50% 50%, 0 70%, 0 0, 40% 0)' }}></div>
-                      <div className="absolute inset-0 flex items-center justify-center text-xs font-bold">100%</div>
+              <div className="lg:col-span-1 bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-inner flex flex-col justify-between">
+                <div>
+                  <h3 className="text-flolim/80 font-bold text-xs tracking-wider mb-2 uppercase">Analysis</h3>
+                  <p className="text-white font-bold mb-6">시스템 에너지 기여도 분석</p>
+                  <div className="space-y-5">
+                    <div>
+                      <div className="flex justify-between text-xs font-bold mb-1">
+                        <span className="text-flolim">센서 기반 동적 제어</span>
+                        <span className="text-white">55%</span>
+                      </div>
+                      <div className="w-full bg-slate-800 rounded-full h-2">
+                        <div className="bg-flolim h-2 rounded-full shadow-[0_0_10px_rgba(24,169,198,0.8)]" style={{ width: '55%' }}></div>
+                      </div>
                     </div>
-                    <ul className="text-[9px] text-slate-400 space-y-1 w-full">
-                      <li className="flex justify-between"><span className="text-emerald-400">● 55%</span>스케줄 디밍</li>
-                      <li className="flex justify-between"><span className="text-blue-400">● 35%</span>센서 동적 제어</li>
-                      <li className="flex justify-between"><span className="text-slate-500">● 10%</span>고효율 LED</li>
-                    </ul>
-                  </div>
-
-                  {/* 운영 투명성 로그 */}
-                  <div className="bg-slate-800/50 border border-slate-700 rounded-2xl p-4">
-                    <h3 className="text-[11px] font-bold text-slate-300 mb-3">운영 투명성 로그 (30일)</h3>
-                    <div className="space-y-2">
-                      <div className="bg-slate-800 border border-slate-600 rounded p-2 flex items-center gap-2 text-[9px] text-slate-300">
-                        <span className="text-emerald-400 text-sm">✓</span> 통신 오류: 0건 (안정)
+                    <div>
+                      <div className="flex justify-between text-xs font-bold mb-1">
+                        <span className="text-cyan-600">타임 스케줄 디밍</span>
+                        <span className="text-white">35%</span>
                       </div>
-                      <div className="bg-slate-800 border border-slate-600 rounded p-2 flex items-center gap-2 text-[9px] text-slate-300">
-                        <span className="text-blue-400 text-sm">🛠️</span> 원격 제어 개입: 3회
+                      <div className="w-full bg-slate-800 rounded-full h-2">
+                        <div className="bg-cyan-600 h-2 rounded-full" style={{ width: '35%' }}></div>
                       </div>
-                      <div className="bg-slate-800 border border-slate-600 rounded p-2 flex items-center gap-2 text-[9px] text-slate-300">
-                        <span className="text-amber-400 text-sm">⚠️</span> 고장 예측 알림: 1건
+                    </div>
+                    <div>
+                      <div className="flex justify-between text-xs font-bold mb-1">
+                        <span className="text-slate-500">고효율 LED 자체 성능</span>
+                        <span className="text-white">10%</span>
+                      </div>
+                      <div className="w-full bg-slate-800 rounded-full h-2">
+                        <div className="bg-slate-500 h-2 rounded-full" style={{ width: '10%' }}></div>
                       </div>
                     </div>
                   </div>
                 </div>
+                <div className="mt-8 border-t border-slate-800 pt-5 flex justify-between items-center">
+                  <div>
+                    <div className="text-xs text-slate-500 mb-1">심야 디밍 적용 시간</div>
+                    <div className="text-lg font-bold text-white">120시간</div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-xs text-slate-500 mb-1">가동률 / 보행자 안전</div>
+                    <div className="text-lg font-bold text-flolim">100% / 1,240명</div>
+                  </div>
+                </div>
+              </div>
 
-                {/* AI 분석 인사이트 (브로슈어 내용 매핑) */}
-                <div className="bg-gradient-to-r from-blue-900/30 to-indigo-900/30 border border-indigo-500/30 rounded-2xl p-5 flex-grow">
-                  <h3 className="text-sm font-bold text-indigo-300 mb-2 flex items-center gap-2">
-                    🤖 AI 분석 인사이트 (5월 리포트)
-                  </h3>
-                  <p className="text-[11px] text-indigo-100/80 leading-relaxed break-keep">
-                    "이번 달은 가정의 달 행사로 공원 주변 유동 인구가 15% 증가했으나, 심야 에너지 절약 모드 작동으로 목표 전력 절감률 45%를 초과 달성했습니다. 하절기 진입에 따라 일몰 시간이 늦어지므로, 전체 점등 시간을 20분 늦추는 자동 스케줄링을 제안합니다."
+              <div className="lg:col-span-1 flex flex-col gap-6">
+                <div className="bg-slate-900 border border-slate-800 p-6 rounded-2xl flex-1 shadow-inner">
+                  <h3 className="text-flolim/80 font-bold text-xs tracking-wider mb-2 uppercase">Governance</h3>
+                  <p className="text-white font-bold mb-4">운영 투명성 로그 (최근 30일)</p>
+                  <ul className="space-y-4">
+                    <li className="flex items-center justify-between text-sm">
+                      <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-flolim"></span>
+                        <span className="text-slate-400">통신 오류 / 오프라인</span>
+                      </div>
+                      <strong className="text-flolim">0건 (안정)</strong>
+                    </li>
+                    <li className="flex items-center justify-between text-sm">
+                      <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-slate-400"></span>
+                        <span className="text-slate-400">원격 제어 개입</span>
+                      </div>
+                      <strong className="text-white">3회 (우천)</strong>
+                    </li>
+                    <li className="flex items-center justify-between text-sm">
+                      <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-amber-500"></span>
+                        <span className="text-slate-400">고장 예측 알림</span>
+                      </div>
+                      <strong className="text-amber-400">1건 (사전교체)</strong>
+                    </li>
+                  </ul>
+                </div>
+                <div className="bg-slate-800 border border-flolim/30 p-5 rounded-2xl shadow-[0_0_15px_rgba(24,169,198,0.1)]">
+                  <div className="flex items-center gap-2 mb-2">
+                    <svg className="w-4 h-4 text-flolim" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    <span className="text-xs font-bold text-flolim uppercase tracking-wider">AI 분석 인사이트</span>
+                  </div>
+                  <p className="text-xs text-slate-300 font-light leading-relaxed">
+                    잦은 우천으로 인해 주간 조도 센서 개입이 증가하여, 평월 대비 에너지 절감율이 <strong className="text-white font-bold">12% 상승</strong>했습니다. 
                   </p>
                 </div>
-
               </div>
             </div>
           </div>
         </section>
 
-        {/* 2. ESG 리포트의 비즈니스 가치 */}
-        <section className="mb-20">
+        <section className="mb-10">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">단순한 절감을 넘어, 기업의 가치를 높입니다</h2>
-            <p className="text-gray-600">명확한 데이터는 지속가능경영(ESG) 평가의 핵심 지표로 활용됩니다.</p>
+            <h2 className="text-3xl font-bold text-white mb-4">단순한 절감을 넘어, 완벽한 증명으로</h2>
+            <p className="text-slate-400 font-light">ESG 공시에 바로 사용할 수 있는 신뢰성 높은 데이터를 생성합니다.</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:-translate-y-1 transition-transform text-center">
-              <div className="w-16 h-16 bg-green-50 text-green-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-6">📈</div>
-              <h3 className="text-xl font-bold text-gray-800 mb-3">투명한 탄소 중립 증빙</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                조명 교체 및 지능형 제어를 통해 실제로 감축된 온실가스(CO2eq) 배출량을 시스템이 자동으로 계산하여 객관적인 환경 지표를 제공합니다.
+            <div className="bg-slate-900/50 p-8 rounded-3xl border border-slate-800 hover:border-flolim/50 transition-colors group">
+              <div className="w-12 h-12 bg-slate-800 text-flolim rounded-xl flex items-center justify-center mb-5 group-hover:bg-flolim/10 transition-colors">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-flolim transition-colors">위변조 불가능한 신뢰성</h3>
+              <p className="text-slate-400 font-light text-sm leading-relaxed">
+                하드웨어 스마트 미터기에서 측정한 원본 데이터를 사용하여, <strong className="text-flolim">감사(Audit) 추적성</strong>이 100% 보장됩니다.
               </p>
             </div>
-
-            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:-translate-y-1 transition-transform text-center">
-              <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-6">📑</div>
-              <h3 className="text-xl font-bold text-gray-800 mb-3">보고서 자동화</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                복잡한 계산이나 데이터 취합 과정 없이, 경영진 보고 및 외부 제출용으로 최적화된 고품질의 PDF/Excel 리포트를 클릭 한 번으로 생성합니다.
+            <div className="bg-slate-900/50 p-8 rounded-3xl border border-slate-800 hover:border-flolim/50 transition-colors group">
+              <div className="w-12 h-12 bg-slate-800 text-flolim rounded-xl flex items-center justify-center mb-5 group-hover:bg-flolim/10 transition-colors">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-flolim transition-colors">스케줄 기반 원클릭 발행</h3>
+              <p className="text-slate-400 font-light text-sm leading-relaxed">
+                원하는 주기(월간, 분기, 연간)를 설정하면, 플랫폼이 자동으로 성과를 분석하여 <strong className="text-flolim">PDF 및 Excel</strong> 리포트를 완성합니다.
               </p>
             </div>
-
-            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:-translate-y-1 transition-transform text-center">
-              <div className="w-16 h-16 bg-amber-50 text-amber-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-6">🏆</div>
-              <h3 className="text-xl font-bold text-gray-800 mb-3">브랜드 가치 제고</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                시민의 안전을 지키고(Social), 예산을 절감하며(Governance), 환경을 보호하는(Environment) 기업의 사회적 책임을 구체적인 데이터로 입명합니다.
+            <div className="bg-slate-900/50 p-8 rounded-3xl border border-slate-800 hover:border-flolim/50 transition-colors group">
+              <div className="w-12 h-12 bg-slate-800 text-flolim rounded-xl flex items-center justify-center mb-5 group-hover:bg-flolim/10 transition-colors">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-flolim transition-colors">글로벌 표준 (RE100)</h3>
+              <p className="text-slate-400 font-light text-sm leading-relaxed">
+                글로벌 RE100, K-ETS 지침에 맞춘 <strong className="text-flolim">Scope 2 배출량 산정 공식</strong>을 정확하게 적용합니다.
               </p>
             </div>
           </div>
         </section>
 
-        {/* 고객 지원(레퍼런스) 페이지로 넘어가는 하단 네비게이션 */}
-        <div className="flex justify-between items-center bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
-          <Link to="/platform/dashboard" className="flex flex-col text-left group">
-            <span className="text-xs font-bold text-gray-400 group-hover:text-green-600 transition-colors mb-1">← 이전 페이지</span>
-            <span className="text-gray-700 font-bold group-hover:text-green-700 transition-colors">통합 모니터링 대시보드</span>
-          </Link>
-          <Link to="/support/references" className="flex flex-col text-right group">
-            <span className="text-xs font-bold text-gray-400 group-hover:text-blue-600 transition-colors mb-1">다음 카테고리 →</span>
-            <span className="text-gray-700 font-bold group-hover:text-blue-700 transition-colors">고객 지원 (구축 사례)</span>
-          </Link>
-        </div>
-
+        <BottomNav 
+          prev={{ label: '이전 페이지', title: '통합 관제 대시보드', path: '/platform/dashboard' }}
+          next={{ label: '다음 카테고리', title: '자료실 및 고객지원', path: '/support/archive' }}
+        />
       </div>
     </div>
   );
