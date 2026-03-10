@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import FeatureCard from '../components/FeatureCard'; // 💡 새로 만든 컴포넌트 불러오기
 
 const Home = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -16,20 +17,11 @@ const Home = () => {
         
         {/* 영상 배경 및 밝아진 오버레이 효과 */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-          {/* 영상 재생 */}
-          <video 
-            autoPlay 
-            loop 
-            muted 
-            playsInline 
-            className="absolute inset-0 w-full h-full object-cover"
-          >
+          <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover">
             <source src="/video/hero-bg.mp4" type="video/mp4" />
           </video>
-          
           <div className="absolute inset-0 bg-[#020617]/50"></div>
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#020617]/30 to-[#020617]"></div>
-
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] md:w-[1200px] h-[800px] md:h-[1200px] bg-flolim/20 rounded-full blur-[150px] opacity-40 animate-pulse" style={{ animationDuration: '4s' }}></div>
           <div className="absolute inset-0 bg-[linear-gradient(rgba(24,169,198,0.2)_1px,transparent_1px),linear-gradient(90deg,rgba(24,169,198,0.2)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_20%,transparent_100%)] opacity-30"></div>
         </div>
@@ -64,11 +56,8 @@ const Home = () => {
 
       {/* 2. 핵심 수치 요약 래퍼 박스 */}
       <div className="container mx-auto px-4 max-w-6xl relative z-20 -mt-10">
-        {/* 💡 [수정] 태블릿 여백(p-8) 최적화 */}
         <section className="bg-slate-900/70 backdrop-blur-xl rounded-[2.5rem] p-6 md:p-8 lg:p-12 shadow-[0_30px_60px_rgba(0,0,0,0.5)] border border-slate-700 relative overflow-hidden">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-slate-700/50">
-            
-            {/* 💡 [수정] 반응형 폰트(text-3xl lg:text-4xl) 및 break-keep 적용 */}
             <div className="px-2 lg:px-4 py-2">
               <p className="text-slate-400 font-medium mb-2 text-sm lg:text-base break-keep">KEPCO 연계 ESCO 모델</p>
               <div className="text-3xl lg:text-4xl font-black text-white mb-2 tracking-tight break-keep">
@@ -92,7 +81,6 @@ const Home = () => {
               </div>
               <p className="text-xs text-slate-500 font-light break-keep">LoRa-Mesh 자가망 구축 시 평생 무료</p>
             </div>
-
           </div>
         </section>
       </div>
@@ -109,50 +97,30 @@ const Home = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 relative z-10">
             
-            <Link to="/smart-city/intro" className="bg-[#050b14] p-8 md:p-10 rounded-3xl border border-slate-700 shadow-inner hover:border-flolim hover:bg-slate-800/30 hover:shadow-[0_10px_30px_rgba(24,169,198,0.15)] active:scale-[0.98] active:border-flolim active:bg-slate-800/50 transition-all duration-300 group relative overflow-hidden flex flex-col h-full hover:-translate-y-2 cursor-pointer">
-              <div className="absolute -right-6 -top-6 w-32 h-32 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
-              
-              <div className="w-14 h-14 bg-slate-800 text-flolim rounded-xl flex items-center justify-center border border-slate-700 mb-8 group-hover:bg-flolim group-hover:text-slate-900 group-hover:border-flolim transition-colors relative z-10 shadow-sm">
-                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-              </div>
-              <h3 className="text-xl md:text-2xl font-bold text-white mb-4 group-hover:text-flolim transition-colors relative z-10">스마트 시티 솔루션</h3>
-              <p className="text-slate-400 font-light text-sm leading-relaxed flex-grow relative z-10 mb-8 break-keep">
-                도시 전체의 가로등과 경관 조명을 하나의 무선망으로 묶어 중앙에서 통합 관제하는 광역 네트워크 시스템입니다.
-              </p>
-              <div className="text-flolim font-bold text-sm flex items-center gap-2 relative z-10 group-hover:text-cyan-400 transition-colors">
-                솔루션 자세히 보기 <svg className="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-              </div>
-            </Link>
+            {/* 💡 [수정 완료] 수십 줄의 코드가 단 7줄로 깔끔해집니다! 겉모습은 100% 동일합니다. */}
+            <FeatureCard 
+              to="/smart-city/intro"
+              icon={<svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>}
+              title="스마트 시티 솔루션"
+              description="도시 전체의 가로등과 경관 조명을 하나의 무선망으로 묶어 중앙에서 통합 관제하는 광역 네트워크 시스템입니다."
+              linkText="솔루션 자세히 보기"
+            />
 
-            <Link to="/smart-building/intro" className="bg-[#050b14] p-8 md:p-10 rounded-3xl border border-slate-700 shadow-inner hover:border-flolim hover:bg-slate-800/30 hover:shadow-[0_10px_30px_rgba(24,169,198,0.15)] active:scale-[0.98] active:border-flolim active:bg-slate-800/50 transition-all duration-300 group relative overflow-hidden flex flex-col h-full hover:-translate-y-2 cursor-pointer">
-              <div className="absolute -right-6 -top-6 w-32 h-32 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
-              
-              <div className="w-14 h-14 bg-slate-800 text-flolim rounded-xl flex items-center justify-center border border-slate-700 mb-8 group-hover:bg-flolim group-hover:text-slate-900 group-hover:border-flolim transition-colors relative z-10 shadow-sm">
-                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-              </div>
-              <h3 className="text-xl md:text-2xl font-bold text-white mb-4 group-hover:text-flolim transition-colors relative z-10">스마트 빌딩 솔루션</h3>
-              <p className="text-slate-400 font-light text-sm leading-relaxed flex-grow relative z-10 mb-8 break-keep">
-                공장, 학교, 오피스 등 실내 공간에서 재실 및 조도 센서를 연동하여 에너지를 낭비 없이 제어하는 자동화 시스템입니다.
-              </p>
-              <div className="text-flolim font-bold text-sm flex items-center gap-2 relative z-10 group-hover:text-cyan-400 transition-colors">
-                솔루션 자세히 보기 <svg className="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-              </div>
-            </Link>
+            <FeatureCard 
+              to="/smart-building/intro"
+              icon={<svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>}
+              title="스마트 빌딩 솔루션"
+              description="공장, 학교, 오피스 등 실내 공간에서 재실 및 조도 센서를 연동하여 에너지를 낭비 없이 제어하는 자동화 시스템입니다."
+              linkText="솔루션 자세히 보기"
+            />
 
-            <Link to="/platform/dashboard" className="bg-[#050b14] p-8 md:p-10 rounded-3xl border border-slate-700 shadow-inner hover:border-flolim hover:bg-slate-800/30 hover:shadow-[0_10px_30px_rgba(24,169,198,0.15)] active:scale-[0.98] active:border-flolim active:bg-slate-800/50 transition-all duration-300 group relative overflow-hidden flex flex-col h-full hover:-translate-y-2 cursor-pointer">
-              <div className="absolute -right-6 -top-6 w-32 h-32 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
-              
-              <div className="w-14 h-14 bg-slate-800 text-flolim rounded-xl flex items-center justify-center border border-slate-700 mb-8 group-hover:bg-flolim group-hover:text-slate-900 group-hover:border-flolim transition-colors relative z-10 shadow-sm">
-                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-              </div>
-              <h3 className="text-xl md:text-2xl font-bold text-white mb-4 group-hover:text-flolim transition-colors relative z-10">통합 관제 플랫폼</h3>
-              <p className="text-slate-400 font-light text-sm leading-relaxed flex-grow relative z-10 mb-8 break-keep">
-                모든 IoT 하드웨어를 웹 기반 대시보드에서 통제하며, 빅데이터 기반의 ESG 탄소 감축 리포트를 자동으로 발행합니다.
-              </p>
-              <div className="text-flolim font-bold text-sm flex items-center gap-2 relative z-10 group-hover:text-cyan-400 transition-colors">
-                대시보드 체험하기 <svg className="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-              </div>
-            </Link>
+            <FeatureCard 
+              to="/platform/dashboard"
+              icon={<svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>}
+              title="통합 관제 플랫폼"
+              description="모든 IoT 하드웨어를 웹 기반 대시보드에서 통제하며, 빅데이터 기반의 ESG 탄소 감축 리포트를 자동으로 발행합니다."
+              linkText="대시보드 체험하기"
+            />
           </div>
         </section>
       </div>
