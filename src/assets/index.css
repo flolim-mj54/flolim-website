@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  /* 1. 웹사이트 전체 한글 단어 단위 줄바꿈 강제 적용 */
+  html, body {
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  /* 2. 모바일 환경 터치 시 파란색 깜빡임 제거 */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@layer components {
+  /* 3. 모바일 터치/호버 시 공통으로 쓰이는 '쫀득한 카드' 애니메이션 일괄 정의 */
+  .interactive-card {
+    @apply transition-all duration-300 hover:border-flolim hover:shadow-[0_10px_30px_rgba(24,169,198,0.15)] hover:-translate-y-1 active:scale-[0.98] active:border-flolim active:bg-slate-800/50 cursor-pointer;
+  }
+}
