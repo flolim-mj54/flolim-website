@@ -19,16 +19,18 @@ const SmartCityNbIot = () => {
     const initMap = () => {
       if (!mapContainerRef.current || !window.naver) return;
 
+      // 💡 [수정] 모바일 화면(768px 이하)일 때만 줌 레벨을 12로 한 단계 낮춤
+      const initialZoom = window.innerWidth < 768 ? 12 : 13;
+
       const map = new window.naver.maps.Map(mapContainerRef.current, {
         center: new window.naver.maps.LatLng(36.8150, 127.1150),
-        zoom: 13, 
+        zoom: initialZoom, 
         zoomControl: false, 
         mapDataControl: false,
         scaleControl: false,
       });
       mapInstanceRef.current = map;
 
-      // 💡 [복구됨] 지도 마커 및 통신망 연결 로직
       const bs1Coord = new window.naver.maps.LatLng(36.8280, 127.0900); 
       const bs2Coord = new window.naver.maps.LatLng(36.8000, 127.1400); 
 
@@ -112,7 +114,6 @@ const SmartCityNbIot = () => {
   const handleZoomIn = () => { if (mapInstanceRef.current) mapInstanceRef.current.setZoom(mapInstanceRef.current.getZoom() + 1, true); };
   const handleZoomOut = () => { if (mapInstanceRef.current) mapInstanceRef.current.setZoom(mapInstanceRef.current.getZoom() - 1, true); };
 
-  // 💡 [Map 데이터]
   const benefits = [
     { id: 1, icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />, title: '초기 구축비용 최소화', desc: '비싼 게이트웨이(집중기)를 구매하고 전봇대에 설치하는 공사 비용이 완전히 사라집니다. 단말기만 달면 즉시 관제가 시작됩니다.' },
     { id: 2, icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />, title: '전국망 커버리지 지원', desc: 'SKT, KT, LGU+의 거대한 통신 기지국을 사용하므로, 산간 오지나 바닷가 등 휴대폰이 터지는 곳이라면 100% 제어할 수 있습니다.' },
