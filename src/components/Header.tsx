@@ -1,76 +1,207 @@
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 const Header = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const location = useLocation();
+
+  // 스크롤 감지하여 헤더 배경 스타일 변경
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // 라우트 이동 시 모바일 메뉴 닫기
+  useEffect(() => {
+    setMobileMenuOpen(false);
+    setActiveDropdown(null);
+  }, [location]);
+
+  const menuItems = [
+    {
+      title: '회사 소개',
+      path: '/company/intro',
+      subItems: [
+        { name: '플로림 소개', path: '/company/intro' },
+        { name: 'CEO 인사말', path: '/company/ceo' },
+        { name: '인증 및 파트너', path: '/company/cert' },
+        { name: '연혁', path: '/company/history' },
+        { name: '오시는 길', path: '/company/location' },
+      ]
+    },
+    {
+      title: '비즈니스 모델',
+      path: '/business/esco',
+      subItems: [
+        { name: 'KEPCO 연계 ESCO', path: '/business/esco' },
+        { name: '에너지 절감 시뮬레이션', path: '/business/simulation' },
+      ]
+    },
+    {
+      title: '스마트 시티 솔루션',
+      path: '/smart-city/intro',
+      subItems: [
+        { name: '스마트 시티 개요', path: '/smart-city/intro' },
+        { name: 'LoRa-Mesh 제어', path: '/smart-city/lora' },
+        { name: 'NB-IoT 제어', path: '/smart-city/nb-iot' },
+        { name: 'DMX 경관조명', path: '/smart-city/dmx' },
+      ]
+    },
+    {
+      title: '스마트 빌딩 솔루션',
+      path: '/smart-building/intro',
+      subItems: [
+        { name: '스마트 빌딩 개요', path: '/smart-building/intro' },
+        { name: 'IoT 센서 자동 제어', path: '/smart-building/sensor' },
+      ]
+    },
+    {
+      title: '통합 관제 플랫폼',
+      path: '/platform/dashboard',
+      subItems: [
+        { name: '통합 관제 대시보드', path: '/platform/dashboard' },
+        { name: 'ESG 경영 리포트', path: '/platform/esg' },
+      ]
+    },
+    {
+      title: '고객 지원',
+      path: '/support/references',
+      subItems: [
+        { name: '도입(실증) 사례', path: '/support/references' },
+        { name: '자료실', path: '/support/archive' },
+        { name: '온라인 문의', path: '/support/contact' },
+      ]
+    }
+  ];
+
   return (
-    <header className="fixed w-full top-0 z-50 bg-slate-950/80 backdrop-blur-md shadow-lg border-b border-slate-800">
-      <div className="container mx-auto px-4 max-w-7xl">
-        <div className="flex justify-between items-center py-4">
-          
-          <Link to="/" className="text-3xl font-black tracking-tight flex items-center">
-            <span className="text-flolim">FLO</span>
-            <span className="text-white">LIM</span>
-          </Link>
-
-          <nav className="hidden md:flex space-x-10">
-            {/* 💡 모든 hover:text-emerald-400을 hover:text-flolim으로 일괄 변경 */}
-            <div className="group relative">
-              <span className="cursor-pointer hover:text-flolim transition-colors font-bold text-slate-300 py-4">회사 소개</span>
-              <div className="absolute hidden group-hover:block bg-slate-900 shadow-2xl py-3 mt-2 w-44 rounded-xl border border-slate-800">
-                <Link to="/company/intro" className="block px-5 py-2.5 text-sm text-slate-400 hover:bg-slate-800 hover:text-flolim transition-colors font-medium">플로림 소개</Link>
-                <Link to="/company/ceo" className="block px-5 py-2.5 text-sm text-slate-400 hover:bg-slate-800 hover:text-flolim transition-colors font-medium">CEO 인사말</Link>
-                <Link to="/company/cert" className="block px-5 py-2.5 text-sm text-slate-400 hover:bg-slate-800 hover:text-flolim transition-colors font-medium">인증 및 파트너</Link>
-                <Link to="/company/history" className="block px-5 py-2.5 text-sm text-slate-400 hover:bg-slate-800 hover:text-flolim transition-colors font-medium">연혁</Link>
-                <Link to="/company/location" className="block px-5 py-2.5 text-sm text-slate-400 hover:bg-slate-800 hover:text-flolim transition-colors font-medium">오시는 길</Link>
+    <>
+      <header 
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+          isScrolled 
+            ? 'bg-[#020617]/80 backdrop-blur-md border-b border-slate-800 shadow-lg py-3' 
+            : 'bg-transparent py-5'
+        }`}
+      >
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="flex items-center justify-between">
+            
+            {/* 로고 */}
+            <Link to="/" className="flex items-center gap-2 group z-50">
+              <div className="w-8 h-8 bg-flolim rounded-lg flex items-center justify-center shadow-[0_0_15px_rgba(24,169,198,0.5)] group-hover:shadow-[0_0_25px_rgba(24,169,198,0.8)] transition-all">
+                <svg className="w-5 h-5 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
               </div>
+              <span className="text-2xl font-black text-white tracking-tight">FLOLIM</span>
+            </Link>
+
+            {/* 데스크탑 메뉴 */}
+            <nav className="hidden lg:flex items-center gap-8">
+              {menuItems.map((item, idx) => (
+                <div 
+                  key={idx} 
+                  className="relative group"
+                  onMouseEnter={() => setActiveDropdown(item.title)}
+                  onMouseLeave={() => setActiveDropdown(null)}
+                >
+                  <Link 
+                    to={item.path} 
+                    className={`text-sm font-bold transition-colors py-2 flex items-center gap-1 ${
+                      location.pathname.includes(item.path.split('/')[1]) ? 'text-flolim' : 'text-slate-300 hover:text-white'
+                    }`}
+                  >
+                    {item.title}
+                  </Link>
+
+                  {/* 드롭다운 메뉴 */}
+                  <div 
+                    className={`absolute top-full left-1/2 transform -translate-x-1/2 pt-4 transition-all duration-300 ${
+                      activeDropdown === item.title ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible translate-y-2'
+                    }`}
+                  >
+                    <div className="bg-[#050b14]/95 backdrop-blur-xl border border-slate-700 rounded-2xl shadow-xl w-48 overflow-hidden py-2 relative">
+                      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-flolim to-transparent opacity-50"></div>
+                      {item.subItems.map((sub, subIdx) => (
+                        <Link 
+                          key={subIdx} 
+                          to={sub.path} 
+                          className={`block px-5 py-2.5 text-xs font-medium transition-colors hover:bg-slate-800 ${
+                            location.pathname === sub.path ? 'text-flolim bg-slate-800/50' : 'text-slate-400 hover:text-white'
+                          }`}
+                        >
+                          {sub.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </nav>
+
+            {/* 문의하기 버튼 (데스크탑) - 메인 홈과 동일한 Cyan 디자인 적용 */}
+            <div className="hidden lg:block">
+              <Link 
+                to="/support/contact" 
+                className="px-5 py-2.5 bg-flolim hover:bg-cyan-400 text-slate-900 text-sm font-bold rounded-xl shadow-[0_0_15px_rgba(24,169,198,0.4)] transition-all duration-300 flex items-center gap-1.5 hover:-translate-y-0.5"
+              >
+                문의하기
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+              </Link>
             </div>
 
-            <div className="group relative">
-              <span className="cursor-pointer hover:text-flolim transition-colors font-bold text-slate-300 py-4">핵심 사업 모델</span>
-              <div className="absolute hidden group-hover:block bg-slate-900 shadow-2xl py-3 mt-2 w-52 rounded-xl border border-slate-800">
-                <Link to="/business/esco" className="block px-5 py-2.5 text-sm text-slate-400 hover:bg-slate-800 hover:text-flolim transition-colors font-medium">KEPCO 연계 ESCO</Link>
-                <Link to="/business/simulation" className="block px-5 py-2.5 text-sm text-slate-400 hover:bg-slate-800 hover:text-flolim transition-colors font-medium">에너지 절감 시뮬레이션</Link>
-              </div>
-            </div>
+            {/* 모바일 햄버거 버튼 */}
+            <button 
+              className="lg:hidden text-white p-2 z-50"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {mobileMenuOpen 
+                  ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                  : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                }
+              </svg>
+            </button>
+          </div>
+        </div>
+      </header>
 
-            <div className="group relative">
-              <span className="cursor-pointer hover:text-flolim transition-colors font-bold text-slate-300 py-4">스마트 시티</span>
-              <div className="absolute hidden group-hover:block bg-slate-900 shadow-2xl py-3 mt-2 w-48 rounded-xl border border-slate-800">
-                <Link to="/smart-city/intro" className="block px-5 py-2.5 text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition-colors font-medium">솔루션 개요</Link>
-                <Link to="/smart-city/lora" className="block px-5 py-2.5 text-sm text-slate-400 hover:bg-slate-800 hover:text-flolim transition-colors font-medium">· LoRa-Mesh 제어</Link>
-                <Link to="/smart-city/nb-iot" className="block px-5 py-2.5 text-sm text-slate-400 hover:bg-slate-800 hover:text-flolim transition-colors font-medium">· NB-IoT 제어</Link>
-                <Link to="/smart-city/dmx" className="block px-5 py-2.5 text-sm text-slate-400 hover:bg-slate-800 hover:text-flolim transition-colors font-medium">· DMX 경관조명</Link>
+      {/* 모바일 전체화면 메뉴 */}
+      <div className={`fixed inset-0 bg-[#020617]/95 backdrop-blur-lg z-40 lg:hidden transition-opacity duration-300 ${mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+        <div className="h-full overflow-y-auto pt-24 pb-10 px-6">
+          <div className="flex flex-col gap-6">
+            {menuItems.map((item, idx) => (
+              <div key={idx} className="border-b border-slate-800 pb-4">
+                <h3 className="text-flolim font-bold text-lg mb-4">{item.title}</h3>
+                <div className="flex flex-col gap-3 pl-4 border-l border-slate-800 ml-2">
+                  {item.subItems.map((sub, subIdx) => (
+                    <Link 
+                      key={subIdx} 
+                      to={sub.path} 
+                      className={`text-sm ${location.pathname === sub.path ? 'text-white font-bold' : 'text-slate-400'}`}
+                    >
+                      {sub.name}
+                    </Link>
+                  ))}
+                </div>
               </div>
-            </div>
-
-            <div className="group relative">
-              <span className="cursor-pointer hover:text-flolim transition-colors font-bold text-slate-300 py-4">스마트 빌딩</span>
-              <div className="absolute hidden group-hover:block bg-slate-900 shadow-2xl py-3 mt-2 w-48 rounded-xl border border-slate-800">
-                <Link to="/smart-building/intro" className="block px-5 py-2.5 text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition-colors font-medium">솔루션 개요</Link>
-                <Link to="/smart-building/sensor" className="block px-5 py-2.5 text-sm text-slate-400 hover:bg-slate-800 hover:text-flolim transition-colors font-medium">· IoT 센서 자동 제어</Link>
-              </div>
-            </div>
-
-            <div className="group relative">
-              <span className="cursor-pointer hover:text-flolim transition-colors font-bold text-slate-300 py-4">관제 플랫폼</span>
-              <div className="absolute hidden group-hover:block bg-slate-900 shadow-2xl py-3 mt-2 w-48 rounded-xl border border-slate-800">
-                <Link to="/platform/dashboard" className="block px-5 py-2.5 text-sm text-slate-400 hover:bg-slate-800 hover:text-flolim transition-colors font-medium">통합 대시보드</Link>
-                <Link to="/platform/esg" className="block px-5 py-2.5 text-sm text-slate-400 hover:bg-slate-800 hover:text-flolim transition-colors font-medium">ESG 경영 리포트</Link>
-              </div>
-            </div>
-
-            <div className="group relative">
-              <span className="cursor-pointer hover:text-flolim transition-colors font-bold text-slate-300 py-4">고객 지원</span>
-              <div className="absolute hidden group-hover:block bg-slate-900 shadow-2xl py-3 mt-2 w-44 rounded-xl border border-slate-800">
-                <Link to="/support/references" className="block px-5 py-2.5 text-sm text-slate-400 hover:bg-slate-800 hover:text-flolim transition-colors font-medium">구축 사례</Link>
-                <Link to="/support/archive" className="block px-5 py-2.5 text-sm text-slate-400 hover:bg-slate-800 hover:text-flolim transition-colors font-medium">자료실</Link>
-                <Link to="/support/contact" className="block px-5 py-2.5 text-sm text-flolim hover:bg-slate-800 hover:text-cyan-400 transition-colors font-bold flex items-center gap-1">온라인 문의 <span className="text-lg leading-none">→</span></Link>
-              </div>
-            </div>
-
-          </nav>
+            ))}
+            
+            {/* 모바일 하단 문의하기 버튼 - 디자인 동일 적용 */}
+            <Link 
+              to="/support/contact" 
+              className="w-full flex items-center justify-center gap-2 py-4 bg-flolim hover:bg-cyan-400 text-slate-900 font-bold rounded-xl mt-4 shadow-[0_0_15px_rgba(24,169,198,0.4)] transition-colors"
+            >
+              온라인 문의하기
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            </Link>
+          </div>
         </div>
       </div>
-    </header>
+    </>
   );
 };
 

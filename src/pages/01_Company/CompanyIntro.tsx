@@ -7,121 +7,142 @@ export default function CompanyIntro() {
       
       <PageHeader 
         category="About Us"
-        title={<>"최적의 에너지 효율을 <span className="text-flolim drop-shadow-[0_0_15px_rgba(24,169,198,0.4)]">디자인</span>합니다"</>}
+        title={<>세상을 밝히는 <span className="text-flolim drop-shadow-[0_0_15px_rgba(24,169,198,0.4)]">지능형 연결</span></>}
         subtitle={
           <>
-            {/* 💡 mr-1(우측 여백) 제거 및 <br/> 태그들을 지워 자연스러운 문단 정렬 유도 */}
-            <span className="text-flolim font-bold">(주)플로림</span>은 4차 산업혁명의 핵심인 사물인터넷(IoT) 기술을 기반으로, 
-            도시와 빌딩의 조명 및 전력 인프라를 가장 스마트하게 제어하는 플랫폼 전문 기업입니다. 
-            단순한 설비 교체를 넘어, 데이터 기반의 관제 시스템을 통해 고객의 ESG 경영 실현과 획기적인 비용 절감을 이끌어냅니다.
+            스마트 IoT 제어 시스템 전문 기업 <strong className="text-white font-bold">주식회사 플로림</strong>입니다.<br className="hidden md:block"/>
+            단순한 조명 제어를 넘어, 딥러닝 기반의 데이터 분석과 첨단 IoT 센서 네트워크를 통해 도시와 빌딩의 에너지를 가장 스마트하게 관리합니다.
           </>
         }
       />
 
-      <div className="border-t border-slate-800/50 pt-20 pb-24 relative overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-64 bg-flolim/5 blur-[120px] pointer-events-none"></div>
-        <div className="container mx-auto px-4 max-w-6xl relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-white">플로림이 제공하는 <span className="text-flolim">핵심 가치</span></h2>
+      <div className="container mx-auto px-4 max-w-6xl mt-10">
+        
+        {/* 핵심 가치 섹션 */}
+        <section className="bg-slate-900/50 backdrop-blur-md rounded-[2.5rem] p-10 md:p-16 shadow-2xl border border-slate-800 mb-16 relative overflow-hidden">
+          {/* 메인 래퍼 글로우 효과 */}
+          <div className="absolute top-1/2 left-1/2 w-[800px] h-[800px] bg-flolim/5 rounded-full blur-[150px] pointer-events-none -translate-x-1/2 -translate-y-1/2"></div>
+          
+          <div className="text-center mb-12 relative z-10">
+            <h2 className="text-2xl md:text-3xl font-bold text-white">플로림의 <span className="text-flolim">핵심 경쟁력</span></h2>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-slate-900/50 backdrop-blur-sm p-10 rounded-3xl border border-slate-800 hover:border-flolim/50 hover:shadow-[0_0_30px_rgba(24,169,198,0.15)] transition-all duration-300 text-center group">
-              <div className="w-16 h-16 bg-slate-800 border border-slate-700 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:border-flolim/50 transition-colors">
-                <svg className="w-8 h-8 text-flolim" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+            {/* 카드 1 */}
+            <div className="bg-[#050b14] p-8 rounded-3xl border border-slate-700 hover:border-flolim/50 transition-all duration-300 text-center group relative overflow-hidden shadow-inner">
+              {/* 💡 공통 원형 데코 */}
+              <div className="absolute -right-6 -top-6 w-24 h-24 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
+              
+              <div className="w-14 h-14 bg-slate-800 border border-slate-700 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:border-flolim/50 transition-colors relative z-10">
+                <svg className="w-7 h-7 text-flolim" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
               </div>
-              <h3 className="text-xl font-bold text-white mb-4 group-hover:text-flolim transition-colors">지능형 제어 (AIoT)</h3>
-              <p className="text-slate-400 leading-relaxed text-sm font-light">
-                유무선 통신망(LoRa, NB-IoT)과 각종 스마트 센서를 결합하여, 환경 변화에 따라 기기들이 스스로 판단하고 동작하는 능동형 제어 인프라를 구축합니다.
+              <h3 className="text-lg font-bold text-white mb-3 group-hover:text-flolim transition-colors relative z-10">최적의 에너지 효율 디자인</h3>
+              <p className="text-slate-400 leading-relaxed text-sm font-light relative z-10">
+                단순한 조명 점소등을 넘어, 딥러닝 기반의 데이터 분석과 첨단 IoT 센서 네트워크를 통해 도시와 빌딩의 에너지를 가장 스마트하게 관리합니다.
               </p>
             </div>
 
-            <div className="bg-slate-900/50 backdrop-blur-sm p-10 rounded-3xl border border-slate-800 hover:border-flolim/50 hover:shadow-[0_0_30px_rgba(24,169,198,0.15)] transition-all duration-300 text-center relative overflow-hidden group">
-              <div className="absolute top-0 inset-x-0 h-1 bg-flolim shadow-[0_0_10px_rgba(24,169,198,1)]"></div>
-              <div className="w-16 h-16 bg-slate-800 border border-slate-700 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:border-flolim/50 transition-colors">
-                <svg className="w-8 h-8 text-flolim" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+            {/* 카드 2 */}
+            <div className="bg-[#050b14] p-8 rounded-3xl border border-slate-700 hover:border-flolim/50 transition-all duration-300 text-center group relative overflow-hidden shadow-inner">
+              {/* 💡 공통 원형 데코 */}
+              <div className="absolute -right-6 -top-6 w-24 h-24 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
+              
+              <div className="w-14 h-14 bg-slate-800 border border-slate-700 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:border-flolim/50 transition-colors relative z-10">
+                <svg className="w-7 h-7 text-flolim" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
               </div>
-              <h3 className="text-xl font-bold text-white mb-4 group-hover:text-flolim transition-colors">극대화된 비용 절감</h3>
-              <p className="text-slate-400 leading-relaxed text-sm font-light">
-                KEPCO 연계 ESCO 사업 모델을 통해 초기 투자비 0원으로 시스템을 도입하며, 초고효율 LED와 스마트 제어의 시너지로 매월 최대 70% 이상의 전력을 절감합니다.
+              <h3 className="text-lg font-bold text-white mb-3 group-hover:text-flolim transition-colors relative z-10">탄소 중립과 ESG 경영 파트너</h3>
+              <p className="text-slate-400 leading-relaxed text-sm font-light relative z-10">
+                플로림의 기술력은 불필요한 전력 낭비를 원천 차단하여 압도적인 비용 절감을 실현함과 동시에, 고객사의 성공적인 친환경 ESG 경영을 지원합니다.
               </p>
             </div>
 
-            <div className="bg-slate-900/50 backdrop-blur-sm p-10 rounded-3xl border border-slate-800 hover:border-flolim/50 hover:shadow-[0_0_30px_rgba(24,169,198,0.15)] transition-all duration-300 text-center group">
-              <div className="w-16 h-16 bg-slate-800 border border-slate-700 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:border-flolim/50 transition-colors">
-                <svg className="w-8 h-8 text-flolim" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            {/* 카드 3 */}
+            <div className="bg-[#050b14] p-8 rounded-3xl border border-slate-700 hover:border-flolim/50 transition-all duration-300 text-center group relative overflow-hidden shadow-inner">
+              {/* 💡 공통 원형 데코 */}
+              <div className="absolute -right-6 -top-6 w-24 h-24 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
+              
+              <div className="w-14 h-14 bg-slate-800 border border-slate-700 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:border-flolim/50 transition-colors relative z-10">
+                <svg className="w-7 h-7 text-flolim" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
               </div>
-              <h3 className="text-xl font-bold text-white mb-4 group-hover:text-flolim transition-colors">지속가능성 (ESG)</h3>
-              <p className="text-slate-400 leading-relaxed text-sm font-light">
-                에너지 사용량 감축에 따른 직접적인 온실가스 배출 감소 효과를 제공하며, 통합 관제 플랫폼을 통해 객관적인 ESG 경영 성과 리포팅을 지원합니다.
+              <h3 className="text-lg font-bold text-white mb-3 group-hover:text-flolim transition-colors relative z-10">연구개발과 완벽한 신뢰</h3>
+              <p className="text-slate-400 leading-relaxed text-sm font-light relative z-10">
+                스마트 시티 통신망(LoRa, NB-IoT)부터 보안 인증 기반의 하드웨어 개발까지, 최상의 안정성과 퍼포먼스를 보장하는 토탈 제어 솔루션을 제공합니다.
               </p>
             </div>
           </div>
-        </div>
-      </div>
+        </section>
 
-      <div className="border-t border-slate-800/50 py-24">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-white">핵심 비즈니스 영역</h2>
+        {/* 핵심 비즈니스 영역 */}
+        <section className="bg-slate-900/50 backdrop-blur-md rounded-[2.5rem] p-10 md:p-16 shadow-2xl border border-slate-800 mb-20 relative overflow-hidden">
+          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-flolim/5 rounded-full blur-[150px] pointer-events-none translate-y-1/4 -translate-x-1/4"></div>
+          
+          <div className="text-center mb-12 relative z-10">
+            <h2 className="text-2xl md:text-3xl font-bold text-white">핵심 비즈니스 영역</h2>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="bg-[#0a1128] border border-[#1c2e5a] shadow-xl rounded-3xl p-10 hover:border-flolim/50 hover:shadow-[0_0_30px_rgba(24,169,198,0.15)] transition-all duration-300 flex flex-col h-full relative overflow-hidden group">
-              <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-flolim/10 rounded-full blur-2xl group-hover:bg-flolim/20 transition-colors"></div>
-              <div className="w-14 h-14 bg-slate-800 text-flolim rounded-2xl flex items-center justify-center border border-slate-700 mb-6 group-hover:border-flolim/50 transition-colors relative z-10">
-                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 relative z-10">
+            {/* 비즈니스 카드 1 */}
+            <div className="bg-[#050b14] border border-slate-700 shadow-inner rounded-3xl p-8 hover:border-flolim/50 transition-all duration-500 flex flex-col h-full relative overflow-hidden group">
+              {/* 💡 공통 원형 데코 */}
+              <div className="absolute -right-6 -top-6 w-24 h-24 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
+              
+              <div className="w-12 h-12 bg-slate-800 text-flolim rounded-xl flex items-center justify-center border border-slate-600 mb-6 group-hover:border-flolim/50 transition-colors relative z-10 shadow-sm">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-flolim transition-colors relative z-10">스마트 시티 솔루션</h3>
-              <p className="text-slate-400 font-light leading-relaxed flex-grow relative z-10 mb-8">
+              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-flolim transition-colors relative z-10">스마트 시티 제어 시스템</h3>
+              <p className="text-slate-400 font-light text-sm leading-relaxed flex-grow relative z-10 mb-6">
                 도시 전체의 실외 가로등 및 경관 조명을 중앙에서 통합 관제하는 광역 네트워크 시스템
               </p>
-              <ul className="space-y-3 relative z-10">
-                <li className="flex items-center text-sm text-slate-300 bg-slate-800/50 p-3 rounded-xl border border-slate-700"><svg className="w-5 h-5 text-flolim mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>LoRa-Mesh 무선 제어망 구축</li>
-                <li className="flex items-center text-sm text-slate-300 bg-slate-800/50 p-3 rounded-xl border border-slate-700"><svg className="w-5 h-5 text-flolim mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>NB-IoT 기반 개별 관제</li>
-                <li className="flex items-center text-sm text-slate-300 bg-slate-800/50 p-3 rounded-xl border border-slate-700"><svg className="w-5 h-5 text-flolim mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>DMX512 경관 조명 연동</li>
+              <ul className="space-y-2 relative z-10">
+                <li className="flex items-center text-xs text-slate-300 bg-slate-900/80 p-2.5 rounded-lg border border-slate-700"><svg className="w-4 h-4 text-flolim mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>LoRa-Mesh 무선 제어망 구축</li>
+                <li className="flex items-center text-xs text-slate-300 bg-slate-900/80 p-2.5 rounded-lg border border-slate-700"><svg className="w-4 h-4 text-flolim mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>NB-IoT 기반 개별 관제</li>
+                <li className="flex items-center text-xs text-slate-300 bg-slate-900/80 p-2.5 rounded-lg border border-slate-700"><svg className="w-4 h-4 text-flolim mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>DMX512 경관 조명 연동</li>
               </ul>
             </div>
             
-            <div className="bg-[#0a1128] border border-[#1c2e5a] shadow-xl rounded-3xl p-10 hover:border-flolim/50 hover:shadow-[0_0_30px_rgba(24,169,198,0.15)] transition-all duration-300 flex flex-col h-full relative overflow-hidden group">
-              <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-flolim/10 rounded-full blur-2xl group-hover:bg-flolim/20 transition-colors"></div>
-              <div className="w-14 h-14 bg-slate-800 text-flolim rounded-2xl flex items-center justify-center border border-slate-700 mb-6 group-hover:border-flolim/50 transition-colors relative z-10">
-                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+            {/* 비즈니스 카드 2 */}
+            <div className="bg-[#050b14] border border-slate-700 shadow-inner rounded-3xl p-8 hover:border-flolim/50 transition-all duration-500 flex flex-col h-full relative overflow-hidden group">
+              {/* 💡 공통 원형 데코 */}
+              <div className="absolute -right-6 -top-6 w-24 h-24 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
+              
+              <div className="w-12 h-12 bg-slate-800 text-flolim rounded-xl flex items-center justify-center border border-slate-600 mb-6 group-hover:border-flolim/50 transition-colors relative z-10 shadow-sm">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-flolim transition-colors relative z-10">스마트 빌딩 솔루션</h3>
-              <p className="text-slate-400 font-light leading-relaxed flex-grow relative z-10 mb-8">
+              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-flolim transition-colors relative z-10">스마트 빌딩(LED) 제어</h3>
+              <p className="text-slate-400 font-light text-sm leading-relaxed flex-grow relative z-10 mb-6">
                 공장, 학교, 오피스 등 실내 공간의 에너지를 낭비 없이 완벽하게 통제하는 자동화 시스템
               </p>
-              <ul className="space-y-3 relative z-10">
-                <li className="flex items-center text-sm text-slate-300 bg-slate-800/50 p-3 rounded-xl border border-slate-700"><svg className="w-5 h-5 text-flolim mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>초고효율 25W LED 디밍 제어</li>
-                <li className="flex items-center text-sm text-slate-300 bg-slate-800/50 p-3 rounded-xl border border-slate-700"><svg className="w-5 h-5 text-flolim mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>재실/조도 감지 IoT 센서 연동</li>
-                <li className="flex items-center text-sm text-slate-300 bg-slate-800/50 p-3 rounded-xl border border-slate-700"><svg className="w-5 h-5 text-flolim mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>KEPCO 연계 무상 구축 (ESCO)</li>
+              <ul className="space-y-2 relative z-10">
+                <li className="flex items-center text-xs text-slate-300 bg-slate-900/80 p-2.5 rounded-lg border border-slate-700"><svg className="w-4 h-4 text-flolim mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>초고효율 25W LED 디밍 제어</li>
+                <li className="flex items-center text-xs text-slate-300 bg-slate-900/80 p-2.5 rounded-lg border border-slate-700"><svg className="w-4 h-4 text-flolim mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>재실/조도 감지 IoT 센서 연동</li>
+                <li className="flex items-center text-xs text-slate-300 bg-slate-900/80 p-2.5 rounded-lg border border-slate-700"><svg className="w-4 h-4 text-flolim mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>KEPCO 연계 무상 구축 (ESCO)</li>
               </ul>
             </div>
 
-            <div className="bg-[#0a1128] border border-[#1c2e5a] shadow-xl rounded-3xl p-10 hover:border-flolim/50 hover:shadow-[0_0_30px_rgba(24,169,198,0.15)] transition-all duration-300 flex flex-col h-full relative overflow-hidden group">
-              <div className="absolute -right-10 -bottom-10 w-40 h-40 bg-flolim/10 rounded-full blur-2xl group-hover:bg-flolim/20 transition-colors"></div>
-              <div className="w-14 h-14 bg-slate-800 text-flolim rounded-2xl flex items-center justify-center border border-slate-700 mb-6 group-hover:border-flolim/50 transition-colors relative z-10">
-                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+            {/* 비즈니스 카드 3 */}
+            <div className="bg-[#050b14] border border-slate-700 shadow-inner rounded-3xl p-8 hover:border-flolim/50 transition-all duration-500 flex flex-col h-full relative overflow-hidden group">
+              {/* 💡 공통 원형 데코 */}
+              <div className="absolute -right-6 -top-6 w-24 h-24 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
+              
+              <div className="w-12 h-12 bg-slate-800 text-flolim rounded-xl flex items-center justify-center border border-slate-600 mb-6 group-hover:border-flolim/50 transition-colors relative z-10 shadow-sm">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-flolim transition-colors relative z-10">통합 관제 플랫폼</h3>
-              <p className="text-slate-400 font-light leading-relaxed flex-grow relative z-10 mb-8">
+              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-flolim transition-colors relative z-10">통합 관제 플랫폼 (ESG)</h3>
+              <p className="text-slate-400 font-light text-sm leading-relaxed flex-grow relative z-10 mb-6">
                 모든 IoT 하드웨어를 한눈에 모니터링하고 제어하며, 빅데이터 기반의 에너지 분석 제공
               </p>
-              <ul className="space-y-3 relative z-10">
-                <li className="flex items-center text-sm text-slate-300 bg-slate-800/50 p-3 rounded-xl border border-slate-700"><svg className="w-5 h-5 text-flolim mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>직관적인 통합 대시보드</li>
-                <li className="flex items-center text-sm text-slate-300 bg-slate-800/50 p-3 rounded-xl border border-slate-700"><svg className="w-5 h-5 text-flolim mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>빅데이터 기반 전력 분석</li>
-                <li className="flex items-center text-sm text-slate-300 bg-slate-800/50 p-3 rounded-xl border border-slate-700"><svg className="w-5 h-5 text-flolim mr-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>ESG 경영 성과 리포트</li>
+              <ul className="space-y-2 relative z-10">
+                <li className="flex items-center text-xs text-slate-300 bg-slate-900/80 p-2.5 rounded-lg border border-slate-700"><svg className="w-4 h-4 text-flolim mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>직관적인 통합 대시보드</li>
+                <li className="flex items-center text-xs text-slate-300 bg-slate-900/80 p-2.5 rounded-lg border border-slate-700"><svg className="w-4 h-4 text-flolim mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>빅데이터 기반 전력 분석</li>
+                <li className="flex items-center text-xs text-slate-300 bg-slate-900/80 p-2.5 rounded-lg border border-slate-700"><svg className="w-4 h-4 text-flolim mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>ESG 경영 성과 리포트</li>
               </ul>
             </div>
           </div>
-        </div>
-      </div>
+        </section>
 
-      <div className="container mx-auto px-4 max-w-6xl">
         <BottomNav 
-          prev={{ label: '이전 페이지', title: 'CEO 인사말', path: '/company/ceo' }}
-          next={{ label: '다음 페이지', title: '인증 및 파트너', path: '/company/cert' }}
+          prev={{ label: '이전 페이지', title: '메인 홈', path: '/' }}
+          next={{ label: '다음 페이지', title: 'CEO 인사말', path: '/company/ceo' }}
         />
       </div>
 

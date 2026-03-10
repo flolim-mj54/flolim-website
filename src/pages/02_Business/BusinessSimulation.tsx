@@ -14,9 +14,9 @@ const BusinessSimulation = () => {
   const formatNum = (num: number) => new Intl.NumberFormat('ko-KR').format(num);
 
   return (
-    <div className="pb-10">
+    <div className="pb-10 relative overflow-hidden">
       <PageHeader 
-        category="Simulator"
+        category="시뮬레이터"
         title="에너지 절감 시뮬레이션"
         subtitle={
           <>
@@ -26,25 +26,30 @@ const BusinessSimulation = () => {
         }
       />
 
-      <div className="container mx-auto px-4 max-w-6xl">
+      <div className="container mx-auto px-4 max-w-6xl mt-10">
         
-        <section className="bg-slate-900/50 backdrop-blur-md rounded-3xl p-8 md:p-16 shadow-2xl border border-slate-800 mb-20 relative overflow-hidden group hover:border-flolim/50 transition-all duration-300">
+        {/* 메인 래퍼 박스 */}
+        <section className="bg-slate-900/50 backdrop-blur-md rounded-[2.5rem] p-10 md:p-16 shadow-2xl border border-slate-800 mb-16 relative overflow-hidden">
+          {/* 메인 래퍼 중앙 배경 빛 번짐 */}
+          <div className="absolute top-1/2 left-1/2 w-[800px] h-[800px] bg-flolim/5 rounded-full blur-[150px] pointer-events-none -translate-x-1/2 -translate-y-1/2"></div>
+
+          {/* 시뮬레이터 컨트롤 영역 */}
           <div className="max-w-4xl mx-auto text-center mb-16 relative z-10">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-8 group-hover:text-flolim transition-colors">현장의 노후 조명 개수를 입력해 주세요</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-8">현장의 노후 조명 개수를 입력해 주세요</h2>
             
-            <div className="bg-slate-800/80 p-8 rounded-3xl border border-slate-700 flex flex-col md:flex-row items-center justify-between gap-8 shadow-inner">
-              <div className="flex flex-col items-center md:items-start text-left w-full md:w-auto">
-                <span className="text-sm text-slate-400 font-bold mb-1 uppercase tracking-wider">Target Quantity</span>
-                <span className="text-xl text-white font-black">노후 조명 수량</span>
+            <div className="bg-[#050b14] p-8 rounded-3xl border border-slate-700 flex flex-col md:flex-row items-center justify-between gap-8 shadow-inner relative overflow-hidden">
+              <div className="flex flex-col items-center md:items-start text-left w-full md:w-auto relative z-10">
+                <span className="text-sm text-flolim font-bold mb-1 tracking-wider">교체 대상 수량</span>
+                <span className="text-xl text-white font-black">노후 조명 개수</span>
               </div>
               
               <input 
                 type="range" min="100" max="5000" step="100" value={bulbCount} 
                 onChange={(e) => setBulbCount(Number(e.target.value))}
-                className="w-full md:w-1/2 h-3 bg-slate-950 rounded-lg appearance-none cursor-pointer accent-flolim outline-none focus:ring-2 focus:ring-flolim/50 transition-all border border-slate-700"
+                className="w-full md:w-1/2 h-3 bg-slate-900 rounded-lg appearance-none cursor-pointer accent-flolim outline-none focus:ring-2 focus:ring-flolim/50 transition-all border border-slate-700 shadow-inner relative z-10"
               />
               
-              <div className="bg-slate-950 border border-flolim text-white font-black text-3xl px-6 py-3 rounded-2xl w-48 text-center shadow-[0_0_15px_rgba(24,169,198,0.2)] flex items-center justify-center gap-1 shrink-0">
+              <div className="bg-slate-900 border border-flolim text-white font-black text-3xl px-6 py-3 rounded-2xl w-48 text-center shadow-[0_0_15px_rgba(24,169,198,0.2)] flex items-center justify-center gap-1 shrink-0 relative z-10">
                 {formatNum(bulbCount)} <span className="text-base text-slate-500 font-medium">구</span>
               </div>
             </div>
@@ -53,16 +58,19 @@ const BusinessSimulation = () => {
             </p>
           </div>
 
+          {/* 시각적 비교 차트 */}
           <div className="flex items-end justify-center gap-4 md:gap-16 mb-12 h-64 border-b border-slate-800 pb-8 relative z-10">
+            {/* 교체 전 */}
             <div className="flex flex-col items-center">
               <span className="text-slate-400 font-bold mb-3 text-sm md:text-base">{formatNum(beforeCost)}원</span>
-              <div className="w-24 md:w-32 bg-slate-800 rounded-t-xl h-48 flex items-end justify-center pb-3 relative overflow-hidden border-t border-x border-slate-700">
+              <div className="w-24 md:w-32 bg-slate-800 rounded-t-xl h-48 flex items-end justify-center pb-3 relative overflow-hidden border-t border-x border-slate-700 shadow-lg">
                 <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.05)_25%,rgba(255,255,255,0.05)_50%,transparent_50%,transparent_75%,rgba(255,255,255,0.05)_75%,rgba(255,255,255,0.05)_100%)] bg-[length:20px_20px]"></div>
-                <span className="text-slate-400 font-medium text-xs md:text-sm relative z-10">노후(60W)</span>
+                <span className="text-slate-400 font-medium text-xs md:text-sm relative z-10">노후 (60W)</span>
               </div>
               <span className="mt-5 font-bold text-slate-300">교체 전</span>
             </div>
 
+            {/* 절감액 강조 */}
             <div className="flex flex-col items-center justify-center pb-12 z-20">
               <div className="bg-flolim text-slate-900 font-black text-lg md:text-2xl px-6 py-3 rounded-full shadow-[0_0_20px_rgba(24,169,198,0.5)] mb-3 flex items-center animate-bounce whitespace-nowrap">
                 <span>매월 {formatNum(savingMonth)}원 절감!</span>
@@ -72,17 +80,19 @@ const BusinessSimulation = () => {
               </div>
             </div>
 
+            {/* 교체 후 */}
             <div className="flex flex-col items-center">
               <span className="text-flolim font-black mb-3 text-sm md:text-base transition-all">{formatNum(afterCost)}원</span>
               <div className="w-24 md:w-32 bg-flolim rounded-t-xl h-16 flex items-end justify-center pb-3 shadow-[0_0_15px_rgba(24,169,198,0.5)] relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-                <span className="text-white font-bold text-xs md:text-sm px-1 text-center relative z-10">스마트(25W)</span>
+                <span className="text-white font-bold text-xs md:text-sm px-1 text-center relative z-10">스마트 (25W)</span>
               </div>
               <span className="mt-5 font-bold text-white">교체 후</span>
             </div>
           </div>
 
-          <div className="bg-flolim/10 border border-flolim/30 rounded-2xl p-8 text-center max-w-3xl mx-auto shadow-inner relative overflow-hidden z-10 backdrop-blur-md">
+          {/* 최종 결과 패널 */}
+          <div className="bg-[#050b14] border border-flolim/30 rounded-2xl p-8 text-center max-w-3xl mx-auto shadow-inner relative overflow-hidden z-10">
             <div className="absolute left-0 top-0 bottom-0 w-2 bg-flolim shadow-[0_0_15px_rgba(24,169,198,1)]"></div>
             <h3 className="text-lg text-slate-300 mb-3 font-light">초기 투자비 0원으로 즉시 구축하고, 상환 완료 후에는</h3>
             <p className="text-2xl md:text-3xl font-light text-white">
@@ -91,51 +101,63 @@ const BusinessSimulation = () => {
           </div>
         </section>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
-          <div className="bg-slate-900/50 p-10 rounded-3xl border border-slate-800 flex flex-col justify-center">
-            <h3 className="text-2xl font-bold text-white mb-8">단순 교체를 넘은 2단계 효율화 전략</h3>
-            <div className="space-y-8">
-              <div className="flex items-start gap-5">
-                <div className="w-12 h-12 bg-slate-800 border border-slate-700 rounded-xl flex items-center justify-center text-flolim font-black text-xl shrink-0">1</div>
-                <div>
-                  <h4 className="text-lg font-bold text-white mb-2">[LED 교체] 소비전력 60% 절감</h4>
-                  <p className="text-slate-400 font-light text-sm leading-relaxed">기존 60W 노후 조명을 25W 초고효율 스마트 LED로 교체하여 하드웨어적인 전력 소모를 대폭 줄입니다.</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-5">
-                <div className="w-12 h-12 bg-flolim/10 border border-flolim/30 rounded-xl flex items-center justify-center text-flolim font-black text-xl shrink-0">2</div>
-                <div>
-                  <h4 className="text-lg font-bold text-white mb-2">[지능형 제어] 20% 추가 절감</h4>
-                  <p className="text-slate-400 font-light text-sm leading-relaxed">스마트 디밍(밝기 조절) 및 스케줄링 제어를 통해 불필요한 낭비를 원천 차단하고 추가 에너지를 아낍니다.</p>
+        {/* 하단 2단 구조 */}
+        <section className="bg-slate-900/50 backdrop-blur-sm rounded-[2.5rem] p-10 md:p-12 shadow-2xl border border-slate-800 mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            {/* 효율화 전략 카드 (하드코딩) */}
+            <div className="bg-[#050b14] p-10 rounded-3xl border border-slate-700 flex flex-col justify-center shadow-inner hover:border-flolim/50 transition-colors group relative overflow-hidden">
+              <div className="absolute -right-6 -top-6 w-32 h-32 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
+              
+              <div className="relative z-10">
+                <h3 className="text-2xl font-bold text-white mb-8 group-hover:text-flolim transition-colors">단순 교체를 넘은 2단계 효율화</h3>
+                <div className="space-y-8">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-slate-800 border border-slate-600 rounded-xl flex items-center justify-center text-flolim font-black text-xl shrink-0">1</div>
+                    <div>
+                      <h4 className="text-lg font-bold text-white mb-2">[LED 교체] 소비전력 60% 절감</h4>
+                      <p className="text-slate-400 font-light text-sm leading-relaxed">기존 60W 노후 조명을 25W 초고효율 스마트 LED로 교체하여 하드웨어적인 전력 소모를 대폭 줄입니다.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-flolim/10 border border-flolim/30 rounded-xl flex items-center justify-center text-flolim font-black text-xl shrink-0">2</div>
+                    <div>
+                      <h4 className="text-lg font-bold text-white mb-2">[지능형 제어] 20% 추가 절감</h4>
+                      <p className="text-slate-400 font-light text-sm leading-relaxed">스마트 디밍(밝기 조절) 및 스케줄링 제어를 통해 불필요한 낭비를 원천 차단하고 추가 에너지를 아낍니다.</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div className="bg-[#0a1128] text-white p-10 rounded-3xl shadow-2xl border border-[#1c2e5a] flex flex-col justify-center relative overflow-hidden group hover:border-flolim/50 transition-colors">
-            <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-flolim rounded-full blur-[100px] opacity-10 group-hover:opacity-20 transition-opacity duration-700 pointer-events-none"></div>
-            <div className="relative z-10 text-center md:text-left">
-              <div className="inline-block bg-slate-800 text-flolim border border-slate-700 text-xs font-bold px-4 py-1.5 rounded-full mb-6 uppercase tracking-wider">
-                Next Step
+            {/* Next Step 유도 패널 (하드코딩) */}
+            <div className="bg-[#050b14] text-white p-10 rounded-3xl shadow-inner border border-slate-700 flex flex-col justify-center relative overflow-hidden group hover:border-flolim/50 transition-colors">
+              <div className="absolute -right-6 -top-6 w-40 h-40 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
+              
+              <div className="relative z-10 text-center md:text-left">
+                <div className="inline-block bg-slate-800 text-flolim border border-slate-600 text-xs font-bold px-4 py-1.5 rounded-full mb-6 tracking-wider">
+                  도입 안내
+                </div>
+                <h3 className="text-3xl font-black text-white mb-4 leading-tight group-hover:text-flolim transition-colors">
+                  시뮬레이션 결과가<br/>만족스러우신가요?
+                </h3>
+                <p className="text-slate-400 font-light text-base leading-relaxed mb-10">
+                  지금 바로 우리 현장에 딱 맞는<br className="hidden md:block" /> 
+                  <strong className="text-white font-medium">정확한 무료 견적과 도입 상담</strong>을 받아보세요.
+                </p>
+                <Link to="/support/contact" className="inline-flex items-center justify-center gap-2 bg-flolim hover:bg-cyan-400 text-slate-900 font-bold text-lg px-8 py-4 rounded-2xl shadow-[0_0_20px_rgba(24,169,198,0.4)] transition-all duration-300 w-full md:w-auto">
+                  도입 문의 및 상담 신청
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </Link>
               </div>
-              <h3 className="text-3xl font-black text-white mb-4 leading-tight group-hover:text-flolim transition-colors">
-                시뮬레이션 결과가<br/>만족스러우신가요?
-              </h3>
-              <p className="text-slate-400 font-light text-lg leading-relaxed mb-10">
-                지금 바로 우리 현장에 딱 맞는<br className="hidden md:block" /> 
-                <strong className="text-white font-medium">정확한 무료 견적과 도입 상담</strong>을 받아보세요.
-              </p>
-              <Link to="/support/contact" className="inline-flex items-center justify-center gap-2 bg-flolim hover:bg-cyan-400 text-slate-900 font-bold text-lg px-8 py-4 rounded-2xl shadow-[0_0_20px_rgba(24,169,198,0.4)] transition-all duration-300 w-full md:w-auto">
-                도입 문의 및 상담 신청
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-              </Link>
             </div>
+
           </div>
-        </div>
+        </section>
 
         <BottomNav 
-          prev={{ label: '이전 페이지', title: 'ESCO 사업 모델', path: '/business/esco' }}
-          next={{ label: '다음 비즈니스', title: '스마트 시티 솔루션', path: '/smart-city/intro' }}
+          prev={{ label: '이전 페이지', title: 'KEPCO 연계 ESCO', path: '/business/esco' }}
+          next={{ label: '다음 카테고리', title: '스마트 시티 개요', path: '/smart-city/intro' }}
         />
       </div>
     </div>
