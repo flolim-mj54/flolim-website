@@ -7,7 +7,7 @@ const SupportArchive = () => {
     { 
       id: 1, 
       title: '플로림 통합 브로슈어 (2026)', 
-      desc: '스마트 시티 및 빌딩 솔루션 통합 안내서 (PDF, 5.2MB)', 
+      desc: '스마트 시티 및 빌딩 솔루션 통합 안내서 (PDF, 8.45MB)', 
       iconColor: 'text-red-400', 
       icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />,
       file: '/docs/flolim_brochure.pdf'
@@ -15,7 +15,7 @@ const SupportArchive = () => {
     { 
       id: 2, 
       title: 'ESCO 사업 제안서', 
-      desc: '초기 투자비 0원 KEPCO 연계 사업 안내서 (PDF, 3.8MB)', 
+      desc: '초기 투자비 0원 KEPCO 연계 사업 안내서 (PDF, 122KB)', 
       iconColor: 'text-blue-400', 
       icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />,
       file: '/docs/flolim_esco_proposal.pdf'
