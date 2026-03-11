@@ -6,22 +6,21 @@ const Footer = () => {
       <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-flolim/30 to-transparent"></div>
 
       <div className="container mx-auto px-4 max-w-7xl relative z-10">
-        {/* 💡 [수정] md:grid-cols-2를 md:grid-cols-12로 변경하여 태블릿 1줄 정렬 */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-6 lg:gap-10 mb-10 md:mb-12 border-b border-slate-800 pb-10 md:pb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-12 gap-8 sm:gap-4 md:gap-6 lg:gap-10 mb-10 md:mb-12 border-b border-slate-800 pb-10 md:pb-12">
           
-          {/* 💡 [수정] 태블릿에서 5칸 차지 */}
-          <div className="md:col-span-5 lg:col-span-5">
-            <div className="flex items-center gap-2 mb-4 md:mb-6">
-              <div className="w-7 h-7 md:w-8 md:h-8 bg-flolim rounded-lg flex items-center justify-center shadow-[0_0_15px_rgba(24,169,198,0.5)]">
-                <svg className="w-4 h-4 md:w-5 md:h-5 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-              </div>
-              <span className="text-xl md:text-2xl font-black text-white tracking-tight">FLOLIM</span>
+          <div className="sm:col-span-5 lg:col-span-5">
+            {/* 💡 [수정] 텍스트 형태의 FLO(청록색) + LIM(흰색) 로고로 교체 */}
+            <div className="flex items-center mb-4 md:mb-6">
+              <span className="text-xl md:text-2xl font-black tracking-tight">
+                <span className="text-flolim drop-shadow-[0_0_10px_rgba(24,169,198,0.5)]">FLO</span>
+                <span className="text-white">LIM</span>
+              </span>
             </div>
-            <p className="text-xs md:text-sm font-light leading-relaxed mb-6 max-w-sm break-keep">
+            <p className="text-[11px] sm:text-xs md:text-sm font-light leading-relaxed mb-6 max-w-sm break-keep">
               세상을 밝히는 지능형 연결.<br />
               플로림은 딥러닝 기반의 데이터 분석과 첨단 IoT 센서 네트워크를 통해 도시와 빌딩의 에너지를 가장 스마트하게 통제합니다.
             </p>
-            <div className="flex gap-3 md:gap-4">
+            <div className="flex gap-2 sm:gap-3 md:gap-4">
               <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-flolim hover:text-slate-900 active:scale-95 transition-all cursor-pointer border border-slate-700 hover:border-flolim">
                 <svg className="w-4 h-4 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
               </div>
@@ -31,10 +30,9 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* 💡 [수정] 태블릿에서 3칸 차지 */}
-          <div className="md:col-span-3 lg:col-span-3">
+          <div className="sm:col-span-3 lg:col-span-3 pt-6 sm:pt-0">
             <h4 className="text-white font-bold mb-4 md:mb-5">Quick Links</h4>
-            <ul className="space-y-2.5 md:space-y-3 text-xs md:text-sm">
+            <ul className="space-y-2.5 md:space-y-3 text-[11px] sm:text-xs md:text-sm">
               <li><Link to="/company/intro" className="hover:text-flolim transition-colors break-keep">플로림 소개</Link></li>
               <li><Link to="/business/esco" className="hover:text-flolim transition-colors break-keep">KEPCO 연계 사업 (ESCO)</Link></li>
               <li><Link to="/smart-city/intro" className="hover:text-flolim transition-colors break-keep">스마트 시티 솔루션</Link></li>
@@ -43,13 +41,12 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* 💡 [수정] 태블릿에서 4칸 차지 */}
-          <div className="md:col-span-4 lg:col-span-4">
+          <div className="sm:col-span-4 lg:col-span-4 pt-6 sm:pt-0">
             <h4 className="text-white font-bold mb-4 md:mb-5">Contact Us</h4>
-            <ul className="space-y-3 md:space-y-4 text-xs md:text-sm">
+            <ul className="space-y-3 md:space-y-4 text-[11px] sm:text-xs md:text-sm">
               <li className="flex items-start gap-2.5 md:gap-3">
                 <svg className="w-4 h-4 md:w-5 md:h-5 text-flolim shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                <span className="leading-relaxed break-keep">충청남도 천안시 서북구 2공단4로 40-11<br className="hidden md:block" /> 천안G1비즈캠퍼스 1223호</span>
+                <span className="leading-relaxed break-keep">충청남도 천안시 서북구 2공단4로 40-11<br className="hidden sm:block" /> 천안G1비즈캠퍼스 1223호</span>
               </li>
               <li className="flex items-center gap-2.5 md:gap-3">
                 <svg className="w-4 h-4 md:w-5 md:h-5 text-flolim shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
@@ -63,7 +60,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-center gap-3 md:gap-4 text-[10px] md:text-xs font-light">
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-3 md:gap-4 text-[10px] md:text-xs font-light">
           <p>© 2026 FLOLIM Co., Ltd. All rights reserved.</p>
           <div className="flex gap-4 md:gap-6">
             <Link to="#" className="hover:text-white transition-colors">이용약관</Link>

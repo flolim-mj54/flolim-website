@@ -7,16 +7,12 @@ const Header = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const location = useLocation();
 
-  // 스크롤 감지하여 헤더 배경 스타일 변경
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // 라우트 이동 시 모바일 메뉴 닫기
   useEffect(() => {
     setMobileMenuOpen(false);
     setActiveDropdown(null);
@@ -85,21 +81,20 @@ const Header = () => {
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
           isScrolled 
             ? 'bg-[#020617]/80 backdrop-blur-md border-b border-slate-800 shadow-lg py-3' 
-            : 'bg-transparent py-5'
+            : 'bg-transparent py-4 md:py-5'
         }`}
       >
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="flex items-center justify-between">
             
-            {/* 로고 */}
-            <Link to="/" className="flex items-center gap-2 group z-50">
-              <div className="w-8 h-8 bg-flolim rounded-lg flex items-center justify-center shadow-[0_0_15px_rgba(24,169,198,0.5)] group-hover:shadow-[0_0_25px_rgba(24,169,198,0.8)] transition-all">
-                <svg className="w-5 h-5 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-              </div>
-              <span className="text-2xl font-black text-white tracking-tight">FLOLIM</span>
+            {/* 💡 [수정] 텍스트 형태의 FLO(청록색) + LIM(흰색) 로고로 교체 */}
+            <Link to="/" className="flex items-center group z-50 active:scale-95 transition-transform">
+              <span className="text-xl md:text-2xl font-black tracking-tight">
+                <span className="text-flolim drop-shadow-[0_0_10px_rgba(24,169,198,0.5)] group-hover:text-cyan-400 transition-colors">FLO</span>
+                <span className="text-white">LIM</span>
+              </span>
             </Link>
 
-            {/* 데스크탑 메뉴 */}
             <nav className="hidden lg:flex items-center gap-8">
               {menuItems.map((item, idx) => (
                 <div 
@@ -110,14 +105,13 @@ const Header = () => {
                 >
                   <Link 
                     to={item.path} 
-                    className={`text-sm font-bold transition-colors py-2 flex items-center gap-1 ${
+                    className={`text-sm font-bold transition-colors py-2 flex items-center gap-1 break-keep ${
                       location.pathname.includes(item.path.split('/')[1]) ? 'text-flolim' : 'text-slate-300 hover:text-white'
                     }`}
                   >
                     {item.title}
                   </Link>
 
-                  {/* 드롭다운 메뉴 */}
                   <div 
                     className={`absolute top-full left-1/2 transform -translate-x-1/2 pt-4 transition-all duration-300 ${
                       activeDropdown === item.title ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible translate-y-2'
@@ -129,7 +123,7 @@ const Header = () => {
                         <Link 
                           key={subIdx} 
                           to={sub.path} 
-                          className={`block px-5 py-2.5 text-xs font-medium transition-colors hover:bg-slate-800 ${
+                          className={`block px-5 py-2.5 text-xs font-medium transition-colors hover:bg-slate-800 break-keep ${
                             location.pathname === sub.path ? 'text-flolim bg-slate-800/50' : 'text-slate-400 hover:text-white'
                           }`}
                         >
@@ -142,20 +136,18 @@ const Header = () => {
               ))}
             </nav>
 
-            {/* 문의하기 버튼 (데스크탑) - 메인 홈과 동일한 Cyan 디자인 적용 */}
             <div className="hidden lg:block">
               <Link 
                 to="/support/contact" 
-                className="px-5 py-2.5 bg-flolim hover:bg-cyan-400 text-slate-900 text-sm font-bold rounded-xl shadow-[0_0_15px_rgba(24,169,198,0.4)] transition-all duration-300 flex items-center gap-1.5 hover:-translate-y-0.5"
+                className="px-5 py-2.5 bg-flolim hover:bg-cyan-400 active:scale-95 text-slate-900 text-sm font-bold rounded-xl shadow-[0_0_15px_rgba(24,169,198,0.4)] transition-all duration-300 flex items-center gap-1.5 hover:-translate-y-0.5"
               >
                 문의하기
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
               </Link>
             </div>
 
-            {/* 모바일 햄버거 버튼 */}
             <button 
-              className="lg:hidden text-white p-2 z-50"
+              className="lg:hidden text-white p-2 z-50 active:scale-90 transition-transform"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -169,19 +161,18 @@ const Header = () => {
         </div>
       </header>
 
-      {/* 모바일 전체화면 메뉴 */}
       <div className={`fixed inset-0 bg-[#020617]/95 backdrop-blur-lg z-40 lg:hidden transition-opacity duration-300 ${mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
-        <div className="h-full overflow-y-auto pt-24 pb-10 px-6">
-          <div className="flex flex-col gap-6">
+        <div className="h-full overflow-y-auto pt-20 pb-10 px-6">
+          <div className="flex flex-col gap-5">
             {menuItems.map((item, idx) => (
-              <div key={idx} className="border-b border-slate-800 pb-4">
-                <h3 className="text-flolim font-bold text-lg mb-4">{item.title}</h3>
-                <div className="flex flex-col gap-3 pl-4 border-l border-slate-800 ml-2">
+              <div key={idx} className="border-b border-slate-800 pb-3">
+                <h3 className="text-flolim font-bold text-base mb-3 break-keep">{item.title}</h3>
+                <div className="flex flex-col gap-2.5 pl-3 border-l border-slate-800 ml-1">
                   {item.subItems.map((sub, subIdx) => (
                     <Link 
                       key={subIdx} 
                       to={sub.path} 
-                      className={`text-sm ${location.pathname === sub.path ? 'text-white font-bold' : 'text-slate-400'}`}
+                      className={`text-sm break-keep ${location.pathname === sub.path ? 'text-white font-bold' : 'text-slate-400'}`}
                     >
                       {sub.name}
                     </Link>
@@ -190,10 +181,9 @@ const Header = () => {
               </div>
             ))}
             
-            {/* 모바일 하단 문의하기 버튼 - 디자인 동일 적용 */}
             <Link 
               to="/support/contact" 
-              className="w-full flex items-center justify-center gap-2 py-4 bg-flolim hover:bg-cyan-400 text-slate-900 font-bold rounded-xl mt-4 shadow-[0_0_15px_rgba(24,169,198,0.4)] transition-colors"
+              className="w-full flex items-center justify-center gap-2 py-3.5 bg-flolim hover:bg-cyan-400 active:scale-95 text-slate-900 font-bold rounded-xl mt-4 shadow-[0_0_15px_rgba(24,169,198,0.4)] transition-all"
             >
               온라인 문의하기
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
