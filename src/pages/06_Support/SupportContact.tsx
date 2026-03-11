@@ -1,10 +1,47 @@
+import { useRef, useState } from 'react';
+import emailjs from '@emailjs/browser';
 import PageHeader from '../../components/PageHeader';
 import BottomNav from '../../components/BottomNav';
 
 const SupportContact = () => {
-  const handleSubmit = (e: React.FormEvent) => {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert("도입 문의가 성공적으로 접수되었습니다. 담당자가 빠른 시일 내에 연락드리겠습니다.");
+    
+    if (!formRef.current) return;
+
+    setIsSubmitting(true);
+
+    try {
+      // .env 파일에 설정한 키값들을 불러옵니다.
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+      if (!serviceId || !templateId || !publicKey) {
+        alert("이메일 전송 키가 설정되지 않았습니다. (.env 파일을 확인해주세요)");
+        setIsSubmitting(false);
+        return;
+      }
+
+      await emailjs.sendForm(
+        serviceId,
+        templateId,
+        formRef.current,
+        publicKey
+      );
+
+      alert("도입 문의가 성공적으로 접수되었습니다. 담당자가 빠른 시일 내에 연락드리겠습니다.");
+      formRef.current.reset(); // 성공 시 폼 초기화
+
+    } catch (error) {
+      console.error("이메일 전송 실패:", error);
+      alert("문의 접수 중 오류가 발생했습니다. 잠시 후 다시 시도해 주시거나 대표번호로 연락 부탁드립니다.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -21,7 +58,6 @@ const SupportContact = () => {
       />
 
       <div className="container mx-auto px-4 max-w-6xl mt-10">
-        
         <section className="bg-slate-900/50 backdrop-blur-md rounded-[2.5rem] p-6 md:p-10 lg:p-16 shadow-2xl border border-slate-800 mb-16 relative overflow-hidden">
           <div className="absolute top-1/2 left-1/2 w-[800px] h-[800px] bg-flolim/5 rounded-full blur-[150px] pointer-events-none -translate-x-1/2 -translate-y-1/2"></div>
 
@@ -60,34 +96,36 @@ const SupportContact = () => {
             {/* 우측: 문의 폼 */}
             <div className="lg:w-2/3 bg-[#050b14] rounded-3xl border border-slate-700 p-6 md:p-10 shadow-inner">
               <h2 className="text-lg md:text-xl font-bold text-white mb-5 md:mb-6 border-b border-slate-800 pb-3 md:pb-4 break-keep">온라인 문의 양식</h2>
-              <form onSubmit={handleSubmit} className="space-y-5 md:space-y-6">
+              
+              {/* 💡 form 태그에 ref 연결 */}
+              <form ref={formRef} onSubmit={handleSubmit} className="space-y-5 md:space-y-6">
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
                   <div className="space-y-1.5 md:space-y-2">
                     <label htmlFor="company" className="block text-[11px] md:text-sm font-bold text-slate-300 break-keep">기관/기업명 <span className="text-flolim">*</span></label>
-                    <input type="text" id="company" required placeholder="예) 주식회사 플로림" className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 md:py-3 text-xs md:text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-flolim focus:ring-1 focus:ring-flolim transition-colors" />
+                    <input type="text" id="company" name="company" required placeholder="예) 주식회사 플로림" className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 md:py-3 text-xs md:text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-flolim focus:ring-1 focus:ring-flolim transition-colors" />
                   </div>
                   <div className="space-y-1.5 md:space-y-2">
                     <label htmlFor="name" className="block text-[11px] md:text-sm font-bold text-slate-300 break-keep">담당자 성함/직급 <span className="text-flolim">*</span></label>
-                    <input type="text" id="name" required placeholder="예) 홍길동 과장" className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 md:py-3 text-xs md:text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-flolim focus:ring-1 focus:ring-flolim transition-colors" />
+                    <input type="text" id="name" name="user_name" required placeholder="예) 홍길동 과장" className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 md:py-3 text-xs md:text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-flolim focus:ring-1 focus:ring-flolim transition-colors" />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
                   <div className="space-y-1.5 md:space-y-2">
                     <label htmlFor="contact" className="block text-[11px] md:text-sm font-bold text-slate-300 break-keep">연락처 <span className="text-flolim">*</span></label>
-                    <input type="tel" id="contact" required placeholder="010-0000-0000" className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 md:py-3 text-xs md:text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-flolim focus:ring-1 focus:ring-flolim transition-colors" />
+                    <input type="tel" id="contact" name="contact" required placeholder="010-0000-0000" className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 md:py-3 text-xs md:text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-flolim focus:ring-1 focus:ring-flolim transition-colors" />
                   </div>
                   <div className="space-y-1.5 md:space-y-2">
                     <label htmlFor="email" className="block text-[11px] md:text-sm font-bold text-slate-300 break-keep">이메일 <span className="text-flolim">*</span></label>
-                    <input type="email" id="email" required placeholder="example@company.com" className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 md:py-3 text-xs md:text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-flolim focus:ring-1 focus:ring-flolim transition-colors" />
+                    <input type="email" id="email" name="user_email" required placeholder="example@company.com" className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 md:py-3 text-xs md:text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-flolim focus:ring-1 focus:ring-flolim transition-colors" />
                   </div>
                 </div>
 
                 <div className="space-y-1.5 md:space-y-2">
                   <label htmlFor="inquiryType" className="block text-[11px] md:text-sm font-bold text-slate-300 break-keep">문의 유형</label>
                   <div className="relative">
-                    <select id="inquiryType" className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 md:py-3 text-xs md:text-sm text-slate-200 appearance-none focus:outline-none focus:border-flolim focus:ring-1 focus:ring-flolim transition-colors cursor-pointer">
+                    <select id="inquiryType" name="inquiry_type" className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 md:py-3 text-xs md:text-sm text-slate-200 appearance-none focus:outline-none focus:border-flolim focus:ring-1 focus:ring-flolim transition-colors cursor-pointer">
                       <option value="esco">KEPCO 연계 ESCO (무상구축) 상담</option>
                       <option value="city">스마트 시티 (가로등/경관) 도입 문의</option>
                       <option value="building">스마트 빌딩 (실내조명) 도입 문의</option>
@@ -102,13 +140,18 @@ const SupportContact = () => {
 
                 <div className="space-y-1.5 md:space-y-2">
                   <label htmlFor="message" className="block text-[11px] md:text-sm font-bold text-slate-300 break-keep">상세 문의 내용 <span className="text-flolim">*</span></label>
-                  <textarea id="message" required rows={5} placeholder="현재 현장 상황이나 도입을 원하시는 규모(수량), 궁금하신 점 등을 자유롭게 작성해 주세요." className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-xs md:text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-flolim focus:ring-1 focus:ring-flolim transition-colors resize-none"></textarea>
+                  <textarea id="message" name="message" required rows={5} placeholder="현재 현장 상황이나 도입을 원하시는 규모(수량), 궁금하신 점 등을 자유롭게 작성해 주세요." className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-xs md:text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-flolim focus:ring-1 focus:ring-flolim transition-colors resize-none"></textarea>
                 </div>
 
                 <div className="pt-2 md:pt-4">
-                  <button type="submit" className="w-full bg-flolim hover:bg-cyan-400 active:scale-95 text-slate-900 font-bold text-base md:text-lg py-3 md:py-4 rounded-xl shadow-[0_0_20px_rgba(24,169,198,0.3)] transition-all duration-300 flex justify-center items-center gap-2">
-                    문의 접수하기
-                    <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                  {/* 💡 전송 중일 때 버튼 텍스트와 상태 변경 */}
+                  <button 
+                    type="submit" 
+                    disabled={isSubmitting}
+                    className={`w-full font-bold text-base md:text-lg py-3 md:py-4 rounded-xl shadow-[0_0_20px_rgba(24,169,198,0.3)] transition-all duration-300 flex justify-center items-center gap-2 ${isSubmitting ? 'bg-slate-700 text-slate-400 cursor-not-allowed' : 'bg-flolim hover:bg-cyan-400 active:scale-95 text-slate-900'}`}
+                  >
+                    {isSubmitting ? '전송 중...' : '문의 접수하기'}
+                    {!isSubmitting && <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>}
                   </button>
                   <p className="text-center text-[10px] md:text-xs text-slate-500 mt-3 md:mt-4 font-light break-keep">
                     * 접수된 정보는 상담 목적으로만 사용되며 안전하게 보호됩니다.
