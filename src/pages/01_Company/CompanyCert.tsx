@@ -13,7 +13,8 @@ export default function CompanyCert() {
   const progresses = [
     { id: 1, img: 'logo-highefficiency.jpg', title: '고효율기자재인증', desc: '에너지 효율 공식 마크', date: '4월 완료' },
     { id: 2, img: 'logo-g2b.jpg', title: '조달청 등록', desc: '공공기관 우선 공급망 구축', date: '5월 완료' },
-    { id: 3, img: 'logo-kepco.jpg', title: '켑코이에스(ESCO) 파트너사', desc: '한국전력공사 출자 기업 제휴', date: '3월 완료' },
+    // 💡 [수정] logo-kepco.jpg -> logo-kepcoes.jpg 로 변경 완료
+    { id: 3, img: 'logo-kepcoes.jpg', title: '켑코이에스(ESCO) 파트너사', desc: '한국전력공사 출자 기업 제휴', date: '3월 완료' },
   ];
 
   return (

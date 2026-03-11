@@ -19,7 +19,6 @@ const SmartCityNbIot = () => {
     const initMap = () => {
       if (!mapContainerRef.current || !window.naver) return;
 
-      // 💡 [수정] 모바일 화면(768px 이하)일 때만 줌 레벨을 12로 한 단계 낮춤
       const initialZoom = window.innerWidth < 768 ? 12 : 13;
 
       const map = new window.naver.maps.Map(mapContainerRef.current, {
@@ -117,7 +116,7 @@ const SmartCityNbIot = () => {
   const benefits = [
     { id: 1, icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />, title: '초기 구축비용 최소화', desc: '비싼 게이트웨이(집중기)를 구매하고 전봇대에 설치하는 공사 비용이 완전히 사라집니다. 단말기만 달면 즉시 관제가 시작됩니다.' },
     { id: 2, icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />, title: '전국망 커버리지 지원', desc: 'SKT, KT, LGU+의 거대한 통신 기지국을 사용하므로, 산간 오지나 바닷가 등 휴대폰이 터지는 곳이라면 100% 제어할 수 있습니다.' },
-    { id: 3, icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />, title: '최고 수준의 보안성', desc: '글로벌 통신사가 관리하는 국가 기간망 수준의 3GPP 표준 암호화 기술이 적용되어 해킹과 데이터 위변조로부터 완벽하게 안전합니다.' }
+    { id: 3, icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />, title: '최고 수준의 보안성', desc: '글로벌 통신사가 관리하는 국가 기간망 수준의 3GPP 표준 암호화 기술이 적용되어 해킹과 데이터 위변조로부터 안전합니다.' }
   ];
 
   return (
@@ -188,21 +187,37 @@ const SmartCityNbIot = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-              {/* AS-IS (제거됨) */}
-              <div className="bg-[#050b14] p-6 md:p-8 rounded-3xl border border-slate-700 opacity-50 relative overflow-hidden shadow-inner cursor-default">
-                <div className="absolute inset-0 bg-slate-900/80 backdrop-blur-[2px] z-10 flex items-center justify-center">
-                  <span className="bg-red-500/20 text-red-400 border border-red-500/50 px-3 md:px-4 py-1.5 md:py-2 rounded-lg text-[10px] md:text-sm font-bold tracking-widest rotate-[-15deg] shadow-lg">설치 불필요</span>
+              
+              {/* 💡 [수정] 명확성을 극대화한 '설치 불필요' 카드 */}
+              <div className="bg-[#050b14] p-6 md:p-8 rounded-3xl border border-slate-700 relative overflow-hidden shadow-inner cursor-default">
+                {/* 붉은 빗금 배경 */}
+                <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(239,68,68,0.03)_25%,rgba(239,68,68,0.03)_50%,transparent_50%,transparent_75%,rgba(239,68,68,0.03)_75%,rgba(239,68,68,0.03)_100%)] bg-[length:20px_20px] pointer-events-none"></div>
+                
+                {/* 거대한 X 아이콘 오버레이 */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+                  <svg className="w-48 h-48 text-red-500/10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </div>
-                <div className="flex items-center gap-4 md:gap-5 mb-4 md:mb-6">
-                  <div className="w-12 h-12 md:w-14 md:h-14 bg-slate-800 border border-slate-600 text-slate-500 rounded-xl md:rounded-2xl flex items-center justify-center text-lg md:text-xl font-black shadow-sm">01</div>
-                  <div>
-                    <h3 className="text-base md:text-lg font-bold text-slate-400 line-through decoration-red-500 decoration-2 mb-0.5 md:mb-1 break-keep">현장을 지휘하는 중계기</h3>
-                    <span className="text-slate-500 text-xs md:text-sm font-bold uppercase tracking-wider line-through">IoT Gateway</span>
+
+                {/* 흐림 처리 및 강렬한 배제 뱃지 */}
+                <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-[1px] z-20 flex items-center justify-center">
+                  <div className="bg-red-500/20 text-red-400 border-2 border-red-500/60 px-4 md:px-6 py-2 md:py-3 rounded-xl text-xs md:text-base font-black tracking-widest rotate-[-10deg] shadow-[0_0_20px_rgba(239,68,68,0.3)]">
+                    게이트웨이 설치 불필요
                   </div>
                 </div>
-                <p className="text-slate-500 mb-6 font-light leading-relaxed text-xs md:text-sm line-through break-keep">
-                  현장의 데이터를 모아 관제 서버로 전송하는 복잡한 라우팅 장비나 전용 전봇대가 필요했습니다.
-                </p>
+
+                {/* 기존 내용 (흐리게 보임) */}
+                <div className="opacity-40">
+                  <div className="flex items-center gap-4 md:gap-5 mb-4 md:mb-6">
+                    <div className="w-12 h-12 md:w-14 md:h-14 bg-slate-800 border border-slate-600 text-slate-500 rounded-xl md:rounded-2xl flex items-center justify-center text-lg md:text-xl font-black shadow-sm">01</div>
+                    <div>
+                      <h3 className="text-base md:text-lg font-bold text-slate-400 line-through decoration-red-500 decoration-2 mb-0.5 md:mb-1 break-keep">메인 중계기 (게이트웨이)</h3>
+                      <span className="text-slate-500 text-xs md:text-sm font-bold uppercase tracking-wider line-through">IoT Gateway</span>
+                    </div>
+                  </div>
+                  <p className="text-slate-500 mb-6 font-light leading-relaxed text-xs md:text-sm line-through break-keep">
+                    현장의 데이터를 모아 관제 서버로 전송하는 복잡한 라우팅 장비나 전용 전봇대가 필요했습니다.
+                  </p>
+                </div>
               </div>
 
               {/* TO-BE (NB-IoT) */}

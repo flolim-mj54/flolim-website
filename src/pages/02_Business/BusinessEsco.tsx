@@ -14,7 +14,7 @@ const BusinessEsco = () => {
     {
       num: '2',
       title: '[상환] 절감액 분할 상환',
-      desc: <>매달 내던 <strong className="font-medium text-white">전기료를 그대로 납부</strong>하여 절감된 금액만큼 시설비를 상환합니다.<br/><span className="text-slate-500 mt-1 inline-block">(평균 2~5년 소요)</span></>,
+      desc: <>매달 내던 <strong className="font-medium text-white">전기료를 그대로 납부</strong>하여 절감된 금액만큼 시설비를 상환합니다.<br/><span className="text-slate-500 mt-1 inline-block">(평균 3~5년 소요)</span></>,
       highlight: false
     },
     {
@@ -45,15 +45,33 @@ const BusinessEsco = () => {
           <div className="absolute top-1/2 left-1/2 w-[800px] h-[800px] bg-flolim/5 rounded-full blur-[150px] pointer-events-none -translate-x-1/2 -translate-y-1/2"></div>
 
           {/* 시스템 개요 */}
-          <div className="mb-16 md:mb-20 relative z-10">
+          <div className="mb-12 md:mb-16 relative z-10">
             <h2 className="text-xl md:text-3xl font-bold text-white mb-4 md:mb-6 text-center break-keep">
               예산 부담은 지우고, 조명은 더 스마트하게
             </h2>
             <p className="text-sm md:text-lg text-slate-400 leading-relaxed text-center max-w-4xl mx-auto font-light break-keep">
-              플로림(FLOLIM)은 한국전력공사 출자 기업인 <strong className="font-bold text-white">켑코이에스(KEPCO ES)</strong>와 공식 연계하여 혁신적인 스마트 조명 에너지 효율화 사업을 진행합니다. 
+              플로림(FLOLIM)은 <strong className="font-bold text-white">한국전력공사의 자회사 켑코이에스와 공식 파트너십을 체결하고</strong>, 혁신적인 스마트 조명 에너지 효율화 사업을 진행합니다. 
               노후 조명을 고효율 스마트 LED 및 지능형 제어 시스템으로 교체하는 비용 <strong className="font-bold text-flolim">전액을 켑코이에스에서 선투자</strong>하므로, 
               단 1원의 추가 예산 편성 없이 최첨단 인프라를 구축할 수 있습니다.
             </p>
+          </div>
+
+          {/* 💡 [수정 완료] KEPCO ES X FLOLIM 1:1 배치 복구 및 패딩 축소로 이미지 확대 */}
+          <div className="flex items-center justify-center gap-4 md:gap-8 mb-16 md:mb-20 relative z-10 w-full">
+            
+            {/* KEPCO ES 로고 */}
+            <div className="bg-white p-1.5 md:p-2.5 rounded-xl md:rounded-2xl shadow-lg flex items-center justify-center w-32 h-16 md:w-56 md:h-24 relative z-10 border border-slate-200">
+              <img src="/images/logo-kepcoes.jpg" alt="켑코이에스" className="max-h-full max-w-full object-contain" />
+            </div>
+
+            {/* 파트너십 X 표시 */}
+            <div className="text-slate-500 font-black text-xl md:text-3xl shrink-0">×</div>
+
+            {/* FLOLIM 로고 */}
+            <div className="bg-white p-1.5 md:p-2.5 rounded-xl md:rounded-2xl shadow-lg flex items-center justify-center w-32 h-16 md:w-56 md:h-24 relative z-10 border border-slate-200">
+              <img src="/images/logo-flolim.jpg" alt="플로림" className="max-h-full max-w-full object-contain" />
+            </div>
+
           </div>
 
           {/* 3단계 도입 및 상환 프로세스 */}
@@ -96,14 +114,18 @@ const BusinessEsco = () => {
                   <div className="flex items-start gap-4">
                     <div className="w-10 h-10 md:w-12 md:h-12 bg-slate-800 border border-slate-600 rounded-xl flex items-center justify-center text-flolim font-black text-lg md:text-xl shrink-0">1</div>
                     <div>
-                      <h4 className="text-sm md:text-base font-bold text-white mb-1.5 md:mb-2 break-keep">[LED 교체] 소비전력 60% 절감</h4>
+                      <h4 className="text-sm md:text-base font-bold text-white mb-1.5 md:mb-2 break-keep">
+                        LED 교체 <span className="text-slate-600 mx-1.5 font-normal">|</span> 소비전력 <span className="text-flolim">60% 절감</span>
+                      </h4>
                       <p className="text-slate-400 font-light text-xs md:text-sm leading-relaxed break-keep">기존 60W 노후 조명을 25W 초고효율 스마트 LED로 교체하여 하드웨어적인 전력 소모를 대폭 줄입니다.</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
                     <div className="w-10 h-10 md:w-12 md:h-12 bg-flolim/10 border border-flolim/30 rounded-xl flex items-center justify-center text-flolim font-black text-lg md:text-xl shrink-0">2</div>
                     <div>
-                      <h4 className="text-sm md:text-base font-bold text-white mb-1.5 md:mb-2 break-keep">[지능형 제어] 20% 추가 절감</h4>
+                      <h4 className="text-sm md:text-base font-bold text-white mb-1.5 md:mb-2 break-keep">
+                        지능형 제어 <span className="text-slate-600 mx-1.5 font-normal">|</span> <span className="text-flolim">40% 추가 절감</span>
+                      </h4>
                       <p className="text-slate-400 font-light text-xs md:text-sm leading-relaxed break-keep">스마트 디밍(밝기 조절) 및 스케줄링 제어를 통해 불필요한 낭비를 원천 차단하고 추가 에너지를 아낍니다.</p>
                     </div>
                   </div>
@@ -131,7 +153,7 @@ const BusinessEsco = () => {
                   한전 지원금이 더해져<br/>더 빨라지는 상환
                 </h3>
                 <p className="text-slate-400 font-light text-xs md:text-sm leading-relaxed mb-6 md:mb-8 break-keep">
-                  초기 투자비 0원으로 구축하는 <strong className="text-white font-medium">[ESCO 자금]</strong>에, 절감된 전력량에 비례하여 한국전력공사에서 현금 지원금을 직접 수령하는 <strong className="text-white font-medium">[EERS 현금 보너스]</strong>를 결합합니다.
+                  초기 투자비 0원으로 구축하는 <strong className="text-flolim font-bold">ESCO 자금</strong>에, 절감된 전력량에 비례하여 한국전력공사에서 현금 지원금을 직접 수령하는 <strong className="text-flolim font-bold">EERS 현금 보너스</strong>를 결합합니다.
                 </p>
                 
                 <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-4 md:p-5 border border-slate-600 flex items-center gap-3 md:gap-4">
@@ -140,7 +162,7 @@ const BusinessEsco = () => {
                   </div>
                   <div>
                     <span className="block font-bold text-white text-xs md:text-sm mb-0.5 md:mb-1 break-keep">투자 회수율 극대화</span>
-                    <span className="text-[10px] md:text-xs text-flolim font-medium break-keep">상환 기간 평균 3년 단축 및 순수익 조기 전환</span>
+                    <span className="text-[10px] md:text-xs text-flolim font-medium break-keep">상환 기간 단축 및 순수익 조기 전환</span>
                   </div>
                 </div>
               </div>

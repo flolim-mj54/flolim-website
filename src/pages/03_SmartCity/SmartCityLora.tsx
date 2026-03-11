@@ -28,7 +28,6 @@ const SmartCityLora = () => {
       });
       mapInstanceRef.current = map; 
 
-      // 💡 [복구됨] 지도 마커 및 통신망 연결 로직
       const gwCoord = new window.naver.maps.LatLng(36.848788, 127.122366);
 
       const topW3 = new window.naver.maps.LatLng(36.852203, 127.126393);
@@ -129,16 +128,17 @@ const SmartCityLora = () => {
   const handleZoomIn = () => { if (mapInstanceRef.current) mapInstanceRef.current.setZoom(mapInstanceRef.current.getZoom() + 1, true); };
   const handleZoomOut = () => { if (mapInstanceRef.current) mapInstanceRef.current.setZoom(mapInstanceRef.current.getZoom() - 1, true); };
 
-  // 💡 [Map 데이터]
   const hardwares = [
     { id: '01', title: '현장을 지휘하는 게이트웨이', subtitle: 'IoT Gateway', desc: '현장의 수많은 노드 데이터를 모아, 중앙 관제 서버로 실시간 전송하는 핵심 다리 역할을 합니다.', features: ['관제 서버와의 빠르고 안정적인 양방향 통신 지원', '전력 사용량을 원격으로 측정하는 스마트 미터기 기능', '수만 개의 단말기를 위한 대규모 확장 인터페이스 제공'] },
     { id: '02', title: '무선 스마트 단말기', subtitle: 'Lamp Controller', desc: '조명 상단이나 내부에 직접 장착되어 제어 명령을 정확하게 수행하고, 현재 램프의 상태를 서버에 보고합니다.', features: ['NEMA 7핀(외장) 및 ZHAGA 4핀(내장) 표준 규격 지원', '주변 환경에 맞춘 세밀한 밝기 조절(디밍) 제어', '전압, 전류 등 조명의 전력 상태 실시간 측정 및 고장 감지'] }
   ];
 
+  // 💡 [수정] 혜택(특장점) 4가지로 재구성 (무선 원격 업데이트 삭제, 비용절감 및 UI 제공 추가)
   const benefits = [
     { id: 1, icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />, title: '통신비 평생 무료', desc: '통신사 망을 빌려 쓰지 않고 자체망을 구축하므로, 수만 개의 단말기를 연결해도 매월 통신 요금이 전혀 발생하지 않습니다.' },
-    { id: 2, icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />, title: '고장 사전 예측 진단', desc: '램프 수명 저하, 누전 등 문제가 발생하기 전 미세한 전력 변화를 즉각적으로 감지하여 대시보드 화면에 경고 알림을 띄웁니다.' },
-    { id: 3, icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />, title: '무선 원격 업데이트', desc: '새로운 제어 기능이 추가되거나 시스템 개선이 필요할 때, 현장에 갈 필요 없이 원격에서 쉽고 안전하게 무선(OTA) 업그레이드합니다.' }
+    { id: 2, icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />, title: '실시간 고장 감지', desc: '램프 고장시 즉각 감지하여 대시보드 화면에 경고 알림을 띄웁니다.' },
+    { id: 3, icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />, title: '통신 공사 비용 절감', desc: '복잡한 통신선 매설이 필요 없는 100% 무선 시스템으로 초기 통신 공사 비용과 시간을 획기적으로 단축합니다.' },
+    { id: 4, icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />, title: '맞춤식 관제 UI 제공', desc: '고객사의 현장 상황과 요구사항에 완벽하게 맞춰진, 직관적이고 편리한 커스텀 대시보드 인터페이스를 제공합니다.' }
   ];
 
   return (
@@ -240,11 +240,12 @@ const SmartCityLora = () => {
           <div className="mb-16 relative z-10">
             <h2 className="text-xl md:text-2xl font-bold text-white mb-6 md:mb-8 text-center break-keep">왜 플로림 LoRa-Mesh 솔루션인가요?</h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+            {/* 💡 [수정] 카드 개수가 4개로 늘어나 md:grid-cols-2 lg:grid-cols-4 로 레이아웃 변경 */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
               {benefits.map(b => (
-                <div key={b.id} className="bg-[#050b14] p-6 md:p-8 rounded-2xl md:rounded-3xl border border-slate-700 shadow-inner hover:border-flolim/50 active:scale-[0.98] transition-all group relative overflow-hidden cursor-default">
+                <div key={b.id} className="bg-[#050b14] p-6 md:p-8 rounded-2xl md:rounded-3xl border border-slate-700 shadow-inner hover:border-flolim/50 active:scale-[0.98] transition-all group relative overflow-hidden cursor-default flex flex-col">
                   <div className="absolute -right-6 -top-6 w-24 h-24 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
-                  <div className="relative z-10">
+                  <div className="relative z-10 flex-1">
                     <div className="w-10 h-10 md:w-12 md:h-12 bg-slate-800 rounded-xl flex items-center justify-center text-flolim mb-4 md:mb-5 border border-slate-600">
                       <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">{b.icon}</svg>
                     </div>
@@ -268,7 +269,8 @@ const SmartCityLora = () => {
                   </tr>
                   <tr className="border-b border-slate-800">
                     <th className="py-3 px-4 md:py-4 md:px-6 bg-slate-900 text-slate-300 font-bold">무선 주파수</th>
-                    <td className="py-3 px-4 md:py-4 md:px-6 text-slate-400 font-light">915MHz 대역 (10개 채널) / 2.4GHz 대역 (16개 채널) 지원</td>
+                    {/* 💡 [수정] 2.4GHz 내용 삭제 완료 */}
+                    <td className="py-3 px-4 md:py-4 md:px-6 text-slate-400 font-light">915MHz 대역 (10개 채널) 지원</td>
                   </tr>
                   <tr className="border-b border-slate-800">
                     <th className="py-3 px-4 md:py-4 md:px-6 bg-slate-900 text-slate-300 font-bold">네트워크 기술</th>

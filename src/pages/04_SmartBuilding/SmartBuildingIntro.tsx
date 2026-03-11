@@ -5,8 +5,8 @@ import BottomNav from '../../components/BottomNav';
 const SmartBuildingIntro = () => {
   // 💡 [Map 데이터] 실증 사례 3종
   const cases = [
-    { id: 1, region: '대한민국 ETRI 실증', location: '공장 및 상업시설', percent: '74.1', label: '절감', desc: '스마트조명 플랫폼 개별/그룹 제어 적용으로 기존 대비 최대 74.1%의 압도적인 에너지를 절감했습니다.' },
-    { id: 2, region: '대한민국 LH공사 실증', location: '공동주택 및 건물', prefix: '최대', percent: '70', label: '이상 절감', desc: 'IoT 기반 10단계 자동 조도 조절(디밍)을 적용하여 기존 조명 대비 전력량을 70% 이상 대폭 낮췄습니다.' },
+    { id: 1, region: '대한민국 ETRI 실증', location: '공장 및 상업시설', percent: '74.1', label: '절감', desc: '스마트조명 플랫폼 개별/그룹 제어 적용으로 전통 조명 대비 최대 74.1%의 압도적인 에너지를 절감했습니다.' },
+    { id: 2, region: '대한민국 LH공사 실증', location: '공동주택 및 건물', prefix: '최대', percent: '70', label: '이상 절감', desc: 'IoT 기반 10단계 자동 조도 조절(디밍)을 적용하여 전통 조명 대비 전력량을 70% 이상 대폭 낮췄습니다.' },
     { id: 3, region: '한국광기술원 실증', location: '학교 및 사무실', prefix: '일반 LED 대비', percent: '43', label: '추가 절감', desc: '자연광 연동 자동 제어 시스템을 통해, 고효율 일반 LED 조명에서 약 43%의 에너지를 추가로 절약했습니다.' },
   ];
 
