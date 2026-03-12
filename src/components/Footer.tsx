@@ -2,12 +2,13 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
-  // 💡 [추가됨] '준비중' 팝업 뱃지 상태 관리
+  // 💡 '준비중' 팝업 뱃지 상태 관리
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   const handleComingSoon = (e: React.MouseEvent) => {
     e.preventDefault();
-    setToastMessage('현재 준비 중인 페이지입니다. 조금만 기다려 주세요!');
+    // 💡 [수정됨] 멘트 간결화 및 '서비스'로 명칭 변경
+    setToastMessage('현재 준비 중인 서비스입니다.');
     
     // 3초 뒤에 팝업을 다시 숨깁니다.
     setTimeout(() => {
@@ -35,7 +36,7 @@ const Footer = () => {
             </p>
             
             <div className="flex gap-2 sm:gap-3 md:gap-4">
-              {/* 💡 [수정됨] 트위터 로고를 공식 X 로고로 변경 및 준비중 이벤트 추가 */}
+              {/* X (Twitter) 로고 */}
               <button 
                 onClick={handleComingSoon}
                 className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-flolim hover:text-slate-900 active:scale-95 transition-all cursor-pointer border border-slate-700 hover:border-flolim"
@@ -46,7 +47,7 @@ const Footer = () => {
                 </svg>
               </button>
               
-              {/* 💡 [수정됨] 인스타그램 로고 유지 및 준비중 이벤트 추가 */}
+              {/* Instagram 로고 */}
               <button 
                 onClick={handleComingSoon}
                 className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-flolim hover:text-slate-900 active:scale-95 transition-all cursor-pointer border border-slate-700 hover:border-flolim"
@@ -98,7 +99,7 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* 💡 [추가됨] '준비중' 토스트 팝업 UI */}
+      {/* '준비중' 토스트 팝업 UI */}
       <div 
         className={`fixed bottom-10 left-1/2 transform -translate-x-1/2 z-[100] transition-all duration-500 ease-out ${
           toastMessage ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-10 scale-95 pointer-events-none'
