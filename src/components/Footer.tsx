@@ -2,15 +2,12 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
-  // 💡 '준비중' 팝업 뱃지 상태 관리
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   const handleComingSoon = (e: React.MouseEvent) => {
     e.preventDefault();
-    // 💡 [수정됨] 멘트 간결화 및 '서비스'로 명칭 변경
     setToastMessage('현재 준비 중인 서비스입니다.');
     
-    // 3초 뒤에 팝업을 다시 숨깁니다.
     setTimeout(() => {
       setToastMessage(null);
     }, 3000);
@@ -36,7 +33,6 @@ const Footer = () => {
             </p>
             
             <div className="flex gap-2 sm:gap-3 md:gap-4">
-              {/* X (Twitter) 로고 */}
               <button 
                 onClick={handleComingSoon}
                 className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-flolim hover:text-slate-900 active:scale-95 transition-all cursor-pointer border border-slate-700 hover:border-flolim"
@@ -47,7 +43,6 @@ const Footer = () => {
                 </svg>
               </button>
               
-              {/* Instagram 로고 */}
               <button 
                 onClick={handleComingSoon}
                 className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-flolim hover:text-slate-900 active:scale-95 transition-all cursor-pointer border border-slate-700 hover:border-flolim"
@@ -94,12 +89,11 @@ const Footer = () => {
           <p>© 2026 FLOLIM Co., Ltd. All rights reserved.</p>
           <div className="flex gap-4 md:gap-6">
             <a href="#" onClick={handleComingSoon} className="hover:text-white transition-colors">이용약관</a>
-            <a href="#" onClick={handleComingSoon} className="text-white font-medium hover:text-flolim transition-colors">개인정보처리방침</a>
+            <Link to="/privacy" onClick={() => window.scrollTo(0,0)} className="text-white font-medium hover:text-flolim transition-colors">개인정보처리방침</Link>
           </div>
         </div>
       </div>
 
-      {/* '준비중' 토스트 팝업 UI */}
       <div 
         className={`fixed bottom-10 left-1/2 transform -translate-x-1/2 z-[100] transition-all duration-500 ease-out ${
           toastMessage ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-10 scale-95 pointer-events-none'

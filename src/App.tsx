@@ -1,89 +1,82 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-// --- 공통 컴포넌트 ---
-import Header from './components/Header';
-import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
-
-// --- 메인 페이지 ---
+// 💡 [수정됨] 실제 존재하는 Header 파일로 변경
+import Header from './components/Header'; 
+import Footer from './components/Footer';
 import Home from './pages/Home';
 
-// --- 1. 회사 소개 (01_Company) ---
-import CompanyCeo from './pages/01_Company/CompanyCeo';
+// Company
 import CompanyIntro from './pages/01_Company/CompanyIntro';
+import CompanyCeo from './pages/01_Company/CompanyCeo';
 import CompanyCert from './pages/01_Company/CompanyCert';
 import CompanyHistory from './pages/01_Company/CompanyHistory';
 import CompanyLocation from './pages/01_Company/CompanyLocation';
 
-// --- 2. 핵심 사업 모델 (02_Business) ---
+// Business
 import BusinessEsco from './pages/02_Business/BusinessEsco';
 import BusinessSimulation from './pages/02_Business/BusinessSimulation';
 
-// --- 3. 스마트 시티 솔루션 (03_SmartCity) ---
+// Smart City
 import SmartCityIntro from './pages/03_SmartCity/SmartCityIntro';
 import SmartCityLora from './pages/03_SmartCity/SmartCityLora';
 import SmartCityNbIot from './pages/03_SmartCity/SmartCityNbIot';
 import SmartCityDmx from './pages/03_SmartCity/SmartCityDmx';
 
-// --- 4. 스마트 빌딩 솔루션 (04_SmartBuilding) ---
+// Smart Building
 import SmartBuildingIntro from './pages/04_SmartBuilding/SmartBuildingIntro';
 import SmartBuildingSensor from './pages/04_SmartBuilding/SmartBuildingSensor';
 
-// --- 5. 통합 관제 플랫폼 (05_Platform) ---
+// Platform
 import PlatformDashboard from './pages/05_Platform/PlatformDashboard';
 import PlatformEsg from './pages/05_Platform/PlatformEsg';
 
-// --- 6. 고객 지원 (06_Support) ---
+// Support
 import SupportReferences from './pages/06_Support/SupportReferences';
 import SupportArchive from './pages/06_Support/SupportArchive';
 import SupportContact from './pages/06_Support/SupportContact';
+
+// Policy
+import PrivacyPolicy from './pages/PrivacyPolicy';
 
 function App() {
   return (
     <Router>
       <ScrollToTop />
-      
-      {/* 💡 전체 배경을 프리미엄 다크(slate-950)로 변경하고, 글씨를 밝게(slate-200) 설정합니다. */}
-      <div className="flex flex-col min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-flolim/30">
-        
+      <div className="flex flex-col min-h-screen bg-[#020617] font-sans selection:bg-flolim selection:text-slate-900">
+        {/* 💡 [수정됨] Header 컴포넌트 렌더링 */}
         <Header />
-        
         <main className="flex-grow pt-20">
           <Routes>
             <Route path="/" element={<Home />} />
-
-            {/* 회사 소개 */}
-            <Route path="/company/ceo" element={<CompanyCeo />} />
+            
             <Route path="/company/intro" element={<CompanyIntro />} />
+            <Route path="/company/ceo" element={<CompanyCeo />} />
             <Route path="/company/cert" element={<CompanyCert />} />
             <Route path="/company/history" element={<CompanyHistory />} />
             <Route path="/company/location" element={<CompanyLocation />} />
-
-            {/* 핵심 사업 모델 */}
+            
             <Route path="/business/esco" element={<BusinessEsco />} />
             <Route path="/business/simulation" element={<BusinessSimulation />} />
-
-            {/* 스마트 시티 솔루션 */}
+            
             <Route path="/smart-city/intro" element={<SmartCityIntro />} />
             <Route path="/smart-city/lora" element={<SmartCityLora />} />
             <Route path="/smart-city/nb-iot" element={<SmartCityNbIot />} />
             <Route path="/smart-city/dmx" element={<SmartCityDmx />} />
-
-            {/* 스마트 빌딩 솔루션 */}
+            
             <Route path="/smart-building/intro" element={<SmartBuildingIntro />} />
             <Route path="/smart-building/sensor" element={<SmartBuildingSensor />} />
-
-            {/* 통합 관제 플랫폼 */}
+            
             <Route path="/platform/dashboard" element={<PlatformDashboard />} />
             <Route path="/platform/esg" element={<PlatformEsg />} />
-
-            {/* 고객 지원 */}
+            
             <Route path="/support/references" element={<SupportReferences />} />
             <Route path="/support/archive" element={<SupportArchive />} />
             <Route path="/support/contact" element={<SupportContact />} />
+            
+            {/* 개인정보처리방침 라우트 */}
+            <Route path="/privacy" element={<PrivacyPolicy />} />
           </Routes>
         </main>
-        
         <Footer />
       </div>
     </Router>
