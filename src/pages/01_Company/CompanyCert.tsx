@@ -3,7 +3,6 @@ import BottomNav from '../../components/BottomNav';
 
 export default function CompanyCert() {
   const certificates = [
-    // 💡 [수정됨] cert-kilt.jpg -> cert-kiel.jpg
     { id: 1, img: 'cert-kiel.jpg', title: '키엘연구원 시험성적서', desc: '스마트 LED 조명 제어 시스템' },
     { id: 2, img: 'cert-women.jpg', title: '여성기업 확인서', desc: '중소벤처기업청 인증' },
     { id: 3, img: 'cert-sme.jpg', title: '중소기업 확인서', desc: '소기업(소상공인) 등록' },
@@ -155,8 +154,14 @@ export default function CompanyCert() {
 
             {/* 우측 기업 */}
             <div className="flex-1 flex flex-col items-center text-center w-full group relative z-10 cursor-default">
-              <div className="w-32 h-32 md:w-32 md:h-32 lg:w-56 lg:h-56 bg-white rounded-2xl lg:rounded-[2rem] p-4 lg:p-8 flex items-center justify-center shadow-lg border-[3px] lg:border-4 border-slate-800 mb-4 lg:mb-6 transform group-hover:-translate-y-2 transition-transform duration-500">
-                <img src="/images/logo-tuvan.jpg" alt="투반테크 로고" className="w-full h-full object-contain" />
+              <div className="w-32 h-32 md:w-32 md:h-32 lg:w-56 lg:h-56 bg-white rounded-2xl lg:rounded-[2rem] p-4 lg:p-6 flex items-center justify-center shadow-lg border-[3px] lg:border-4 border-slate-800 mb-4 lg:mb-6 transform group-hover:-translate-y-2 transition-transform duration-500">
+                {/* 💡 [수정됨] logo-tuvan.jpg 이미지를 제거하고 스마트 LED 아이콘으로 교체 */}
+                <div className="flex flex-col items-center justify-center text-slate-800 w-full h-full">
+                  <svg className="w-12 h-12 lg:w-16 lg:h-16 text-slate-800 mb-1 lg:mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                  </svg>
+                  <span className="text-[9px] lg:text-[11px] font-bold tracking-widest text-slate-500 text-center">SMART LED PARTNER</span>
+                </div>
               </div>
               <h3 className="text-lg md:text-lg lg:text-2xl font-bold text-white mb-2 lg:mb-3 group-hover:text-flolim transition-colors break-keep">(주)투반테크</h3>
               <p className="text-slate-400 font-light text-[10px] md:text-xs lg:text-sm leading-relaxed break-keep">
