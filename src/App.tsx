@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ScrollToTop from './components/ScrollToTop';
-// 💡 [수정됨] 실제 존재하는 Header 파일로 변경
 import Header from './components/Header'; 
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -37,13 +36,13 @@ import SupportContact from './pages/06_Support/SupportContact';
 
 // Policy
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService'; // 💡 [추가됨] 이용약관 임포트
 
 function App() {
   return (
     <Router>
       <ScrollToTop />
       <div className="flex flex-col min-h-screen bg-[#020617] font-sans selection:bg-flolim selection:text-slate-900">
-        {/* 💡 [수정됨] Header 컴포넌트 렌더링 */}
         <Header />
         <main className="flex-grow pt-20">
           <Routes>
@@ -73,8 +72,8 @@ function App() {
             <Route path="/support/archive" element={<SupportArchive />} />
             <Route path="/support/contact" element={<SupportContact />} />
             
-            {/* 개인정보처리방침 라우트 */}
             <Route path="/privacy" element={<PrivacyPolicy />} />
+            <Route path="/terms" element={<TermsOfService />} /> {/* 💡 [추가됨] 이용약관 라우트 */}
           </Routes>
         </main>
         <Footer />

@@ -88,7 +88,8 @@ const Footer = () => {
         <div className="flex flex-col sm:flex-row justify-between items-center gap-3 md:gap-4 text-[10px] md:text-xs font-light">
           <p>© 2026 FLOLIM Co., Ltd. All rights reserved.</p>
           <div className="flex gap-4 md:gap-6">
-            <a href="#" onClick={handleComingSoon} className="hover:text-white transition-colors">이용약관</a>
+            {/* 💡 [수정됨] 이용약관 Link 추가 */}
+            <Link to="/terms" onClick={() => window.scrollTo(0,0)} className="hover:text-white transition-colors">이용약관</Link>
             <Link to="/privacy" onClick={() => window.scrollTo(0,0)} className="text-white font-medium hover:text-flolim transition-colors">개인정보처리방침</Link>
           </div>
         </div>
@@ -110,7 +111,6 @@ const Footer = () => {
           </span>
         </div>
       </div>
-
     </footer>
   );
 };

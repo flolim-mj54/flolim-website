@@ -46,13 +46,13 @@ export default function PrivacyPolicy() {
             <p className="mb-2">① 회사는 정보주체로부터 개인정보를 수집 시에 동의받은 개인정보 보유·이용 기간 내에서 개인정보를 처리·보유합니다.</p>
             <p className="mb-3">② 구체적인 개인정보 처리 및 보유 기간은 다음과 같습니다.</p>
             <ul className="list-disc pl-5 space-y-2 text-slate-400">
-              <li><strong className="text-slate-300">온라인 문의 관리:</strong> 문의 접수 및 상담 완료 후 <strong className="text-flolim">3년</strong> 간 보관 후 파기</li>
+              <li><strong className="text-slate-300">온라인 문의 관리:</strong> 문의 접수 및 상담 완료 후 3년 간 보관 후 파기</li>
             </ul>
           </section>
 
           <section>
             <h2 className="text-lg md:text-xl font-bold text-white mb-4">4. 개인정보의 파기 절차 및 방법에 관한 사항</h2>
-            <p className="mb-2">① 회사는 개인정보 보유기간의 경과, 처리목적 달성 등 개인정보가 불필요하게 되었을 때에는 지체 없이 해당 개인정보 파기합니다.</p>
+            <p className="mb-2">① 회사는 개인정보 보유기간의 경과, 처리목적 달성 등 개인정보가 불필요하게 되었을 때에는 지체 없이 해당 개인정보를 파기합니다.</p>
             <p className="mb-3">② 개인정보 파기의 절차 및 방법은 다음과 같습니다.</p>
             <ul className="list-disc pl-5 space-y-2 text-slate-400">
               <li><strong className="text-slate-300">파기 절차:</strong> 파기 사유가 발생한 개인정보를 선정하고, 회사의 개인정보 보호책임자의 승인을 받아 개인정보를 파기합니다.</li>
@@ -78,20 +78,23 @@ export default function PrivacyPolicy() {
           </section>
 
           <section>
-            <h2 className="text-lg md:text-xl font-bold text-white mb-4">7. 개인정보 보호책임자 및 담당 부서 안내</h2>
-            <p className="mb-3">① 회사는 개인정보 처리에 관한 업무를 총괄해서 책임지고, 개인정보 처리와 관련한 정보주체의 불만처리 및 피해구제 등을 위하여 아래와 같이 개인정보 보호책임자를 지정하고 있습니다.</p>
+            <h2 className="text-lg md:text-xl font-bold text-white mb-4">7. 개인정보 보호 업무 담당 부서 안내</h2>
+            <p className="mb-4">① 회사는 개인정보 처리에 관한 업무를 총괄해서 책임지고, 개인정보 처리와 관련한 정보주체의 불만처리 및 피해구제 등을 위하여 아래와 같이 전담 부서를 지정하고 있습니다.</p>
+            
+            {/* 💡 [수정됨] 담당자 이름 및 이메일 제거, 직위/부서명/대표연락처로 공식화 */}
             <div className="bg-slate-800/50 p-5 rounded-2xl mb-4 border border-slate-700">
-              <p className="font-bold text-white mb-3 flex items-center gap-2">
+              <p className="font-bold text-white mb-4 flex items-center gap-2">
                 <svg className="w-5 h-5 text-flolim" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
-                개인정보 보호책임자 (및 담당 부서)
+                개인정보 보호 업무 담당 부서
               </p>
-              <ul className="space-y-2 text-slate-300 text-sm">
-                <li className="flex"><span className="w-20 text-slate-500 shrink-0">성명/직위</span> 김무정 / 선임연구원</li>
+              <ul className="space-y-3 text-slate-300 text-sm">
+                <li className="flex"><span className="w-20 text-slate-500 shrink-0">담당직위</span> 솔루션연구개발부 책임자</li>
                 <li className="flex"><span className="w-20 text-slate-500 shrink-0">부서명</span> 솔루션연구개발부</li>
-                <li className="flex"><span className="w-20 text-slate-500 shrink-0">연락처</span> 1660-0687, moojeong54@flolim.com</li>
+                <li className="flex"><span className="w-20 text-slate-500 shrink-0">연락처</span> 1660-0687</li>
               </ul>
             </div>
-            <p>② 정보주체는 회사의 서비스를 이용하시면서 발생한 모든 개인정보 보호 관련 문의, 불만처리, 피해구제 등에 관한 사항을 개인정보 보호책임자 및 담당 부서로 문의할 수 있습니다.</p>
+
+            <p>② 정보주체는 회사의 서비스를 이용하시면서 발생한 모든 개인정보 보호 관련 문의, 불만처리, 피해구제 등에 관한 사항을 담당 부서로 문의할 수 있습니다.</p>
           </section>
 
           <section>
