@@ -2,30 +2,52 @@ import PageHeader from '../../components/PageHeader';
 import BottomNav from '../../components/BottomNav';
 
 const SupportArchive = () => {
-  // 💡 [Map 데이터] file 속성에 실제 PDF 파일 경로를 연결합니다.
   const brochures = [
     { 
       id: 1, 
       title: '플로림 통합 브로슈어 (2026)', 
       desc: '스마트 시티 및 빌딩 솔루션 통합 안내서 (PDF, 8.45MB)', 
-      iconColor: 'text-red-400', 
-      icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />,
-      file: '/docs/flolim_brochure.pdf'
+      img: '/images/logo-pdf.jpg',
+      url: '/docs/flolim_brochure.pdf',
+      isLink: false,
+      btnText: '다운로드'
     },
     { 
       id: 2, 
-      title: 'ESCO 사업 제안서', 
-      desc: '초기 투자비 0원 KEPCO 연계 사업 안내서 (PDF, 122KB)', 
-      iconColor: 'text-blue-400', 
-      icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />,
-      file: '/docs/flolim_esco_proposal.pdf'
+      title: 'KEPCO ES 에너지 효율화 사업', 
+      desc: '초기 투자비 0원 ESCO 사업 공식 안내 페이지로 이동합니다.', 
+      img: '/images/logo-kepcoes.jpg',
+      url: 'https://www.kepcoes.co.kr/business/business01.asp',
+      isLink: true,
+      btnText: '공식 홈페이지 이동'
     },
   ];
 
   const manuals = [
-    { id: 1, title: '단말기 기술 사양서', desc: 'LoRa / NB-IoT Node Spec', file: '/docs/flolim_spec.pdf' },
-    { id: 2, title: '플랫폼 사용자 매뉴얼', desc: '관제 대시보드 사용 가이드', file: '/docs/flolim_manual.pdf' },
-    { id: 3, title: '공식 인증 및 성적서', desc: 'KILT 등 통합 인증서 모음', file: '/docs/flolim_certs.pdf' },
+    { 
+      id: 3, 
+      title: '공식 인증 및 성적서', 
+      desc: 'KIEL 등 통합 인증서 모음', 
+      file: '/docs/flolim_certs.pdf',
+      img: '/images/logo-pdf.jpg',
+      isReady: true 
+    },
+    { 
+      id: 1, 
+      title: '단말기 기술 사양서', 
+      desc: 'LoRa / NB-IoT Node Spec', 
+      file: '#',
+      img: '/images/logo-pdf.jpg',
+      isReady: false 
+    },
+    { 
+      id: 2, 
+      title: '플랫폼 사용자 매뉴얼', 
+      desc: '관제 대시보드 사용 가이드', 
+      file: '#',
+      img: '/images/logo-pdf.jpg',
+      isReady: false 
+    },
   ];
 
   return (
@@ -36,7 +58,7 @@ const SupportArchive = () => {
         subtitle={
           <>
             플로림의 솔루션 소개서, 제품 스펙 시트, 매뉴얼 등<br className="hidden md:block" />
-            <strong className="text-white font-bold">도입 검토에 필요한 공식 문서</strong>를 다운로드하실 수 있습니다.
+            <strong className="text-white font-bold">도입 검토에 필요한 공식 문서</strong>를 확인하실 수 있습니다.
           </>
         }
       />
@@ -47,28 +69,44 @@ const SupportArchive = () => {
           <div className="absolute top-1/2 left-1/2 w-[800px] h-[800px] bg-flolim/5 rounded-full blur-[150px] pointer-events-none -translate-x-1/2 -translate-y-1/2"></div>
 
           <div className="mb-12 md:mb-16 relative z-10">
-            <h2 className="text-xl md:text-2xl font-bold text-white mb-6 border-l-4 border-flolim pl-3 break-keep">회사 소개 및 제안서</h2>
+            <h2 className="text-xl md:text-2xl font-bold text-white mb-6 border-l-4 border-flolim pl-3 break-keep">회사 소개 및 ESCO 사업 소개</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {brochures.map((b) => (
-                <div key={b.id} className="bg-[#050b14] p-6 md:p-8 rounded-3xl border border-slate-700 shadow-inner flex flex-col sm:flex-row items-center sm:items-start gap-4 md:gap-6 group relative overflow-hidden cursor-default">
+                // 💡 [수정됨] flex-col, h-full 속성을 주어 카드 높이를 맞추고 내부 요소 정렬
+                <div key={b.id} className="bg-[#050b14] p-6 md:p-8 rounded-3xl border border-slate-700 shadow-inner flex flex-col h-full group relative overflow-hidden cursor-default">
                   <div className="absolute -right-6 -top-6 w-24 h-24 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
-                  <div className={`w-14 h-14 md:w-16 md:h-16 bg-slate-800 rounded-2xl flex items-center justify-center border border-slate-600 shrink-0 relative z-10 ${b.iconColor}`}>
-                    <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">{b.icon}</svg>
-                  </div>
-                  <div className="flex-1 text-center sm:text-left relative z-10 w-full">
-                    <h3 className="text-base md:text-lg font-bold text-white mb-1 group-hover:text-flolim transition-colors break-keep">{b.title}</h3>
-                    <p className="text-[11px] md:text-xs text-slate-400 mb-4 break-keep">{b.desc}</p>
+                  
+                  {/* 상단: 이미지와 텍스트 영역 (flex-1을 주어 남는 공간 차지) */}
+                  <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 md:gap-5 mb-6 relative z-10 flex-1 w-full">
+                    <div className="w-16 h-16 md:w-20 md:h-20 bg-white rounded-2xl flex items-center justify-center border border-slate-200 shrink-0 relative p-2 md:p-3 shadow-md group-hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-shadow">
+                      <img src={b.img} alt={b.title} className="w-full h-full object-contain" />
+                    </div>
                     
-                    {/* 💡 [수정] inline-flex 단어를 삭제하여 경고 메시지 해결 */}
+                    <div className="text-center sm:text-left w-full pt-1">
+                      <h3 className="text-base md:text-lg font-bold text-white mb-2 group-hover:text-flolim transition-colors break-keep">{b.title}</h3>
+                      <p className="text-[11px] md:text-xs text-slate-400 leading-relaxed break-keep">{b.desc}</p>
+                    </div>
+                  </div>
+                  
+                  {/* 💡 [수정됨] 하단: 버튼 영역 (mt-auto로 무조건 바닥에 고정, w-full로 가로 꽉 채움) */}
+                  <div className="relative z-10 mt-auto w-full pt-2">
                     <a 
-                      href={b.file} 
-                      download 
+                      href={b.url} 
+                      {...(!b.isLink ? { download: true } : {})}
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="w-full sm:w-auto px-4 py-2.5 bg-slate-800 hover:bg-flolim active:scale-95 hover:text-slate-900 text-slate-300 text-xs font-bold rounded-lg transition-all border border-slate-600 hover:border-flolim flex items-center justify-center gap-2"
+                      className={`w-full py-3 md:py-3.5 rounded-xl transition-all border font-bold text-xs md:text-sm flex items-center justify-center gap-2 active:scale-95 shadow-sm ${
+                        b.isLink
+                          ? 'bg-blue-500/10 text-blue-400 border-blue-500/30 hover:bg-blue-500 hover:text-white hover:border-blue-500'
+                          : 'bg-slate-800 text-slate-300 border-slate-600 hover:bg-flolim hover:text-slate-900 hover:border-flolim'
+                      }`}
                     >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                      다운로드
+                      {b.isLink ? (
+                        <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                      ) : (
+                        <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                      )}
+                      {b.btnText}
                     </a>
                   </div>
                 </div>
@@ -80,28 +118,40 @@ const SupportArchive = () => {
             <h2 className="text-xl md:text-2xl font-bold text-white mb-6 border-l-4 border-flolim pl-3 break-keep">기술 사양 및 매뉴얼</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               {manuals.map((m) => (
-                <div key={m.id} className="bg-[#050b14] p-5 md:p-6 rounded-2xl border border-slate-700 shadow-inner group relative overflow-hidden cursor-default flex flex-col justify-between h-full">
-                  <div className="absolute -right-6 -top-6 w-20 h-20 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
+                <div key={m.id} className={`bg-[#050b14] p-5 md:p-6 rounded-2xl border ${m.isReady ? 'border-slate-700 hover:border-flolim/50' : 'border-slate-800/50'} shadow-inner group relative overflow-hidden cursor-default flex flex-col justify-between h-full transition-colors`}>
+                  {m.isReady && <div className="absolute -right-6 -top-6 w-20 h-20 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>}
+                  
                   <div className="relative z-10 flex justify-between items-start mb-6">
                     <div>
-                      <h3 className="text-sm md:text-base font-bold text-white mb-1 group-hover:text-flolim transition-colors break-keep">{m.title}</h3>
-                      <p className="text-[10px] md:text-xs text-slate-500 break-keep">{m.desc}</p>
+                      <div className="flex items-center gap-2 mb-1">
+                        <h3 className={`text-sm md:text-base font-bold ${m.isReady ? 'text-white group-hover:text-flolim' : 'text-slate-500'} transition-colors break-keep`}>{m.title}</h3>
+                        {!m.isReady && <span className="text-[9px] font-bold bg-slate-800 text-slate-400 px-1.5 py-0.5 rounded border border-slate-700">준비중</span>}
+                      </div>
+                      <p className={`text-[10px] md:text-xs break-keep ${m.isReady ? 'text-slate-400' : 'text-slate-600'}`}>{m.desc}</p>
                     </div>
-                    <div className="w-8 h-8 md:w-10 md:h-10 bg-slate-800 rounded-lg flex items-center justify-center border border-slate-600 text-slate-400 shrink-0">
-                      <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    
+                    <div className={`w-10 h-10 md:w-12 md:h-12 bg-white rounded-xl flex items-center justify-center border shrink-0 p-1.5 md:p-2 transition-all ${m.isReady ? 'border-slate-200 shadow-sm' : 'border-slate-800 opacity-30 grayscale'}`}>
+                      <img src={m.img} alt="PDF 문서" className="w-full h-full object-contain" />
                     </div>
                   </div>
                   
-                  <a 
-                    href={m.file} 
-                    download 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="w-full py-2.5 bg-slate-800 hover:bg-flolim active:scale-95 hover:text-slate-900 text-slate-300 text-xs font-bold rounded-lg transition-all border border-slate-600 hover:border-flolim relative z-10 flex items-center justify-center gap-1.5"
-                  >
-                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                    다운로드
-                  </a>
+                  {m.isReady ? (
+                    <a 
+                      href={m.file} 
+                      download 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="w-full py-2.5 bg-slate-800 hover:bg-flolim active:scale-95 hover:text-slate-900 text-slate-300 text-xs font-bold rounded-lg transition-all border border-slate-600 hover:border-flolim relative z-10 flex items-center justify-center gap-1.5"
+                    >
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                      다운로드
+                    </a>
+                  ) : (
+                    <div className="w-full py-2.5 bg-slate-900/50 text-slate-600 text-xs font-bold rounded-lg border border-slate-800 relative z-10 flex items-center justify-center gap-1.5 cursor-not-allowed">
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                      자료 준비중
+                    </div>
+                  )}
                 </div>
               ))}
             </div>

@@ -3,9 +3,8 @@ import PageHeader from '../../components/PageHeader';
 import BottomNav from '../../components/BottomNav';
 
 const SmartBuildingIntro = () => {
-  // 💡 [Map 데이터] 실증 사례 3종
   const cases = [
-    { id: 1, region: '대한민국 ETRI 실증', location: '공장 및 상업시설', percent: '74.1', label: '절감', desc: '스마트조명 플랫폼 개별/그룹 제어 적용으로 전통 조명 대비 최대 74.1%의 압도적인 에너지를 절감했습니다.' },
+    { id: 1, region: '한국전자통신연구원 실증', location: '공장 및 상업시설', percent: '74.1', label: '절감', desc: '스마트조명 플랫폼 개별/그룹 제어 적용으로 전통 조명 대비 최대 74.1%의 압도적인 에너지를 절감했습니다.' },
     { id: 2, region: '대한민국 LH공사 실증', location: '공동주택 및 건물', prefix: '최대', percent: '70', label: '이상 절감', desc: 'IoT 기반 10단계 자동 조도 조절(디밍)을 적용하여 전통 조명 대비 전력량을 70% 이상 대폭 낮췄습니다.' },
     { id: 3, region: '한국광기술원 실증', location: '학교 및 사무실', prefix: '일반 LED 대비', percent: '43', label: '추가 절감', desc: '자연광 연동 자동 제어 시스템을 통해, 고효율 일반 LED 조명에서 약 43%의 에너지를 추가로 절약했습니다.' },
   ];
@@ -25,7 +24,6 @@ const SmartBuildingIntro = () => {
 
       <div className="container mx-auto px-4 max-w-6xl mt-10">
         
-        {/* 1. 시스템 개요 래퍼 박스 */}
         <section className="bg-slate-900/50 backdrop-blur-md rounded-[2.5rem] p-6 md:p-10 lg:p-16 shadow-2xl border border-slate-800 mb-16 relative overflow-hidden">
           <div className="absolute top-1/2 left-1/2 w-[800px] h-[800px] bg-flolim/5 rounded-full blur-[150px] pointer-events-none -translate-x-1/2 -translate-y-1/2"></div>
 
@@ -78,7 +76,6 @@ const SmartBuildingIntro = () => {
           </div>
         </section>
 
-        {/* 2. 압도적 절감 효과 래퍼 박스 */}
         <section className="bg-slate-900/50 backdrop-blur-md rounded-[2.5rem] p-8 md:p-16 shadow-2xl border border-slate-800 mb-16 relative overflow-hidden">
           <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-flolim/5 rounded-full blur-[150px] pointer-events-none translate-y-1/4 translate-x-1/4"></div>
 
@@ -90,17 +87,20 @@ const SmartBuildingIntro = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 relative z-10">
-            {/* 💡 [Map 렌더링] */}
             {cases.map((c) => (
-              <div key={c.id} className="bg-[#050b14] p-6 md:p-8 rounded-3xl border border-slate-700 shadow-inner hover:border-flolim/50 active:scale-[0.98] transition-all duration-300 group relative overflow-hidden cursor-default">
+              <div key={c.id} className="bg-[#050b14] p-6 md:p-8 rounded-3xl border border-slate-700 shadow-inner hover:border-flolim/50 active:scale-[0.98] transition-all duration-300 group relative overflow-hidden flex flex-col h-full cursor-default">
                 <div className="absolute -right-6 -top-6 w-24 h-24 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
-                <div className="relative z-10">
+                <div className="relative z-10 flex flex-col h-full">
                   <h3 className="text-lg md:text-xl font-bold text-white mb-2 group-hover:text-flolim transition-colors break-keep">{c.region}</h3>
-                  <p className="text-[11px] md:text-xs text-slate-500 font-medium mb-6 break-keep">{c.location}</p>
-                  <div className="flex items-end gap-2 mb-4">
-                    {c.prefix && <span className="text-slate-400 font-bold mb-1 text-xs md:text-sm mr-1">{c.prefix}</span>}
-                    <span className="text-3xl md:text-4xl font-black text-flolim tracking-tight drop-shadow-[0_0_15px_rgba(24,169,198,0.3)]">{c.percent}<span className="text-lg md:text-2xl font-medium ml-0.5">%</span></span>
-                    {c.label && <span className="text-slate-400 font-bold mb-1 text-xs md:text-sm break-keep">{c.label}</span>}
+                  <p className="text-[11px] md:text-xs text-slate-500 font-medium mb-6 break-keep flex-grow">{c.location}</p>
+                  
+                  {/* 💡 [수정] 모바일/태블릿 레이아웃 보호를 위한 flex-wrap 적용 */}
+                  <div className="flex flex-wrap items-end gap-x-2 gap-y-1 mt-auto mb-4">
+                    {c.prefix && <span className="text-slate-400 font-bold mb-1 text-xs md:text-sm break-keep">{c.prefix}</span>}
+                    <span className="text-3xl md:text-4xl font-black text-flolim tracking-tight drop-shadow-[0_0_15px_rgba(24,169,198,0.3)] whitespace-nowrap">
+                      {c.percent}<span className="text-lg md:text-2xl font-medium ml-0.5">%</span>
+                    </span>
+                    <span className="text-slate-400 font-bold mb-1 text-xs md:text-sm whitespace-nowrap">{c.label}</span>
                   </div>
                   <p className="text-xs md:text-sm text-slate-400 leading-relaxed font-light break-keep">{c.desc}</p>
                 </div>
@@ -109,7 +109,6 @@ const SmartBuildingIntro = () => {
           </div>
         </section>
 
-        {/* 3. 하위 솔루션(IoT 센서) 라우팅 안내 래퍼 박스 */}
         <section className="bg-slate-900/50 backdrop-blur-md rounded-[2.5rem] p-8 md:p-16 shadow-2xl border border-slate-800 mb-16 relative overflow-hidden">
           <div className="text-center mb-8 md:mb-10 relative z-10 px-2">
             <h2 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4 break-keep">빌딩 에너지를 지휘하는 스마트 두뇌</h2>

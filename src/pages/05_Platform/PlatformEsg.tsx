@@ -10,7 +10,6 @@ const PlatformEsg = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // 💡 [수정] Tailwind JIT 컴파일러가 인식할 수 있도록 전체 클래스명을 직접 명시
   const esgIndicators = [
     { 
       id: 1, 
@@ -42,7 +41,8 @@ const PlatformEsg = () => {
     },
     { 
       id: 3, 
-      title: 'Governance & Economy', 
+      // 💡 [수정] 긴 타이틀이 태블릿 등에서 잘 줄바꿈되도록 띄어쓰기 보호 해제 및 break-words 적용
+      title: <span className="break-words">Governance &<br className="hidden lg:block"/> Economy</span>, 
       subtitle: '운영 투명성 및 비용 혁신', 
       desc: '통신 오류, 제어 개입 등의 투명성 로그와 전력/유지보수 비용 최소화를 통한 예산 절감액을 리포팅합니다.', 
       icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />,
@@ -57,7 +57,7 @@ const PlatformEsg = () => {
   ];
 
   const strengths = [
-    { id: 1, title: '위변조 불가능한 신뢰성', desc: '하드웨어 스마트 미터기에서 측정한 원본 데이터를 사용하여, 감사(Audit) 추적성이 100% 보장됩니다.', icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /> },
+    { id: 1, title: '위변조 불가능한 신뢰성', desc: '하드웨어 스마트 미터기에서 측정한 원본 데이터를 사용하여, 데이터 무결성이 100% 보장됩니다.', icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /> },
     { id: 2, title: '스케줄 기반 자동 발행', desc: '원하는 주기(월간, 분기, 연간)를 설정하면, 플랫폼이 자동으로 성과를 분석하여 PDF 및 Excel 리포트를 완성합니다.', icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /> },
     { id: 3, title: '글로벌 표준 (RE100)', desc: '글로벌 RE100, K-ETS 지침에 맞춘 Scope 2 배출량 산정 공식을 정확하게 시스템에 반영합니다.', icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" /> }
   ];
@@ -76,7 +76,6 @@ const PlatformEsg = () => {
 
       <div className="container mx-auto px-4 max-w-6xl mt-10">
         
-        {/* 1. 메인 래퍼 박스 (3D 시네마틱 효과) */}
         <section className="bg-slate-900/50 backdrop-blur-md rounded-[2.5rem] p-6 md:p-10 lg:p-16 shadow-2xl border border-slate-800 mb-16 relative overflow-hidden min-h-[500px] md:min-h-[700px] flex flex-col">
           <div className="text-center mb-10 md:mb-16 relative z-20 px-2">
             <h2 className="text-xl md:text-3xl font-bold text-white mb-2 md:mb-3 break-keep">자동화된 ESG 성과 리포트</h2>
@@ -105,7 +104,6 @@ const PlatformEsg = () => {
           </div>
         </section>
 
-        {/* 2. ESG 리포트 핵심 지표 */}
         <section className="mb-16 md:mb-20">
           <div className="text-center mb-10 md:mb-12 relative z-10 px-2">
             <h2 className="text-xl md:text-3xl font-bold text-white break-keep">데이터 기반 ESG 가치 증명</h2>
@@ -113,30 +111,29 @@ const PlatformEsg = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 relative z-10">
             {esgIndicators.map((ind) => (
-              <div key={ind.id} className={`bg-[#050b14] p-6 md:p-8 rounded-3xl border border-slate-700 shadow-inner transition-colors group relative overflow-hidden cursor-default active:scale-[0.98] ${ind.classes.border}`}>
+              <div key={ind.id} className={`bg-[#050b14] p-6 md:p-8 rounded-3xl border border-slate-700 shadow-inner transition-colors group relative overflow-hidden cursor-default active:scale-[0.98] flex flex-col ${ind.classes.border}`}>
                 <div className={`absolute -right-6 -top-6 w-24 h-24 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none ${ind.classes.bgGlow}`}></div>
                 <div className={`w-10 h-10 md:w-12 md:h-12 bg-slate-800 rounded-xl flex items-center justify-center mb-4 md:mb-5 transition-colors relative z-10 border border-slate-600 ${ind.classes.iconBox}`}>
                   <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">{ind.icon}</svg>
                 </div>
                 <h3 className={`text-base md:text-lg font-bold text-white mb-1 md:mb-2 transition-colors relative z-10 break-keep ${ind.classes.titleHover}`}>{ind.title}</h3>
                 <p className={`font-bold text-xs md:text-sm mb-2 relative z-10 break-keep ${ind.classes.subtitle}`}>{ind.subtitle}</p>
-                <p className="text-slate-400 font-light text-xs md:text-sm leading-relaxed relative z-10 break-keep">{ind.desc}</p>
+                <p className="text-slate-400 font-light text-xs md:text-sm leading-relaxed relative z-10 break-keep flex-grow">{ind.desc}</p>
               </div>
             ))}
           </div>
         </section>
 
-        {/* 3. ESG 리포트 시스템 강점 */}
         <section className="mb-20">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 relative z-10">
             {strengths.map((str) => (
-              <div key={str.id} className="bg-[#050b14] p-6 md:p-8 rounded-3xl border border-slate-700 shadow-inner hover:border-flolim/50 active:scale-[0.98] active:border-flolim transition-colors group relative overflow-hidden cursor-default">
+              <div key={str.id} className="bg-[#050b14] p-6 md:p-8 rounded-3xl border border-slate-700 shadow-inner hover:border-flolim/50 active:scale-[0.98] active:border-flolim transition-colors group relative overflow-hidden cursor-default flex flex-col">
                 <div className="absolute -right-6 -top-6 w-24 h-24 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
                 <div className="w-10 h-10 md:w-12 md:h-12 bg-slate-800 text-flolim rounded-xl flex items-center justify-center mb-4 md:mb-5 group-hover:bg-flolim/10 transition-colors relative z-10 border border-slate-600">
                   <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">{str.icon}</svg>
                 </div>
                 <h3 className="text-base md:text-lg font-bold text-white mb-2 group-hover:text-flolim transition-colors relative z-10 break-keep">{str.title}</h3>
-                <p className="text-slate-400 font-light text-xs md:text-sm leading-relaxed relative z-10 break-keep">{str.desc}</p>
+                <p className="text-slate-400 font-light text-xs md:text-sm leading-relaxed relative z-10 break-keep flex-grow">{str.desc}</p>
               </div>
             ))}
           </div>

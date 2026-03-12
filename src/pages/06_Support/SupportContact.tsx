@@ -15,7 +15,6 @@ const SupportContact = () => {
     setIsSubmitting(true);
 
     try {
-      // .env 파일에 설정한 키값들을 불러옵니다.
       const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
       const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
       const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
@@ -34,7 +33,7 @@ const SupportContact = () => {
       );
 
       alert("도입 문의가 성공적으로 접수되었습니다. 담당자가 빠른 시일 내에 연락드리겠습니다.");
-      formRef.current.reset(); // 성공 시 폼 초기화
+      formRef.current.reset(); 
 
     } catch (error) {
       console.error("이메일 전송 실패:", error);
@@ -63,7 +62,6 @@ const SupportContact = () => {
 
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 relative z-10">
             
-            {/* 좌측: 연락처 정보 */}
             <div className="lg:w-1/3 flex flex-col gap-4 md:gap-6">
               <div>
                 <h2 className="text-xl md:text-2xl font-bold text-white mb-2 break-keep">Direct Contact</h2>
@@ -93,11 +91,9 @@ const SupportContact = () => {
               </div>
             </div>
 
-            {/* 우측: 문의 폼 */}
             <div className="lg:w-2/3 bg-[#050b14] rounded-3xl border border-slate-700 p-6 md:p-10 shadow-inner">
               <h2 className="text-lg md:text-xl font-bold text-white mb-5 md:mb-6 border-b border-slate-800 pb-3 md:pb-4 break-keep">온라인 문의 양식</h2>
               
-              {/* 💡 form 태그에 ref 연결 */}
               <form ref={formRef} onSubmit={handleSubmit} className="space-y-5 md:space-y-6">
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
@@ -126,7 +122,8 @@ const SupportContact = () => {
                   <label htmlFor="inquiryType" className="block text-[11px] md:text-sm font-bold text-slate-300 break-keep">문의 유형</label>
                   <div className="relative">
                     <select id="inquiryType" name="inquiry_type" className="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 md:py-3 text-xs md:text-sm text-slate-200 appearance-none focus:outline-none focus:border-flolim focus:ring-1 focus:ring-flolim transition-colors cursor-pointer">
-                      <option value="esco">KEPCO 연계 ESCO (무상구축) 상담</option>
+                      {/* 💡 수정됨: KEPCO ES 연계 */}
+                      <option value="esco">KEPCO ES 연계 ESCO (무상구축) 상담</option>
                       <option value="city">스마트 시티 (가로등/경관) 도입 문의</option>
                       <option value="building">스마트 빌딩 (실내조명) 도입 문의</option>
                       <option value="partnership">파트너십 및 대리점 제휴 문의</option>
@@ -144,7 +141,6 @@ const SupportContact = () => {
                 </div>
 
                 <div className="pt-2 md:pt-4">
-                  {/* 💡 전송 중일 때 버튼 텍스트와 상태 변경 */}
                   <button 
                     type="submit" 
                     disabled={isSubmitting}

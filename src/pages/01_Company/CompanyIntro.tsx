@@ -13,14 +13,13 @@ export default function CompanyIntro() {
         subtitle={
           <>
             스마트 IoT 제어 시스템 전문 기업 <strong className="text-white font-bold">주식회사 플로림</strong>입니다.<br className="hidden md:block"/>
-            단순한 조명 제어를 넘어, 딥러닝 기반의 데이터 분석과 첨단 IoT 센서 네트워크를 통해 도시와 빌딩의 에너지를 가장 스마트하게 관리합니다.
+            단순한 조명 제어를 넘어, 지능형 데이터 분석과 첨단 IoT 센서 네트워크를 통해 도시와 빌딩의 에너지를 가장 스마트하게 관리합니다.
           </>
         }
       />
 
       <div className="container mx-auto px-4 max-w-6xl mt-10">
         
-        {/* 핵심 가치 섹션 */}
         <section className="bg-slate-900/50 backdrop-blur-md rounded-[2.5rem] p-8 md:p-16 shadow-2xl border border-slate-800 mb-16 relative overflow-hidden">
           <div className="absolute top-1/2 left-1/2 w-[800px] h-[800px] bg-flolim/5 rounded-full blur-[150px] pointer-events-none -translate-x-1/2 -translate-y-1/2"></div>
           
@@ -29,10 +28,11 @@ export default function CompanyIntro() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+            {/* 💡 [수정됨] 에러를 유발하던 주석을 컴포넌트 밖으로 이동했습니다 */}
             <ValueCard 
               icon={<svg className="w-6 h-6 md:w-7 md:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>}
               title="최적의 에너지 효율 디자인"
-              description="단순한 조명 점소등을 넘어, 딥러닝 기반의 데이터 분석과 첨단 IoT 센서 네트워크를 통해 도시와 빌딩의 에너지를 가장 스마트하게 관리합니다."
+              description="단순한 조명 점소등을 넘어, 지능형 데이터 분석과 첨단 IoT 센서 네트워크를 통해 도시와 빌딩의 에너지를 가장 스마트하게 관리합니다."
             />
             <ValueCard 
               icon={<svg className="w-6 h-6 md:w-7 md:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>}
@@ -47,7 +47,6 @@ export default function CompanyIntro() {
           </div>
         </section>
 
-        {/* 핵심 비즈니스 영역 */}
         <section className="bg-slate-900/50 backdrop-blur-md rounded-[2.5rem] p-8 md:p-16 shadow-2xl border border-slate-800 mb-20 relative overflow-hidden">
           <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-flolim/5 rounded-full blur-[150px] pointer-events-none translate-y-1/4 -translate-x-1/4"></div>
           

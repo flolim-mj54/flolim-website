@@ -6,10 +6,10 @@ import FeatureCard from '../../components/FeatureCard';
 const PlatformDashboard = () => {
   const [viewMode, setViewMode] = useState<'city' | 'building'>('city');
 
-  // 💡 [Map 데이터] 대시보드 핵심 기능 4가지
+  // 💡 [Map 데이터] 대시보드 핵심 기능 4가지 (스마트 자동화 텍스트 수정 완료)
   const features = [
     { id: 1, icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />, title: '원격 제어', desc: 'PC 및 스마트기기를 통한 실시간 개별/그룹 제어 기능을 지원합니다.' },
-    { id: 2, icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />, title: '스마트 자동화', desc: '관리자 설정에 따른 스마트 자동 점/소등 및 스케줄링 기능을 제공합니다.' },
+    { id: 2, icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />, title: '스마트 자동화', desc: '관리자 설정과 센서에 따른 스마트 자동 점/소등, 스케줄링 및 밝기 조절(Dimming) 기능을 제공합니다.' },
     { id: 3, icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />, title: '실시간 관제', desc: '전력 사용량 통계 제공 및 실시간 고장 알림 전송 기능을 통해 인프라를 안전하게 관리합니다.' },
     { id: 4, icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />, title: '분석/보고', desc: '데이터 기반 ESG 가치 증명 및 성과 분석 리포트를 제공합니다.' },
   ];

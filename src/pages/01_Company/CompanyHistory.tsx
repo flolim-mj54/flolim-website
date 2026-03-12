@@ -18,13 +18,10 @@ export default function CompanyHistory() {
 
       <div className="container mx-auto px-4 max-w-5xl relative z-10 mb-10 mt-10">
         
-        {/* 전체 연혁을 감싸는 메인 박스 */}
         <section className="bg-slate-900/50 backdrop-blur-sm rounded-[2.5rem] p-8 md:p-16 shadow-2xl border border-slate-800 relative overflow-hidden">
-          {/* 메인 래퍼 중앙 글로우 */}
           <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-flolim/5 rounded-full blur-[150px] pointer-events-none -translate-x-1/2 -translate-y-1/2"></div>
           
           <div className="relative max-w-4xl mx-auto py-10 z-10">
-            {/* 중앙 라인 */}
             <div className="absolute left-[24px] md:left-1/2 top-0 bottom-0 w-[2px] bg-slate-800 transform md:-translate-x-1/2"></div>
 
             {/* 2026년 */}
@@ -49,7 +46,8 @@ export default function CompanyHistory() {
                     <li className="relative flex items-start gap-3 md:gap-4">
                       <span className="text-flolim font-black text-base md:text-lg w-10 shrink-0">02월</span>
                       <div className="pt-0.5">
-                        <span className="text-slate-300 font-medium break-keep">키엘(KILT) 시험성적서 획득</span>
+                        {/* 💡 [수정됨] KILT -> KIEL */}
+                        <span className="text-slate-300 font-medium break-keep">키엘(KIEL) 시험성적서 획득</span>
                         <span className="text-xs md:text-sm text-slate-500 block mt-1 font-light break-keep">스마트LED 조명제어시스템</span>
                       </div>
                     </li>
@@ -90,7 +88,6 @@ export default function CompanyHistory() {
               </div>
             </div>
 
-            {/* 하단 점 */}
             <div className="relative w-full flex justify-start md:justify-center mt-8">
               <div className="w-3 h-3 md:w-4 md:h-4 bg-slate-800 rounded-full absolute left-[20px] md:left-1/2 transform -translate-x-1/2"></div>
             </div>

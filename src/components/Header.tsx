@@ -34,7 +34,7 @@ const Header = () => {
       title: '비즈니스 모델',
       path: '/business/esco',
       subItems: [
-        { name: 'KEPCO 연계 ESCO', path: '/business/esco' },
+        { name: 'KEPCO ES 연계 ESCO', path: '/business/esco' }, // 💡 수정됨
         { name: '에너지 절감 시뮬레이션', path: '/business/simulation' },
       ]
     },
@@ -87,7 +87,6 @@ const Header = () => {
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="flex items-center justify-between">
             
-            {/* 💡 [수정] 텍스트 형태의 FLO(청록색) + LIM(흰색) 로고로 교체 */}
             <Link to="/" className="flex items-center group z-50 active:scale-95 transition-transform">
               <span className="text-xl md:text-2xl font-black tracking-tight">
                 <span className="text-flolim drop-shadow-[0_0_10px_rgba(24,169,198,0.5)] group-hover:text-cyan-400 transition-colors">FLO</span>

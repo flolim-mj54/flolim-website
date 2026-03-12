@@ -2,9 +2,9 @@ import PageHeader from '../../components/PageHeader';
 import BottomNav from '../../components/BottomNav';
 
 export default function CompanyCert() {
-  // 💡 [데이터화] 앞으로 인증서가 추가되면 이 목록에 한 줄만 추가하면 자동으로 화면에 그려집니다!
   const certificates = [
-    { id: 1, img: 'cert-kilt.jpg', title: '키엘연구원 시험성적서', desc: '스마트 LED 조명 제어 시스템' },
+    // 💡 [수정됨] cert-kilt.jpg -> cert-kiel.jpg
+    { id: 1, img: 'cert-kiel.jpg', title: '키엘연구원 시험성적서', desc: '스마트 LED 조명 제어 시스템' },
     { id: 2, img: 'cert-women.jpg', title: '여성기업 확인서', desc: '중소벤처기업청 인증' },
     { id: 3, img: 'cert-sme.jpg', title: '중소기업 확인서', desc: '소기업(소상공인) 등록' },
     { id: 4, img: 'cert-startup.jpg', title: '창업기업 확인서', desc: '공공기관 우선 구매 대상' },
@@ -13,7 +13,6 @@ export default function CompanyCert() {
   const progresses = [
     { id: 1, img: 'logo-highefficiency.jpg', title: '고효율기자재인증', desc: '에너지 효율 공식 마크', date: '4월 완료' },
     { id: 2, img: 'logo-g2b.jpg', title: '조달청 등록', desc: '공공기관 우선 공급망 구축', date: '5월 완료' },
-    // 💡 [수정] logo-kepco.jpg -> logo-kepcoes.jpg 로 변경 완료
     { id: 3, img: 'logo-kepcoes.jpg', title: '켑코이에스(ESCO) 파트너사', desc: '한국전력공사 출자 기업 제휴', date: '3월 완료' },
   ];
 
@@ -40,7 +39,6 @@ export default function CompanyCert() {
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
-            {/* 💡 [Map 렌더링] 중복 코드를 완벽히 제거했습니다 */}
             {certificates.map((cert) => (
               <div key={cert.id} className="bg-[#050b14] rounded-2xl shadow-inner border border-slate-700 p-6 flex flex-col items-center text-center hover:border-flolim/50 hover:shadow-[0_0_20px_rgba(24,169,198,0.15)] active:scale-[0.98] transition-all group relative overflow-hidden cursor-pointer">
                 <div className="absolute -right-6 -top-6 w-24 h-24 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
@@ -63,7 +61,6 @@ export default function CompanyCert() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 relative z-10">
             <div className="flex flex-col justify-center">
               <div className="space-y-4">
-                {/* 💡 [Map 렌더링] 3개의 진행 현황 카드 자동 생성 */}
                 {progresses.map((prog) => (
                   <div key={prog.id} className="flex flex-col sm:flex-row sm:items-center justify-between p-4 md:p-5 bg-[#050b14] rounded-2xl border border-slate-700 hover:border-flolim/50 active:scale-[0.98] active:border-flolim shadow-inner transition-all group relative overflow-hidden gap-3 sm:gap-0 cursor-default">
                     <div className="absolute -right-6 -top-6 w-16 h-16 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>

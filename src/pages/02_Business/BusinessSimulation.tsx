@@ -63,6 +63,7 @@ const BusinessSimulation = () => {
         title="에너지 절감 시뮬레이션"
         subtitle={
           <>
+            {/* 💡 강제 공백({' '})을 추가하여 데스크탑에서도 확실히 띄어쓰기 되도록 수정했습니다 */}
             조명 교체 및 IoT 제어 시스템 도입에 따른{' '}
             <br className="md:hidden" />
             <strong className="text-flolim font-bold">예상 에너지 절감액을 직접 확인해 보세요.</strong>
@@ -193,7 +194,7 @@ const BusinessSimulation = () => {
                       </svg>
                       <div className="text-center relative z-10">
                         <p className="text-flolim font-black text-2xl md:text-4xl leading-none">{iotSavePercent}%</p>
-                        <p className="text-flolim/70 text-[9px] md:text-xs font-bold mt-1">절감율</p>
+                        <p className="text-flolim/70 text-[9px] md:text-xs font-bold mt-1">절감률</p>
                       </div>
                     </div>
                   </div>
@@ -211,7 +212,7 @@ const BusinessSimulation = () => {
                       <span className="bg-blue-500 text-white text-[10px] md:text-xs font-black px-3 py-1 rounded-full">LED 교체</span>
                       <span className="text-blue-400 font-black text-sm md:text-base">추가 절감</span>
                     </div>
-                    <p className="text-slate-300 text-xs md:text-sm font-light mb-2">초고효율 스마트 하드웨어로 교체 시 추가로</p>
+                    <p className="text-slate-300 text-xs md:text-sm font-light mb-2">초고효율 스마트 LED로 교체 시 추가로</p>
                     <div className="flex items-baseline gap-2">
                       <span className="text-blue-400 font-black text-4xl md:text-6xl drop-shadow-[0_0_20px_rgba(59,130,246,0.8)]">
                         {formatNum(ledSave / 12)}
@@ -230,7 +231,7 @@ const BusinessSimulation = () => {
                       </svg>
                       <div className="text-center relative z-10">
                         <p className="text-blue-400 font-black text-2xl md:text-4xl leading-none">{ledSavePercent}%</p>
-                        <p className="text-blue-400/70 text-[9px] md:text-xs font-bold mt-1">절감율</p>
+                        <p className="text-blue-400/70 text-[9px] md:text-xs font-bold mt-1">절감률</p>
                       </div>
                     </div>
                   </div>
@@ -299,7 +300,7 @@ const BusinessSimulation = () => {
         </section>
 
         <BottomNav 
-          prev={{ label: '이전 페이지', title: 'KEPCO 연계 ESCO', path: '/business/esco' }}
+          prev={{ label: '이전 페이지', title: 'KEPCO ES 연계 ESCO', path: '/business/esco' }}
           next={{ label: '다음 카테고리', title: '스마트 시티 개요', path: '/smart-city/intro' }}
         />
       </div>

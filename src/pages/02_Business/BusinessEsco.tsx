@@ -3,7 +3,6 @@ import PageHeader from '../../components/PageHeader';
 import BottomNav from '../../components/BottomNav';
 
 const BusinessEsco = () => {
-  // 💡 [Map 데이터] 3단계 프로세스를 배열로 만들어 코드를 획기적으로 압축합니다.
   const steps = [
     {
       num: '1',
@@ -27,9 +26,10 @@ const BusinessEsco = () => {
 
   return (
     <div className="pb-10 relative overflow-hidden">
+      {/* 💡 수정됨: KEPCO ES 연계 */}
       <PageHeader 
         category="비즈니스 모델"
-        title="KEPCO 연계 에너지 효율화 사업"
+        title="KEPCO ES 연계 에너지 효율화 사업"
         subtitle={
           <>
             초기 투자비 <strong className="text-flolim font-bold">0원</strong>, 
@@ -40,11 +40,9 @@ const BusinessEsco = () => {
 
       <div className="container mx-auto px-4 max-w-6xl mt-10">
         
-        {/* 메인 래퍼 박스 */}
         <section className="bg-slate-900/50 backdrop-blur-md rounded-[2.5rem] p-6 md:p-10 lg:p-16 shadow-2xl border border-slate-800 mb-16 relative overflow-hidden">
           <div className="absolute top-1/2 left-1/2 w-[800px] h-[800px] bg-flolim/5 rounded-full blur-[150px] pointer-events-none -translate-x-1/2 -translate-y-1/2"></div>
 
-          {/* 시스템 개요 */}
           <div className="mb-12 md:mb-16 relative z-10">
             <h2 className="text-xl md:text-3xl font-bold text-white mb-4 md:mb-6 text-center break-keep">
               예산 부담은 지우고, 조명은 더 스마트하게
@@ -56,25 +54,16 @@ const BusinessEsco = () => {
             </p>
           </div>
 
-          {/* 💡 [수정 완료] KEPCO ES X FLOLIM 1:1 배치 복구 및 패딩 축소로 이미지 확대 */}
           <div className="flex items-center justify-center gap-4 md:gap-8 mb-16 md:mb-20 relative z-10 w-full">
-            
-            {/* KEPCO ES 로고 */}
             <div className="bg-white p-1.5 md:p-2.5 rounded-xl md:rounded-2xl shadow-lg flex items-center justify-center w-32 h-16 md:w-56 md:h-24 relative z-10 border border-slate-200">
               <img src="/images/logo-kepcoes.jpg" alt="켑코이에스" className="max-h-full max-w-full object-contain" />
             </div>
-
-            {/* 파트너십 X 표시 */}
             <div className="text-slate-500 font-black text-xl md:text-3xl shrink-0">×</div>
-
-            {/* FLOLIM 로고 */}
             <div className="bg-white p-1.5 md:p-2.5 rounded-xl md:rounded-2xl shadow-lg flex items-center justify-center w-32 h-16 md:w-56 md:h-24 relative z-10 border border-slate-200">
               <img src="/images/logo-flolim.jpg" alt="플로림" className="max-h-full max-w-full object-contain" />
             </div>
-
           </div>
 
-          {/* 3단계 도입 및 상환 프로세스 */}
           <div className="mb-20 md:mb-24 relative z-10">
             <div className="text-center mb-8 md:mb-12">
               <h2 className="text-xl md:text-2xl font-bold text-white mb-4 break-keep">3단계 도입 및 상환 프로세스</h2>
@@ -83,7 +72,6 @@ const BusinessEsco = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
               <div className="hidden md:block absolute top-[40px] left-[10%] w-[80%] h-[2px] bg-slate-700 -z-10"></div>
               
-              {/* 💡 [Map 렌더링] */}
               {steps.map((step) => (
                 <div key={step.num} className={`bg-[#050b14] p-6 md:p-8 rounded-3xl text-center shadow-inner hover:-translate-y-1 active:scale-[0.98] transition-all duration-300 group relative overflow-hidden cursor-default ${step.highlight ? 'border border-flolim/30 hover:border-flolim' : 'border border-slate-700 hover:border-flolim/50'}`}>
                   <div className="absolute -right-6 -top-6 w-24 h-24 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
@@ -101,10 +89,7 @@ const BusinessEsco = () => {
             </div>
           </div>
 
-          {/* 하단 2단 구조 */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 relative z-10">
-            
-            {/* 2단계 효율화 전략 카드 */}
             <div className="bg-[#050b14] p-8 md:p-10 rounded-3xl border border-slate-700 flex flex-col justify-center shadow-inner hover:border-flolim/50 transition-colors group relative overflow-hidden">
               <div className="absolute -right-6 -top-6 w-32 h-32 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
               
@@ -141,7 +126,6 @@ const BusinessEsco = () => {
               </div>
             </div>
 
-            {/* ESCO + EERS 결합 카드 */}
             <div className="bg-[#050b14] p-8 md:p-10 rounded-3xl shadow-inner border border-slate-700 flex flex-col justify-center hover:border-flolim/50 transition-colors group relative overflow-hidden">
               <div className="absolute -right-6 -top-6 w-32 h-32 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
               

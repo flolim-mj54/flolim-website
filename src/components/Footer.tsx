@@ -9,16 +9,16 @@ const Footer = () => {
         <div className="grid grid-cols-1 sm:grid-cols-12 gap-8 sm:gap-4 md:gap-6 lg:gap-10 mb-10 md:mb-12 border-b border-slate-800 pb-10 md:pb-12">
           
           <div className="sm:col-span-5 lg:col-span-5">
-            {/* 💡 [수정] 텍스트 형태의 FLO(청록색) + LIM(흰색) 로고로 교체 */}
             <div className="flex items-center mb-4 md:mb-6">
               <span className="text-xl md:text-2xl font-black tracking-tight">
                 <span className="text-flolim drop-shadow-[0_0_10px_rgba(24,169,198,0.5)]">FLO</span>
                 <span className="text-white">LIM</span>
               </span>
             </div>
+            {/* 💡 [수정됨] 딥러닝 기반의 데이터 분석 -> 지능형 데이터 분석 */}
             <p className="text-[11px] sm:text-xs md:text-sm font-light leading-relaxed mb-6 max-w-sm break-keep">
               세상을 밝히는 지능형 연결.<br />
-              플로림은 딥러닝 기반의 데이터 분석과 첨단 IoT 센서 네트워크를 통해 도시와 빌딩의 에너지를 가장 스마트하게 통제합니다.
+              플로림은 지능형 데이터 분석과 첨단 IoT 센서 네트워크를 통해 도시와 빌딩의 에너지를 가장 스마트하게 통제합니다.
             </p>
             <div className="flex gap-2 sm:gap-3 md:gap-4">
               <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-flolim hover:text-slate-900 active:scale-95 transition-all cursor-pointer border border-slate-700 hover:border-flolim">
@@ -34,7 +34,7 @@ const Footer = () => {
             <h4 className="text-white font-bold mb-4 md:mb-5">Quick Links</h4>
             <ul className="space-y-2.5 md:space-y-3 text-[11px] sm:text-xs md:text-sm">
               <li><Link to="/company/intro" className="hover:text-flolim transition-colors break-keep">플로림 소개</Link></li>
-              <li><Link to="/business/esco" className="hover:text-flolim transition-colors break-keep">KEPCO 연계 사업 (ESCO)</Link></li>
+              <li><Link to="/business/esco" className="hover:text-flolim transition-colors break-keep">KEPCO ES 연계 사업 (ESCO)</Link></li>
               <li><Link to="/smart-city/intro" className="hover:text-flolim transition-colors break-keep">스마트 시티 솔루션</Link></li>
               <li><Link to="/smart-building/intro" className="hover:text-flolim transition-colors break-keep">스마트 빌딩 솔루션</Link></li>
               <li><Link to="/support/references" className="hover:text-flolim transition-colors break-keep">도입(실증) 사례</Link></li>

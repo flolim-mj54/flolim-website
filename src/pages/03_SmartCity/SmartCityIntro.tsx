@@ -3,7 +3,6 @@ import BottomNav from '../../components/BottomNav';
 import FeatureCard from '../../components/FeatureCard';
 
 const SmartCityIntro = () => {
-  // 💡 [Map 데이터] 센서 4종
   const sensors = [
     { id: 1, color: 'amber', title: '조도 센서', desc: '주변 밝기를 자동 감지하여 전력 낭비를 차단하는 최적의 <strong class="text-slate-300">디밍(Dimming)</strong>을 수행합니다.', icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-2.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" /> },
     { id: 2, color: 'teal', title: '대기질 센서', desc: '별도 인프라 구축비 없이 <strong class="text-slate-300">미세먼지(PM) 및 유해가스</strong>를 실시간으로 측정하고 모니터링합니다.', icon: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M14.25 9.666a2.25 2.25 0 112.64 3.63H3m12-9.666a2.25 2.25 0 10-2.64 3.63H3m15.75 11.25a2.25 2.25 0 11-2.64-3.63H3" /> },
@@ -11,7 +10,6 @@ const SmartCityIntro = () => {
     { id: 4, color: 'sky', title: '소음/온습도 센서', desc: '기상 이변(폭염/결빙) 및 도심 소음을 감지하여 즉각적으로 대응하는 <strong class="text-slate-300">시민 안전망</strong>을 구축합니다.', icon: <><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 15.75a2.25 2.25 0 100-4.5 2.25 2.25 0 000 4.5z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 21a5.25 5.25 0 01-5.25-5.25v-8.5a5.25 5.25 0 0110.5 0v8.5A5.25 5.25 0 0112 21z" /></> },
   ];
 
-  // 💡 [Map 데이터] 실증 사례 3종
   const cases = [
     { id: 1, region: '경기도 안산시 실증', location: '안산스마트허브 (1,594개 교체)', percent: '70', label: '감축', desc: '통행량 분석 IoT 조명제어 장치 적용으로 에너지 및 탄소 배출을 70% 감축했습니다.' },
     { id: 2, region: '서울시 강남 4구 실증', location: '유동 인구 밀집 도로 (1,500개)', prefix: '최소', percent: '50', label: '이상 절감', desc: '유동 인구가 많은 지역에서도 스마트 제어를 통해 총 912MW의 에너지를 절약했습니다.' },
@@ -32,7 +30,6 @@ const SmartCityIntro = () => {
 
       <div className="container mx-auto px-4 max-w-6xl mt-10">
         
-        {/* 1. 시스템 개요 래퍼 박스 */}
         <section className="bg-slate-900/50 backdrop-blur-md rounded-[2.5rem] p-6 md:p-10 lg:p-16 shadow-2xl border border-slate-800 mb-16 relative overflow-hidden">
           <div className="absolute top-1/2 left-1/2 w-[800px] h-[800px] bg-flolim/5 rounded-full blur-[150px] pointer-events-none -translate-x-1/2 -translate-y-1/2"></div>
           
@@ -48,7 +45,7 @@ const SmartCityIntro = () => {
                   플로림의 스마트 시티 솔루션은 단순한 조명 점소등을 넘어, 도로의 가로등과 보안등을 원격으로 제어하고 감시하는 완벽한 양방향 지능형 시스템입니다.
                 </p>
                 <p className="text-slate-400 leading-relaxed font-light text-xs md:text-sm lg:text-base break-keep">
-                  각 지주(Smart Pole)에 탑재된 IoT 기반 센서로 주변 환경을 감지하여 밝기를 자동으로 조절하고, 수집된 데이터를 분석하여 도시의 에너지를 가장 효율적으로 관리하는 인프라를 구축합니다.
+                  각 스마트 가로등에 탑재된 IoT 기반 센서로 주변 환경을 감지하여 밝기를 자동으로 조절하고, 수집된 데이터를 분석하여 도시의 에너지를 가장 효율적으로 관리하는 인프라를 구축합니다.
                 </p>
               </div>
               
@@ -88,14 +85,13 @@ const SmartCityIntro = () => {
           </div>
         </section>
 
-        {/* 2. 다중 IoT 센서망 */}
         <section className="mb-20 md:mb-24 relative z-10">
           <div className="text-center mb-10 md:mb-12 px-2">
             <h2 className="text-xl md:text-3xl font-bold text-white mb-3 md:mb-4 break-keep">
               단일 가로등 하나로 <br className="lg:hidden" />에너지 절감부터 환경 감시까지 완성합니다
             </h2>
             <p className="text-slate-400 font-light text-xs md:text-base break-keep">
-              스마트 폴에 탑재된 4가지 핵심 센서가 시스템에 실시간 데이터를 전달합니다.
+              스마트 가로등에 탑재된 4가지 핵심 센서가 시스템에 실시간 데이터를 전달합니다.
             </p>
           </div>
 
@@ -116,7 +112,6 @@ const SmartCityIntro = () => {
           </div>
         </section>
 
-        {/* 3. 압도적 절감 효과 */}
         <section className="bg-slate-900/50 backdrop-blur-md rounded-[2.5rem] p-8 md:p-16 shadow-2xl border border-slate-800 mb-16 relative overflow-hidden">
           <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-flolim/5 rounded-full blur-[150px] pointer-events-none translate-y-1/4 translate-x-1/4"></div>
 
@@ -129,15 +124,19 @@ const SmartCityIntro = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 relative z-10">
             {cases.map((c) => (
-              <div key={c.id} className="bg-[#050b14] p-6 md:p-8 rounded-3xl border border-slate-700 shadow-inner hover:border-flolim/40 active:scale-[0.98] transition-all duration-300 group relative overflow-hidden cursor-default">
+              <div key={c.id} className="bg-[#050b14] p-6 md:p-8 rounded-3xl border border-slate-700 shadow-inner hover:border-flolim/40 active:scale-[0.98] transition-all duration-300 group relative overflow-hidden flex flex-col h-full cursor-default">
                 <div className="absolute -right-6 -top-6 w-24 h-24 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
-                <div className="relative z-10">
+                <div className="relative z-10 flex flex-col h-full">
                   <h3 className="text-lg md:text-xl font-bold text-white mb-2 group-hover:text-flolim transition-colors break-keep">{c.region}</h3>
-                  <p className="text-[11px] md:text-sm text-slate-500 font-medium mb-6 break-keep">{c.location}</p>
-                  <div className="flex items-end gap-2 mb-4">
-                    {c.prefix && <span className="text-slate-400 font-bold mb-1 text-xs md:text-sm mr-1">{c.prefix}</span>}
-                    <span className="text-3xl md:text-4xl font-black text-flolim tracking-tight drop-shadow-[0_0_15px_rgba(24,169,198,0.3)]">{c.percent}{c.unit ? <span className="text-lg md:text-xl font-medium ml-1">{c.unit}</span> : <span className="text-xl md:text-2xl font-medium">%</span>}</span>
-                    {c.label && <span className="text-slate-400 font-bold mb-1 text-xs md:text-base">{c.label}</span>}
+                  <p className="text-[11px] md:text-sm text-slate-500 font-medium mb-6 break-keep flex-grow">{c.location}</p>
+                  
+                  {/* 💡 [수정] 모바일/태블릿 레이아웃 보호를 위한 flex-wrap 적용 */}
+                  <div className="flex flex-wrap items-end gap-x-2 gap-y-1 mt-auto mb-4">
+                    {c.prefix && <span className="text-slate-400 font-bold mb-1 text-xs md:text-sm">{c.prefix}</span>}
+                    <span className="text-3xl md:text-4xl font-black text-flolim tracking-tight drop-shadow-[0_0_15px_rgba(24,169,198,0.3)] whitespace-nowrap">
+                      {c.percent}{c.unit ? <span className="text-lg md:text-xl font-medium ml-1">{c.unit}</span> : <span className="text-xl md:text-2xl font-medium">%</span>}
+                    </span>
+                    {c.label && <span className="text-slate-400 font-bold mb-1 text-xs md:text-base whitespace-nowrap">{c.label}</span>}
                   </div>
                   <p className="text-xs md:text-sm text-slate-400 leading-relaxed font-light break-keep">{c.desc}</p>
                 </div>
@@ -146,7 +145,6 @@ const SmartCityIntro = () => {
           </div>
         </section>
 
-        {/* 4. 통신 솔루션 라우팅 */}
         <section className="bg-slate-900/50 backdrop-blur-md rounded-[2.5rem] p-8 md:p-16 shadow-2xl border border-slate-800 mb-16 relative overflow-hidden">
           <div className="text-center mb-10 md:mb-12 relative z-10 px-2">
             <h2 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4 break-keep">시스템 구축을 위한 맞춤형 통신 솔루션</h2>
