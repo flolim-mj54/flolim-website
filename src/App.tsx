@@ -6,7 +6,9 @@ import Home from './pages/Home';
 
 // Company
 import CompanyIntro from './pages/01_Company/CompanyIntro';
-import CompanyCeo from './pages/01_Company/CompanyCeo';
+// 💡 [수정됨] CompanyCeo -> CompanyGreeting
+import CompanyGreeting from './pages/01_Company/CompanyGreeting'; 
+import CompanyOrg from './pages/01_Company/CompanyOrg'; 
 import CompanyCert from './pages/01_Company/CompanyCert';
 import CompanyHistory from './pages/01_Company/CompanyHistory';
 import CompanyLocation from './pages/01_Company/CompanyLocation';
@@ -36,7 +38,7 @@ import SupportContact from './pages/06_Support/SupportContact';
 
 // Policy
 import PrivacyPolicy from './pages/PrivacyPolicy';
-import TermsOfService from './pages/TermsOfService'; // 💡 [추가됨] 이용약관 임포트
+import TermsOfService from './pages/TermsOfService';
 
 function App() {
   return (
@@ -49,7 +51,9 @@ function App() {
             <Route path="/" element={<Home />} />
             
             <Route path="/company/intro" element={<CompanyIntro />} />
-            <Route path="/company/ceo" element={<CompanyCeo />} />
+            {/* 💡 [수정됨] ceo -> greeting 라우트 변경 */}
+            <Route path="/company/greeting" element={<CompanyGreeting />} /> 
+            <Route path="/company/org" element={<CompanyOrg />} /> 
             <Route path="/company/cert" element={<CompanyCert />} />
             <Route path="/company/history" element={<CompanyHistory />} />
             <Route path="/company/location" element={<CompanyLocation />} />
@@ -73,7 +77,7 @@ function App() {
             <Route path="/support/contact" element={<SupportContact />} />
             
             <Route path="/privacy" element={<PrivacyPolicy />} />
-            <Route path="/terms" element={<TermsOfService />} /> {/* 💡 [추가됨] 이용약관 라우트 */}
+            <Route path="/terms" element={<TermsOfService />} />
           </Routes>
         </main>
         <Footer />

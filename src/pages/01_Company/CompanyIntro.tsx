@@ -81,7 +81,7 @@ export default function CompanyIntro() {
 
         <BottomNav 
           prev={{ label: '이전 페이지', title: '메인 홈', path: '/' }}
-          next={{ label: '다음 페이지', title: 'CEO 인사말', path: '/company/ceo' }}
+          next={{ label: '다음 페이지', title: '임직원 인사말', path: '/company/greeting' }}
         />
       </div>
 

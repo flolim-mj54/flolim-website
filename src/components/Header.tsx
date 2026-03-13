@@ -24,7 +24,9 @@ const Header = () => {
       path: '/company/intro',
       subItems: [
         { name: '플로림 소개', path: '/company/intro' },
-        { name: 'CEO 인사말', path: '/company/ceo' },
+        // 💡 [수정됨] 메뉴 이름 및 경로 변경
+        { name: '임직원 인사말', path: '/company/greeting' },
+        { name: '조직도', path: '/company/org' }, 
         { name: '인증 및 파트너', path: '/company/cert' },
         { name: '연혁', path: '/company/history' },
         { name: '오시는 길', path: '/company/location' },
@@ -34,7 +36,7 @@ const Header = () => {
       title: '비즈니스 모델',
       path: '/business/esco',
       subItems: [
-        { name: 'KEPCO ES 연계 ESCO', path: '/business/esco' }, // 💡 수정됨
+        { name: 'KEPCO ES 연계 ESCO', path: '/business/esco' },
         { name: '에너지 절감 시뮬레이션', path: '/business/simulation' },
       ]
     },

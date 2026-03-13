@@ -30,7 +30,6 @@ export default function CompanyCert() {
 
       <div className="container mx-auto px-4 max-w-6xl mt-10">
         
-        {/* 1. 획득 완료 인증서 */}
         <section className="bg-slate-900/50 backdrop-blur-sm rounded-[2.5rem] p-6 md:p-12 shadow-2xl border border-slate-800 mb-16 relative overflow-hidden">
           <div className="flex flex-col md:flex-row items-start md:items-center gap-3 mb-8 md:mb-10 relative z-10">
             <h2 className="text-xl md:text-2xl font-bold text-white break-keep">공식 인증 및 성적서</h2>
@@ -51,7 +50,6 @@ export default function CompanyCert() {
           </div>
         </section>
 
-        {/* 2. 진행 중인 등록 현황 & 보안 인증 */}
         <section className="bg-slate-900/50 backdrop-blur-sm rounded-[2.5rem] p-6 md:p-12 shadow-2xl border border-slate-800 mb-16 relative overflow-hidden">
           <div className="mb-8 md:mb-10 relative z-10">
             <h2 className="text-xl md:text-2xl font-bold text-white break-keep">진행 중인 심사 및 등록 현황</h2>
@@ -78,7 +76,6 @@ export default function CompanyCert() {
               </div>
             </div>
 
-            {/* KISA 보안인증 카드 */}
             <div className="bg-[#050b14] rounded-3xl p-8 md:p-10 text-white relative overflow-hidden flex flex-col justify-center shadow-inner border border-slate-700 group hover:border-flolim/50 active:scale-[0.98] transition-all cursor-default">
               <div className="absolute -right-6 -top-6 w-40 h-40 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
               
@@ -112,7 +109,6 @@ export default function CompanyCert() {
           </div>
         </section>
 
-        {/* 3. 파트너사 소개 */}
         <section className="bg-slate-900/50 backdrop-blur-sm rounded-[2.5rem] p-6 md:p-12 shadow-2xl border border-slate-800 mb-16 relative overflow-hidden">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-80 bg-flolim/5 blur-[150px] rounded-full pointer-events-none"></div>
 
@@ -126,7 +122,6 @@ export default function CompanyCert() {
           <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-4 lg:gap-8 bg-[#050b14] p-8 md:p-8 lg:p-10 rounded-3xl border border-slate-700 shadow-inner group/container overflow-hidden">
             <div className="absolute -right-6 -top-6 w-32 h-32 bg-flolim/5 rounded-full z-0 group-hover/container:scale-150 transition-transform duration-700 pointer-events-none"></div>
 
-            {/* 좌측 기업 */}
             <div className="flex-1 flex flex-col items-center text-center w-full group relative z-10 cursor-default">
               <div className="w-32 h-32 md:w-32 md:h-32 lg:w-56 lg:h-56 bg-white rounded-2xl lg:rounded-[2rem] p-4 lg:p-8 flex items-center justify-center shadow-lg border-[3px] lg:border-4 border-slate-800 mb-4 lg:mb-6 transform group-hover:-translate-y-2 transition-transform duration-500">
                 <img src="/images/logo-flolim.jpg" alt="플로림 로고" className="w-full h-full object-contain" />
@@ -137,7 +132,6 @@ export default function CompanyCert() {
               </p>
             </div>
 
-            {/* 중앙 시너지 아이콘 */}
             <div className="flex flex-col items-center justify-center shrink-0 px-2 lg:px-4 relative z-10">
               <span className="text-flolim font-black tracking-widest text-[9px] md:text-[10px] lg:text-xs mb-2 md:mb-4 uppercase bg-flolim/10 px-3 lg:px-5 py-1.5 lg:py-2 rounded-full border border-flolim/30 shadow-[0_0_15px_rgba(24,169,198,0.2)] whitespace-nowrap">
                 Cooperation & Synergy
@@ -152,10 +146,8 @@ export default function CompanyCert() {
               </div>
             </div>
 
-            {/* 우측 기업 */}
             <div className="flex-1 flex flex-col items-center text-center w-full group relative z-10 cursor-default">
               <div className="w-32 h-32 md:w-32 md:h-32 lg:w-56 lg:h-56 bg-white rounded-2xl lg:rounded-[2rem] p-4 lg:p-6 flex items-center justify-center shadow-lg border-[3px] lg:border-4 border-slate-800 mb-4 lg:mb-6 transform group-hover:-translate-y-2 transition-transform duration-500">
-                {/* 💡 [수정됨] logo-tuvan.jpg 이미지를 제거하고 스마트 LED 아이콘으로 교체 */}
                 <div className="flex flex-col items-center justify-center text-slate-800 w-full h-full">
                   <svg className="w-12 h-12 lg:w-16 lg:h-16 text-slate-800 mb-1 lg:mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
@@ -171,8 +163,9 @@ export default function CompanyCert() {
           </div>
         </section>
 
+        {/* 💡 [수정됨] 이전 페이지를 '조직도'로 변경 */}
         <BottomNav 
-          prev={{ label: '이전 페이지', title: 'CEO 인사말', path: '/company/ceo' }}
+          prev={{ label: '이전 페이지', title: '조직도', path: '/company/org' }}
           next={{ label: '다음 페이지', title: '연혁', path: '/company/history' }}
         />
       </div>

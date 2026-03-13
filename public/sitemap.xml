@@ -11,7 +11,12 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.flolim.com/company/ceo</loc>
+    <loc>https://www.flolim.com/company/greeting</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.flolim.com/company/org</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
