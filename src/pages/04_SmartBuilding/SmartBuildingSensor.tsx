@@ -695,7 +695,7 @@ const SmartBuildingSensor = () => {
                       플로림 전용 폐쇄망
                     </h3>
                     <span className="bg-cyan-900/30 text-cyan-300 border border-cyan-400/50 text-[10px] md:text-xs px-2 py-1 md:px-3 md:py-1.5 rounded-md font-bold shadow-[0_0_10px_rgba(24,169,198,0.3)]">
-                      보안 강화
+                      기밀성, 무결성 강화
                     </span>
                   </div>
 
