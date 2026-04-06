@@ -438,13 +438,13 @@ const SmartCityDmx = () => {
               </p>
             </div>
 
-            {/* 탭 버튼 영역 (수정됨: 한 줄 고정 및 가로 스크롤) */}
-            <div className="flex overflow-x-auto md:flex-wrap justify-start md:justify-center gap-2 md:gap-4 mb-8 pb-2 custom-scrollbar">
+            {/* 탭 버튼 영역 (수정됨: 모바일/PC 모두 완벽하게 가운데 정렬!) */}
+            <div className="flex overflow-x-auto flex-nowrap md:flex-wrap justify-center gap-2 md:gap-4 mb-8 pb-2 custom-scrollbar w-full">
               {hardwareList.map((hw, idx) => (
                 <button
                   key={hw.id}
                   onClick={() => setActiveTab(idx)}
-                  className={`shrink-0 whitespace-nowrap px-4 py-2.5 md:px-8 md:py-3 rounded-full font-bold text-[11px] sm:text-xs md:text-sm transition-all duration-300 ${
+                  className={`shrink-0 px-4 py-2.5 md:px-8 md:py-3 rounded-full font-bold text-[11px] sm:text-xs md:text-sm transition-all duration-300 ${
                     activeTab === idx
                       ? "bg-flolim text-slate-900 shadow-[0_0_15px_rgba(24,169,198,0.5)] md:scale-105"
                       : "bg-slate-800 text-slate-400 border border-slate-700 hover:bg-slate-700 hover:text-white"
