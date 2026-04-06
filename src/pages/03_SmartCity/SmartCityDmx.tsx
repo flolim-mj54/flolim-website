@@ -465,17 +465,36 @@ const SmartCityDmx = () => {
                 className="flex flex-col md:flex-row relative z-10 animate-fade-in"
                 key={activeTab}
               >
-                {/* 좌측 이미지 영역 */}
-                <div className="md:w-1/2 bg-slate-900/50 p-8 flex items-center justify-center border-b md:border-b-0 md:border-r border-slate-700/50 min-h-[300px]">
+                {/* 💡 좌측 이미지 영역: 크기 제한 해제 및 마우스 오버 확대(Zoom) 효과 추가 */}
+                <div className="md:w-1/2 bg-slate-900/50 p-6 md:p-10 flex items-center justify-center border-b md:border-b-0 md:border-r border-slate-700/50 min-h-[350px] md:min-h-[450px] overflow-hidden group/img relative">
                   <img
                     src={hardwareList[activeTab].image}
                     alt={hardwareList[activeTab].name}
-                    className="max-w-full max-h-[300px] object-contain drop-shadow-2xl animate-fade-in"
+                    className="w-full max-w-[450px] object-contain drop-shadow-2xl transition-transform duration-700 ease-out group-hover/img:scale-125 cursor-zoom-in animate-fade-in"
                   />
+                  {/* 확대 가능 안내 뱃지 (마우스를 올리면 스르륵 사라짐) */}
+                  <div className="absolute bottom-4 right-4 bg-slate-800/80 backdrop-blur px-3 py-1.5 rounded-full border border-slate-600 flex items-center gap-1.5 opacity-60 group-hover/img:opacity-0 transition-opacity duration-300 pointer-events-none hidden sm:flex">
+                    <svg
+                      className="w-3.5 h-3.5 text-slate-300"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                      ></path>
+                    </svg>
+                    <span className="text-[10px] text-slate-300 font-medium">
+                      마우스를 올려 확대
+                    </span>
+                  </div>
                 </div>
 
-                {/* 우측 상세 스펙 영역 */}
-                <div className="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+                {/* 우측 상세 스펙 영역 (여백을 살짝 조정하여 밸런스 맞춤) */}
+                <div className="md:w-1/2 p-8 md:p-10 lg:p-12 flex flex-col justify-center">
                   <div className="mb-6">
                     <span
                       className={`inline-block px-3 py-1 text-[10px] md:text-xs font-bold rounded-lg border mb-3 ${hardwareList[activeTab].badgeColor}`}
@@ -494,9 +513,9 @@ const SmartCityDmx = () => {
                     {hardwareList[activeTab].specs.map((spec, i) => (
                       <div
                         key={i}
-                        className="bg-slate-800/40 p-4 rounded-xl border border-slate-700/50 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4"
+                        className="bg-slate-800/40 p-4 rounded-xl border border-slate-700/50 flex flex-col xl:flex-row xl:items-center gap-1 xl:gap-4"
                       >
-                        <span className="text-flolim font-bold text-xs shrink-0 sm:w-24">
+                        <span className="text-flolim font-bold text-xs shrink-0 xl:w-24">
                           {spec.label}
                         </span>
                         <span className="text-slate-300 text-xs md:text-sm font-medium break-keep">
