@@ -69,7 +69,7 @@ const SmartCityDmx = () => {
       name: "ArtNet to DMX 제어기",
       badge: "메인 컨트롤러",
       badgeColor: "text-flolim bg-flolim/10 border-flolim/30",
-      image: "/images/dmx-master.jpg",
+      image: "/images/dmx-master.png",
       desc: "이더넷 프로토콜을 완벽하게 지원하며 다채널 매핑에 최적화된 마스터 컨트롤러입니다. 대규모 미디어 파사드 및 경관 조명 시스템의 두뇌 역할을 수행하여 지연 없는 완벽한 동기화를 제공합니다.",
       specs: [
         { label: "통신 프로토콜", value: "ArtNet, DMX512, SPI 등 표준 지원" },
@@ -82,7 +82,7 @@ const SmartCityDmx = () => {
       name: "4채널 정전압(CV) 디코더",
       badge: "서브 컨트롤러 (정전압)",
       badgeColor: "text-amber-400 bg-amber-400/10 border-amber-400/30",
-      image: "/images/dmx-decoder-cv.jpg",
+      image: "/images/dmx-decoder-cv.png",
       desc: "정전압(Constant Voltage) 방식의 LED 라인 조명, 투광기 등을 정밀하게 제어합니다. 16비트의 부드러운 디밍(Dimming) 기술을 통해 계단 현상 없는 자연스러운 빛의 흐름을 연출합니다.",
       specs: [
         { label: "입력/출력", value: "DC 12-48V / 4채널 (최대 24A 지원)" },
@@ -98,7 +98,7 @@ const SmartCityDmx = () => {
       name: "4채널 정전류(CC) 디코더",
       badge: "서브 컨트롤러 (정전류)",
       badgeColor: "text-purple-400 bg-purple-400/10 border-purple-400/30",
-      image: "/images/dmx-decoder-cc.jpg",
+      image: "/images/dmx-decoder-cc.png",
       desc: "정전류(Constant Current) 방식의 고출력 LED 전구를 안전하고 세밀하게 제어하는 디코더입니다. 다양한 현장 조명 사양에 맞춰 딥스위치(DIP Switch)로 세밀한 출력 전류 세팅이 가능합니다.",
       specs: [
         { label: "입력/출력", value: "입력 DC 12-48V / 출력 DC 3-42V" },
