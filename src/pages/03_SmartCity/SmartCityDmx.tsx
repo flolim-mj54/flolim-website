@@ -67,6 +67,7 @@ const SmartCityDmx = () => {
     {
       id: "master",
       name: "ArtNet to DMX 제어기",
+      shortName: "ArtNet 제어기", // 👈 모바일용 짧은 이름 추가
       badge: "메인 컨트롤러",
       badgeColor: "text-flolim bg-flolim/10 border-flolim/30",
       image: "/images/dmx-master.png",
@@ -80,6 +81,7 @@ const SmartCityDmx = () => {
     {
       id: "cv-decoder",
       name: "4채널 정전압(CV) 디코더",
+      shortName: "CV 디코더 (정전압)", // 👈 모바일용 짧은 이름 추가
       badge: "서브 컨트롤러 (정전압)",
       badgeColor: "text-amber-400 bg-amber-400/10 border-amber-400/30",
       image: "/images/dmx-decoder-cv.png",
@@ -96,6 +98,7 @@ const SmartCityDmx = () => {
     {
       id: "cc-decoder",
       name: "4채널 정전류(CC) 디코더",
+      shortName: "CC 디코더 (정전류)", // 👈 모바일용 짧은 이름 추가
       badge: "서브 컨트롤러 (정전류)",
       badgeColor: "text-purple-400 bg-purple-400/10 border-purple-400/30",
       image: "/images/dmx-decoder-cc.png",
@@ -441,18 +444,16 @@ const SmartCityDmx = () => {
                 <button
                   key={hw.id}
                   onClick={() => setActiveTab(idx)}
-                  className={`px-5 py-2.5 md:px-8 md:py-3 rounded-full font-bold text-xs md:text-sm transition-all duration-300 ${
+                  className={`px-4 py-2 md:px-8 md:py-3 rounded-full font-bold text-[11px] sm:text-xs md:text-sm transition-all duration-300 ${
                     activeTab === idx
                       ? "bg-flolim text-slate-900 shadow-[0_0_15px_rgba(24,169,198,0.5)] scale-105"
                       : "bg-slate-800 text-slate-400 border border-slate-700 hover:bg-slate-700 hover:text-white"
                   }`}
                 >
-                  {hw.name.split(" ")[0]}{" "}
-                  {/* 💡 모바일에서 버튼 길어지지 않게 앞부분만 표시 */}
-                  <span className="hidden sm:inline">
-                    {" "}
-                    {hw.name.split(" ").slice(1).join(" ")}
-                  </span>
+                  {/* 모바일 화면에서는 shortName 출력 */}
+                  <span className="md:hidden">{hw.shortName}</span>
+                  {/* PC 화면에서는 원래 name 출력 */}
+                  <span className="hidden md:inline">{hw.name}</span>
                 </button>
               ))}
             </div>
