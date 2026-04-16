@@ -20,33 +20,17 @@ const SmartBuildingSensor = () => {
   const hardwares = [
     {
       id: "01",
-      title: "독립형 현장 전용 서버",
-      desc: "건물의 방재실이나 통신실에 설치되어, 클라우드 연결 없이 독립적으로 조명 네트워크 전체를 통제하는 핵심 두뇌입니다.",
-      features: [
-        {
-          title: "안전한 데이터 보관",
-          text: "외부로 데이터를 보내지 않고 스케줄과 전력을 완벽히 보호합니다.",
-        },
-        {
-          title: "강력한 폐쇄망 보안",
-          text: "외부망과 단절된 폐쇄망으로 운영되어 해킹을 원천 차단합니다.",
-        },
-      ],
+      title: "플로림 스마트 허브 프로",
+      subtitle: "Flolim Smart Hub Pro",
+      image: "/images/building_smart_hub_pro.png",
+      desc: "(주)플로림이 자체 개발한 멀티 프로토콜 통합 게이트웨이입니다. 서로 다른 통신 표준(Matter, Zigbee 등)을 사용하는 조명과 센서들을 하나의 네트워크로 완벽하게 연동해 주어, 스마트 빌딩 구축의 확장성과 편의성을 극대화합니다.",
     },
     {
       id: "02",
-      title: "무선 스마트 컨트롤러",
-      desc: "개별 조명 기구에 장착되어 로컬 서버의 명령을 즉각 실행하고, 공간의 주변 환경을 스스로 감지하는 똑똑한 단말기입니다.",
-      features: [
-        {
-          title: "기기 확장성 향상",
-          text: "국제 표준 무선 모듈을 탑재하여 호환성이 뛰어납니다.",
-        },
-        {
-          title: "정밀 밝기 제어",
-          text: "환경에 맞춰 세밀한 디밍을 제공하여 에너지를 절약합니다.",
-        },
-      ],
+      title: "AI 비전 센서",
+      subtitle: "Vision Sensor",
+      image: "/images/building_vision_sensor.png",
+      desc: "지하주차장 등 대규모 공간에서 차량과 보행자의 동선을 실시간으로 분석합니다. 이동 방향을 예측하여 조명을 미리 밝히는 정밀 동체 추적 기술의 핵심 센서입니다.",
     },
   ];
 
@@ -60,10 +44,7 @@ const SmartBuildingSensor = () => {
             95% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
             100% { left: 100%; opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
           }
-          /* 2배 빠른 2.5s 속도 */
           .packet-main { animation: movePacket 2.5s infinite linear; }
-
-          /* 흰 공(packet-main)에서 뿜어져 나오도록 동기화된 유출 애니메이션 */
           @keyframes popLeak1 {
             0%, 15% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
             20% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
@@ -558,12 +539,11 @@ const SmartBuildingSensor = () => {
           </div>
         </section>
 
-        {/* 3. 클라우드 데이터 유출 vs 온프레미스 보안 비교 (기밀성, 무결성 집중) */}
+        {/* 3. 클라우드 데이터 유출 vs 온프레미스 보안 비교 */}
         <section className="bg-slate-900/50 backdrop-blur-md rounded-[2.5rem] p-6 md:p-10 lg:p-16 shadow-2xl border border-slate-800 mb-16 relative overflow-hidden">
           <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-flolim/5 rounded-full blur-[150px] pointer-events-none -translate-x-1/2 -translate-y-1/2"></div>
 
           <div className="flex flex-col lg:flex-row gap-10 md:gap-12 items-center relative z-10">
-            {/* 좌측: 기밀성, 무결성 텍스트 (텍스트량 위쪽 박스와 맞춤) */}
             <div className="lg:w-1/2 w-full">
               <h2 className="text-xl md:text-3xl font-bold text-white mb-4 md:mb-6 leading-tight break-keep">
                 보안의 시작과 끝은 완벽한 통제,
@@ -595,9 +575,7 @@ const SmartBuildingSensor = () => {
               </div>
             </div>
 
-            {/* 우측: 유출 애니메이션 비교 영역 (박스 2개 분리 형태 복원) */}
             <div className="lg:w-1/2 w-full flex flex-col gap-6 lg:gap-8">
-              {/* 상단 박스: 타사 클라우드망 (데이터 유출) */}
               <div className="bg-[#050b14] p-6 md:p-8 rounded-2xl md:rounded-3xl border border-red-900/30 shadow-inner overflow-visible relative">
                 <div className="absolute inset-0 opacity-10 bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:20px_20px] z-0"></div>
 
@@ -641,7 +619,6 @@ const SmartBuildingSensor = () => {
                         Cloud
                       </div>
 
-                      {/* 흰색 공이 이동하면서 데이터를 직접 떨어뜨리는 애니메이션 구조 */}
                       <div className="absolute top-1/2 w-3 h-3 md:w-4 md:h-4 bg-white rounded-full packet-main z-10 shadow-[0_0_12px_white]">
                         <div className="absolute top-1/2 left-1/2 leak-1 flex items-center gap-1">
                           <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-red-500 rounded-full shadow-[0_0_10px_red]"></div>
@@ -671,7 +648,6 @@ const SmartBuildingSensor = () => {
                 </div>
               </div>
 
-              {/* 하단 박스: 플로림 온프레미스 (안전 전송) */}
               <div className="bg-[#050b14] p-6 md:p-8 rounded-2xl md:rounded-3xl border-[3px] md:border-[4px] border-flolim shadow-[0_0_30px_rgba(24,169,198,0.15)] overflow-visible relative group">
                 <div className="absolute inset-0 opacity-10 bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:20px_20px] z-0"></div>
                 <div className="absolute -right-10 -top-10 w-40 h-40 bg-flolim/10 rounded-full blur-3xl z-0 pointer-events-none"></div>
@@ -748,68 +724,51 @@ const SmartBuildingSensor = () => {
           </div>
         </section>
 
-        {/* 4. 스마트 실내 조명 핵심 하드웨어 래퍼 박스 */}
+        {/* 4. 스마트 실내 조명 핵심 하드웨어 */}
         <section className="bg-slate-900/50 backdrop-blur-md rounded-[2.5rem] p-6 md:p-10 lg:p-16 shadow-2xl border border-slate-800 mb-16 relative overflow-hidden">
-          <div className="text-center mb-10 md:mb-12 relative z-10">
+          <div className="text-center mb-12 md:mb-16 relative z-10">
             <h2 className="text-xl md:text-3xl font-bold text-white break-keep">
               스마트 실내 조명 핵심 하드웨어
             </h2>
+            <p className="text-slate-400 font-light text-xs md:text-sm mt-3 break-keep">
+              플로림의 자체 개발 기술력이 집약된 차세대 빌딩 제어 라인업
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 relative z-10">
             {hardwares.map((hw) => (
               <div
                 key={hw.id}
-                className="bg-[#050b14] p-6 md:p-8 lg:p-10 rounded-2xl md:rounded-3xl border border-slate-700 shadow-inner hover:border-flolim/50 active:scale-[0.98] active:border-flolim transition-all relative overflow-hidden group cursor-default"
+                className="bg-[#050b14] p-8 md:p-12 rounded-[2.5rem] border border-slate-700 shadow-inner hover:border-flolim/50 active:scale-[0.99] transition-all duration-500 relative overflow-hidden group cursor-default flex flex-col items-center text-center"
               >
-                <div className="absolute -right-6 -top-6 w-32 h-32 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
+                <div className="absolute -right-10 -top-10 w-40 h-40 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none blur-3xl"></div>
+
+                <div className="w-full aspect-video bg-slate-800/50 rounded-2xl mb-8 flex items-center justify-center p-6 border border-slate-600/50 group-hover:border-flolim/40 transition-colors overflow-hidden">
+                  <img
+                    src={hw.image}
+                    alt={hw.title}
+                    className="max-w-full max-h-full object-contain mix-blend-screen drop-shadow-2xl group-hover:scale-110 transition-transform duration-700"
+                  />
+                </div>
 
                 <div className="relative z-10">
-                  <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
-                    <div className="w-10 h-10 md:w-12 md:h-12 bg-slate-800 text-flolim rounded-xl flex items-center justify-center text-lg md:text-xl font-black border border-slate-600 shrink-0">
-                      {hw.id}
-                    </div>
-                    <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-white break-keep">
-                      {hw.title}
-                    </h3>
+                  <div className="inline-block px-3 py-1 bg-flolim/10 text-flolim text-[10px] font-bold rounded-lg border border-flolim/20 mb-4 uppercase tracking-widest">
+                    Device {hw.id}
                   </div>
-                  <p className="text-slate-400 mb-6 font-light leading-relaxed text-xs md:text-sm break-keep">
+                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 group-hover:text-flolim transition-colors break-keep">
+                    {hw.title}
+                  </h3>
+                  <span className="text-slate-500 text-xs md:text-sm font-bold uppercase tracking-wider block mb-6">
+                    {hw.subtitle}
+                  </span>
+                  <p className="text-slate-400 font-light leading-relaxed text-sm md:text-base break-keep">
                     {hw.desc}
                   </p>
-                  <ul className="space-y-3 text-xs md:text-sm text-slate-300">
-                    {hw.features.map((f, i) => (
-                      <li
-                        key={i}
-                        className="flex items-start bg-slate-900/80 p-3 md:p-4 rounded-xl border border-slate-700 break-keep"
-                      >
-                        <svg
-                          className="w-4 h-4 text-flolim mr-2 md:mr-3 mt-0.5 shrink-0"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="3"
-                            d="M5 13l4 4L19 7"
-                          ></path>
-                        </svg>
-                        <div>
-                          <strong className="block text-white mb-0.5">
-                            {f.title}
-                          </strong>
-                          {f.text}
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* 아키텍처 흐름도 */}
           <div className="relative z-10 pt-10 md:pt-16 mt-8 border-t border-slate-800 text-center">
             <h2 className="text-sm md:text-lg font-bold text-slate-400 mb-6 md:mb-8 tracking-widest uppercase">
               시스템 구성 아키텍처
