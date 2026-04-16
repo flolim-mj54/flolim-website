@@ -4,7 +4,6 @@ import BottomNav from "../../components/BottomNav";
 
 const SmartCityDmx = () => {
   const [waveOffset, setWaveOffset] = useState(0);
-  const [activeTab, setActiveTab] = useState(0); // 💡 하드웨어 탭 상태 관리
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -62,12 +61,11 @@ const SmartCityDmx = () => {
     return nodes;
   };
 
-  // 💡 하드웨어 스펙 데이터
+  // 하드웨어 스펙 데이터 (그리드 레이아웃용으로 구조 개편)
   const hardwareList = [
     {
-      id: "master",
-      name: "ArtNet to DMX 제어기",
-      shortName: "ArtNet 제어기", // 👈 모바일용 짧은 이름 추가
+      id: "01",
+      title: "ArtNet to DMX 제어기",
       badge: "메인 컨트롤러",
       badgeColor: "text-flolim bg-flolim/10 border-flolim/30",
       image: "/images/dmx-master.png",
@@ -79,9 +77,8 @@ const SmartCityDmx = () => {
       ],
     },
     {
-      id: "cv-decoder",
-      name: "4채널 정전압(CV) 디코더",
-      shortName: "CV 디코더", // 👈 모바일용 짧은 이름 추가
+      id: "02",
+      title: "4채널 정전압(CV) 디코더",
       badge: "서브 컨트롤러 (정전압)",
       badgeColor: "text-amber-400 bg-amber-400/10 border-amber-400/30",
       image: "/images/dmx-decoder-cv.png",
@@ -96,9 +93,8 @@ const SmartCityDmx = () => {
       ],
     },
     {
-      id: "cc-decoder",
-      name: "4채널 정전류(CC) 디코더",
-      shortName: "CC 디코더", // 👈 모바일용 짧은 이름 추가
+      id: "03",
+      title: "4채널 정전류(CC) 디코더",
       badge: "서브 컨트롤러 (정전류)",
       badgeColor: "text-purple-400 bg-purple-400/10 border-purple-400/30",
       image: "/images/dmx-decoder-cc.png",
@@ -144,7 +140,6 @@ const SmartCityDmx = () => {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 relative">
-              {/* VS 뱃지 */}
               <div className="hidden lg:flex absolute top-[150px] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 w-14 h-14 bg-slate-900 border-4 border-slate-800 rounded-full items-center justify-center font-black text-lg text-slate-500 shadow-2xl">
                 VS
               </div>
@@ -310,7 +305,7 @@ const SmartCityDmx = () => {
           </div>
 
           {/* 2. DMX 시스템 핵심 구조 */}
-          <div className="mb-20 md:mb-24 relative z-10">
+          <div className="mb-20 md:mb-24 relative z-10 border-t border-slate-800 pt-16">
             <div className="bg-[#050b14] rounded-3xl p-8 md:p-10 border border-slate-700 flex flex-col md:flex-row items-center gap-8 md:gap-12 shadow-inner group overflow-hidden">
               <div className="absolute -right-10 -top-10 w-40 h-40 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
 
@@ -426,9 +421,9 @@ const SmartCityDmx = () => {
             </div>
           </div>
 
-          {/* 3. DMX 제어 하드웨어 (React 탭 UI 적용) */}
+          {/* 3. DMX 제어 하드웨어 (카드 그리드 UI 적용) */}
           <div className="relative z-10 border-t border-slate-800 pt-16 md:pt-20">
-            <div className="text-center mb-8 md:mb-10">
+            <div className="text-center mb-8 md:mb-12">
               <h2 className="text-xl md:text-3xl font-bold text-white mb-3 break-keep">
                 플로림 DMX 제어 하드웨어
               </h2>
@@ -438,93 +433,56 @@ const SmartCityDmx = () => {
               </p>
             </div>
 
-            {/* 탭 버튼 영역 (수정됨: 모바일/PC 모두 완벽하게 가운데 정렬!) */}
-            <div className="flex overflow-x-auto flex-nowrap md:flex-wrap justify-center gap-2 md:gap-4 mb-8 pb-2 custom-scrollbar w-full">
-              {hardwareList.map((hw, idx) => (
-                <button
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+              {hardwareList.map((hw) => (
+                <div
                   key={hw.id}
-                  onClick={() => setActiveTab(idx)}
-                  className={`shrink-0 px-4 py-2.5 md:px-8 md:py-3 rounded-full font-bold text-[11px] sm:text-xs md:text-sm transition-all duration-300 ${
-                    activeTab === idx
-                      ? "bg-flolim text-slate-900 shadow-[0_0_15px_rgba(24,169,198,0.5)] md:scale-105"
-                      : "bg-slate-800 text-slate-400 border border-slate-700 hover:bg-slate-700 hover:text-white"
-                  }`}
+                  className="bg-[#050b14] p-6 md:p-8 rounded-3xl border border-slate-700 shadow-inner hover:border-flolim/50 active:scale-[0.98] transition-all duration-300 group relative overflow-hidden cursor-default flex flex-col"
                 >
-                  <span className="md:hidden">{hw.shortName}</span>
-                  <span className="hidden md:inline">{hw.name}</span>
-                </button>
-              ))}
-            </div>
+                  <div className="absolute -right-6 -top-6 w-32 h-32 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
 
-            {/* 선택된 탭 컨텐츠 영역 */}
-            <div className="bg-[#050b14] rounded-3xl border border-slate-700 shadow-inner overflow-hidden relative transition-all duration-500">
-              <div className="absolute -right-10 -top-10 w-64 h-64 bg-flolim/5 rounded-full z-0 pointer-events-none blur-3xl"></div>
+                  <div className="relative z-10 flex flex-col h-full">
+                    <div className="w-full h-48 bg-slate-800/50 rounded-2xl mb-6 flex items-center justify-center p-4 border border-slate-600/50 group-hover:border-flolim/40 transition-colors overflow-hidden">
+                      <img
+                        src={hw.image}
+                        alt={hw.title}
+                        className="max-w-full max-h-full object-contain mix-blend-screen drop-shadow-md group-hover:scale-110 transition-transform duration-500"
+                      />
+                    </div>
 
-              <div
-                className="flex flex-col md:flex-row relative z-10 animate-fade-in"
-                key={activeTab}
-              >
-                {/* 💡 좌측 이미지 영역: 크기 제한 해제 및 마우스 오버 확대(Zoom) 효과 추가 */}
-                <div className="md:w-1/2 bg-slate-900/50 p-6 md:p-10 flex items-center justify-center border-b md:border-b-0 md:border-r border-slate-700/50 min-h-[350px] md:min-h-[450px] overflow-hidden group/img relative">
-                  <img
-                    src={hardwareList[activeTab].image}
-                    alt={hardwareList[activeTab].name}
-                    className="w-full max-w-[450px] object-contain drop-shadow-2xl transition-transform duration-700 ease-out group-hover/img:scale-125 cursor-zoom-in animate-fade-in"
-                  />
-                  {/* 확대 가능 안내 뱃지 (마우스를 올리면 스르륵 사라짐) */}
-                  <div className="absolute bottom-4 right-4 bg-slate-800/80 backdrop-blur px-3 py-1.5 rounded-full border border-slate-600 flex items-center gap-1.5 opacity-60 group-hover/img:opacity-0 transition-opacity duration-300 pointer-events-none hidden sm:flex">
-                    <svg
-                      className="w-3.5 h-3.5 text-slate-300"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
-                      ></path>
-                    </svg>
-                    <span className="text-[10px] text-slate-300 font-medium">
-                      마우스를 올려 확대
-                    </span>
-                  </div>
-                </div>
-
-                {/* 우측 상세 스펙 영역 (여백을 살짝 조정하여 밸런스 맞춤) */}
-                <div className="md:w-1/2 p-8 md:p-10 lg:p-12 flex flex-col justify-center">
-                  <div className="mb-6">
-                    <span
-                      className={`inline-block px-3 py-1 text-[10px] md:text-xs font-bold rounded-lg border mb-3 ${hardwareList[activeTab].badgeColor}`}
-                    >
-                      {hardwareList[activeTab].badge}
-                    </span>
-                    <h3 className="text-2xl md:text-3xl font-black text-white mb-4">
-                      {hardwareList[activeTab].name}
-                    </h3>
-                    <p className="text-slate-400 font-light text-sm leading-relaxed break-keep">
-                      {hardwareList[activeTab].desc}
-                    </p>
-                  </div>
-
-                  <div className="grid grid-cols-1 gap-3">
-                    {hardwareList[activeTab].specs.map((spec, i) => (
-                      <div
-                        key={i}
-                        className="bg-slate-800/40 p-4 rounded-xl border border-slate-700/50 flex flex-col xl:flex-row xl:items-center gap-1 xl:gap-4"
+                    <div className="mb-4">
+                      <span
+                        className={`inline-block px-3 py-1 text-[10px] font-bold rounded-lg border mb-3 tracking-widest ${hw.badgeColor}`}
                       >
-                        <span className="text-flolim font-bold text-xs shrink-0 xl:w-24">
-                          {spec.label}
-                        </span>
-                        <span className="text-slate-300 text-xs md:text-sm font-medium break-keep">
-                          {spec.value}
-                        </span>
-                      </div>
-                    ))}
+                        {hw.badge}
+                      </span>
+                      <h3 className="text-lg md:text-xl font-bold text-white group-hover:text-flolim transition-colors break-keep">
+                        {hw.title}
+                      </h3>
+                    </div>
+
+                    <p className="text-slate-400 font-light leading-relaxed text-xs md:text-sm break-keep flex-grow mb-6">
+                      {hw.desc}
+                    </p>
+
+                    <div className="mt-auto space-y-2">
+                      {hw.specs.map((spec, i) => (
+                        <div
+                          key={i}
+                          className="bg-slate-900/60 p-3 rounded-lg border border-slate-800 flex flex-col gap-1"
+                        >
+                          <span className="text-flolim font-bold text-[9px] md:text-[10px] uppercase tracking-wider">
+                            {spec.label}
+                          </span>
+                          <span className="text-slate-300 text-[11px] md:text-xs font-medium leading-snug break-keep">
+                            {spec.value}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
           </div>
         </section>
