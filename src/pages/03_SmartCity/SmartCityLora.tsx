@@ -423,7 +423,7 @@ const SmartCityLora = () => {
 
                 <div className="absolute top-4 left-4 md:top-6 md:left-6 flex items-center gap-2 bg-slate-900/90 backdrop-blur-md px-3 py-1.5 md:px-4 md:py-2 rounded-lg border border-slate-700 z-20 pointer-events-none shadow-lg">
                   <span className="w-1.5 h-1.5 md:w-2 md:h-2 bg-flolim rounded-full animate-pulse shadow-[0_0_10px_rgba(24,169,198,1)]"></span>
-                  <span className="text-[9px] md:text-[10px] font-bold text-white tracking-widest">
+                  <span className="text-[9px] md:text-[10px] font-bold text-white tracking-widest uppercase">
                     실시간 무선망 관제
                   </span>
                 </div>
@@ -470,53 +470,53 @@ const SmartCityLora = () => {
             </div>
           </div>
 
-          {/* 2. 시스템 구성 요소 (하드웨어 섹션) */}
-          <div className="mb-20 md:mb-24 relative z-10">
+          {/* 2. 시스템 구성 요소 (하드웨어 섹션 - 4열 카드 형태) */}
+          <div className="mb-20 md:mb-24 relative z-10 border-t border-slate-800 pt-16">
             <div className="text-center mb-10 md:mb-16">
               <h2 className="text-xl md:text-3xl font-bold text-white mb-4 break-keep">
                 스마트 가로등 핵심 하드웨어 구성
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
               {hardwares.map((hw) => (
                 <div
                   key={hw.id}
-                  className="bg-[#050b14] p-6 md:p-10 rounded-[2rem] border border-slate-700 shadow-inner hover:border-flolim/50 active:scale-[0.99] transition-all duration-500 group relative overflow-hidden flex flex-col lg:flex-row gap-6 md:gap-10 cursor-default"
+                  className="bg-[#050b14] p-5 md:p-6 rounded-3xl border border-slate-700 shadow-inner hover:border-flolim/50 active:scale-[0.98] transition-all duration-300 group relative overflow-hidden cursor-default flex flex-col"
                 >
-                  <div className="absolute -right-10 -top-10 w-40 h-40 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none blur-3xl"></div>
+                  <div className="absolute -right-6 -top-6 w-32 h-32 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
 
-                  <div className="lg:w-5/12 bg-slate-800/50 rounded-2xl flex items-center justify-center p-4 border border-slate-600/50 group-hover:border-flolim/40 transition-colors overflow-hidden shrink-0 aspect-square lg:aspect-auto">
-                    <img
-                      src={hw.image}
-                      alt={hw.title}
-                      className="max-w-full max-h-full object-contain mix-blend-screen drop-shadow-2xl transition-transform duration-700 ease-out group-hover:scale-110"
-                    />
-                  </div>
-
-                  <div className="lg:w-7/12 flex flex-col h-full relative z-10">
-                    <div className="mb-6">
-                      <span className="inline-block px-3 py-1 bg-flolim/10 text-flolim text-[10px] font-bold rounded-lg border border-flolim/20 mb-3 uppercase tracking-widest">
-                        Hardware {hw.id}
-                      </span>
-                      <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-flolim transition-colors mb-4 break-keep">
-                        {hw.title}
-                      </h3>
-                      <p className="text-slate-400 font-light leading-relaxed text-xs md:text-sm break-keep">
-                        {hw.desc}
-                      </p>
+                  <div className="relative z-10 flex flex-col h-full">
+                    <div className="w-full h-40 bg-slate-800/50 rounded-2xl mb-5 flex items-center justify-center p-3 border border-slate-600/50 group-hover:border-flolim/40 transition-colors overflow-hidden">
+                      <img
+                        src={hw.image}
+                        alt={hw.title}
+                        className="max-w-full max-h-full object-contain mix-blend-screen drop-shadow-md group-hover:scale-110 transition-transform duration-500"
+                      />
                     </div>
 
-                    <div className="mt-auto space-y-2.5">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-8 h-8 bg-slate-800 border border-slate-600 text-flolim rounded-lg flex items-center justify-center font-black shadow-sm shrink-0">
+                        {hw.id}
+                      </div>
+                      <h3 className="text-sm md:text-base font-bold text-white group-hover:text-flolim transition-colors break-keep">
+                        {hw.title}
+                      </h3>
+                    </div>
+                    <p className="text-slate-400 font-light leading-relaxed text-[11px] md:text-xs break-keep flex-grow mb-4">
+                      {hw.desc}
+                    </p>
+
+                    <div className="mt-auto space-y-2">
                       {hw.specs.map((spec, i) => (
                         <div
                           key={i}
-                          className="bg-slate-900/60 p-3.5 rounded-xl border border-slate-800 flex flex-col gap-1 group-hover:border-slate-700 transition-colors"
+                          className="bg-slate-900/60 p-2.5 rounded-lg border border-slate-800 flex flex-col gap-1"
                         >
-                          <span className="text-flolim font-bold text-[10px] uppercase tracking-wider">
+                          <span className="text-flolim font-bold text-[9px] uppercase tracking-wider">
                             {spec.label}
                           </span>
-                          <span className="text-slate-300 text-xs md:text-[13px] font-medium leading-snug break-keep">
+                          <span className="text-slate-300 text-[11px] md:text-xs font-medium leading-snug break-keep">
                             {spec.value}
                           </span>
                         </div>
@@ -529,7 +529,7 @@ const SmartCityLora = () => {
           </div>
 
           {/* 3. 핵심 강점 (Map) */}
-          <div className="mb-16 relative z-10">
+          <div className="mb-16 relative z-10 border-t border-slate-800 pt-16">
             <h2 className="text-xl md:text-2xl font-bold text-white mb-6 md:mb-8 text-center break-keep">
               왜 플로림 LoRa-Mesh 솔루션인가요?
             </h2>
@@ -538,7 +538,7 @@ const SmartCityLora = () => {
               {benefits.map((b) => (
                 <div
                   key={b.id}
-                  className="bg-[#050b14] p-6 md:p-8 rounded-2xl md:rounded-3xl border border-slate-700 shadow-inner hover:border-flolim/50 active:scale-[0.98] transition-all group relative overflow-hidden cursor-default flex flex-col"
+                  className="bg-[#050b14] p-6 md:p-8 rounded-2xl md:rounded-3xl border border-slate-700 shadow-inner hover:border-flolim/50 active:scale-[0.98] transition-colors group relative overflow-hidden cursor-default flex flex-col"
                 >
                   <div className="absolute -right-6 -top-6 w-24 h-24 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
                   <div className="relative z-10 flex-1">
