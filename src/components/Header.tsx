@@ -24,7 +24,7 @@ const Header = () => {
       path: "/company/intro",
       subItems: [
         { name: "플로림 소개", path: "/company/intro" },
-        { name: "대표 인사말", path: "/company/greeting" }, // 💡 수정됨
+        { name: "대표 인사말", path: "/company/greeting" },
         { name: "조직도", path: "/company/org" },
         { name: "인증 및 파트너", path: "/company/cert" },
         { name: "연혁", path: "/company/history" },
@@ -69,7 +69,7 @@ const Header = () => {
       title: "고객 지원",
       path: "/support/references",
       subItems: [
-        { name: "도입(실증) 사례", path: "/support/references" },
+        { name: "공식 실증 데이터", path: "/support/references" }, // 💡 수정됨
         { name: "자료실", path: "/support/archive" },
         { name: "온라인 문의", path: "/support/contact" },
       ],
