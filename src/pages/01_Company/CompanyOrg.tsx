@@ -312,7 +312,7 @@ export default function CompanyOrg() {
         <BottomNav
           prev={{
             label: "이전 페이지",
-            title: "임직원 인사말",
+            title: "대표 인사말", // 💡 수정됨
             path: "/company/greeting",
           }}
           next={{
