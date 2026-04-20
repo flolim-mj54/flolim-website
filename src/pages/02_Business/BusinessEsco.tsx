@@ -65,7 +65,7 @@ const BusinessEsco = () => {
           <>
             초기 투자비 <strong className="text-flolim font-bold">0원</strong>,
             국가 지원으로 누리는 전력비{" "}
-            <strong className="text-flolim font-bold">최대 78% 절감</strong>
+            <strong className="text-flolim font-bold">최대 80% 절감</strong>
           </>
         }
       />
