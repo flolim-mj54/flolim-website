@@ -111,7 +111,7 @@ const SmartBuildingIntro = () => {
                       ></path>
                     </svg>
                     <span className="flex-1 leading-relaxed break-keep">
-                      쾌적한 실내 환경을 조성하고 획기적인 건물 유지비용(OPEX)
+                      쾌적한 실내 환경을 조성하고 획기적인 건물 유지비용
                       절감 달성
                     </span>
                   </li>

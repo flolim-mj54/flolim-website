@@ -7,7 +7,7 @@ const SmartBuildingLed = () => {
       id: "DL-06",
       badge: "6인치 다운라이트",
       title: "스마트 LED 고효율 다운라이트",
-      image: "/images/building_led_downlight.jpg", // 확장자 확인 후 수정 요망
+      image: "/images/building_led_downlight.png", // 확장자 확인 후 수정 요망
       power: "10.1W",
       efficiency: "170 Lm/W",
       protocol: "Matter over Thread",
@@ -37,7 +37,7 @@ const SmartBuildingLed = () => {
       id: "RW-12",
       badge: "1200mm 지하주차장등",
       title: "스마트 LED 레이스웨이등",
-      image: "/images/building_led_raceway.jpg", // 확장자 확인 후 수정 요망
+      image: "/images/building_led_raceway.png", // 확장자 확인 후 수정 요망
       power: "12W",
       efficiency: "170 Lm/W",
       protocol: "Matter over Thread",
