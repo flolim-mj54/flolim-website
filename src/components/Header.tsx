@@ -54,7 +54,6 @@ const Header = () => {
       path: "/smart-building/intro",
       subItems: [
         { name: "스마트 빌딩 개요", path: "/smart-building/intro" },
-        { name: "스마트 LED 라인업", path: "/smart-building/led" },
         { name: "IoT 센서 자동 제어", path: "/smart-building/sensor" },
       ],
     },

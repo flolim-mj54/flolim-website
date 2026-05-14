@@ -111,7 +111,7 @@ const SmartBuildingIntro = () => {
                       ></path>
                     </svg>
                     <span className="flex-1 leading-relaxed break-keep">
-                      쾌적한 실내 환경을 조성하고 획기적인 건물 유지비용
+                      쾌적한 실내 환경을 조성하고 획기적인 건물 유지비용(OPEX)
                       절감 달성
                     </span>
                   </li>
@@ -288,8 +288,8 @@ const SmartBuildingIntro = () => {
           }}
           next={{
             label: "다음 페이지",
-            title: "스마트 LED 라인업",
-            path: "/smart-building/led",
+            title: "IoT 센서 자동 제어",
+            path: "/smart-building/sensor",
           }}
         />
       </div>

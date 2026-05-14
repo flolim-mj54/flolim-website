@@ -24,7 +24,6 @@ import SmartCityDmx from "./pages/03_SmartCity/SmartCityDmx";
 
 // Smart Building
 import SmartBuildingIntro from "./pages/04_SmartBuilding/SmartBuildingIntro";
-import SmartBuildingLed from "./pages/04_SmartBuilding/SmartBuildingLed";
 import SmartBuildingSensor from "./pages/04_SmartBuilding/SmartBuildingSensor";
 
 // Platform
@@ -72,7 +71,6 @@ function App() {
               path="/smart-building/intro"
               element={<SmartBuildingIntro />}
             />
-            <Route path="/smart-building/led" element={<SmartBuildingLed />} />
             <Route
               path="/smart-building/sensor"
               element={<SmartBuildingSensor />}
