@@ -13,9 +13,36 @@ const SmartCityLora = () => {
   const mapInstanceRef = useRef<any>(null);
   const [isMapLoaded, setIsMapLoaded] = useState(false);
 
-  const hardwares = [
+  // 💡 상단 2개 (가로등, 드라이버)
+  const topHardwares = [
     {
       id: "01",
+      title: "스마트 LED 가로등 본체",
+      image: "/images/city_smart_streetlight.jpg",
+      desc: "다양한 스마트 제어 모듈과 완벽하게 결합되어 에너지 절감을 극대화하는 고효율·고내구성 LED 가로등 본체입니다.",
+      specs: [
+        { label: "광효율", value: "고효율 LED 광원 적용으로 전력 최소화" },
+        { label: "내구성", value: "IP66 등급 완벽한 방수·방진 설계" },
+        { label: "호환성", value: "NEMA/Zhaga 표준 규격 소켓 지원" },
+      ],
+    },
+    {
+      id: "02",
+      title: "LoRa-Mesh 전용 드라이버",
+      image: "/images/lora_dimming_driver.png",
+      desc: "제어기의 신호를 받아 실제 빛의 밝기를 부드럽게 바꿔주는 '에너지 절약 장치'입니다. 전력 낭비를 줄여 전등 수명을 비약적으로 늘려줍니다.",
+      specs: [
+        { label: "기능", value: "0~100%까지 세밀한 밝기 조절(디밍)" },
+        { label: "내구성", value: "강한 노이즈와 외부 충격 방지 설계" },
+        { label: "효과", value: "전력 사용량 감소 및 전등 수명 연장" },
+      ],
+    },
+  ];
+
+  // 💡 하단 3개 (게이트웨이, 컨트롤러 2개)
+  const bottomHardwares = [
+    {
+      id: "03",
       title: "LoRa-Mesh 통합 게이트웨이",
       image: "/images/lora_controller.png",
       desc: "수천 개의 가로등 데이터를 하나로 모아 관리자에게 전달하는 '총괄 지휘관'입니다. 대규모 단지의 조명을 한곳에서 관리할 때 필수적인 메인 장치입니다.",
@@ -26,7 +53,7 @@ const SmartCityLora = () => {
       ],
     },
     {
-      id: "02",
+      id: "04",
       title: "무선 스마트 조명 컨트롤러",
       image: "/images/lora_controller_wireless.png",
       desc: "가로등에 장착되어 빛을 조절하는 '똑똑한 눈'입니다. 주변 밝기를 감지해 스스로 불을 조절하며, 통신이 끊겨도 주변 가로등을 통해 연결을 이어갑니다.",
@@ -37,7 +64,7 @@ const SmartCityLora = () => {
       ],
     },
     {
-      id: "03",
+      id: "05",
       title: "단일램프 무선 컨트롤러",
       image: "/images/lora_controller_1lamp.png",
       desc: "가로등 전구 하나하나를 정밀하게 관리하는 '스마트 스위치'입니다. 멀리 떨어진 개별 전등의 고장 여부를 실시간으로 확인하고 원격으로 제어합니다.",
@@ -45,17 +72,6 @@ const SmartCityLora = () => {
         { label: "특화 기능", value: "개별 전등 단위의 정밀한 온/오프 제어" },
         { label: "진단", value: "전구 고장 및 전압 이상 즉시 감지" },
         { label: "설치", value: "기존 가로등 기구에 간편하게 추가 가능" },
-      ],
-    },
-    {
-      id: "04",
-      title: "LoRa-Mesh 전용 드라이버",
-      image: "/images/lora_dimming_driver.png",
-      desc: "제어기의 신호를 받아 실제 빛의 밝기를 부드럽게 바꿔주는 '에너지 절약 장치'입니다. 전력 낭비를 줄여 전등 수명을 비약적으로 늘려줍니다.",
-      specs: [
-        { label: "기능", value: "0~100%까지 세밀한 밝기 조절(디밍)" },
-        { label: "내구성", value: "강한 노이즈와 외부 충격 방지 설계" },
-        { label: "효과", value: "전력 사용량 감소 및 전등 수명 연장" },
       ],
     },
   ];
@@ -397,8 +413,57 @@ const SmartCityLora = () => {
                 LoRa-Mesh 핵심 하드웨어 구성
               </h2>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-              {hardwares.map((hw) => (
+
+            {/* 💡 상단 2개 행 (가로등, 드라이버) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6">
+              {topHardwares.map((hw) => (
+                <div
+                  key={hw.id}
+                  className="bg-[#050b14] p-5 md:p-6 rounded-3xl border border-slate-700 shadow-inner hover:border-flolim/50 active:scale-[0.98] transition-all duration-300 group relative overflow-hidden cursor-default flex flex-col"
+                >
+                  <div className="absolute -right-6 -top-6 w-32 h-32 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
+                  <div className="relative z-10 flex flex-col h-full">
+                    <div className="w-full h-48 md:h-56 bg-slate-800/50 rounded-2xl mb-5 flex items-center justify-center p-3 border border-slate-600/50 group-hover:border-flolim/40 transition-colors overflow-hidden">
+                      <img
+                        src={hw.image}
+                        alt={hw.title}
+                        className="max-w-full max-h-full object-contain mix-blend-screen drop-shadow-xl group-hover:scale-110 transition-transform duration-500"
+                      />
+                    </div>
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-8 h-8 bg-slate-800 border border-slate-600 text-flolim rounded-lg flex items-center justify-center font-black shadow-sm shrink-0">
+                        {hw.id}
+                      </div>
+                      <h3 className="text-sm md:text-lg font-bold text-white group-hover:text-flolim transition-colors break-keep">
+                        {hw.title}
+                      </h3>
+                    </div>
+                    <p className="text-slate-400 font-light leading-relaxed text-[11px] md:text-sm break-keep flex-grow mb-6">
+                      {hw.desc}
+                    </p>
+                    <div className="mt-auto grid grid-cols-1 sm:grid-cols-3 gap-2">
+                      {hw.specs.map((spec, i) => (
+                        <div
+                          key={i}
+                          className="bg-slate-900/60 p-2.5 md:p-3 rounded-xl border border-slate-800 flex flex-col gap-1 text-center justify-center"
+                        >
+                          <span className="text-flolim font-bold text-[9px] md:text-[10px] uppercase tracking-wider">
+                            {spec.label}
+                          </span>
+                          <span className="text-slate-300 text-[10px] md:text-xs font-medium leading-snug break-keep">
+                            {spec.value}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* 💡 하단 3개 행 (게이트웨이, 컨트롤러 2개) */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+              {bottomHardwares.map((hw) => (
                 <div
                   key={hw.id}
                   className="bg-[#050b14] p-5 md:p-6 rounded-3xl border border-slate-700 shadow-inner hover:border-flolim/50 active:scale-[0.98] transition-all duration-300 group relative overflow-hidden cursor-default flex flex-col"

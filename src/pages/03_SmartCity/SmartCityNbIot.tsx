@@ -13,9 +13,36 @@ const SmartCityNbIot = () => {
   const mapInstanceRef = useRef<any>(null);
   const [isMapLoaded, setIsMapLoaded] = useState(false);
 
-  const hardwares = [
+  // 💡 상단 2개 (가로등, 드라이버)
+  const topHardwares = [
     {
       id: "01",
+      title: "스마트 LED 가로등 본체",
+      image: "/images/city_smart_streetlight.jpg",
+      desc: "다양한 스마트 제어 모듈과 완벽하게 결합되어 에너지 절감을 극대화하는 고효율·고내구성 LED 가로등 본체입니다.",
+      specs: [
+        { label: "광효율", value: "고효율 LED 광원 적용으로 전력 최소화" },
+        { label: "내구성", value: "IP66 등급 완벽한 방수·방진 설계" },
+        { label: "호환성", value: "NEMA/Zhaga 표준 규격 소켓 지원" },
+      ],
+    },
+    {
+      id: "02",
+      title: "NB-IoT 디밍 드라이버",
+      image: "/images/nb_dimming_driver.png",
+      desc: "전기 요금을 실시간으로 체크하고 불필요한 낭비를 막는 '똑똑한 안정기'입니다. 제어기의 명령에 따라 전등의 밝기를 조절하며 에너지를 절약합니다.",
+      specs: [
+        { label: "주요 기능", value: "부드럽고 정밀한 빛의 세기 조절" },
+        { label: "경제성", value: "전력 요금과 유지보수 비용을 최대 50% 절감" },
+        { label: "호환성", value: "모든 NB-IoT 단말기와 다이렉트 통신" },
+      ],
+    },
+  ];
+
+  // 💡 하단 3개 (NEMA, Zhaga, 무선 컨트롤러)
+  const bottomHardwares = [
+    {
+      id: "03",
       title: "NB-IoT NEMA 컨트롤러",
       image: "/images/nb_controller_nema.png",
       desc: "가로등 소켓에 꽂기만 하면 끝! 별도의 통신 장비 설치 없이 스마트폰처럼 기지국과 바로 연결되는 가장 쉽고 빠른 스마트 제어기입니다.",
@@ -32,7 +59,7 @@ const SmartCityNbIot = () => {
       ],
     },
     {
-      id: "02",
+      id: "04",
       title: "NB-IoT Zhaga 컨트롤러",
       image: "/images/nb_controller_zhaga.png",
       desc: "조명 기구 안에 쏙 들어가는 초소형 단말기입니다. 크기는 작지만 성능은 강력하며, 밖으로 드러나지 않아 조명 디자인을 해치지 않는 차세대 모델입니다.",
@@ -43,7 +70,7 @@ const SmartCityNbIot = () => {
       ],
     },
     {
-      id: "03",
+      id: "05",
       title: "NB-IoT 무선 컨트롤러",
       image: "/images/nb_controller_wireless.png",
       desc: "전국 어디서나 100% 잘 터지는 무선 단말기입니다. 통신 기지국과 직접 연결되어 산이나 바다 등 멀리 떨어진 곳에서도 끊김 없는 관제가 가능합니다.",
@@ -51,17 +78,6 @@ const SmartCityNbIot = () => {
         { label: "연결성", value: "거리 제한 없는 강력한 전국망 커버리지" },
         { label: "효율성", value: "배터리 수명을 극대화한 초저전력 구동" },
         { label: "보안", value: "국가 기간망 수준의 철저한 데이터 암호화" },
-      ],
-    },
-    {
-      id: "04",
-      title: "NB-IoT 디밍 드라이버",
-      image: "/images/nb_dimming_driver.png",
-      desc: "전기 요금을 실시간으로 체크하고 불필요한 낭비를 막는 '똑똑한 안정기'입니다. 제어기의 명령에 따라 전등의 밝기를 조절하며 에너지를 절약합니다.",
-      specs: [
-        { label: "주요 기능", value: "부드럽고 정밀한 빛의 세기 조절" },
-        { label: "경제성", value: "전력 요금과 유지보수 비용을 최대 50% 절감" },
-        { label: "호환성", value: "모든 NB-IoT 단말기와 다이렉트 통신" },
       ],
     },
   ];
@@ -338,7 +354,6 @@ const SmartCityNbIot = () => {
 
           <div className="mb-20 md:mb-24 relative z-10 border-t border-slate-800 pt-16">
             <div className="text-center mb-8 md:mb-12">
-              {/* 💡 요청하신 대로 타이틀 수정 완료 */}
               <h2 className="text-xl md:text-3xl font-bold text-white mb-2 md:mb-4 break-keep">
                 NB-IoT 핵심 하드웨어 구성
               </h2>
@@ -347,8 +362,57 @@ const SmartCityNbIot = () => {
                 제공합니다.
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-              {hardwares.map((hw) => (
+
+            {/* 💡 상단 2개 행 (가로등, 드라이버) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6">
+              {topHardwares.map((hw) => (
+                <div
+                  key={hw.id}
+                  className="bg-[#050b14] p-5 md:p-6 rounded-3xl border border-slate-700 shadow-inner hover:border-flolim/50 active:scale-[0.98] transition-all duration-300 group relative overflow-hidden cursor-default flex flex-col"
+                >
+                  <div className="absolute -right-6 -top-6 w-32 h-32 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
+                  <div className="relative z-10 flex flex-col h-full">
+                    <div className="w-full h-48 md:h-56 bg-slate-800/50 rounded-2xl mb-5 flex items-center justify-center p-3 border border-slate-600/50 group-hover:border-flolim/40 transition-colors overflow-hidden">
+                      <img
+                        src={hw.image}
+                        alt={hw.title}
+                        className="max-w-full max-h-full object-contain mix-blend-screen drop-shadow-xl group-hover:scale-110 transition-transform duration-500"
+                      />
+                    </div>
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-8 h-8 bg-slate-800 border border-slate-600 text-flolim rounded-lg flex items-center justify-center font-black shadow-sm shrink-0">
+                        {hw.id}
+                      </div>
+                      <h3 className="text-sm md:text-lg font-bold text-white group-hover:text-flolim transition-colors break-keep">
+                        {hw.title}
+                      </h3>
+                    </div>
+                    <p className="text-slate-400 font-light leading-relaxed text-[11px] md:text-sm break-keep flex-grow mb-6">
+                      {hw.desc}
+                    </p>
+                    <div className="mt-auto grid grid-cols-1 sm:grid-cols-3 gap-2">
+                      {hw.specs.map((spec, i) => (
+                        <div
+                          key={i}
+                          className="bg-slate-900/60 p-2.5 md:p-3 rounded-xl border border-slate-800 flex flex-col gap-1 text-center justify-center"
+                        >
+                          <span className="text-flolim font-bold text-[9px] md:text-[10px] uppercase tracking-wider">
+                            {spec.label}
+                          </span>
+                          <span className="text-slate-300 text-[10px] md:text-xs font-medium leading-snug break-keep">
+                            {spec.value}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* 💡 하단 3개 행 (NEMA, Zhaga, 무선 컨트롤러) */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+              {bottomHardwares.map((hw) => (
                 <div
                   key={hw.id}
                   className="bg-[#050b14] p-5 md:p-6 rounded-3xl border border-slate-700 shadow-inner hover:border-flolim/50 active:scale-[0.98] transition-all duration-300 group relative overflow-hidden cursor-default flex flex-col"
