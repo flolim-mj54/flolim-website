@@ -54,6 +54,7 @@ const Header = () => {
       path: "/smart-building/intro",
       subItems: [
         { name: "스마트 빌딩 개요", path: "/smart-building/intro" },
+        { name: "스마트 LED 라인업", path: "/smart-building/led" },
         { name: "IoT 센서 자동 제어", path: "/smart-building/sensor" },
       ],
     },
@@ -69,7 +70,7 @@ const Header = () => {
       title: "고객 지원",
       path: "/support/references",
       subItems: [
-        { name: "공식 실증 데이터", path: "/support/references" }, // 💡 수정됨
+        { name: "공식 실증 데이터", path: "/support/references" },
         { name: "자료실", path: "/support/archive" },
         { name: "온라인 문의", path: "/support/contact" },
       ],

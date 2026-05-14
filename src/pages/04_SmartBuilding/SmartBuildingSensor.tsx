@@ -839,8 +839,8 @@ const SmartBuildingSensor = () => {
         <BottomNav
           prev={{
             label: "이전 페이지",
-            title: "스마트 빌딩 개요",
-            path: "/smart-building/intro",
+            title: "스마트 LED 라인업",
+            path: "/smart-building/led",
           }}
           next={{
             label: "다음 카테고리",
