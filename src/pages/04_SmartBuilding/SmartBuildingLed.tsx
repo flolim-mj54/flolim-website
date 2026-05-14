@@ -165,7 +165,7 @@ const SmartBuildingLed = () => {
                 className="bg-[#050b14] rounded-3xl border border-slate-700 shadow-inner overflow-hidden flex flex-col lg:flex-row group hover:border-flolim/50 transition-colors"
               >
                 {/* 왼쪽: 이미지 영역 */}
-                <div className="w-full lg:w-5/12 h-64 lg:h-auto bg-slate-800/30 flex items-center justify-center p-8 relative overflow-hidden relative">
+                <div className="w-full lg:w-5/12 h-64 lg:h-auto bg-slate-800/30 flex items-center justify-center p-8 relative overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-br from-transparent to-slate-900/50 z-0"></div>
                   {/* 글로우 효과 */}
                   <div className="absolute w-32 h-32 bg-flolim/10 rounded-full blur-3xl group-hover:bg-flolim/20 transition-colors z-0"></div>
@@ -174,29 +174,29 @@ const SmartBuildingLed = () => {
                     alt={product.title}
                     className="max-w-full max-h-full object-contain relative z-10 drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)] group-hover:scale-105 transition-transform duration-700"
                   />
-                </div>
 
-                {/* 오른쪽: 상세 스펙 영역 */}
-                <div className="w-full lg:w-7/12 p-6 md:p-8 lg:p-10 flex flex-col justify-center relative">
-                  {/* 인증 마크 영역 (KC, 고효율) - 상세 설명 옆 빈 공간 */}
-                  <div className="absolute top-6 right-6 lg:top-10 lg:right-10 flex items-center gap-3 z-20 pointer-events-none">
+                  {/* 💡 인증 마크 영역 (전등 이미지 우측 하단으로 이동 및 크기 증가) */}
+                  <div className="absolute bottom-4 right-4 lg:bottom-6 lg:right-6 flex items-center gap-2 lg:gap-3 z-20 pointer-events-none">
                     <img
                       src="/images/logo-kc-cutout.png"
                       alt="KC 인증 로고"
-                      className="h-6 object-contain"
+                      className="h-8 md:h-10 object-contain drop-shadow-md"
                     />
                     <img
                       src="/images/logo-highefficiency-cutout.png"
                       alt="고효율기자재 인증 로고"
-                      className="h-6 object-contain"
+                      className="h-8 md:h-10 object-contain drop-shadow-md"
                     />
                   </div>
+                </div>
 
+                {/* 오른쪽: 상세 스펙 영역 */}
+                <div className="w-full lg:w-7/12 p-6 md:p-8 lg:p-10 flex flex-col justify-center relative">
                   <div className="mb-4 relative">
                     <span className="inline-block px-3 py-1 bg-flolim/10 text-flolim text-[10px] md:text-xs font-bold rounded-lg border border-flolim/30 mb-3 tracking-widest">
                       {product.badge}
                     </span>
-                    <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-flolim transition-colors break-keep pr-24 lg:pr-32">
+                    <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-flolim transition-colors break-keep">
                       {product.title}
                     </h3>
                   </div>
