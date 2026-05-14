@@ -169,23 +169,26 @@ const SmartBuildingLed = () => {
                   <div className="absolute inset-0 bg-gradient-to-br from-transparent to-slate-900/50 z-0"></div>
                   {/* 글로우 효과 */}
                   <div className="absolute w-32 h-32 bg-flolim/10 rounded-full blur-3xl group-hover:bg-flolim/20 transition-colors z-0"></div>
+
                   <img
                     src={product.image}
                     alt={product.title}
                     className="max-w-full max-h-full object-contain relative z-10 drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)] group-hover:scale-105 transition-transform duration-700"
                   />
 
-                  {/* 💡 인증 마크 영역 (전등 이미지 우측 하단으로 이동 및 크기 증가) */}
-                  <div className="absolute bottom-4 right-4 lg:bottom-6 lg:right-6 flex items-center gap-2 lg:gap-3 z-20 pointer-events-none">
+                  {/* 💡 3번 안 적용: 둥근 알약 캡슐형 인증 마크 (우측 하단) */}
+                  <div className="absolute bottom-4 right-4 lg:bottom-6 lg:right-6 flex items-center gap-3 bg-white/90 backdrop-blur-md p-2.5 px-5 rounded-full shadow-[0_10px_20px_rgba(0,0,0,0.5)] border border-white/50 z-20 pointer-events-none">
                     <img
                       src="/images/logo-kc-cutout.png"
-                      alt="KC 인증 로고"
-                      className="h-8 md:h-10 object-contain drop-shadow-md"
+                      alt="KC 인증"
+                      className="h-6 md:h-8 object-contain mix-blend-multiply drop-shadow-sm"
                     />
+                    <div className="w-px h-5 md:h-6 bg-slate-300"></div>{" "}
+                    {/* 구분선 */}
                     <img
                       src="/images/logo-highefficiency-cutout.png"
-                      alt="고효율기자재 인증 로고"
-                      className="h-8 md:h-10 object-contain drop-shadow-md"
+                      alt="고효율 인증"
+                      className="h-6 md:h-8 object-contain mix-blend-multiply drop-shadow-sm"
                     />
                   </div>
                 </div>
