@@ -7,7 +7,7 @@ const SmartBuildingLed = () => {
       id: "DL-06",
       badge: "6인치 다운라이트",
       title: "스마트 LED 고효율 다운라이트",
-      image: "/images/building_led_downlight.png", // 확장자 확인 후 수정 요망
+      image: "/images/building_led_downlight.png",
       power: "10.1W",
       efficiency: "170 Lm/W",
       protocol: "Matter over Thread",
@@ -22,7 +22,7 @@ const SmartBuildingLed = () => {
       id: "PL-12",
       badge: "1285x320 평판등",
       title: "스마트 LED 고효율 평판등",
-      image: "/images/building_led_panel.png", // 확장자 확인 후 수정 요망
+      image: "/images/building_led_panel.png",
       power: "24.8W",
       efficiency: "180 Lm/W",
       protocol: "Matter over Thread",
@@ -37,7 +37,7 @@ const SmartBuildingLed = () => {
       id: "RW-12",
       badge: "1200mm 지하주차장등",
       title: "스마트 LED 레이스웨이등",
-      image: "/images/building_led_raceway.png", // 확장자 확인 후 수정 요망
+      image: "/images/building_led_raceway.png",
       power: "12W",
       efficiency: "170 Lm/W",
       protocol: "Matter over Thread",
@@ -165,7 +165,7 @@ const SmartBuildingLed = () => {
                 className="bg-[#050b14] rounded-3xl border border-slate-700 shadow-inner overflow-hidden flex flex-col lg:flex-row group hover:border-flolim/50 transition-colors"
               >
                 {/* 왼쪽: 이미지 영역 */}
-                <div className="w-full lg:w-5/12 h-64 lg:h-auto bg-slate-800/30 flex items-center justify-center p-8 relative overflow-hidden">
+                <div className="w-full lg:w-5/12 h-64 lg:h-auto bg-slate-800/30 flex items-center justify-center p-8 relative overflow-hidden relative">
                   <div className="absolute inset-0 bg-gradient-to-br from-transparent to-slate-900/50 z-0"></div>
                   {/* 글로우 효과 */}
                   <div className="absolute w-32 h-32 bg-flolim/10 rounded-full blur-3xl group-hover:bg-flolim/20 transition-colors z-0"></div>
@@ -178,11 +178,25 @@ const SmartBuildingLed = () => {
 
                 {/* 오른쪽: 상세 스펙 영역 */}
                 <div className="w-full lg:w-7/12 p-6 md:p-8 lg:p-10 flex flex-col justify-center relative">
-                  <div className="mb-4">
+                  {/* 인증 마크 영역 (KC, 고효율) - 상세 설명 옆 빈 공간 */}
+                  <div className="absolute top-6 right-6 lg:top-10 lg:right-10 flex items-center gap-3 z-20 pointer-events-none">
+                    <img
+                      src="/images/logo-kc-cutout.png"
+                      alt="KC 인증 로고"
+                      className="h-6 object-contain"
+                    />
+                    <img
+                      src="/images/logo-highefficiency-cutout.png"
+                      alt="고효율기자재 인증 로고"
+                      className="h-6 object-contain"
+                    />
+                  </div>
+
+                  <div className="mb-4 relative">
                     <span className="inline-block px-3 py-1 bg-flolim/10 text-flolim text-[10px] md:text-xs font-bold rounded-lg border border-flolim/30 mb-3 tracking-widest">
                       {product.badge}
                     </span>
-                    <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-flolim transition-colors break-keep">
+                    <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-flolim transition-colors break-keep pr-24 lg:pr-32">
                       {product.title}
                     </h3>
                   </div>
