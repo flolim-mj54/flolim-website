@@ -17,24 +17,24 @@ const SmartBuildingSensor = () => {
   const dimmingMiddle = Math.round(Math.max(50, 100 - sunlight / 2));
   const dimmingWindow = Math.round(Math.max(10, 100 - sunlight));
 
-  // 💡 상단 배치를 위한 LED 라인업 (3개) - 제품명 수정 완료
+  // 💡 상단 배치를 위한 LED 라인업 (4개) - 정사각 추가 및 사양 업데이트
   const ledProducts = [
     {
       id: "01",
       title: "스마트 LED 다운라이트",
       subtitle: "6-inch Downlight",
       image: "/images/building_led_downlight.png",
-      desc: "단 10.1W 전력으로 170 Lm/W의 압도적 효율을 구현합니다. 초정밀 디밍(0.0001%)과 플리커 프리 기술로 눈이 편안한 환경을 제공합니다.",
+      desc: "단 10.1W 전력으로 효율적인 빛을 구현합니다. 초정밀 디밍(0.0001%)과 플리커 프리 기술로 눈이 편안한 환경을 제공합니다.",
       specs: [
         { label: "소비 전력", value: "10.1W" },
-        { label: "광효율", value: "170 Lm/W" },
+        { label: "광효율", value: "100 Lm/W" },
       ],
     },
     {
       id: "02",
-      title: "스마트 LED 평판등",
+      title: "스마트 LED 직사각 평판등",
       subtitle: "1285x320 Panel Light",
-      image: "/images/building_led_panel.png",
+      image: "/images/building_led_panel_rect.png",
       desc: "독보적인 180 Lm/W 광효율을 자랑하는 초슬림 패널입니다. 천장 일체형 디자인으로 세련된 오피스 인테리어와 높은 업무 집중도를 완성합니다.",
       specs: [
         { label: "소비 전력", value: "24.8W" },
@@ -43,28 +43,39 @@ const SmartBuildingSensor = () => {
     },
     {
       id: "03",
+      title: "스마트 LED 정사각 평판등",
+      subtitle: "640x640 Panel Light",
+      image: "/images/building_led_panel_sq.png",
+      desc: "압도적인 170 Lm/W 광효율을 구현하는 정사각 스마트 패널입니다. 정교한 규격으로 다양한 공간에 조화롭게 어우러지며 고품질 면광원을 선사합니다.",
+      specs: [
+        { label: "소비 전력", value: "24.8W" },
+        { label: "광효율", value: "170 Lm/W" },
+      ],
+    },
+    {
+      id: "04",
       title: "스마트 LED 레이스웨이등",
       subtitle: "1200mm Raceway Light",
       image: "/images/building_led_raceway.png",
       desc: "지하 주차장에 최적화된 직결 설계 조명입니다. 차량 통행량에 따른 실시간 디밍 제어로 불필요한 에너지 낭비를 완벽하게 차단합니다.",
       specs: [
         { label: "소비 전력", value: "12W" },
-        { label: "광효율", value: "170 Lm/W" },
+        { label: "광효율", value: "150 Lm/W" },
       ],
     },
   ];
 
-  // 💡 하단 배치를 위한 시스템 인프라 (2개 - 더 넓게 배치)
+  // 💡 하단 배치를 위한 시스템 인프라 (2개)
   const systemHardwares = [
     {
-      id: "04",
+      id: "05",
       title: "플로림 스마트 허브 프로",
       subtitle: "Flolim Smart Hub Pro",
       image: "/images/building_smart_hub_pro.png",
       desc: "(주)플로림이 자체 개발한 멀티 프로토콜 통합 게이트웨이입니다. Matter, Thread 등 다양한 통신 표준을 사용하는 기기들을 하나의 네트워크로 완벽하게 연동합니다.",
     },
     {
-      id: "05",
+      id: "06",
       title: "AI 비전 센서",
       subtitle: "Vision Sensor",
       image: "/images/building_vision_sensor.png",
@@ -121,7 +132,6 @@ const SmartBuildingSensor = () => {
             </div>
 
             <div className="flex flex-col gap-6 relative z-10">
-              {/* 지하 주차장 시뮬레이션 */}
               <div className="w-full h-48 md:h-56 bg-[#050b14] rounded-2xl md:rounded-3xl border border-slate-700 relative overflow-hidden shadow-inner flex flex-col justify-center">
                 <div className="absolute inset-0 opacity-20 bg-[linear-gradient(rgba(24,169,198,0.2)_1px,transparent_1px),linear-gradient(90deg,rgba(24,169,198,0.2)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
 
@@ -163,7 +173,6 @@ const SmartBuildingSensor = () => {
                 </div>
               </div>
 
-              {/* 지상 오피스 시뮬레이션 */}
               <div className="flex flex-col lg:flex-row gap-6">
                 <div className="w-full lg:w-2/3 h-56 bg-[#050b14] rounded-2xl md:rounded-3xl border border-slate-700 relative overflow-hidden shadow-inner flex flex-col justify-center">
                   <div className="absolute top-3 md:top-4 left-3 md:left-6 text-[9px] md:text-xs font-bold text-amber-400 tracking-widest flex items-center gap-1.5 md:gap-2 z-30 bg-slate-900/80 px-2 md:px-3 py-1 md:py-1.5 rounded-lg border border-slate-800 shadow-md">
@@ -241,7 +250,6 @@ const SmartBuildingSensor = () => {
 
             <div className="lg:w-1/2 w-full flex flex-col bg-[#050b14] p-8 rounded-3xl border border-slate-700 text-center items-center justify-center relative overflow-hidden">
               <div className="absolute inset-0 opacity-10 bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:20px_20px] z-0"></div>
-
               <div className="relative z-10 flex flex-col items-center">
                 <div
                   className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-4 border transition-colors ${isInternetConnected ? "bg-slate-800 border-flolim/50 text-flolim shadow-[0_0_15px_rgba(24,169,198,0.3)]" : "bg-slate-800 border-red-500 text-red-500 opacity-50"}`}
@@ -267,7 +275,6 @@ const SmartBuildingSensor = () => {
                     ? "클라우드 정상 연결됨"
                     : "망 장애 시뮬레이션 중"}
                 </p>
-
                 <div className="w-px h-10 bg-slate-700 my-4 relative">
                   {!isInternetConnected && (
                     <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-red-500 text-xl font-black bg-[#050b14] p-1">
@@ -275,7 +282,6 @@ const SmartBuildingSensor = () => {
                     </span>
                   )}
                 </div>
-
                 <div className="bg-slate-900 p-4 px-6 rounded-2xl border border-flolim shadow-[0_0_15px_rgba(24,169,198,0.2)] flex items-center gap-3">
                   <svg
                     className="w-6 h-6 text-flolim"
@@ -311,60 +317,55 @@ const SmartBuildingSensor = () => {
           </div>
 
           <div className="flex flex-col gap-6 md:gap-8 relative z-10">
-            {/* 상단: 스마트 LED 라인업 (3열) */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            {/* 💡 상단: 스마트 LED 라인업 (4열 배치) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-4">
               {ledProducts.map((hw) => (
                 <div
                   key={hw.id}
-                  className="bg-[#050b14] p-6 md:p-8 rounded-[2rem] border border-slate-700 shadow-inner hover:border-flolim/50 transition-all duration-500 relative overflow-hidden group cursor-default flex flex-col h-full"
+                  className="bg-[#050b14] p-5 md:p-6 rounded-[1.5rem] border border-slate-700 shadow-inner hover:border-flolim/50 transition-all duration-500 relative overflow-hidden group cursor-default flex flex-col h-full"
                 >
-                  <div className="absolute -right-10 -top-10 w-32 h-32 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 blur-3xl pointer-events-none"></div>
-
-                  <div className="w-full aspect-video bg-slate-800/30 rounded-2xl mb-6 flex items-center justify-center p-4 border border-slate-700/50 overflow-hidden relative">
+                  <div className="absolute -right-10 -top-10 w-24 h-24 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 blur-3xl pointer-events-none"></div>
+                  <div className="w-full aspect-square bg-slate-800/30 rounded-xl mb-5 flex items-center justify-center p-3 border border-slate-700/50 overflow-hidden relative">
                     <img
                       src={hw.image}
                       alt={hw.title}
                       className="max-w-full max-h-full object-contain mix-blend-screen drop-shadow-xl group-hover:scale-110 transition-transform duration-700 relative z-10"
                     />
                   </div>
-
                   <div className="relative z-10 flex flex-col flex-grow">
-                    <span className="text-flolim text-[10px] font-bold uppercase tracking-widest block mb-1">
+                    <span className="text-flolim text-[9px] font-bold uppercase tracking-widest block mb-1">
                       Device {hw.id}
                     </span>
-                    <h3 className="text-lg md:text-xl font-bold text-white group-hover:text-flolim transition-colors break-keep mb-1">
+                    <h3 className="text-sm md:text-base font-bold text-white group-hover:text-flolim transition-colors break-keep mb-1">
                       {hw.title}
                     </h3>
-                    <span className="text-slate-500 text-[11px] font-medium uppercase block mb-4">
+                    <span className="text-slate-500 text-[10px] font-medium uppercase block mb-3">
                       {hw.subtitle}
                     </span>
-                    <p className="text-slate-400 font-light leading-relaxed text-xs md:text-sm break-keep mb-6 flex-grow">
+                    <p className="text-slate-400 font-light leading-relaxed text-[11px] md:text-xs break-keep mb-4 flex-grow">
                       {hw.desc}
                     </p>
-
-                    {hw.specs && (
-                      <div className="grid grid-cols-2 gap-2 mt-auto">
-                        {hw.specs.map((spec, i) => (
-                          <div
-                            key={i}
-                            className="bg-slate-900/80 p-2 md:p-3 rounded-xl border border-slate-700 text-center flex flex-col justify-center"
-                          >
-                            <span className="block text-slate-500 text-[9px] font-bold uppercase mb-1">
-                              {spec.label}
-                            </span>
-                            <span className="text-flolim font-black text-xs md:text-sm">
-                              {spec.value}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    )}
+                    <div className="grid grid-cols-2 gap-1.5 mt-auto">
+                      {hw.specs.map((spec, i) => (
+                        <div
+                          key={i}
+                          className="bg-slate-900/80 p-2 rounded-lg border border-slate-700 text-center flex flex-col justify-center"
+                        >
+                          <span className="block text-slate-500 text-[8px] font-bold uppercase mb-0.5">
+                            {spec.label}
+                          </span>
+                          <span className="text-flolim font-black text-[10px] md:text-xs whitespace-nowrap">
+                            {spec.value}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
 
-            {/* 하단: 시스템 인프라 (2열) */}
+            {/* 💡 하단: 시스템 인프라 (2열 - 상단 넓이에 맞춰 정렬) */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
               {systemHardwares.map((hw) => (
                 <div
@@ -372,7 +373,6 @@ const SmartBuildingSensor = () => {
                   className="bg-[#050b14] p-8 md:p-10 rounded-[2rem] border border-slate-700 shadow-inner hover:border-flolim/50 transition-all duration-500 relative overflow-hidden group cursor-default flex flex-col h-full"
                 >
                   <div className="absolute -right-10 -top-10 w-40 h-40 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 blur-3xl pointer-events-none"></div>
-
                   <div className="w-full aspect-[21/9] bg-slate-800/30 rounded-2xl mb-6 flex items-center justify-center p-6 border border-slate-700/50 overflow-hidden relative">
                     <img
                       src={hw.image}
@@ -380,7 +380,6 @@ const SmartBuildingSensor = () => {
                       className="max-w-full max-h-full object-contain mix-blend-screen drop-shadow-xl group-hover:scale-110 transition-transform duration-700 relative z-10"
                     />
                   </div>
-
                   <div className="relative z-10 flex flex-col flex-grow">
                     <span className="text-flolim text-[10px] font-bold uppercase tracking-widest block mb-1">
                       Device {hw.id}

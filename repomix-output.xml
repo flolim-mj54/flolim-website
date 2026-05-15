@@ -6315,11 +6315,11 @@ const SmartBuildingSensor = () => {
   const dimmingMiddle = Math.round(Math.max(50, 100 - sunlight / 2));
   const dimmingWindow = Math.round(Math.max(10, 100 - sunlight));
 
-  // 💡 상단 배치를 위한 LED 라인업 (3개) - specs 분리 표기
+  // 💡 상단 배치를 위한 LED 라인업 (3개) - 제품명 수정 완료
   const ledProducts = [
     {
       id: "01",
-      title: "스마트 고효율 다운라이트",
+      title: "스마트 LED 다운라이트",
       subtitle: "6-inch Downlight",
       image: "/images/building_led_downlight.png",
       desc: "단 10.1W 전력으로 170 Lm/W의 압도적 효율을 구현합니다. 초정밀 디밍(0.0001%)과 플리커 프리 기술로 눈이 편안한 환경을 제공합니다.",
@@ -6330,7 +6330,7 @@ const SmartBuildingSensor = () => {
     },
     {
       id: "02",
-      title: "스마트 고효율 평판등",
+      title: "스마트 LED 평판등",
       subtitle: "1285x320 Panel Light",
       image: "/images/building_led_panel.png",
       desc: "독보적인 180 Lm/W 광효율을 자랑하는 초슬림 패널입니다. 천장 일체형 디자인으로 세련된 오피스 인테리어와 높은 업무 집중도를 완성합니다.",
@@ -6341,7 +6341,7 @@ const SmartBuildingSensor = () => {
     },
     {
       id: "03",
-      title: "스마트 레이스웨이등",
+      title: "스마트 LED 레이스웨이등",
       subtitle: "1200mm Raceway Light",
       image: "/images/building_led_raceway.png",
       desc: "지하 주차장에 최적화된 직결 설계 조명입니다. 차량 통행량에 따른 실시간 디밍 제어로 불필요한 에너지 낭비를 완벽하게 차단합니다.",
@@ -6640,7 +6640,6 @@ const SmartBuildingSensor = () => {
                       {hw.desc}
                     </p>
 
-                    {/* 💡 새로운 분리형 스펙 표기 방식 */}
                     {hw.specs && (
                       <div className="grid grid-cols-2 gap-2 mt-auto">
                         {hw.specs.map((spec, i) => (
