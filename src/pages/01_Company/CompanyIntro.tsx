@@ -12,7 +12,7 @@ export default function CompanyIntro() {
           <>
             세상을 밝히는{" "}
             <span className="text-flolim drop-shadow-[0_0_15px_rgba(24,169,198,0.4)]">
-              지능형 연결
+              연결
             </span>
           </>
         }
