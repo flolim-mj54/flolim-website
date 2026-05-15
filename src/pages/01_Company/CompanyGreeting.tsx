@@ -21,42 +21,23 @@ export default function CompanyGreeting() {
           <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-flolim/5 rounded-full blur-[150px] pointer-events-none -translate-x-1/2 -translate-y-1/2 z-0"></div>
 
           <div className="relative z-10">
-            {/* 💡 상단 영역: 텍스트(좌) / 사진(우) */}
-            <div className="flex flex-col md:flex-row gap-8 lg:gap-12 mb-10">
-              {/* 좌측: 타이틀 및 인사말 첫 줄 (사진 높이에 맞춰 하단 정렬되도록 flex-col justify-between 적용) */}
-              <div className="flex-1 flex flex-col justify-between py-2">
-                <div className="mb-8 md:mb-0">
-                  <p className="text-flolim font-bold tracking-widest text-xs md:text-sm mb-4 uppercase">
-                    The beginning of smart business
-                  </p>
-                  <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight break-keep">
-                    "지속 가능한 비즈니스의 시작, <br />
-                    <span className="text-flolim drop-shadow-[0_0_20px_rgba(24,169,198,0.5)]">
-                      (주)플로림이 함께 하겠습니다."
-                    </span>
-                  </h2>
-                </div>
-
-                {/* 💡 사진의 하단 끝선에 맞춰지는 텍스트 */}
-                <p className="text-lg md:text-xl text-white font-medium break-keep mt-auto">
-                  안녕하십니까, 주식회사 플로림 대표입니다.
-                </p>
-              </div>
-
-              {/* 우측: 대표 사진 영역 */}
-              <div className="w-full max-w-[280px] md:max-w-[300px] shrink-0 mx-auto md:mx-0">
-                <div className="relative group">
-                  <div className="absolute inset-0 bg-flolim/10 rounded-2xl blur-[40px] pointer-events-none scale-105 opacity-70 transition-all duration-700"></div>
-                  <img
-                    src="/images/ceo.png"
-                    alt="주식회사 플로림 대표이사"
-                    className="relative z-10 w-full h-auto rounded-2xl border border-slate-700 shadow-xl object-cover drop-shadow-[0_20px_30px_rgba(0,0,0,0.5)]"
-                  />
-                </div>
-              </div>
+            {/* 💡 상단 타이틀 영역 */}
+            <div className="mb-10">
+              <p className="text-flolim font-bold tracking-widest text-xs md:text-sm mb-4 uppercase">
+                The beginning of smart business
+              </p>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight break-keep mb-8">
+                "지속 가능한 비즈니스의 시작, <br />
+                <span className="text-flolim drop-shadow-[0_0_20px_rgba(24,169,198,0.5)]">
+                  (주)플로림이 함께 하겠습니다."
+                </span>
+              </h2>
+              <p className="text-lg md:text-xl text-white font-medium break-keep">
+                안녕하십니까, 주식회사 플로림 대표입니다.
+              </p>
             </div>
 
-            {/* 💡 하단 영역: 사진 아래부터 전체 너비(100%)로 채워지는 본문 */}
+            {/* 💡 본문 영역 (전체 너비 사용) */}
             <div className="text-slate-300 font-light leading-relaxed text-sm md:text-base break-keep space-y-6">
               <p>
                 과거의 에너지는 단순히 '소비'하는 대상이었습니다. 하지만 기후
@@ -104,14 +85,29 @@ export default function CompanyGreeting() {
               </p>
             </div>
 
-            {/* 💡 우측 정렬된 서명 영역 */}
-            <div className="pt-10 mt-10 border-t border-slate-800 flex flex-col items-end text-right">
-              <p className="text-base md:text-lg text-slate-400 mb-1.5 font-medium">
-                감사합니다.
-              </p>
-              <p className="text-xl md:text-2xl font-bold text-white tracking-wide">
-                주식회사 플로림 대표이사
-              </p>
+            {/* 💡 하단 서명 및 사진 영역 (좌측 사진, 우측 텍스트 정렬) */}
+            <div className="pt-8 mt-12 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center md:items-end gap-8">
+              {/* 좌하단: 대표 사진 (서명 크기에 맞게 조절됨) */}
+              <div className="w-[140px] md:w-[160px] shrink-0">
+                <div className="relative group">
+                  <div className="absolute inset-0 bg-flolim/10 rounded-2xl blur-[20px] pointer-events-none scale-105 opacity-70 transition-all duration-700"></div>
+                  <img
+                    src="/images/ceo.jpg"
+                    alt="주식회사 플로림 대표이사"
+                    className="relative z-10 w-full h-auto rounded-2xl border border-slate-700 shadow-xl object-cover drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]"
+                  />
+                </div>
+              </div>
+
+              {/* 우하단: 서명 텍스트 */}
+              <div className="text-center md:text-right">
+                <p className="text-base md:text-lg text-slate-400 mb-1.5 font-medium">
+                  감사합니다.
+                </p>
+                <p className="text-xl md:text-2xl font-bold text-white tracking-wide">
+                  주식회사 플로림 대표이사
+                </p>
+              </div>
             </div>
           </div>
         </section>

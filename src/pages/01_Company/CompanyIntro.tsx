@@ -6,6 +6,28 @@ import FeatureCard from "../../components/FeatureCard";
 export default function CompanyIntro() {
   return (
     <div className="pb-10">
+      <PageHeader
+        category="About Us"
+        title={
+          <>
+            세상을 밝히는{" "}
+            <span className="text-flolim drop-shadow-[0_0_15px_rgba(24,169,198,0.4)]">
+              지능형 연결
+            </span>
+          </>
+        }
+        subtitle={
+          <>
+            스마트 IoT 제어 시스템 전문 기업{" "}
+            <strong className="text-white font-bold">주식회사 플로림</strong>
+            입니다.
+            <br className="hidden md:block" />
+            단순한 조명 제어를 넘어, 지능형 데이터 분석과 첨단 IoT 센서
+            네트워크를 통해 도시와 빌딩의 에너지를 가장 스마트하게 관리합니다.
+          </>
+        }
+      />
+
       <div className="container mx-auto px-4 max-w-6xl mt-10">
         <section className="bg-slate-900/50 backdrop-blur-md rounded-[2.5rem] p-8 md:p-16 shadow-2xl border border-slate-800 mb-16 relative overflow-hidden">
           <div className="absolute top-1/2 left-1/2 w-[800px] h-[800px] bg-flolim/5 rounded-full blur-[150px] pointer-events-none -translate-x-1/2 -translate-y-1/2"></div>
