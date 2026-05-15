@@ -1,26 +1,28 @@
-import PageHeader from '../../components/PageHeader';
-import BottomNav from '../../components/BottomNav';
+import PageHeader from "../../components/PageHeader";
+import BottomNav from "../../components/BottomNav";
 
 export default function CompanyHistory() {
   return (
     <div className="pb-10 relative overflow-hidden">
-      
-      <PageHeader 
+      <PageHeader
         category="History"
         title="플로림이 걸어온 길"
         subtitle={
           <>
-            끊임없는 혁신과 도전을 통해 새로운 가치를 창출하며,<br className="hidden md:block" />
-            <strong className="text-white font-bold">스마트 비즈니스의 시작</strong>을 열어가고 있습니다.
+            끊임없는 혁신과 도전을 통해 새로운 가치를 창출하며,
+            <br className="hidden md:block" />
+            <strong className="text-white font-bold">
+              스마트 비즈니스의 시작
+            </strong>
+            을 열어가고 있습니다.
           </>
         }
       />
 
       <div className="container mx-auto px-4 max-w-5xl relative z-10 mb-10 mt-10">
-        
         <section className="bg-slate-900/50 backdrop-blur-sm rounded-[2.5rem] p-8 md:p-16 shadow-2xl border border-slate-800 relative overflow-hidden">
           <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-flolim/5 rounded-full blur-[150px] pointer-events-none -translate-x-1/2 -translate-y-1/2"></div>
-          
+
           <div className="relative max-w-4xl mx-auto py-10 z-10">
             <div className="absolute left-[24px] md:left-1/2 top-0 bottom-0 w-[2px] bg-slate-800 transform md:-translate-x-1/2"></div>
 
@@ -31,33 +33,74 @@ export default function CompanyHistory() {
                   2026
                 </h2>
               </div>
-              
+
               <div className="absolute left-[13px] md:left-1/2 w-6 h-6 md:w-7 md:h-7 bg-slate-900 border-4 border-flolim rounded-full transform -translate-x-1/2 mt-1 md:mt-0 shadow-[0_0_15px_rgba(24,169,198,0.5)] group-hover:scale-125 transition-transform z-10"></div>
-              
+
               <div className="md:w-5/12 pl-14 md:pl-16 w-full">
                 <div className="bg-[#050b14] p-6 md:p-8 rounded-3xl shadow-inner border border-slate-700 group-hover:border-flolim/50 active:scale-[0.98] transition-all duration-500 relative overflow-hidden">
                   <div className="absolute -right-6 -top-6 w-24 h-24 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
 
                   <ul className="space-y-6 relative z-10 text-sm md:text-base">
+                    {/* 💡 5월 신규 추가 */}
                     <li className="relative flex items-start gap-3 md:gap-4">
-                      <span className="text-flolim font-black text-base md:text-lg w-10 shrink-0">03월</span>
-                      <span className="text-slate-300 font-medium pt-0.5 break-keep">스마트 IoT 제어시스템 통합 솔루션 론칭</span>
+                      <span className="text-flolim font-black text-base md:text-lg w-10 shrink-0">
+                        05월
+                      </span>
+                      <div className="pt-0.5">
+                        <span className="text-slate-300 font-medium break-keep block mb-1">
+                          K-ICT 기업인 협회 MOU 체결
+                        </span>
+                        <span className="text-slate-300 font-medium break-keep">
+                          키엘연구원 LaaS 사업화 연구개발 기업 선정
+                        </span>
+                      </div>
+                    </li>
+                    {/* 💡 4월 신규 추가 */}
+                    <li className="relative flex items-start gap-3 md:gap-4">
+                      <span className="text-flolim font-black text-base md:text-lg w-10 shrink-0">
+                        04월
+                      </span>
+                      <span className="text-slate-300 font-medium pt-0.5 break-keep">
+                        플로림 제1 공장 설립 (충남 천안)
+                      </span>
+                    </li>
+                    {/* 💡 3월 명칭 변경 */}
+                    <li className="relative flex items-start gap-3 md:gap-4">
+                      <span className="text-flolim font-black text-base md:text-lg w-10 shrink-0">
+                        03월
+                      </span>
+                      <span className="text-slate-300 font-medium pt-0.5 break-keep">
+                        스마트 LED 제어시스템 통합 솔루션 론칭
+                      </span>
                     </li>
                     <li className="relative flex items-start gap-3 md:gap-4">
-                      <span className="text-flolim font-black text-base md:text-lg w-10 shrink-0">02월</span>
+                      <span className="text-flolim font-black text-base md:text-lg w-10 shrink-0">
+                        02월
+                      </span>
                       <div className="pt-0.5">
-                        {/* 💡 [수정됨] KILT -> KIEL */}
-                        <span className="text-slate-300 font-medium break-keep">키엘(KIEL) 시험성적서 획득</span>
-                        <span className="text-xs md:text-sm text-slate-500 block mt-1 font-light break-keep">스마트LED 조명제어시스템</span>
+                        <span className="text-slate-300 font-medium break-keep">
+                          키엘(KIEL) 시험성적서 획득
+                        </span>
+                        <span className="text-xs md:text-sm text-slate-500 block mt-1 font-light break-keep">
+                          스마트LED 조명제어시스템
+                        </span>
                       </div>
                     </li>
                     <li className="relative flex items-start gap-3 md:gap-4">
-                      <span className="text-flolim font-black text-base md:text-lg w-10 shrink-0">02월</span>
-                      <span className="text-slate-300 font-medium pt-0.5 break-keep">여성기업 및 창업기업 확인서 취득</span>
+                      <span className="text-flolim font-black text-base md:text-lg w-10 shrink-0">
+                        02월
+                      </span>
+                      <span className="text-slate-300 font-medium pt-0.5 break-keep">
+                        여성기업 및 창업기업 확인서 취득
+                      </span>
                     </li>
                     <li className="relative flex items-start gap-3 md:gap-4">
-                      <span className="text-flolim font-black text-base md:text-lg w-10 shrink-0">01월</span>
-                      <span className="text-slate-300 font-medium pt-0.5 break-keep">중소기업(소기업/소상공인) 확인서 취득</span>
+                      <span className="text-flolim font-black text-base md:text-lg w-10 shrink-0">
+                        01월
+                      </span>
+                      <span className="text-slate-300 font-medium pt-0.5 break-keep">
+                        중소기업(소기업/소상공인) 확인서 취득
+                      </span>
                     </li>
                   </ul>
                 </div>
@@ -71,17 +114,21 @@ export default function CompanyHistory() {
                   2025
                 </h2>
               </div>
-              
+
               <div className="absolute left-[13px] md:left-1/2 w-6 h-6 md:w-7 md:h-7 bg-slate-900 border-4 border-slate-700 rounded-full transform -translate-x-1/2 mt-1 md:mt-0 shadow-sm group-hover:border-flolim group-hover:scale-125 transition-all z-10 md:order-2"></div>
-              
+
               <div className="md:w-5/12 pl-14 md:pl-0 md:pr-16 text-left md:text-right md:order-1 w-full">
                 <div className="bg-[#050b14] p-6 md:p-8 rounded-3xl shadow-inner border border-slate-700 group-hover:border-flolim/30 active:scale-[0.98] transition-all duration-500 relative overflow-hidden">
                   <div className="absolute -right-6 -top-6 w-24 h-24 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
 
                   <ul className="space-y-6 relative z-10 text-sm md:text-base">
                     <li className="relative flex md:justify-end items-start gap-3 md:gap-4">
-                      <span className="text-slate-300 font-medium pt-0.5 order-2 md:order-1 text-left md:text-right break-keep">주식회사 플로림 법인 설립</span>
-                      <span className="text-slate-500 group-hover:text-flolim font-black text-base md:text-lg w-10 shrink-0 order-1 md:order-2 text-left md:text-right transition-colors duration-500">12월</span>
+                      <span className="text-slate-300 font-medium pt-0.5 order-2 md:order-1 text-left md:text-right break-keep">
+                        주식회사 플로림 법인 설립
+                      </span>
+                      <span className="text-slate-500 group-hover:text-flolim font-black text-base md:text-lg w-10 shrink-0 order-1 md:order-2 text-left md:text-right transition-colors duration-500">
+                        12월
+                      </span>
                     </li>
                   </ul>
                 </div>
@@ -94,9 +141,17 @@ export default function CompanyHistory() {
           </div>
         </section>
 
-        <BottomNav 
-          prev={{ label: '이전 페이지', title: '인증 및 파트너', path: '/company/cert' }}
-          next={{ label: '다음 페이지', title: '오시는 길', path: '/company/location' }}
+        <BottomNav
+          prev={{
+            label: "이전 페이지",
+            title: "인증 및 파트너",
+            path: "/company/cert",
+          }}
+          next={{
+            label: "다음 페이지",
+            title: "오시는 길",
+            path: "/company/location",
+          }}
         />
       </div>
     </div>

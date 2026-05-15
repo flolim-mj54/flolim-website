@@ -35,10 +35,10 @@ const SmartBuildingSensor = () => {
       title: "스마트 LED 직사각 평판등",
       subtitle: "1285x320 Panel Light",
       image: "/images/building_led_panel_rect.png",
-      desc: "독보적인 180 Lm/W 광효율을 자랑하는 초슬림 패널입니다. 천장 일체형 디자인으로 세련된 오피스 인테리어와 높은 업무 집중도를 완성합니다.",
+      desc: "독보적인 170 Lm/W 광효율을 자랑하는 초슬림 패널입니다. 천장 일체형 디자인으로 세련된 오피스 인테리어와 높은 업무 집중도를 완성합니다.",
       specs: [
         { label: "소비 전력", value: "24.8W" },
-        { label: "광효율", value: "180 Lm/W" },
+        { label: "광효율", value: "170 Lm/W" },
       ],
     },
     {
