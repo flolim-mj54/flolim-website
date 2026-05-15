@@ -39,7 +39,7 @@ export default function CompanyGreeting() {
 
                 {/* 💡 사진의 하단 끝선에 맞춰지는 텍스트 */}
                 <p className="text-lg md:text-xl text-white font-medium break-keep mt-auto">
-                  안녕하십니까, 주식회사 플로림 대표입니다.
+                  안녕하십니까, 주식회사 플로림 대표이사 모근영입니다.
                 </p>
               </div>
 
@@ -49,7 +49,7 @@ export default function CompanyGreeting() {
                   <div className="absolute inset-0 bg-flolim/10 rounded-2xl blur-[40px] pointer-events-none scale-105 opacity-70 transition-all duration-700"></div>
                   <img
                     src="/images/ceo.png"
-                    alt="주식회사 플로림 대표이사"
+                    alt="주식회사 플로림 대표이사 모근영"
                     className="relative z-10 w-full h-auto rounded-2xl border border-slate-700 shadow-xl object-cover drop-shadow-[0_20px_30px_rgba(0,0,0,0.5)]"
                   />
                 </div>
@@ -110,7 +110,7 @@ export default function CompanyGreeting() {
                 감사합니다.
               </p>
               <p className="text-xl md:text-2xl font-bold text-white tracking-wide">
-                주식회사 플로림 대표이사
+                주식회사 플로림 대표이사 모근영
               </p>
             </div>
           </div>
