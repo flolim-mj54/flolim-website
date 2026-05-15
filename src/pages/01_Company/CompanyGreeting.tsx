@@ -16,49 +16,55 @@ export default function CompanyGreeting() {
       />
 
       <div className="container mx-auto px-4 max-w-6xl relative z-10 mb-10 mt-10">
-        <section className="bg-slate-900/50 backdrop-blur-md rounded-[2.5rem] p-8 md:p-16 shadow-2xl border border-slate-800 relative overflow-hidden">
+        <section className="bg-slate-900/50 backdrop-blur-md rounded-[2.5rem] p-8 md:p-12 lg:p-16 shadow-2xl border border-slate-800 relative overflow-hidden">
           {/* 배경 장식 효과 */}
           <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-flolim/5 rounded-full blur-[150px] pointer-events-none -translate-x-1/2 -translate-y-1/2 z-0"></div>
 
           <div className="relative z-10">
-            {/* 💡 사진 영역: 데스크탑에서 우측으로 플로팅(float)하여 본문과 통합 */}
-            <div className="w-full md:w-5/12 lg:w-4/12 md:float-right md:ml-12 md:mb-8 mb-10">
-              <div className="relative group">
-                <div className="absolute inset-0 bg-flolim/10 rounded-full blur-[80px] pointer-events-none scale-110 opacity-70 group-hover:bg-flolim/20 transition-all duration-700"></div>
-                <img
-                  src="/images/ceo.png"
-                  alt="주식회사 플로림 대표이사"
-                  className="relative z-10 w-full max-w-[320px] md:max-w-full mx-auto h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] group-hover:scale-[1.02] transition-transform duration-500"
-                />
-                <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-32 h-1 bg-flolim/30 rounded-full blur-sm"></div>
+            {/* 💡 상단 영역: 텍스트(좌) / 사진(우) */}
+            <div className="flex flex-col md:flex-row gap-8 lg:gap-12 mb-10">
+              {/* 좌측: 타이틀 및 인사말 첫 줄 (사진 높이에 맞춰 하단 정렬되도록 flex-col justify-between 적용) */}
+              <div className="flex-1 flex flex-col justify-between py-2">
+                <div className="mb-8 md:mb-0">
+                  <p className="text-flolim font-bold tracking-widest text-xs md:text-sm mb-4 uppercase">
+                    The beginning of smart business
+                  </p>
+                  <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight break-keep">
+                    "지속 가능한 비즈니스의 시작, <br />
+                    <span className="text-flolim drop-shadow-[0_0_20px_rgba(24,169,198,0.5)]">
+                      (주)플로림이 함께 하겠습니다."
+                    </span>
+                  </h2>
+                </div>
+
+                {/* 💡 사진의 하단 끝선에 맞춰지는 텍스트 */}
+                <p className="text-lg md:text-xl text-white font-medium break-keep mt-auto">
+                  안녕하십니까, 주식회사 플로림 대표입니다.
+                </p>
+              </div>
+
+              {/* 우측: 대표 사진 영역 */}
+              <div className="w-full max-w-[280px] md:max-w-[300px] shrink-0 mx-auto md:mx-0">
+                <div className="relative group">
+                  <div className="absolute inset-0 bg-flolim/10 rounded-2xl blur-[40px] pointer-events-none scale-105 opacity-70 transition-all duration-700"></div>
+                  <img
+                    src="/images/ceo.png"
+                    alt="주식회사 플로림 대표이사"
+                    className="relative z-10 w-full h-auto rounded-2xl border border-slate-700 shadow-xl object-cover drop-shadow-[0_20px_30px_rgba(0,0,0,0.5)]"
+                  />
+                </div>
               </div>
             </div>
 
-            {/* 💡 본문 영역: 사진 옆에서 시작하여 사진 아래로 흐르는 구조 */}
-            <div className="text-slate-300 font-light leading-relaxed text-sm md:text-base break-keep">
-              <div className="mb-8">
-                <p className="text-flolim font-bold tracking-widest text-xs md:text-sm mb-4 uppercase">
-                  The beginning of smart business
-                </p>
-                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight">
-                  "지속 가능한 비즈니스의 시작, <br />
-                  <span className="text-flolim drop-shadow-[0_0_20px_rgba(24,169,198,0.5)]">
-                    (주)플로림이 함께 하겠습니다."
-                  </span>
-                </h2>
-              </div>
-
-              <p className="text-lg md:text-xl text-white font-medium mb-6">
-                안녕하십니까, 주식회사 플로림 대표입니다.
-              </p>
-
-              <p className="mb-6">
+            {/* 💡 하단 영역: 사진 아래부터 전체 너비(100%)로 채워지는 본문 */}
+            <div className="text-slate-300 font-light leading-relaxed text-sm md:text-base break-keep space-y-6">
+              <p>
                 과거의 에너지는 단순히 '소비'하는 대상이었습니다. 하지만 기후
                 변화와 탄소 중립이 전 지구적 과제로 떠오른 지금, 에너지는 기업의
                 생존과 성장을 결정짓는 가장 중요한 '관리'의 영역이 되었습니다.
               </p>
 
-              <p className="mb-6">
+              <p>
                 저희 플로림은{" "}
                 <strong className="text-white font-medium">
                   세상을 밝히는 지능형 연결
@@ -68,7 +74,7 @@ export default function CompanyGreeting() {
                 기술 기업입니다.
               </p>
 
-              <div className="bg-[#050b14]/80 p-6 md:p-8 rounded-2xl border-l-4 border-l-flolim border-slate-700 shadow-inner mb-8 md:clear-none">
+              <div className="bg-[#050b14]/80 p-6 md:p-8 rounded-2xl border-l-4 border-l-flolim border-slate-700 shadow-inner my-8">
                 <p className="text-sm md:text-base text-slate-300 leading-relaxed">
                   특히, KEPCO ES 연계 ESCO 사업 모델을 통해 초기 투자비용{" "}
                   <strong className="text-flolim font-bold">0원</strong>으로
@@ -80,27 +86,27 @@ export default function CompanyGreeting() {
                 </p>
               </div>
 
-              <p className="mb-6">
+              <p>
                 탄소 중립과 ESG 경영의 든든한 파트너로서, 끊임없는 연구개발과
                 완벽한 신뢰를 바탕으로 고객의 자산을 보호하고 지속 가능한 미래를
                 앞당기는 통합 제어 솔루션을 제공하겠습니다.
               </p>
 
-              <p className="mb-6">
+              <p>
                 우리는 단순히 제품을 파는 것을 넘어, 고객사의 에너지 데이터를
                 정밀하게 분석하여 실질적인 비용 혁신과 기업 가치 제고를 돕는
                 기술 리더로서 소임을 다할 것입니다.
               </p>
 
-              <p className="mb-6">
+              <p>
                 변함없는 신뢰와 성원을 보내주시는 고객 여러분께 깊은 감사를
                 드리며, 늘 건강과 행복이 가득하시기를 기원합니다.
               </p>
             </div>
 
-            {/* 💡 하단 서명 영역: float 영향을 받지 않도록 clear-both 적용 */}
-            <div className="pt-10 mt-10 border-t border-slate-800 flex flex-col items-start clear-both">
-              <p className="text-base md:text-lg text-slate-400 mb-2 font-medium">
+            {/* 💡 우측 정렬된 서명 영역 */}
+            <div className="pt-10 mt-10 border-t border-slate-800 flex flex-col items-end text-right">
+              <p className="text-base md:text-lg text-slate-400 mb-1.5 font-medium">
                 감사합니다.
               </p>
               <p className="text-xl md:text-2xl font-bold text-white tracking-wide">
