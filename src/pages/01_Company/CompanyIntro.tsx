@@ -8,14 +8,7 @@ export default function CompanyIntro() {
     <div className="pb-10">
       <PageHeader
         category="About Us"
-        title={
-          <>
-            세상을 밝히는{" "}
-            <span className="text-flolim drop-shadow-[0_0_15px_rgba(24,169,198,0.4)]">
-              연결
-            </span>
-          </>
-        }
+        title={<></>}
         subtitle={
           <>
             스마트 IoT 제어 시스템 전문 기업{" "}
