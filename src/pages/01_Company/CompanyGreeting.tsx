@@ -92,7 +92,7 @@ export default function CompanyGreeting() {
                 <div className="relative group">
                   <div className="absolute inset-0 bg-flolim/10 rounded-2xl blur-[20px] pointer-events-none scale-105 opacity-70 transition-all duration-700"></div>
                   <img
-                    src="/images/ceo.jpg"
+                    src="/images/ceo.png"
                     alt="주식회사 플로림 대표이사"
                     className="relative z-10 w-full h-auto rounded-2xl border border-slate-700 shadow-xl object-cover drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]"
                   />
