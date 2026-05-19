@@ -181,7 +181,7 @@ const SmartCityIntro = () => {
 
         <BottomNav 
           prev={{ label: '이전 카테고리', title: '에너지 절감 시뮬레이션', path: '/business/simulation' }}
-          next={{ label: '다음 페이지', title: 'LoRa-Mesh 제어', path: '/smart-city/lora' }}
+          next={{ label: '다음 페이지', title: 'LoRa-Mesh 제어 및 제품소개', path: '/smart-city/lora' }}
         />
       </div>
     </div>

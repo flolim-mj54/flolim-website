@@ -546,12 +546,12 @@ const SmartCityLora = () => {
         <BottomNav
           prev={{
             label: "이전 페이지",
-            title: "스마트 시티 개요",
-            path: "/smart-city/intro",
+            title: "LoRa-Mesh 제어 및 제품소개",
+            path: "/smart-city/lora",
           }}
           next={{
             label: "다음 페이지",
-            title: "NB-IoT 제어",
+            title: "NB-IoT 제어 및 제품소개",
             path: "/smart-city/nb-iot",
           }}
         />

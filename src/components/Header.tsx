@@ -44,9 +44,9 @@ const Header = () => {
       path: "/smart-city/intro",
       subItems: [
         { name: "스마트 시티 개요", path: "/smart-city/intro" },
-        { name: "LoRa-Mesh 제어", path: "/smart-city/lora" },
-        { name: "NB-IoT 제어", path: "/smart-city/nb-iot" },
-        { name: "DMX 경관조명", path: "/smart-city/dmx" },
+        { name: "LoRa-Mesh 제어 및 제품소개", path: "/smart-city/lora" },
+        { name: "NB-IoT 제어 및 제품소개", path: "/smart-city/nb-iot" },
+        { name: "DMX 경관조명 및 제품소개", path: "/smart-city/dmx" },
       ],
     },
     {

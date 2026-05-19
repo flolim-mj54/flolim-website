@@ -495,12 +495,12 @@ const SmartCityNbIot = () => {
         <BottomNav
           prev={{
             label: "이전 페이지",
-            title: "LoRa-Mesh 제어",
-            path: "/smart-city/lora",
+            title: "NB-IoT 제어 및 제품소개",
+            path: "/smart-city/nb-iot",
           }}
           next={{
             label: "다음 페이지",
-            title: "DMX 경관조명",
+            title: "DMX 경관조명 및 제품소개",
             path: "/smart-city/dmx",
           }}
         />
