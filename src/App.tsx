@@ -3,6 +3,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
+import SmartBuildingLed from "./pages/04_SmartBuilding/SmartBuildingLed";
 
 // Company
 import CompanyIntro from "./pages/01_Company/CompanyIntro";
@@ -71,6 +72,7 @@ function App() {
               path="/smart-building/intro"
               element={<SmartBuildingIntro />}
             />
+            <Route path="/smart-building/led" element={<SmartBuildingLed />} />
             <Route
               path="/smart-building/sensor"
               element={<SmartBuildingSensor />}
