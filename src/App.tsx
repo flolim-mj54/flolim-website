@@ -73,7 +73,7 @@ function App() {
               element={<SmartBuildingIntro />}
             />
             <Route
-              path="/smart-building/led"
+              path="/smart-building/product"
               element={<SmartBuildingProduct />}
             />
             <Route
