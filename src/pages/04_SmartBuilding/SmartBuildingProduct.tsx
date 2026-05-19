@@ -1,4 +1,3 @@
-import PageHeader from "../../components/PageHeader";
 import BottomNav from "../../components/BottomNav";
 
 const SmartBuildingProduct = () => {
