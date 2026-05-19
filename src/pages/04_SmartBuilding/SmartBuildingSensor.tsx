@@ -17,6 +17,24 @@ const SmartBuildingSensor = () => {
   const dimmingMiddle = Math.round(Math.max(50, 100 - sunlight / 2));
   const dimmingWindow = Math.round(Math.max(10, 100 - sunlight));
 
+  // 💡 센서/허브 장비 데이터 복구
+  const systemHardwares = [
+    {
+      id: "01",
+      title: "플로림 스마트 허브 프로",
+      subtitle: "Flolim Smart Hub Pro",
+      image: "/images/building_smart_hub_pro.png",
+      desc: "(주)플로림이 자체 개발한 멀티 프로토콜 통합 게이트웨이입니다. Matter, Thread 등 다양한 통신 표준을 사용하는 기기들을 하나의 네트워크로 완벽하게 연동합니다.",
+    },
+    {
+      id: "02",
+      title: "AI 비전 센서",
+      subtitle: "Vision Sensor",
+      image: "/images/building_vision_sensor.png",
+      desc: "공간 내 차량과 보행자의 동선을 실시간 분석합니다. 이동 방향을 예측하여 조명을 미리 밝히는 정밀 동체 추적 기술의 핵심 센서입니다.",
+    },
+  ];
+
   return (
     <div className="pb-10 overflow-x-hidden bg-[#020617] min-h-screen text-slate-200">
       <PageHeader
@@ -221,6 +239,46 @@ const SmartBuildingSensor = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* 💡 3. 복구된 시스템 인프라 및 센서 하드웨어 섹션 */}
+        <section className="mb-16 relative z-10">
+          <div className="flex items-center gap-3 mb-8 border-l-4 border-flolim pl-3">
+            <h2 className="text-xl md:text-2xl font-bold text-white">
+              시스템 인프라 및 센서
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {systemHardwares.map((hw) => (
+              <div
+                key={hw.id}
+                className="bg-[#050b14] p-8 md:p-10 rounded-[2rem] border border-slate-700 shadow-inner hover:border-flolim/50 transition-all duration-500 relative overflow-hidden group flex flex-col h-full"
+              >
+                <div className="absolute -right-10 -top-10 w-40 h-40 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 blur-3xl pointer-events-none"></div>
+                <div className="w-full aspect-[21/9] bg-slate-800/30 rounded-2xl mb-6 flex items-center justify-center p-6 border border-slate-700/50 overflow-hidden relative">
+                  <img
+                    src={hw.image}
+                    alt={hw.title}
+                    className="max-w-full max-h-full object-contain mix-blend-screen drop-shadow-xl group-hover:scale-110 transition-transform duration-700 relative z-10"
+                  />
+                </div>
+                <div className="relative z-10 flex flex-col flex-grow">
+                  <span className="text-flolim text-[10px] font-bold uppercase tracking-widest block mb-1">
+                    Device {hw.id}
+                  </span>
+                  <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-flolim transition-colors break-keep mb-1">
+                    {hw.title}
+                  </h3>
+                  <span className="text-slate-500 text-xs font-medium uppercase block mb-4">
+                    {hw.subtitle}
+                  </span>
+                  <p className="text-slate-400 font-light leading-relaxed text-sm md:text-base break-keep mt-auto">
+                    {hw.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 

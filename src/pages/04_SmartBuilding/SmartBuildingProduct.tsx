@@ -1,3 +1,4 @@
+import PageHeader from "../../components/PageHeader";
 import BottomNav from "../../components/BottomNav";
 
 const SmartBuildingProduct = () => {
@@ -48,47 +49,34 @@ const SmartBuildingProduct = () => {
     },
   ];
 
-  const systemHardwares = [
-    {
-      id: "05",
-      title: "플로림 스마트 허브 프로",
-      subtitle: "Flolim Smart Hub Pro",
-      image: "/images/building_smart_hub_pro.png",
-      desc: "(주)플로림이 자체 개발한 멀티 프로토콜 통합 게이트웨이입니다. Matter, Thread 등 다양한 통신 표준을 사용하는 기기들을 하나의 네트워크로 완벽하게 연동합니다.",
-    },
-    {
-      id: "06",
-      title: "AI 비전 센서",
-      subtitle: "Vision Sensor",
-      image: "/images/building_vision_sensor.png",
-      desc: "공간 내 차량과 보행자의 동선을 실시간 분석합니다. 이동 방향을 예측하여 조명을 미리 밝히는 정밀 동체 추적 기술의 핵심 센서입니다.",
-    },
-  ];
-
   return (
     <div className="pb-10 relative overflow-hidden bg-[#020617] min-h-screen text-slate-200">
-      <div className="container mx-auto px-4 max-w-6xl">
-        <div className="text-left pt-10 mb-16 animate-fade-in">
-          <p className="text-flolim font-bold tracking-widest mb-4 uppercase text-sm">
-            Smart Building Products
-          </p>
-          <h1 className="text-4xl md:text-5xl font-black text-white mb-6 tracking-tight">
-            제품소개
-          </h1>
-          <div className="w-24 h-1 bg-flolim mb-8 shadow-[0_0_15px_rgba(24,169,198,0.8)]"></div>
-          <p className="text-lg md:text-xl text-slate-400 font-light max-w-3xl leading-relaxed break-keep">
+      {/* 💡 다른 페이지와 동일하게 가운데 정렬된 PageHeader 적용 */}
+      <PageHeader
+        category="Smart Building Products"
+        title="제품소개"
+        subtitle={
+          <>
             압도적인 광효율을 자랑하는{" "}
-            <strong className="text-white">프리미엄 LED 라인업</strong>과 공간을
-            지휘하는 <strong className="text-white">핵심 시스템 인프라</strong>
+            <strong className="text-white font-bold">
+              프리미엄 LED 라인업
+            </strong>
             입니다.
-          </p>
-        </div>
+          </>
+        }
+      />
 
-        {/* 1. 스마트 LED 라인업 */}
-        <section className="relative z-10 mb-20">
-          <h2 className="text-2xl font-bold text-white mb-8 border-l-4 border-flolim pl-3">
-            스마트 LED 라인업 (Matter over Thread 지원)
-          </h2>
+      <div className="container mx-auto px-4 max-w-6xl mt-10">
+        <section className="relative z-10 mb-16">
+          <div className="flex items-center gap-3 mb-8 border-l-4 border-flolim pl-3">
+            <h2 className="text-xl md:text-2xl font-bold text-white">
+              스마트 LED 라인업
+            </h2>
+            <span className="bg-slate-800 text-slate-400 text-[10px] md:text-xs px-2 py-1 rounded border border-slate-700 font-bold">
+              Matter over Thread 지원
+            </span>
+          </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             {ledProducts.map((hw) => (
               <div
@@ -132,43 +120,6 @@ const SmartBuildingProduct = () => {
                       </div>
                     ))}
                   </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* 2. 시스템 인프라 */}
-        <section className="relative z-10 mb-16">
-          <h2 className="text-2xl font-bold text-white mb-8 border-l-4 border-flolim pl-3">
-            시스템 인프라 및 센서
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {systemHardwares.map((hw) => (
-              <div
-                key={hw.id}
-                className="bg-[#050b14] p-8 md:p-10 rounded-[2rem] border border-slate-700 shadow-inner hover:border-flolim/50 transition-all duration-500 relative overflow-hidden group flex flex-col h-full"
-              >
-                <div className="w-full aspect-[21/9] bg-slate-800/30 rounded-2xl mb-6 flex items-center justify-center p-6 border border-slate-700/50 overflow-hidden relative">
-                  <img
-                    src={hw.image}
-                    alt={hw.title}
-                    className="max-w-full max-h-full object-contain mix-blend-screen drop-shadow-xl group-hover:scale-110 transition-transform duration-700 relative z-10"
-                  />
-                </div>
-                <div className="relative z-10 flex flex-col flex-grow">
-                  <span className="text-flolim text-[10px] font-bold uppercase tracking-widest block mb-1">
-                    Device {hw.id}
-                  </span>
-                  <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-flolim transition-colors break-keep mb-1">
-                    {hw.title}
-                  </h3>
-                  <span className="text-slate-500 text-xs font-medium uppercase block mb-4">
-                    {hw.subtitle}
-                  </span>
-                  <p className="text-slate-400 font-light leading-relaxed text-sm md:text-base break-keep mt-auto">
-                    {hw.desc}
-                  </p>
                 </div>
               </div>
             ))}
