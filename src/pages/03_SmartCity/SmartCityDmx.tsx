@@ -463,8 +463,8 @@ const SmartCityDmx = () => {
         <BottomNav
           prev={{
             label: "이전 페이지",
-            title: "DMX 경관조명 및 제품소개",
-            path: "/smart-city/dmx",
+            title: "NB-IoT 제어 및 제품소개",
+            path: "/smart-city/nb-iot",
           }}
           next={{
             label: "다음 카테고리",

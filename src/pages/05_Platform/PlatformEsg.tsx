@@ -269,7 +269,7 @@ const PlatformEsg = () => {
             label: "다음 카테고리",
             title: "공식 실증 데이터",
             path: "/support/references",
-          }} // 💡 수정됨
+          }}
         />
       </div>
     </div>
