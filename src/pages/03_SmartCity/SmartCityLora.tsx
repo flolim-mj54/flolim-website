@@ -32,7 +32,7 @@ const SmartCityLora = () => {
       image: "/images/lora_dimming_driver.png",
       desc: "제어기의 신호를 받아 실제 빛의 밝기를 부드럽게 바꿔주는 '에너지 절약 장치'입니다. 전력 낭비를 줄여 전등 수명을 비약적으로 늘려줍니다.",
       specs: [
-        { label: "기능", value: "0~100%까지 세밀한 밝기 조절(디밍)" },
+        { label: "기능", value: "0~100%까지 초정밀 디밍 제어" },
         { label: "내구성", value: "강한 노이즈와 외부 충격 방지 설계" },
         { label: "효과", value: "전력 사용량 감소 및 전등 수명 연장" },
       ],
@@ -332,11 +332,11 @@ const SmartCityLora = () => {
               <h2 className="text-xl md:text-3xl font-bold text-white mb-4 md:mb-6 leading-tight break-keep">
                 음영 지역 없이 완벽하게 연결되는
                 <br />
-                <span className="text-flolim">대규모 그물망(Mesh) 통신</span>
+                <span className="text-flolim">대규모 메시(Mesh) 네트워크</span>
               </h2>
               <p className="text-slate-400 leading-relaxed mb-6 font-light text-xs md:text-base break-keep">
-                플로림의 LoRa-Mesh 기술은 조명끼리 서로 데이터를 주고받는
-                '그물망' 구조입니다. 장애물이 있거나 거리가 멀어도 조명을 거쳐
+                플로림의 LoRa-Mesh 기술은 조명끼리 서로 데이터를 주고받는 메시
+                네트워크 구조입니다. 장애물이 있거나 거리가 멀어도 조명을 거쳐
                 신호를 전달하므로 도시 어디든 끊김 없이 연결됩니다.
               </p>
               <div className="bg-[#050b14] border-l-4 border-flolim p-4 md:p-5 rounded-r-xl shadow-inner">

@@ -300,9 +300,7 @@ export default function CompanyOrg() {
           </div>
           <p className="text-slate-400 text-sm md:text-base leading-relaxed font-light break-keep relative z-10">
             플로림은 기술 개발부터 실제 시공, 그리고 유지보수까지 일원화된{" "}
-            <strong className="text-white font-medium">
-              원스톱 서비스(One-Stop Service)
-            </strong>{" "}
+            <strong className="text-white font-medium">원스톱 서비스</strong>{" "}
             체계를 구축하고 있습니다. 각 부서는 수평적이고 긴밀한 소통을 통해
             고객의 피드백을 기술에 즉각 반영하며, 가장 안정적이고 혁신적인
             스마트 제어 인프라를 완성해 나갑니다.

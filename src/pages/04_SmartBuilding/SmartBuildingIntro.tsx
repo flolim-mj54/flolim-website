@@ -19,7 +19,7 @@ const SmartBuildingIntro = () => {
       prefix: "최대",
       percent: "70",
       label: "이상 절감",
-      desc: "IoT 기반 10단계 자동 조도 조절(디밍)을 적용하여 전통 조명 대비 전력량을 70% 이상 대폭 낮췄습니다.",
+      desc: "IoT 기반 10단계 자동 디밍 제어를 적용하여 전통 조명 대비 전력량을 70% 이상 대폭 낮췄습니다.",
     },
     {
       id: 3,
@@ -111,7 +111,7 @@ const SmartBuildingIntro = () => {
                       ></path>
                     </svg>
                     <span className="flex-1 leading-relaxed break-keep">
-                      쾌적한 실내 환경을 조성하고 획기적인 건물 유지비용(OPEX)
+                      쾌적한 실내 환경을 조성하고 획기적인 건물 운영비(OPEX)
                       절감 달성
                     </span>
                   </li>
@@ -223,7 +223,7 @@ const SmartBuildingIntro = () => {
               빌딩 에너지를 지휘하는 스마트 두뇌
             </h2>
             <p className="text-slate-400 font-light text-xs md:text-base leading-relaxed break-keep">
-              플로림 스마트 빌딩은 폐쇄망 형태의 현장 전용 서버(On-Premise)와
+              플로림 스마트 빌딩은 폐쇄망 형태의 현장 전용 온프레미스 서버와
               첨단 IoT 센서망을 결합하여, <br className="hidden md:block" />
               외부 통신 장애 시에도 100% 끊김 없는 무중단 제어를 보장합니다.
             </p>
@@ -257,7 +257,7 @@ const SmartBuildingIntro = () => {
                 </h4>
                 <p className="text-xs md:text-sm text-slate-400 font-light leading-relaxed break-keep">
                   재실 감지, 조도 연동 디밍 등 공간을 스스로 제어하는 스마트
-                  센서망 시뮬레이터와 무중단 로컬 제어망(On-Premise)의 기술 상세
+                  센서망 시뮬레이터와 무중단 온프레미스 제어망의 기술 상세
                   사양을 확인해 보세요.
                 </p>
               </div>

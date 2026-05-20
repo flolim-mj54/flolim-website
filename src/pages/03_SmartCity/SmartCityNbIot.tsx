@@ -49,7 +49,7 @@ const SmartCityNbIot = () => {
       specs: [
         {
           label: "설치 방식",
-          value: "꽂으면 바로 시작되는 간편 장착(Plug&Play)",
+          value: "플러그 앤 플레이(Plug & Play) 장착",
         },
         { label: "특장점", value: "내장 GPS로 위치를 자동 등록하고 전력 체크" },
         {

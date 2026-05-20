@@ -191,8 +191,8 @@ const BusinessEsco = () => {
                         <span className="text-flolim">40% 추가 절감</span>
                       </h4>
                       <p className="text-slate-400 font-light text-xs md:text-sm leading-relaxed break-keep">
-                        스마트 디밍(밝기 조절) 및 스케줄링 제어를 통해 불필요한
-                        낭비를 원천 차단하고 추가 에너지를 아낍니다.
+                        스마트 디밍 및 스케줄링 제어를 통해 불필요한 낭비를 원천
+                        차단하고 추가 에너지를 아낍니다.
                       </p>
                     </div>
                   </div>

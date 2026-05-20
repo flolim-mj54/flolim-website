@@ -72,7 +72,7 @@ const SupportReferences = () => {
     <div className="pb-10 relative overflow-hidden">
       <PageHeader
         category="공식 실증 데이터"
-        title="공식 실증(Test) 데이터"
+        title="공식 실증 데이터"
         subtitle={
           <>
             기존 노후 조명을 스마트 제어 시스템으로 전환했을 때 입증되는
@@ -105,7 +105,7 @@ const SupportReferences = () => {
                 ></path>
               </svg>
               <h2 className="text-xl md:text-2xl font-bold text-white break-keep">
-                스마트 가로등 공식 실증(Test) 데이터
+                스마트 가로등 공식 실증 데이터
               </h2>
             </div>
             <p className="text-slate-400 text-xs md:text-sm font-light break-keep">
@@ -172,9 +172,8 @@ const SupportReferences = () => {
                   d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
                 ></path>
               </svg>
-              {/* 💡 [수정] 제목에 (Test) 추가하여 통일성 확보 */}
               <h2 className="text-xl md:text-2xl font-bold text-white break-keep">
-                스마트 빌딩 및 산업 현장 실증(Test) 데이터
+                스마트 빌딩 및 산업 현장 실증 데이터
               </h2>
             </div>
             <p className="text-slate-400 text-xs md:text-sm font-light break-keep">

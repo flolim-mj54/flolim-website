@@ -229,9 +229,9 @@ const SmartBuildingProduct = () => {
                 보안수준 암호화
               </h4>
               <p className="text-slate-400 text-xs md:text-sm font-light leading-relaxed break-keep">
-                종단간(End-to-End) 철저한 하드웨어 데이터 암호화 통신 표준을
-                준수하여, 빌딩 제어 데이터를 노리는 외부 악성 해킹 공격이나 조명
-                제어권 탈취 시도를 원천 차단합니다.
+                강력한 종단간(E2EE) 암호화 통신 표준을 준수하여, 빌딩 제어
+                데이터를 노리는 외부 악성 해킹 공격이나 조명 제어권 탈취 시도를
+                원천 차단합니다.
               </p>
             </div>
             <div className="bg-[#050b14]/50 border border-slate-800 p-6 rounded-2xl hover:border-slate-700 transition-colors">
