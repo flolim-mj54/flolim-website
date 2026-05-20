@@ -10,21 +10,19 @@ const SmartBuildingSensor = () => {
   );
   const [isInternetConnected, setIsInternetConnected] = useState(true);
 
-  // 자동차 이동 로직 (범위를 넓혀 역주행이 보이지 않게 함)
   useEffect(() => {
     const interval = window.setInterval(() => {
       setCarPos((prev) => (prev > 140 ? -40 : prev + 0.6));
-    }, 20); // 프레임 속도 향상
+    }, 20);
     return () => window.clearInterval(interval);
   }, []);
 
   const dimmingMiddle = Math.round(Math.max(45, 100 - sunlight / 2));
   const dimmingWindow = Math.round(Math.max(10, 100 - sunlight));
 
-  // 예측 점등 로직: 자동차 위치(carPos)보다 앞서 있는 전등을 미리 켬
   const isLightOn = (pos: number) => {
     const diff = pos - carPos;
-    return diff > -15 && diff < 35; // 차 뒤로는 15%, 차 앞으로는 35% 미리 켬
+    return diff > -15 && diff < 35;
   };
 
   const getSceneOpacity = (index: number) => {
@@ -51,7 +49,6 @@ const SmartBuildingSensor = () => {
       />
 
       <div className="container mx-auto px-4 max-w-6xl mt-10 md:mt-16">
-        {/* 1. 지능형 시뮬레이터 3종 세트 */}
         <section className="bg-slate-900/50 backdrop-blur-md rounded-[2.5rem] p-6 md:p-12 shadow-2xl border border-slate-800 mb-16 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-flolim/5 rounded-full blur-[150px] pointer-events-none translate-x-1/4 -translate-y-1/4"></div>
 
@@ -66,7 +63,6 @@ const SmartBuildingSensor = () => {
           </div>
 
           <div className="space-y-10 relative z-10">
-            {/* 시뮬레이터 1: 지하 주차장 동체 추적 */}
             <div className="bg-[#050b14] p-6 rounded-3xl border border-slate-800 shadow-inner flex flex-col">
               <div className="flex items-center gap-2 bg-slate-900/80 px-3 py-1.5 rounded-lg border border-slate-800 self-start mb-4 text-xs font-bold text-flolim tracking-widest shadow-md">
                 <span className="w-1.5 h-1.5 bg-flolim rounded-full animate-ping"></span>
@@ -83,14 +79,12 @@ const SmartBuildingSensor = () => {
               <div className="w-full h-40 bg-[#020617] rounded-2xl border border-slate-800 relative overflow-hidden flex flex-col justify-center px-4 md:px-10">
                 <div className="absolute inset-0 opacity-10 bg-[linear-gradient(rgba(24,169,198,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(24,169,198,0.15)_1px,transparent_1px)] bg-[size:30px_30px]"></div>
 
-                {/* 주차장 주행선 */}
                 <div className="w-full h-16 border-y-2 border-dashed border-slate-700/50 relative flex items-center">
                   <div
                     className="absolute w-12 h-6 bg-cyan-400 rounded-md shadow-[0_0_20px_#22d3ee] z-20"
                     style={{
                       left: `${carPos}%`,
                       transform: "translateX(-50%)",
-                      // 차가 뒤로 넘어갈 때는 애니메이션을 꺼서 순간 이동하게 만듦
                       transition: carPos === -40 ? "none" : "left 0.02s linear",
                     }}
                   ></div>
@@ -114,7 +108,6 @@ const SmartBuildingSensor = () => {
               </div>
             </div>
 
-            {/* 시뮬레이터 2: 지상 사무실 자연광 연동 */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               <div className="lg:col-span-2 bg-[#050b14] p-6 rounded-3xl border border-slate-800 shadow-inner flex flex-col justify-between">
                 <div>
@@ -154,7 +147,6 @@ const SmartBuildingSensor = () => {
                 </div>
               </div>
 
-              {/* 슬라이더 컨트롤 패널 */}
               <div className="bg-[#050b14] p-6 rounded-3xl border border-slate-800 shadow-inner flex flex-col justify-center items-center">
                 <h4 className="text-sm font-bold text-white mb-2">
                   외부 자연광 유입량
@@ -168,7 +160,6 @@ const SmartBuildingSensor = () => {
                   max="100"
                   value={sunlight}
                   onChange={(e) => setSunlight(Number(e.target.value))}
-                  // 💡 슬라이더 굵기(h-3 md:h-4) 추가 적용
                   className="w-full accent-amber-400 h-3 md:h-4 bg-slate-800 rounded-lg appearance-none cursor-pointer border border-slate-700"
                 />
                 <div className="flex justify-between w-full mt-3 text-[10px] text-slate-600 font-medium">
@@ -178,7 +169,6 @@ const SmartBuildingSensor = () => {
               </div>
             </div>
 
-            {/* 시뮬레이터 3: 스마트 회의실 씬 제어 */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               <div className="lg:col-span-2 bg-[#050b14] p-6 rounded-3xl border border-slate-800 shadow-inner">
                 <div className="flex items-center gap-2 bg-slate-900/80 px-3 py-1.5 rounded-lg border border-slate-800 self-start mb-4 text-xs font-bold text-purple-400 tracking-widest shadow-md">
@@ -194,17 +184,22 @@ const SmartBuildingSensor = () => {
                   <div className="absolute left-4 top-3 text-[10px] text-slate-600 font-mono">
                     SCREEN ➔
                   </div>
-                  <div className="flex justify-around items-center w-full z-10 pl-8">
+
+                  {/* 💡 모바일 삐져나감 현상 수정: px/pl 패딩 반응형 조절 및 줄바꿈 허용 */}
+                  <div className="flex justify-between md:justify-around items-center w-full z-10 px-1 md:px-0 md:pl-8 mt-4 md:mt-0">
                     {[
-                      { label: "전방 스크린측" },
-                      { label: "중앙 테이블측" },
-                      { label: "후방 좌석측" },
+                      { label: "전방 스크린" },
+                      { label: "중앙 테이블" },
+                      { label: "후방 좌석" },
                     ].map((col, i) => {
                       const opacity = getSceneOpacity(i);
                       return (
-                        <div key={i} className="flex flex-col items-center">
+                        <div
+                          key={i}
+                          className="flex flex-col items-center shrink-0"
+                        >
                           <div
-                            className="w-10 md:w-12 h-2 rounded-md mb-2 transition-all duration-700"
+                            className="w-8 sm:w-10 md:w-12 h-1.5 md:h-2 rounded-md mb-2 transition-all duration-700"
                             style={{
                               backgroundColor:
                                 opacity > 0 ? "#ffffff" : "#334155",
@@ -215,8 +210,11 @@ const SmartBuildingSensor = () => {
                                   : "none",
                             }}
                           ></div>
-                          <span className="text-[9px] text-slate-500 whitespace-nowrap">
-                            {col.label} ({Math.round(opacity * 100)}%)
+                          <span className="text-[9px] text-slate-500 text-center leading-snug">
+                            <span className="block">{col.label}</span>
+                            <span className="block">
+                              ({Math.round(opacity * 100)}%)
+                            </span>
                           </span>
                         </div>
                       );
@@ -225,7 +223,6 @@ const SmartBuildingSensor = () => {
                 </div>
               </div>
 
-              {/* 버튼 컨트롤 패널 */}
               <div className="bg-[#050b14] p-6 rounded-3xl border border-slate-800 shadow-inner flex flex-col justify-center gap-3 w-full">
                 <h4 className="text-[11px] md:text-xs font-bold text-slate-500 mb-1 text-center uppercase tracking-wider">
                   스마트 씬 콘솔
@@ -253,7 +250,6 @@ const SmartBuildingSensor = () => {
           </div>
         </section>
 
-        {/* 2. On-Premise 무중단 제어 */}
         <section className="bg-slate-900/50 backdrop-blur-md rounded-[2.5rem] p-6 md:p-12 shadow-2xl border border-slate-800 mb-16 relative overflow-hidden">
           <div className="flex flex-col lg:flex-row gap-10 md:gap-12 items-center relative z-10">
             <div className="lg:w-1/2 w-full">
@@ -289,7 +285,6 @@ const SmartBuildingSensor = () => {
               </div>
             </div>
 
-            {/* 💡 텍스트를 간소화한 상태 카드 영역 */}
             <div className="lg:w-1/2 w-full flex flex-col bg-[#050b14] p-6 md:p-8 rounded-3xl border border-slate-700 text-center items-center justify-center relative overflow-hidden h-64 shadow-inner">
               <div className="absolute inset-0 opacity-10 bg-[linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:20px_20px] z-0"></div>
 
@@ -319,7 +314,6 @@ const SmartBuildingSensor = () => {
                     : "⚠️ 외부 인터넷망 장애 발생"}
                 </p>
 
-                {/* 선로 애니메이션 영역 */}
                 <div className="w-full h-8 relative flex items-center justify-center my-2">
                   <div
                     className={`w-px h-full relative transition-all duration-500 ${isInternetConnected ? "bg-slate-700" : "bg-red-900/30"}`}

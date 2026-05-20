@@ -14,7 +14,7 @@ export default function CompanyCert() {
       img: "cert-factory.jpg",
       title: "공장등록증",
       desc: "직접생산확인 및 제조 역량 증명",
-    }, // 💡 키엘 다음 순서로 추가
+    },
     {
       id: 2,
       img: "cert-women.jpg",
@@ -35,27 +35,28 @@ export default function CompanyCert() {
     },
   ];
 
+  // 💡 진행 중인 심사 및 등록 현황 (날짜 수정됨)
   const progresses = [
     {
       id: 1,
       img: "logo-highefficiency.jpg",
       title: "고효율기자재인증",
       desc: "에너지 효율 공식 마크",
-      date: "4월 완료",
+      date: "6월 완료",
     },
     {
       id: 2,
       img: "logo-g2b.jpg",
       title: "조달청 등록",
       desc: "공공기관 우선 공급망 구축",
-      date: "5월 완료",
+      date: "7월 완료",
     },
     {
       id: 3,
       img: "logo-kepcoes.jpg",
       title: "켑코이에스(ESCO) 파트너사",
       desc: "한국전력공사 출자 기업 제휴",
-      date: "3월 완료",
+      date: "5월 완료",
     },
   ];
 
@@ -77,8 +78,6 @@ export default function CompanyCert() {
       />
 
       <div className="container mx-auto px-4 max-w-7xl mt-10">
-        {" "}
-        {/* 💡 5열 배치를 위해 max-w를 조금 더 넓게 조정(6xl -> 7xl) */}
         <section className="bg-slate-900/50 backdrop-blur-sm rounded-[2.5rem] p-6 md:p-12 shadow-2xl border border-slate-800 mb-16 relative overflow-hidden">
           <div className="flex flex-col md:flex-row items-start md:items-center gap-3 mb-8 md:mb-10 relative z-10">
             <h2 className="text-xl md:text-2xl font-bold text-white break-keep">
@@ -89,7 +88,6 @@ export default function CompanyCert() {
             </span>
           </div>
 
-          {/* 💡 lg:grid-cols-5 로 수정하여 한 줄에 5개를 배치 */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 relative z-10">
             {certificates.map((cert) => (
               <div
@@ -114,7 +112,7 @@ export default function CompanyCert() {
             ))}
           </div>
         </section>
-        {/* 나머지 섹션은 기존과 동일 */}
+
         <section className="bg-slate-900/50 backdrop-blur-sm rounded-[2.5rem] p-6 md:p-12 shadow-2xl border border-slate-800 mb-16 relative overflow-hidden">
           <div className="mb-8 md:mb-10 relative z-10">
             <h2 className="text-xl md:text-2xl font-bold text-white break-keep">
@@ -232,6 +230,7 @@ export default function CompanyCert() {
             </div>
           </div>
         </section>
+
         <section className="bg-slate-900/50 backdrop-blur-sm rounded-[2.5rem] p-6 md:p-12 shadow-2xl border border-slate-800 mb-16 relative overflow-hidden">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-80 bg-flolim/5 blur-[150px] rounded-full pointer-events-none"></div>
 
@@ -336,6 +335,7 @@ export default function CompanyCert() {
             </div>
           </div>
         </section>
+
         <BottomNav
           prev={{ label: "이전 페이지", title: "조직도", path: "/company/org" }}
           next={{
