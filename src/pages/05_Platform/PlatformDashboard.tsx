@@ -2,7 +2,7 @@ import PageHeader from "../../components/PageHeader";
 import BottomNav from "../../components/BottomNav";
 
 const PlatformDashboard = () => {
-  // 💡 2D/3D 지원 명시 및 조명 통합 제어 중심으로 문구 압축
+  // 💡 군더더기를 뺀 플로림 대시보드의 4대 핵심 기능 정의
   const dashboardFeatures = [
     {
       id: "01",
@@ -15,7 +15,7 @@ const PlatformDashboard = () => {
         />
       ),
       title: "2D · 3D 멀티 디지털 트윈",
-      desc: "현장 조명 배치를 2D 도면 뷰와 3D 가상 뷰로 동시 구현하여, 모든 전등의 상태를 가장 입체적이고 명확하게 모니터링합니다.",
+      desc: "현장 조명 배치를 2D 도면과 3D 가상 뷰로 동시 구현하여, 모든 전등의 상태를 가장 입체적이고 명확하게 모니터링합니다.",
     },
     {
       id: "02",
@@ -28,7 +28,7 @@ const PlatformDashboard = () => {
         />
       ),
       title: "ESG 전력 데이터 시각화",
-      desc: "누적 전력량, 탄소 저감량, 절감 요금을 실시간 시각화하여 매월 ESG 경영 리포트의 기반 데이터를 자동으로 제공합니다.",
+      desc: "누적 전력량, 탄소 저감량, 절감 요금을 실시간 시각화하여 매월 ESG 경영 리포트의 기반 데이터를 자동으로 생성합니다.",
     },
     {
       id: "03",
@@ -41,7 +41,7 @@ const PlatformDashboard = () => {
         />
       ),
       title: "실시간 원격 조명 제어",
-      desc: "사무실, 로비, 주차장 등 구역별 조명을 개별 또는 그룹 단위로 원격 토글하고 등록된 자동화 시퀀스를 즉각 제어합니다.",
+      desc: "사무실, 로비, 주차장 등 구역별 조명을 개별 또는 그룹 단위로 원격 토글하고 설정된 자동화 시퀀스를 즉각 제어합니다.",
     },
     {
       id: "04",
@@ -54,20 +54,7 @@ const PlatformDashboard = () => {
         />
       ),
       title: "IoT 센서 네트워크 관제",
-      desc: "현장에 배치된 AI 비전 센서의 재실 감지 신호와 조도 센서의 현재 공간 밝기(Lux) 데이터를 실시간 수집 및 동기화합니다.",
-    },
-    {
-      id: "05",
-      icon: (
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="1.5"
-          d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-        />
-      ),
-      title: "이종 조명 설비 시스템 통합",
-      desc: "제조사나 규격이 다른 실내 다양한 LED 인프라 및 디밍 제어 드라이버를 단 하나의 플랫폼에서 누수 없이 통합 관리합니다.",
+      desc: "현장에 배치된 AI 비전 센서의 재실 감지 신호와 조도 센서가 측정하는 현재 공간의 밝기(Lux) 데이터를 실시간 수집합니다.",
     },
   ];
 
@@ -89,7 +76,7 @@ const PlatformDashboard = () => {
       />
 
       <div className="container mx-auto px-4 max-w-6xl mt-10">
-        {/* 이미지 관제 영역 */}
+        {/* 대시보드 통합 이미지 영역 (화질 보존을 위한 크기 최적화) */}
         <section className="bg-slate-900/50 backdrop-blur-md rounded-[2.5rem] p-6 md:p-10 border border-slate-800 mb-16 relative overflow-hidden flex justify-center items-center">
           <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-flolim/5 rounded-full blur-[120px] pointer-events-none -translate-x-1/2 -translate-y-1/2"></div>
 
@@ -102,9 +89,9 @@ const PlatformDashboard = () => {
           </div>
         </section>
 
-        {/* 대시보드 주요 기능 설명 리스트 */}
+        {/* 💡 핵심 기능 2x2 배치 영역 */}
         <section className="mb-20 relative z-10">
-          <div className="text-center mb-10 md:mb-12 px-2">
+          <div className="text-center mb-10 md:mb-14 px-2">
             <h2 className="text-xl md:text-3xl font-bold text-white mb-3 md:mb-4 break-keep">
               데이터 기반의 지능형 공간 제어
             </h2>
@@ -114,18 +101,20 @@ const PlatformDashboard = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* 💡 md:grid-cols-2 설정을 통해 데스크탑에서 안정적인 2x2 레이아웃 구현 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
             {dashboardFeatures.map((feature) => (
               <div
                 key={feature.id}
-                className="bg-[#050b14] p-6 md:p-8 rounded-3xl border border-slate-800 shadow-inner flex flex-col group hover:border-flolim/40 active:scale-[0.98] transition-all cursor-default relative overflow-hidden"
+                className="bg-[#050b14] p-6 md:p-10 rounded-[2rem] border border-slate-800 shadow-inner flex flex-col group hover:border-flolim/40 active:scale-[0.99] transition-all cursor-default relative overflow-hidden"
               >
-                <div className="absolute -right-6 -top-6 w-24 h-24 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
+                {/* 배경 장식 효과 */}
+                <div className="absolute -right-6 -top-6 w-32 h-32 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
 
-                <div className="relative z-10 flex items-center justify-between mb-5 border-b border-slate-800/80 pb-4">
-                  <div className="w-12 h-12 bg-slate-900 rounded-2xl flex items-center justify-center text-flolim border border-slate-700 group-hover:bg-flolim group-hover:text-white transition-colors shadow-sm">
+                <div className="relative z-10 flex items-center justify-between mb-6 border-b border-slate-800/80 pb-5">
+                  <div className="w-14 h-14 bg-slate-900 rounded-2xl flex items-center justify-center text-flolim border border-slate-700 group-hover:bg-flolim group-hover:text-white transition-all shadow-sm">
                     <svg
-                      className="w-6 h-6"
+                      className="w-7 h-7"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -133,15 +122,15 @@ const PlatformDashboard = () => {
                       {feature.icon}
                     </svg>
                   </div>
-                  <span className="text-slate-700 font-mono font-black text-sm group-hover:text-flolim/40 transition-colors">
+                  <span className="text-slate-700 font-mono font-black text-base group-hover:text-flolim/40 transition-colors">
                     {feature.id}
                   </span>
                 </div>
 
-                <h3 className="relative z-10 text-base md:text-lg font-bold text-white mb-2 break-keep group-hover:text-flolim transition-colors">
+                <h3 className="relative z-10 text-lg md:text-xl font-bold text-white mb-3 break-keep group-hover:text-flolim transition-colors">
                   {feature.title}
                 </h3>
-                <p className="relative z-10 text-xs md:text-sm text-slate-400 font-light leading-relaxed break-keep">
+                <p className="relative z-10 text-xs md:text-base text-slate-400 font-light leading-relaxed break-keep">
                   {feature.desc}
                 </p>
               </div>
