@@ -2,10 +2,9 @@ import PageHeader from "../../components/PageHeader";
 import BottomNav from "../../components/BottomNav";
 
 const PlatformDashboard = () => {
-  // 💡 군더더기를 뺀 플로림 대시보드의 4대 핵심 기능 정의
   const dashboardFeatures = [
     {
-      id: "01",
+      id: 1,
       icon: (
         <path
           strokeLinecap="round"
@@ -18,7 +17,7 @@ const PlatformDashboard = () => {
       desc: "현장 조명 배치를 2D 도면과 3D 가상 뷰로 동시 구현하여, 모든 전등의 상태를 가장 입체적이고 명확하게 모니터링합니다.",
     },
     {
-      id: "02",
+      id: 2,
       icon: (
         <path
           strokeLinecap="round"
@@ -31,7 +30,7 @@ const PlatformDashboard = () => {
       desc: "누적 전력량, 탄소 저감량, 절감 요금을 실시간 시각화하여 매월 ESG 경영 리포트의 기반 데이터를 자동으로 생성합니다.",
     },
     {
-      id: "03",
+      id: 3,
       icon: (
         <path
           strokeLinecap="round"
@@ -44,7 +43,7 @@ const PlatformDashboard = () => {
       desc: "사무실, 로비, 주차장 등 구역별 조명을 개별 또는 그룹 단위로 원격 토글하고 설정된 자동화 시퀀스를 즉각 제어합니다.",
     },
     {
-      id: "04",
+      id: 4,
       icon: (
         <path
           strokeLinecap="round"
@@ -76,7 +75,7 @@ const PlatformDashboard = () => {
       />
 
       <div className="container mx-auto px-4 max-w-6xl mt-10">
-        {/* 대시보드 통합 이미지 영역 (화질 보존을 위한 크기 최적화) */}
+        {/* 대시보드 통합 이미지 영역 */}
         <section className="bg-slate-900/50 backdrop-blur-md rounded-[2.5rem] p-6 md:p-10 border border-slate-800 mb-16 relative overflow-hidden flex justify-center items-center">
           <div className="absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-flolim/5 rounded-full blur-[120px] pointer-events-none -translate-x-1/2 -translate-y-1/2"></div>
 
@@ -89,7 +88,7 @@ const PlatformDashboard = () => {
           </div>
         </section>
 
-        {/* 💡 핵심 기능 2x2 배치 영역 */}
+        {/* 핵심 기능 2x2 배치 영역 */}
         <section className="mb-20 relative z-10">
           <div className="text-center mb-10 md:mb-14 px-2">
             <h2 className="text-xl md:text-3xl font-bold text-white mb-3 md:mb-4 break-keep">
@@ -101,7 +100,6 @@ const PlatformDashboard = () => {
             </p>
           </div>
 
-          {/* 💡 md:grid-cols-2 설정을 통해 데스크탑에서 안정적인 2x2 레이아웃 구현 */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
             {dashboardFeatures.map((feature) => (
               <div
@@ -111,7 +109,8 @@ const PlatformDashboard = () => {
                 {/* 배경 장식 효과 */}
                 <div className="absolute -right-6 -top-6 w-32 h-32 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
 
-                <div className="relative z-10 flex items-center justify-between mb-6 border-b border-slate-800/80 pb-5">
+                {/* 💡 숫자(id) 렌더링 삭제 및 아이콘 단독 배치로 심플하게 변경 */}
+                <div className="relative z-10 flex items-center mb-6 border-b border-slate-800/80 pb-5">
                   <div className="w-14 h-14 bg-slate-900 rounded-2xl flex items-center justify-center text-flolim border border-slate-700 group-hover:bg-flolim group-hover:text-white transition-all shadow-sm">
                     <svg
                       className="w-7 h-7"
@@ -122,9 +121,6 @@ const PlatformDashboard = () => {
                       {feature.icon}
                     </svg>
                   </div>
-                  <span className="text-slate-700 font-mono font-black text-base group-hover:text-flolim/40 transition-colors">
-                    {feature.id}
-                  </span>
                 </div>
 
                 <h3 className="relative z-10 text-lg md:text-xl font-bold text-white mb-3 break-keep group-hover:text-flolim transition-colors">
