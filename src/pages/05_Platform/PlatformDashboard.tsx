@@ -1,55 +1,34 @@
-import { useState } from "react";
 import PageHeader from "../../components/PageHeader";
 import BottomNav from "../../components/BottomNav";
 
 const PlatformDashboard = () => {
-  // --- [💡 핵심: 이미지 크기가 바뀌어도 데이터 위치를 유지하는 반응형 오버레이 설계] ---
-
-  // 이미지 대비 각 데이터/버튼의 정밀 위치 설정 (퍼센트 단위: %, top/left 기준)
-  // 대표님께서 나중에 위치를 미세 조정하고 싶으시면 이 값들을 바꾸시면 됩니다.
-  const dataloaction = {
-    // 1. 디지털 트윈 (상단 뷰)
-    digitalTwin: {
-      light1: { top: 22.5, left: 36.8, text: "사무실 전등1 98%" },
-      light2: { top: 20.8, left: 51.5, text: "사무실 전등2 70%" },
-      light3: { top: 19.8, left: 60.5, text: "사무실 전등3 100%" },
-      btnReset: { top: 35.5, left: 18.5, width: 8, height: 4 }, // 초기 상태 버튼
-      btnSync: { top: 35.5, left: 50, width: 10, height: 4 }, // 실시간 동기화 버튼
+  // 기존 하단 텍스트/카드 영역 데이터 유지 (앞서 다듬었던 텍스트 반영)
+  const features = [
+    {
+      id: 1,
+      icon: (
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+      ),
+      title: "실시간 통합 모니터링",
+      desc: "건물 및 도시 내 모든 조명과 센서의 상태를 직관적인 2D/3D 디지털 트윈 뷰로 실시간 확인하고 관리합니다.",
     },
-    // 2. ESG 리포트 (중단 카드)
-    esg: {
-      totalPower: { top: 46.1, left: 19.8 }, // 6.39 kWh
-      co2: { top: 46.1, left: 47.0 }, // 4.087 kg
-      cost: { top: 46.1, left: 74.0 }, // 1,311 원
-      gauge: { top: 56.5, left: 27.5 }, // 게이지 138.9W
-      // 게이지를 누르면 전력이 바뀌는 상호작용 영역
-      gaugeArea: { top: 49, left: 14, width: 27, height: 23 },
+    {
+      id: 2,
+      icon: (
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+      ),
+      title: "스마트 자동화",
+      desc: "관리자 설정과 센서에 따른 스마트 자동 점/소등, 스케줄링 및 디밍 제어 기능을 제공합니다.",
     },
-    // 3. 컨트롤 패널 (하단 카드)
-    control: {
-      light1Toggle: { top: 71.3, left: 14.7, width: 10, height: 4 }, // 조명 카드 1 토글
-      light2Toggle: { top: 71.3, left: 28.5, width: 10, height: 4 }, // 조명 카드 2 토글
-      visionSensor: { top: 74.0, left: 56.8 }, // 센서 카드 11.479W
-      sensorLux: { top: 74.0, left: 71.2 }, // 조도 센서 911 Lux
-      otherSwitch: { top: 92.5, left: 16.5, width: 8, height: 8 }, // 기타 기기 스위치
+    {
+      id: 3,
+      icon: (
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      ),
+      title: "에너지 및 ESG 관리",
+      desc: "전력 소비량, 탄소 배출 저감량 등 핵심 데이터를 시각화하여 체계적인 에너지 관리를 지원합니다.",
     },
-  };
-
-  // --- [💻 대시보드 상호작용 상태 관리] ---
-  const [totalPower, setTotalPower] = useState<string>("6.39"); // 6.39 kWh
-  const [activeLight, setActiveLight] = useState<
-    "light1" | "light2" | "light3" | null
-  >("light3"); // 현재 활성 전등
-  const [otherDeviceStatus, setOtherDeviceStatus] = useState<"ON" | "OFF">(
-    "OFF",
-  ); // 기타 기기 상태
-
-  // 상호작용 함수: ESG 게이지 영역 클릭 시 소비 전력 데이터 변경 애니메이션
-  const handleGaugeClick = () => {
-    setTotalPower("6.15"); // 데이터 변경
-    setTimeout(() => setTotalPower("6.39"), 2000); // 2초 뒤 원복 (애니메이션 효과)
-    // 실제로는 API 호출이 일어납니다.
-  };
+  ];
 
   return (
     <div className="pb-10 relative overflow-hidden bg-[#020617] min-h-screen text-slate-200">
@@ -58,229 +37,71 @@ const PlatformDashboard = () => {
         title="통합 관제 대시보드"
         subtitle={
           <>
-            건물의 모든 조명, 센서, 전력 사용량을 한눈에 확인하고 제어하는
-            <br />
+            모든 조명, 센서, 전력 사용량을 한눈에 확인하고 제어하는
+            <br className="hidden md:block" />
             <strong className="text-white font-bold">
-              플로림 빌딩 최상위 통합 관제 센터
+              플로림 빌딩·시티 최상위 통합 관제 센터
             </strong>
             입니다.
           </>
         }
       />
 
-      <div className="container mx-auto px-4 max-w-7xl mt-10 relative">
-        {/* --- [💡 핵심: 통합 대시보드 이미지 한 장만 배치] --- */}
-        <div className="relative w-full rounded-3xl border-2 border-slate-800 shadow-2xl overflow-hidden group">
-          <img
-            src="/images/dashboard.png" // 대표님께서 요청하신 통합 이미지
-            alt="플로림 통합 관제 대시보드"
-            className="w-full h-auto object-contain transition-transform duration-[2000ms] ease-out group-hover:scale-[1.01]"
-          />
+      <div className="container mx-auto px-4 max-w-7xl mt-10">
+        
+        {/* 💡 수정된 부분: 두 장이었던 이미지를 한 장으로 합치고, 세로 비율에 맞게 폼나게 배치 */}
+        <section className="bg-slate-900/50 backdrop-blur-md rounded-[2.5rem] p-4 md:p-8 lg:p-12 shadow-2xl border border-slate-800 mb-16 relative overflow-hidden flex justify-center items-center">
+          {/* 배경 빛 효과 */}
+          <div className="absolute top-1/2 left-1/2 w-[800px] h-[800px] bg-flolim/5 rounded-full blur-[150px] pointer-events-none -translate-x-1/2 -translate-y-1/2"></div>
+          
+          {/* 세로로 긴 이미지가 데스크탑에서 너무 커지지 않도록 max-w-4xl로 너비 제한 */}
+          <div className="relative w-full max-w-4xl rounded-2xl md:rounded-3xl border border-slate-700/80 shadow-[0_20px_50px_rgba(0,0,0,0.4)] overflow-hidden bg-[#0a1120]">
+            <img
+              src="/images/dashboard.png"
+              alt="플로림 통합 관제 대시보드 전체 화면"
+              className="w-full h-auto object-contain block"
+            />
+          </div>
+        </section>
 
-          {/* --- [💡 핵심: 이미지 크기에 맞춰 유동적으로 변하는 데이터/버튼 오버레이] --- */}
-          {/* 전체를 relative 컨테이너로 묶고, 내부 데이터는 absolute % 좌표로 배치 */}
-          <div className="absolute inset-0 z-10 w-full h-full pointer-events-none">
-            {/* [1] 디지털 트윈 오버레이 텍스트 */}
-            {[
-              { loc: dataloaction.digitalTwin.light1, id: "light1" },
-              { loc: dataloaction.digitalTwin.light2, id: "light2" },
-              { loc: dataloaction.digitalTwin.light3, id: "light3" },
-            ].map(({ loc, id }) => (
-              <div
-                key={id}
-                className={`absolute px-3 py-1 bg-slate-900/80 backdrop-blur-sm rounded-lg border border-slate-700 text-[10px] md:text-xs font-bold text-slate-300 transition-all duration-500 ${activeLight === id ? "opacity-100" : "opacity-60"}`}
-                style={{
-                  top: `${loc.top}%`,
-                  left: `${loc.left}%`,
-                  transform: "translate(-50%, -50%)",
-                }}
-              >
-                {loc.text}
-              </div>
-            ))}
-
-            {/* [2] ESG 리포트 오버레이 데이터 */}
-            {[
-              {
-                loc: dataloaction.esg.totalPower,
-                text: totalPower,
-                unit: "kWh",
-              },
-              { loc: dataloaction.esg.co2, text: "4.087", unit: "kg" },
-              { loc: dataloaction.esg.cost, text: "1,311", unit: "원" },
-            ].map((data, i) => (
-              <div
-                key={i}
-                className="absolute text-center"
-                style={{
-                  top: `${data.loc.top}%`,
-                  left: `${data.loc.left}%`,
-                  transform: "translate(-50%, -50%)",
-                }}
-              >
-                <span className="text-3xl md:text-4xl font-black text-flolim tracking-tight">
-                  {data.text}
-                </span>
-                <span className="text-sm md:text-base font-bold text-slate-500 ml-1.5">
-                  {data.unit}
-                </span>
-              </div>
-            ))}
-            {/* 게이지 텍스트 오버레이 */}
-            <div
-              className="absolute text-center"
-              style={{
-                top: `${dataloaction.esg.gauge.top}%`,
-                left: `${dataloaction.esg.gauge.left}%`,
-                transform: "translate(-50%, -50%)",
-              }}
-            >
-              <span className="text-3xl md:text-4xl font-black text-slate-100 tracking-tight">
-                138.9
-              </span>
-              <span className="text-sm md:text-base font-bold text-slate-500 ml-1.5">
-                W
-              </span>
-            </div>
-
-            {/* [3] 컨트롤 패널 오버레이 센서 데이터 */}
-            <div
-              className="absolute"
-              style={{
-                top: `${dataloaction.control.visionSensor.top}%`,
-                left: `${dataloaction.control.visionSensor.left}%`,
-                transform: "translate(-50%, -50%)",
-              }}
-            >
-              <span className="text-2xl md:text-3xl font-black text-slate-100 tracking-tight">
-                11.479
-              </span>
-              <span className="text-sm md:text-base font-bold text-slate-500 ml-1.5">
-                W
-              </span>
-            </div>
-            <div
-              className="absolute text-center"
-              style={{
-                top: `${dataloaction.control.sensorLux.top}%`,
-                left: `${dataloaction.control.sensorLux.left}%`,
-                transform: "translate(-50%, -50%)",
-              }}
-            >
-              <span className="text-xl md:text-2xl font-black text-flolim tracking-tight">
-                911
-              </span>
-              <span className="text-[10px] md:text-xs font-bold text-slate-500 ml-1">
-                Lux
-              </span>
-            </div>
-
-            {/* 기타 기기 스위치 상태 텍스트 */}
-            <div
-              className="absolute text-center"
-              style={{
-                top: `${dataloaction.control.otherSwitch.top + 2}%`,
-                left: `${dataloaction.control.otherSwitch.left}%`,
-                transform: "translate(-50%, -50%)",
-              }}
-            >
-              <span
-                className={`text-base md:text-lg font-bold ${otherDeviceStatus === "ON" ? "text-cyan-400 animate-pulse" : "text-slate-600"}`}
-              >
-                {otherDeviceStatus}
-              </span>
-            </div>
+        {/* 기존 대시보드 기능 설명 영역 (유지) */}
+        <section className="mb-20 relative z-10">
+          <div className="text-center mb-10 md:mb-12 px-2">
+            <h2 className="text-xl md:text-3xl font-bold text-white mb-3 md:mb-4 break-keep">
+              데이터 기반의 지능형 공간 제어
+            </h2>
+            <p className="text-slate-400 font-light text-xs md:text-base break-keep">
+              현장에 설치된 수많은 하드웨어를 웹 기반 플랫폼 하나로 완벽하게 통제합니다.
+            </p>
           </div>
 
-          {/* --- [💡 핵심: 이미지 위에 덮어씌운 투명 클릭 영역 (Hotspots)] --- */}
-          {/* pointer-events: auto를 사용하여 실제 클릭 상호작용 구현 */}
-          <div className="absolute inset-0 z-20 w-full h-full">
-            {/* 게이지 영역 클릭 (상호작용 테스트) */}
-            <div
-              className="absolute cursor-pointer rounded-full hover:bg-slate-700/20 active:scale-95 transition-all"
-              style={{
-                top: `${dataloaction.esg.gaugeArea.top}%`,
-                left: `${dataloaction.esg.gaugeArea.left}%`,
-                width: `${dataloaction.esg.gaugeArea.width}%`,
-                height: `${dataloaction.esg.gaugeArea.height}%`,
-              }}
-              onClick={handleGaugeClick} // 클릭 시 전력 데이터 변경
-              title="클릭 시 소비 전력 상호작용 테스트"
-            ></div>
-
-            {/* 조명 카드 1/2 토글 영역 */}
-            <div
-              className="absolute cursor-pointer rounded-xl hover:bg-slate-700/30 active:scale-95 transition-all"
-              style={{
-                top: `${dataloaction.control.light1Toggle.top}%`,
-                left: `${dataloaction.control.light1Toggle.left}%`,
-                width: `${dataloaction.control.light1Toggle.width}%`,
-                height: `${dataloaction.control.light1Toggle.height}%`,
-              }}
-              onClick={() => setActiveLight("light1")} // 전등 활성화 변경
-              title="조명 구역 1 활성화"
-            ></div>
-            <div
-              className="absolute cursor-pointer rounded-xl hover:bg-slate-700/30 active:scale-95 transition-all"
-              style={{
-                top: `${dataloaction.control.light2Toggle.top}%`,
-                left: `${dataloaction.control.light2Toggle.left}%`,
-                width: `${dataloaction.control.light2Toggle.width}%`,
-                height: `${dataloaction.control.light2Toggle.height}%`,
-              }}
-              onClick={() => setActiveLight("light2")} // 전등 활성화 변경
-              title="조명 구역 2 활성화"
-            ></div>
-
-            {/* 기타 기기 스위치 클릭 영역 */}
-            <div
-              className="absolute cursor-pointer rounded-full hover:bg-slate-700/20 active:scale-95 transition-all"
-              style={{
-                top: `${dataloaction.control.otherSwitch.top}%`,
-                left: `${dataloaction.control.otherSwitch.left}%`,
-                width: `${dataloaction.control.otherSwitch.width}%`,
-                height: `${dataloaction.control.otherSwitch.height}%`,
-                transform: "translate(-50%, -50%)",
-              }}
-              onClick={() =>
-                setOtherDeviceStatus((prev) => (prev === "ON" ? "OFF" : "ON"))
-              } // 스위치 토글
-              title="기타 기기 ON/OFF 스위치"
-            ></div>
-
-            {/* 디지털 트윈 하단 버튼 영역 (상호작용) */}
-            <div
-              className="absolute cursor-pointer rounded-lg hover:bg-slate-700/30 active:scale-95 transition-all"
-              style={{
-                top: `${dataloaction.digitalTwin.btnReset.top}%`,
-                left: `${dataloaction.digitalTwin.btnReset.left}%`,
-                width: `${dataloaction.digitalTwin.btnReset.width}%`,
-                height: `${dataloaction.digitalTwin.btnReset.height}%`,
-                transform: "translate(-50%, -50%)",
-              }}
-              onClick={() => console.log("초기 상태 버튼 클릭")} // 나중에 실제 기능 연결
-              title="대시보드 초기 상태로 리셋"
-            ></div>
-            <div
-              className="absolute cursor-pointer rounded-lg hover:bg-slate-700/30 active:scale-95 transition-all"
-              style={{
-                top: `${dataloaction.digitalTwin.btnSync.top}%`,
-                left: `${dataloaction.digitalTwin.btnSync.left}%`,
-                width: `${dataloaction.digitalTwin.btnSync.width}%`,
-                height: `${dataloaction.digitalTwin.btnSync.height}%`,
-                transform: "translate(-50%, -50%)",
-              }}
-              onClick={() => console.log("실시간 동기화 버튼 클릭")} // 나중에 실제 기능 연결
-              title="실시간 제어 동기화 시도"
-            ></div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {features.map((feature) => (
+              <div
+                key={feature.id}
+                className="bg-[#050b14] p-6 md:p-8 rounded-3xl border border-slate-700 shadow-inner flex flex-col group hover:border-flolim/50 active:scale-[0.98] transition-all cursor-default"
+              >
+                <div className="w-12 h-12 md:w-14 md:h-14 bg-slate-900 rounded-2xl flex items-center justify-center text-flolim mb-5 border border-slate-700 group-hover:bg-flolim group-hover:text-white transition-colors">
+                  <svg className="w-6 h-6 md:w-7 md:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    {feature.icon}
+                  </svg>
+                </div>
+                <h3 className="text-lg font-bold text-white mb-3 group-hover:text-flolim transition-colors break-keep">
+                  {feature.title}
+                </h3>
+                <p className="text-xs md:text-sm text-slate-400 font-light leading-relaxed break-keep">
+                  {feature.desc}
+                </p>
+              </div>
+            ))}
           </div>
-        </div>
+        </section>
 
         <BottomNav
           prev={{
             label: "이전 카테고리",
-            title: "DMX 경관조명 및 제품소개",
-            path: "/smart-city/dmx",
+            title: "핵심 하드웨어 및 제품소개",
+            path: "/smart-building/product",
           }}
           next={{
             label: "다음 페이지",
