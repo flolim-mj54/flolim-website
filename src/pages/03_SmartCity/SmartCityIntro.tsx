@@ -6,7 +6,12 @@ const SmartCityIntro = () => {
   const sensors = [
     {
       id: 1,
-      color: "amber",
+      classes: {
+        bg: "bg-amber-400/10",
+        hoverBg: "group-hover:bg-amber-400/20",
+        text: "text-amber-400",
+        hoverText: "group-hover:text-amber-400",
+      },
       title: "조도 센서",
       desc: '주변 밝기를 자동 감지하여 전력 낭비를 차단하는 최적의 <strong class="text-slate-300">디밍 제어</strong>를 수행합니다.',
       icon: (
@@ -20,7 +25,12 @@ const SmartCityIntro = () => {
     },
     {
       id: 2,
-      color: "teal",
+      classes: {
+        bg: "bg-teal-400/10",
+        hoverBg: "group-hover:bg-teal-400/20",
+        text: "text-teal-400",
+        hoverText: "group-hover:text-teal-400",
+      },
       title: "대기질 센서",
       desc: '별도 인프라 구축비 없이 <strong class="text-slate-300">미세먼지 및 유해가스</strong>를 실시간으로 측정하고 모니터링합니다.',
       icon: (
@@ -34,7 +44,12 @@ const SmartCityIntro = () => {
     },
     {
       id: 3,
-      color: "cyan",
+      classes: {
+        bg: "bg-cyan-400/10",
+        hoverBg: "group-hover:bg-cyan-400/20",
+        text: "text-cyan-400",
+        hoverText: "group-hover:text-cyan-400",
+      },
       title: "차량/보행자 감지 센서",
       desc: '심야 통행량에 따라 밝기를 자동 조절하여 <strong class="text-slate-300">획기적인 에너지 절감과 범죄 예방</strong>을 동시 달성합니다.',
       icon: (
@@ -48,7 +63,12 @@ const SmartCityIntro = () => {
     },
     {
       id: 4,
-      color: "sky",
+      classes: {
+        bg: "bg-sky-400/10",
+        hoverBg: "group-hover:bg-sky-400/20",
+        text: "text-sky-400",
+        hoverText: "group-hover:text-sky-400",
+      },
       title: "소음/온습도 센서",
       desc: '기상 이변(폭염/결빙) 및 도심 소음을 감지하여 즉각적으로 대응하는 <strong class="text-slate-300">시민 안전망</strong>을 구축합니다.',
       icon: (
@@ -249,10 +269,10 @@ const SmartCityIntro = () => {
                 <div className="absolute -right-6 -top-6 w-24 h-24 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
                 <div className="relative z-10 w-16 h-16 md:w-20 md:h-20 shrink-0 bg-slate-900 rounded-2xl border border-slate-700 flex items-center justify-center overflow-hidden">
                   <div
-                    className={`absolute w-10 h-10 md:w-12 md:h-12 bg-${s.color}-400/10 rounded-full blur-xl group-hover:bg-${s.color}-400/20 transition-colors`}
+                    className={`absolute w-10 h-10 md:w-12 md:h-12 rounded-full blur-xl transition-colors ${s.classes.bg} ${s.classes.hoverBg}`}
                   ></div>
                   <svg
-                    className={`w-7 h-7 md:w-8 md:h-8 text-${s.color}-400 relative z-10`}
+                    className={`w-7 h-7 md:w-8 md:h-8 relative z-10 ${s.classes.text}`}
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -262,7 +282,7 @@ const SmartCityIntro = () => {
                 </div>
                 <div className="relative z-10 text-center sm:text-left">
                   <h3
-                    className={`text-base md:text-lg font-bold text-white mb-2 group-hover:text-${s.color}-400 transition-colors`}
+                    className={`text-base md:text-lg font-bold text-white mb-2 transition-colors ${s.classes.hoverText}`}
                   >
                     {s.title}
                   </h3>

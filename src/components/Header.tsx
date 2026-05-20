@@ -55,7 +55,8 @@ const Header = () => {
       subItems: [
         { name: "스마트 빌딩 개요", path: "/smart-building/intro" },
         { name: "IoT 센서 자동 제어", path: "/smart-building/sensor" },
-        { name: "제품소개", path: "/smart-building/product" },
+        // 💡 이 부분 수정 완료: '제품소개' -> '핵심 하드웨어 및 제품소개'
+        { name: "핵심 하드웨어 및 제품소개", path: "/smart-building/product" },
       ],
     },
     {
@@ -132,7 +133,6 @@ const Header = () => {
                         <Link
                           key={subIdx}
                           to={sub.path}
-                          // 💡 break-keep 대신 whitespace-nowrap을 적용하여 절대 2줄로 내려가지 않게 강제합니다.
                           className={`block px-5 py-2.5 text-[13px] font-medium transition-colors hover:bg-slate-800 whitespace-nowrap ${
                             location.pathname === sub.path
                               ? "text-flolim bg-slate-800/50"
