@@ -29,7 +29,7 @@ import SmartBuildingProduct from "./pages/04_SmartBuilding/SmartBuildingProduct"
 
 // Platform
 import PlatformDashboard from "./pages/05_Platform/PlatformDashboard";
-import PlatformEsg from "./pages/05_Platform/PlatformEsg";
+// 💡 PlatformEsg import 삭제 완료
 
 // Support
 import SupportReferences from "./pages/06_Support/SupportReferences";
@@ -82,7 +82,7 @@ function App() {
             />
 
             <Route path="/platform/dashboard" element={<PlatformDashboard />} />
-            <Route path="/platform/esg" element={<PlatformEsg />} />
+            {/* 💡 PlatformEsg Route 삭제 완료 */}
 
             <Route path="/support/references" element={<SupportReferences />} />
             <Route path="/support/archive" element={<SupportArchive />} />

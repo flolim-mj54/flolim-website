@@ -61,10 +61,10 @@ const PlatformDashboard = () => {
     <div className="pb-10 relative overflow-hidden bg-[#020617] min-h-screen text-slate-200">
       <PageHeader
         category="Unified Control Platform"
-        title="통합 관제 대시보드"
+        title="대시보드 및 ESG 리포트" // 💡 제목 수정
         subtitle={
           <>
-            모든 조명, 센서, 전력 사용량을 한눈에 확인하고 제어하는
+            모든 조명, 센서, 전력 사용량 확인 및 ESG 탄소 저감 데이터를 제공하는
             <br className="hidden md:block" />
             <strong className="text-white font-bold">
               플로림 빌딩·시티 최상위 통합 관제 센터
@@ -141,9 +141,9 @@ const PlatformDashboard = () => {
             path: "/smart-building/product",
           }}
           next={{
-            label: "다음 페이지",
-            title: "ESG 경영 리포트",
-            path: "/platform/esg",
+            label: "다음 카테고리",
+            title: "공식 실증 데이터", // 💡 다음 페이지 연결 수정
+            path: "/support/references",
           }}
         />
       </div>

@@ -63,8 +63,7 @@ const Header = () => {
       title: "통합 관제 플랫폼",
       path: "/platform/dashboard",
       subItems: [
-        { name: "통합 관제 대시보드", path: "/platform/dashboard" },
-        { name: "ESG 경영 리포트", path: "/platform/esg" },
+        { name: "대시보드 및 ESG 리포트", path: "/platform/dashboard" },
       ],
     },
     {

@@ -233,8 +233,8 @@ const SupportReferences = () => {
         <BottomNav
           prev={{
             label: "이전 페이지",
-            title: "ESG 경영 리포트",
-            path: "/platform/esg",
+            title: "대시보드 및 ESG 리포트", // 💡 연결 수정
+            path: "/platform/dashboard",
           }}
           next={{
             label: "다음 페이지",

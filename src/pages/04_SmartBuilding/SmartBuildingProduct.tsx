@@ -256,9 +256,9 @@ const SmartBuildingProduct = () => {
           }}
           next={{
             label: "다음 카테고리",
-            title: "통합 관제 대시보드",
+            title: "대시보드 및 ESG 리포트",
             path: "/platform/dashboard",
-          }}
+          }} // 💡 타이틀 수정
         />
       </div>
     </div>
