@@ -126,13 +126,14 @@ const Header = () => {
                         : "opacity-0 invisible translate-y-2"
                     }`}
                   >
-                    <div className="bg-[#050b14]/95 backdrop-blur-xl border border-slate-700 rounded-2xl shadow-xl w-48 overflow-hidden py-2 relative">
+                    <div className="bg-[#050b14]/95 backdrop-blur-xl border border-slate-700 rounded-2xl shadow-xl w-max min-w-[200px] overflow-hidden py-2 relative">
                       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-flolim to-transparent opacity-50"></div>
                       {item.subItems.map((sub, subIdx) => (
                         <Link
                           key={subIdx}
                           to={sub.path}
-                          className={`block px-5 py-2.5 text-xs font-medium transition-colors hover:bg-slate-800 break-keep ${
+                          // 💡 break-keep 대신 whitespace-nowrap을 적용하여 절대 2줄로 내려가지 않게 강제합니다.
+                          className={`block px-5 py-2.5 text-[13px] font-medium transition-colors hover:bg-slate-800 whitespace-nowrap ${
                             location.pathname === sub.path
                               ? "text-flolim bg-slate-800/50"
                               : "text-slate-400 hover:text-white"
