@@ -34,25 +34,25 @@ const SmartBuildingProduct = () => {
       ],
     },
     {
-      id: "04",
+      id: "04", // 👇 직사각 평판등 스펙 업데이트
       title: "스마트 직사각 평판등",
-      subtitle: "1285x320 Panel Light",
+      subtitle: "1290x320 Panel Light", // 1285에서 1290으로 규격 수정
       image: "/images/building_led_panel_rect.png",
-      desc: "국내 최고 수준의 170 Lm/W 광효율을 증명하는 고성능 조명입니다. 슬림한 일체형 강판 설계로 세련된 오피스 시각 환경을 보장합니다.",
+      desc: "눈의 피로를 최소화하는 플리커 프리(Flicker-Free) 설계와 5700K(주광색)의 균일한 빛을 제공합니다. 학교, 관공서, 병원, 오피스 등에 쾌적한 시각 환경을 보장합니다.",
       specs: [
-        { label: "소비 전력", value: "24.8W" },
-        { label: "광효율", value: "170 Lm/W" },
+        { label: "소비 전력", value: "25W" }, // 24.8W -> 25W 수정
+        { label: "광효율", value: "165 Lm/W" }, // 170 -> 165 Lm/W 수정 (4125LM)
       ],
     },
     {
-      id: "05",
+      id: "05", // 👇 정사각 평판등 스펙 업데이트
       title: "스마트 정사각 평판등",
       subtitle: "640x640 Panel Light",
       image: "/images/building_led_panel_sq.png",
-      desc: "정밀 모듈 패널화 공정으로 고품질 균일 광원을 뿜어내는 정사각 패널입니다. 일반 LED 제품 대비 열 발생을 혁신적으로 억제했습니다.",
+      desc: "27mm의 슬림한 디자인이 돋보이는 고효율 직하형 면조명입니다. 플리커 프리 기술이 적용되어 대형 마트, 편의점, 상업시설 및 사무실의 집중력 향상에 도움을 줍니다.",
       specs: [
-        { label: "소비 전력", value: "24.8W" },
-        { label: "광효율", value: "170 Lm/W" },
+        { label: "소비 전력", value: "25W" }, // 24.8W -> 25W 수정
+        { label: "광효율", value: "165 Lm/W" }, // 170 -> 165 Lm/W 수정 (4125LM)
       ],
     },
     {

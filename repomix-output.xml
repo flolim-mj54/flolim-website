@@ -116,7 +116,6 @@ src/pages/04_SmartBuilding/SmartBuildingIntro.tsx
 src/pages/04_SmartBuilding/SmartBuildingProduct.tsx
 src/pages/04_SmartBuilding/SmartBuildingSensor.tsx
 src/pages/05_Platform/PlatformDashboard.tsx
-src/pages/05_Platform/PlatformEsg.tsx
 src/pages/06_Support/SupportArchive.tsx
 src/pages/06_Support/SupportContact.tsx
 src/pages/06_Support/SupportReferences.tsx
@@ -200,6 +199,32 @@ export default {
 
 <file path="public/vite.svg">
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--logos" width="31.88" height="32" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 257"><defs><linearGradient id="IconifyId1813088fe1fbc01fb466" x1="-.828%" x2="57.636%" y1="7.652%" y2="78.411%"><stop offset="0%" stop-color="#41D1FF"></stop><stop offset="100%" stop-color="#BD34FE"></stop></linearGradient><linearGradient id="IconifyId1813088fe1fbc01fb467" x1="43.376%" x2="50.316%" y1="2.242%" y2="89.03%"><stop offset="0%" stop-color="#FFEA83"></stop><stop offset="8.333%" stop-color="#FFDD35"></stop><stop offset="100%" stop-color="#FFA800"></stop></linearGradient></defs><path fill="url(#IconifyId1813088fe1fbc01fb466)" d="M255.153 37.938L134.897 252.976c-2.483 4.44-8.862 4.466-11.382.048L.875 37.958c-2.746-4.814 1.371-10.646 6.827-9.67l120.385 21.517a6.537 6.537 0 0 0 2.322-.004l117.867-21.483c5.438-.991 9.574 4.796 6.877 9.62Z"></path><path fill="url(#IconifyId1813088fe1fbc01fb467)" d="M185.432.063L96.44 17.501a3.268 3.268 0 0 0-2.634 3.014l-5.474 92.456a3.268 3.268 0 0 0 3.997 3.378l24.777-5.718c2.318-.535 4.413 1.507 3.936 3.838l-7.361 36.047c-.495 2.426 1.782 4.5 4.151 3.78l15.304-4.649c2.372-.72 4.652 1.36 4.15 3.788l-11.698 56.621c-.732 3.542 3.979 5.473 5.943 2.437l1.313-2.028l72.516-144.72c1.215-2.423-.88-5.186-3.54-4.672l-25.505 4.922c-2.396.462-4.435-1.77-3.759-4.114l16.646-57.705c.677-2.35-1.37-4.583-3.769-4.113Z"></path></svg>
+</file>
+
+<file path="src/assets/index.css">
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* 1. 웹사이트 전체 한글 단어 단위 줄바꿈 강제 적용 */
+  html, body {
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  /* 2. 모바일 환경 터치 시 파란색 깜빡임 제거 */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@layer components {
+  /* 3. 모바일 터치/호버 시 공통으로 쓰이는 '쫀득한 카드' 애니메이션 일괄 정의 */
+  .interactive-card {
+    @apply transition-all duration-300 hover:border-flolim hover:shadow-[0_10px_30px_rgba(24,169,198,0.15)] hover:-translate-y-1 active:scale-[0.98] active:border-flolim active:bg-slate-800/50 cursor-pointer;
+  }
+}
 </file>
 
 <file path="src/components/BottomNav.tsx">
@@ -426,32 +451,6 @@ export default defineConfig({
 User-agent: *
 Allow: /
 Sitemap: https://www.flolim.com/sitemap.xml
-</file>
-
-<file path="src/assets/index.css">
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer base {
-  /* 1. 웹사이트 전체 한글 단어 단위 줄바꿈 강제 적용 */
-  html, body {
-    word-break: keep-all;
-    overflow-wrap: break-word;
-  }
-
-  /* 2. 모바일 환경 터치 시 파란색 깜빡임 제거 */
-  * {
-    -webkit-tap-highlight-color: transparent;
-  }
-}
-
-@layer components {
-  /* 3. 모바일 터치/호버 시 공통으로 쓰이는 '쫀득한 카드' 애니메이션 일괄 정의 */
-  .interactive-card {
-    @apply transition-all duration-300 hover:border-flolim hover:shadow-[0_10px_30px_rgba(24,169,198,0.15)] hover:-translate-y-1 active:scale-[0.98] active:border-flolim active:bg-slate-800/50 cursor-pointer;
-  }
-}
 </file>
 
 <file path="src/components/FeatureCard.tsx">
@@ -1818,288 +1817,6 @@ export default Home;
 </html>
 </file>
 
-<file path="src/pages/05_Platform/PlatformEsg.tsx">
-import { useEffect, useState } from "react";
-import PageHeader from "../../components/PageHeader";
-import BottomNav from "../../components/BottomNav";
-
-const PlatformEsg = () => {
-  const [isUnpacked, setIsUnpacked] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsUnpacked(true), 300);
-    return () => clearTimeout(timer);
-  }, []);
-
-  const esgIndicators = [
-    {
-      id: 1,
-      title: "Environment (환경)",
-      subtitle: "탄소 배출량 저감",
-      desc: "에너지 사용량 감축에 따른 온실가스 배출량의 직접적인 감소 효과를 수치화하여 제공합니다.",
-      icon: (
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-        />
-      ),
-      classes: {
-        border: "hover:border-emerald-500/50 active:border-emerald-500",
-        bgGlow: "bg-emerald-500/5",
-        iconBox: "text-emerald-400 group-hover:bg-emerald-500/10",
-        titleHover: "group-hover:text-emerald-400",
-        subtitle: "text-emerald-400",
-      },
-    },
-    {
-      id: 2,
-      title: "Social (사회)",
-      subtitle: "시민 안전 및 빛 공해 저감",
-      desc: "심야 디밍 적용 시간과 가동률을 분석하여 보행자 안전 확보 및 빛 공해 저감 데이터를 산출합니다.",
-      icon: (
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
-        />
-      ),
-      classes: {
-        border: "hover:border-flolim/50 active:border-flolim",
-        bgGlow: "bg-flolim/5",
-        iconBox: "text-flolim group-hover:bg-flolim/10",
-        titleHover: "group-hover:text-flolim",
-        subtitle: "text-flolim",
-      },
-    },
-    {
-      id: 3,
-      // 💡 [수정] 긴 타이틀이 태블릿 등에서 잘 줄바꿈되도록 띄어쓰기 보호 해제 및 break-words 적용
-      title: (
-        <span className="break-words">
-          Governance &<br className="hidden lg:block" /> Economy
-        </span>
-      ),
-      subtitle: "운영 투명성 및 비용 혁신",
-      desc: "통신 오류, 제어 개입 등의 투명성 로그와 전력/유지보수 비용 최소화를 통한 예산 절감액을 리포팅합니다.",
-      icon: (
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-        />
-      ),
-      classes: {
-        border: "hover:border-blue-500/50 active:border-blue-500",
-        bgGlow: "bg-blue-500/5",
-        iconBox: "text-blue-400 group-hover:bg-blue-500/10",
-        titleHover: "group-hover:text-blue-400",
-        subtitle: "text-blue-400",
-      },
-    },
-  ];
-
-  const strengths = [
-    {
-      id: 1,
-      title: "위변조 불가능한 신뢰성",
-      desc: "하드웨어 스마트 미터기에서 측정한 원본 데이터를 사용하여, 데이터 무결성이 100% 보장됩니다.",
-      icon: (
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-        />
-      ),
-    },
-    {
-      id: 2,
-      title: "스케줄 기반 자동 발행",
-      desc: "원하는 주기(월간, 분기, 연간)를 설정하면, 플랫폼이 자동으로 성과를 분석하여 PDF 및 Excel 리포트를 완성합니다.",
-      icon: (
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-        />
-      ),
-    },
-    {
-      id: 3,
-      title: "글로벌 표준 (RE100)",
-      desc: "글로벌 RE100, K-ETS 지침에 맞춘 Scope 2 배출량 산정 공식을 정확하게 시스템에 반영합니다.",
-      icon: (
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
-        />
-      ),
-    },
-  ];
-
-  return (
-    <div className="pb-10 relative overflow-hidden">
-      <PageHeader
-        category="ESG & Sustainability"
-        title="통합 경영 및 ESG 리포트"
-        subtitle={
-          <>
-            수집된 모든 데이터를 분석하여{" "}
-            <strong className="text-flolim font-bold">
-              탄소 감축 성과와 예산 절감액을 공식 리포트로 제공
-            </strong>
-            합니다.
-          </>
-        }
-      />
-
-      <div className="container mx-auto px-4 max-w-6xl mt-10">
-        <section className="bg-slate-900/50 backdrop-blur-md rounded-[2.5rem] p-6 md:p-10 lg:p-16 shadow-2xl border border-slate-800 mb-16 relative overflow-hidden min-h-[500px] md:min-h-[700px] flex flex-col">
-          <div className="text-center mb-10 md:mb-16 relative z-20 px-2">
-            <h2 className="text-xl md:text-3xl font-bold text-white mb-2 md:mb-3 break-keep">
-              자동화된 ESG 성과 리포트
-            </h2>
-            <p className="text-slate-400 text-xs md:text-sm break-keep">
-              데이터가 증명하는 객관적인 탄소 감축 및 예산 절감 성과를
-              확인하세요.
-            </p>
-          </div>
-
-          <div className="perspective-[1200px] flex-1 flex items-center justify-center relative z-10 w-full pb-6 md:pb-10">
-            <div
-              className="relative w-full max-w-5xl mx-auto transition-all duration-[1500ms] ease-[cubic-bezier(0.2,0.8,0.2,1)]"
-              style={{
-                transformStyle: "preserve-3d",
-                transform: isUnpacked
-                  ? "rotateX(0deg) translateY(0) scale(1)"
-                  : "rotateX(30deg) translateY(60px) scale(0.85)",
-              }}
-            >
-              <div
-                className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-flolim/20 blur-[100px] rounded-full transition-all duration-[2000ms] z-0 pointer-events-none ${isUnpacked ? "scale-100 opacity-100" : "scale-50 opacity-0"}`}
-              ></div>
-
-              <div className="relative z-10 w-full shadow-[0_20px_40px_rgba(0,0,0,0.8)] md:shadow-[0_30px_60px_rgba(0,0,0,0.8)]">
-                <div className="bg-slate-800 p-2 md:p-4 rounded-t-xl md:rounded-t-3xl border-t border-x border-slate-600 relative">
-                  <div className="absolute top-1 md:top-1.5 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 md:w-2 md:h-2 bg-slate-950 rounded-full"></div>
-                  <div className="relative w-full aspect-video bg-[#0a1128] rounded-lg md:rounded-xl overflow-hidden border border-slate-900 flex items-center justify-center mt-1 md:mt-0">
-                    <img
-                      src="/images/dashboard-esg.jpg"
-                      alt="ESG 성과 분석 보고서"
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-                </div>
-                <div className="h-3 md:h-6 bg-gradient-to-b from-slate-600 to-slate-800 rounded-b-xl md:rounded-b-3xl w-full mx-auto flex justify-center">
-                  <div className="w-16 md:w-32 h-1 bg-slate-500 rounded-b-md"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="mb-16 md:mb-20">
-          <div className="text-center mb-10 md:mb-12 relative z-10 px-2">
-            <h2 className="text-xl md:text-3xl font-bold text-white break-keep">
-              데이터 기반 ESG 가치 증명
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 relative z-10">
-            {esgIndicators.map((ind) => (
-              <div
-                key={ind.id}
-                className={`bg-[#050b14] p-6 md:p-8 rounded-3xl border border-slate-700 shadow-inner transition-colors group relative overflow-hidden cursor-default active:scale-[0.98] flex flex-col ${ind.classes.border}`}
-              >
-                <div
-                  className={`absolute -right-6 -top-6 w-24 h-24 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none ${ind.classes.bgGlow}`}
-                ></div>
-                <div
-                  className={`w-10 h-10 md:w-12 md:h-12 bg-slate-800 rounded-xl flex items-center justify-center mb-4 md:mb-5 transition-colors relative z-10 border border-slate-600 ${ind.classes.iconBox}`}
-                >
-                  <svg
-                    className="w-5 h-5 md:w-6 md:h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    {ind.icon}
-                  </svg>
-                </div>
-                <h3
-                  className={`text-base md:text-lg font-bold text-white mb-1 md:mb-2 transition-colors relative z-10 break-keep ${ind.classes.titleHover}`}
-                >
-                  {ind.title}
-                </h3>
-                <p
-                  className={`font-bold text-xs md:text-sm mb-2 relative z-10 break-keep ${ind.classes.subtitle}`}
-                >
-                  {ind.subtitle}
-                </p>
-                <p className="text-slate-400 font-light text-xs md:text-sm leading-relaxed relative z-10 break-keep flex-grow">
-                  {ind.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="mb-20">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 relative z-10">
-            {strengths.map((str) => (
-              <div
-                key={str.id}
-                className="bg-[#050b14] p-6 md:p-8 rounded-3xl border border-slate-700 shadow-inner hover:border-flolim/50 active:scale-[0.98] active:border-flolim transition-colors group relative overflow-hidden cursor-default flex flex-col"
-              >
-                <div className="absolute -right-6 -top-6 w-24 h-24 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
-                <div className="w-10 h-10 md:w-12 md:h-12 bg-slate-800 text-flolim rounded-xl flex items-center justify-center mb-4 md:mb-5 group-hover:bg-flolim/10 transition-colors relative z-10 border border-slate-600">
-                  <svg
-                    className="w-5 h-5 md:w-6 md:h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    {str.icon}
-                  </svg>
-                </div>
-                <h3 className="text-base md:text-lg font-bold text-white mb-2 group-hover:text-flolim transition-colors relative z-10 break-keep">
-                  {str.title}
-                </h3>
-                <p className="text-slate-400 font-light text-xs md:text-sm leading-relaxed relative z-10 break-keep flex-grow">
-                  {str.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <BottomNav
-          prev={{
-            label: "이전 페이지",
-            title: "통합 관제 대시보드",
-            path: "/platform/dashboard",
-          }}
-          next={{
-            label: "다음 카테고리",
-            title: "공식 실증 데이터",
-            path: "/support/references",
-          }}
-        />
-      </div>
-    </div>
-  );
-};
-
-export default PlatformEsg;
-</file>
-
 <file path="src/pages/06_Support/SupportContact.tsx">
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -3091,277 +2808,6 @@ const SmartCityIntro = () => {
 export default SmartCityIntro;
 </file>
 
-<file path="src/pages/04_SmartBuilding/SmartBuildingProduct.tsx">
-import PageHeader from "../../components/PageHeader";
-import BottomNav from "../../components/BottomNav";
-
-const SmartBuildingProduct = () => {
-  const systemHardwares = [
-    {
-      id: "01",
-      title: "플로림 스마트 허브 프로",
-      subtitle: "Flolim Smart Hub Pro",
-      image: "/images/building_smart_hub_pro.png",
-      tag: "Core Brain",
-      desc: "(주)플로림이 자체 개발한 고성능 다중 통신 게이트웨이입니다. Matter, Thread 프로토콜을 동시에 처리하여 수천 개의 조명 기기와 센서를 하나의 네트워크로 완벽하게 연동합니다.",
-    },
-    {
-      id: "02",
-      title: "AI 비전 센서",
-      subtitle: "Vision Control Sensor",
-      image: "/images/building_vision_sensor.png",
-      tag: "Vision Node",
-      desc: "공간 내 차량과 보행자의 유동 흐름 및 동선을 정밀 추적·예측하는 첨단 센서입니다. 사각지대 없는 비전 센싱 데이터를 기반으로 조명 점소등의 완벽한 자동화를 실현합니다.",
-    },
-  ];
-
-  const ledProducts = [
-    {
-      id: "03",
-      title: "스마트 LED 다운라이트",
-      subtitle: "6-inch Downlight",
-      image: "/images/building_led_downlight.png",
-      desc: "단 10.1W의 초저전력 구동. 고도의 정밀 디밍(0.0001%) 제어 기술로 호텔, 로비, 회의실 등에 격조 높은 명품 빛을 선사합니다.",
-      specs: [
-        { label: "소비 전력", value: "10.1W" },
-        { label: "광효율", value: "100 Lm/W" },
-      ],
-    },
-    {
-      id: "04",
-      title: "스마트 직사각 평판등",
-      subtitle: "1285x320 Panel Light",
-      image: "/images/building_led_panel_rect.png",
-      desc: "국내 최고 수준의 170 Lm/W 광효율을 증명하는 고성능 조명입니다. 슬림한 일체형 강판 설계로 세련된 오피스 시각 환경을 보장합니다.",
-      specs: [
-        { label: "소비 전력", value: "24.8W" },
-        { label: "광효율", value: "170 Lm/W" },
-      ],
-    },
-    {
-      id: "05",
-      title: "스마트 정사각 평판등",
-      subtitle: "640x640 Panel Light",
-      image: "/images/building_led_panel_sq.png",
-      desc: "정밀 모듈 패널화 공정으로 고품질 균일 광원을 뿜어내는 정사각 패널입니다. 일반 LED 제품 대비 열 발생을 혁신적으로 억제했습니다.",
-      specs: [
-        { label: "소비 전력", value: "24.8W" },
-        { label: "광효율", value: "170 Lm/W" },
-      ],
-    },
-    {
-      id: "06",
-      title: "스마트 레이스웨이등",
-      subtitle: "1200mm Raceway Light",
-      image: "/images/building_led_raceway.png",
-      desc: "대형 마트 및 빌딩 지하주차장 트랙 레이스에 완벽 대응하는 직결 플러그 형태의 조명입니다. 차량 통행량 연동 제어에 최적화되었습니다.",
-      specs: [
-        { label: "소비 전력", value: "12W" },
-        { label: "광효율", value: "150 Lm/W" },
-      ],
-    },
-  ];
-
-  return (
-    <div className="pb-10 relative overflow-hidden bg-[#020617] min-h-screen text-slate-200">
-      <PageHeader
-        category="Smart Building Hardware"
-        title="핵심 하드웨어 및 제품소개"
-        subtitle={
-          <>
-            건물의 최상위 두뇌 역할을 하는 제어 장비부터
-            <br className="hidden md:block" />
-            독보적인 효율을 내는 고품질 LED까지{" "}
-            <strong className="text-white font-bold">
-              플로림 빌딩 생태계의 실물 라인업
-            </strong>
-            입니다.
-          </>
-        }
-      />
-
-      <div className="container mx-auto px-4 max-w-6xl mt-10">
-        {/* 1. 핵심 제어 인프라 */}
-        <section className="relative z-10 mb-20">
-          <div className="flex items-center gap-3 mb-8 border-l-4 border-flolim pl-3">
-            <h2 className="text-xl md:text-2xl font-bold text-white">
-              1. 핵심 제어 인프라 및 기기
-            </h2>
-            <span className="bg-slate-900 text-slate-400 text-[10px] md:text-xs px-2.5 py-1 rounded border border-slate-800 font-bold whitespace-nowrap">
-              건물 통합 허브망
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {systemHardwares.map((hw) => (
-              <div
-                key={hw.id}
-                className="bg-[#050b14] p-6 md:p-8 rounded-[2rem] border border-slate-800 shadow-inner hover:border-slate-700/60 transition-all duration-300 flex flex-col md:flex-row items-center gap-6 group"
-              >
-                <div className="w-full md:w-40 aspect-square bg-slate-900/40 rounded-2xl flex items-center justify-center p-4 border border-slate-800 shrink-0 relative overflow-hidden">
-                  <img
-                    src={hw.image}
-                    alt={hw.title}
-                    className="max-w-full max-h-full object-contain mix-blend-screen drop-shadow-xl group-hover:scale-110 transition-transform duration-700 relative z-10"
-                  />
-                </div>
-                <div className="text-left flex-1">
-                  <span className="text-flolim font-mono text-[10px] uppercase tracking-widest block mb-1">
-                    {hw.tag}
-                  </span>
-                  <h3 className="text-xl font-bold text-white mb-1 group-hover:text-flolim transition-colors break-keep">
-                    {hw.title}
-                  </h3>
-                  <p className="text-slate-500 font-mono text-[11px] mb-3 uppercase">
-                    {hw.subtitle}
-                  </p>
-                  <p className="text-slate-400 text-xs md:text-sm font-light leading-relaxed break-keep">
-                    {hw.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* 2. 프리미엄 LED 라인업 */}
-        <section className="relative z-10 mb-20">
-          <div className="flex items-center gap-3 mb-8 border-l-4 border-flolim pl-3">
-            <h2 className="text-xl md:text-2xl font-bold text-white">
-              2. 스마트 프리미엄 LED 라인업
-            </h2>
-            <span className="bg-slate-900 text-slate-400 text-[10px] md:text-xs px-2.5 py-1 rounded border border-slate-800 font-bold whitespace-nowrap">
-              Matter over Thread 탑재
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-            {ledProducts.map((hw) => (
-              <div
-                key={hw.id}
-                className="bg-[#050b14] p-5 md:p-6 rounded-[2rem] border border-slate-800 shadow-inner hover:border-flolim/40 transition-all duration-300 flex flex-col h-full group relative overflow-hidden"
-              >
-                <div className="absolute -right-6 -top-6 w-24 h-24 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 blur-2xl pointer-events-none"></div>
-                <div className="w-full aspect-square bg-slate-900/40 rounded-xl mb-4 flex items-center justify-center border border-slate-800/80 p-3 relative overflow-hidden z-10">
-                  <img
-                    src={hw.image}
-                    alt={hw.title}
-                    className="max-w-full max-h-full object-contain mix-blend-screen drop-shadow-lg group-hover:scale-110 transition-transform duration-500"
-                  />
-                </div>
-                <div className="text-left flex flex-col flex-grow relative z-10">
-                  <span className="text-flolim text-[9px] font-mono font-bold uppercase mb-1">
-                    LED {hw.id}
-                  </span>
-                  <h3 className="text-sm md:text-base font-bold text-white group-hover:text-flolim transition-colors mb-1 break-keep">
-                    {hw.title}
-                  </h3>
-                  <p className="text-slate-500 text-[10px] font-mono mb-3">
-                    {hw.subtitle}
-                  </p>
-                  <p className="text-slate-400 text-[11px] md:text-xs font-light leading-relaxed mb-4 flex-grow break-keep">
-                    {hw.desc}
-                  </p>
-                  <div className="grid grid-cols-2 gap-1.5 mt-auto">
-                    {hw.specs.map((spec, i) => (
-                      <div
-                        key={i}
-                        className="bg-slate-900/60 p-2.5 rounded-xl border border-slate-800 text-xs flex flex-col items-center justify-center"
-                      >
-                        <span className="text-slate-500 text-[8px] uppercase font-bold mb-0.5 whitespace-nowrap">
-                          {spec.label}
-                        </span>
-                        <span className="text-flolim font-black text-[10px] md:text-xs whitespace-nowrap">
-                          {spec.value}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* 3. Matter over Thread 기술 소개 브릿지 영역 */}
-        <section className="bg-slate-900/30 rounded-[2.5rem] p-8 md:p-12 border border-slate-800/80 relative overflow-hidden mb-16">
-          <div className="absolute -left-20 -bottom-20 w-80 h-80 bg-flolim/5 rounded-full blur-[100px] pointer-events-none"></div>
-
-          <div className="text-left mb-10 relative z-10">
-            <span className="text-xs font-bold text-flolim uppercase tracking-widest block mb-2">
-              Technical Core Edge
-            </span>
-            <h2 className="text-2xl md:text-3xl font-bold text-white break-keep">
-              제품의 완벽성을 책임지는 무선 기술, Matter over Thread
-            </h2>
-            <div className="w-16 h-0.5 bg-flolim mt-4 mb-5 opacity-70"></div>
-            <p className="text-slate-400 text-sm font-light leading-relaxed max-w-4xl break-keep">
-              플로림의 스마트 하드웨어 라인업이 일반 스마트 기기들과 결정적으로
-              차별화되는 이유는, 글로벌 무선 표준 규격인{" "}
-              <strong className="text-slate-200">Matter</strong>와 고신뢰성 IP
-              기반 메시 네트워크 기술인{" "}
-              <strong className="text-slate-200">Thread</strong>를 제품 내부에
-              원천 탑재했기 때문입니다.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
-            <div className="bg-[#050b14]/50 border border-slate-800 p-6 rounded-2xl hover:border-slate-700 transition-colors">
-              <h4 className="text-white font-bold text-sm md:text-base mb-3 flex items-center gap-2">
-                <span className="w-1 h-4 bg-flolim rounded-full"></span> 완벽한
-                자가 치유 무선망
-              </h4>
-              <p className="text-slate-400 text-xs md:text-sm font-light leading-relaxed break-keep">
-                Thread 통신은 조명 기구들끼리 그물망처럼 촘촘히 엮여 신호를 우회
-                중계합니다. 한 장비의 전원이 꺼져도 주변 기기를 통해 무선망을
-                스스로 복구하는 고신뢰성 제어망입니다.
-              </p>
-            </div>
-            <div className="bg-[#050b14]/50 border border-slate-800 p-6 rounded-2xl hover:border-slate-700 transition-colors">
-              <h4 className="text-white font-bold text-sm md:text-base mb-3 flex items-center gap-2">
-                <span className="w-1 h-4 bg-flolim rounded-full"></span> 은행
-                보안수준 암호화
-              </h4>
-              <p className="text-slate-400 text-xs md:text-sm font-light leading-relaxed break-keep">
-                강력한 종단간(E2EE) 암호화 통신 표준을 준수하여, 빌딩 제어
-                데이터를 노리는 외부 악성 해킹 공격이나 조명 제어권 탈취 시도를
-                원천 차단합니다.
-              </p>
-            </div>
-            <div className="bg-[#050b14]/50 border border-slate-800 p-6 rounded-2xl hover:border-slate-700 transition-colors">
-              <h4 className="text-white font-bold text-sm md:text-base mb-3 flex items-center gap-2">
-                <span className="w-1 h-4 bg-flolim rounded-full"></span>{" "}
-                초저전력 무선 반응속도
-              </h4>
-              <p className="text-slate-400 text-xs md:text-sm font-light leading-relaxed break-keep">
-                대규모 연결 인프라에서도 통신 딜레이 현상을 수 밀리초(ms) 단위로
-                억제하여, 센서 신호 감지 즉시 물 흐르듯 유기적으로 켜지는 쾌적한
-                반응 속도를 완성합니다.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <BottomNav
-          prev={{
-            label: "이전 페이지",
-            title: "IoT 센서 자동 제어",
-            path: "/smart-building/sensor",
-          }}
-          next={{
-            label: "다음 카테고리",
-            title: "대시보드 및 ESG 리포트",
-            path: "/platform/dashboard",
-          }} // 💡 타이틀 수정
-        />
-      </div>
-    </div>
-  );
-};
-
-export default SmartBuildingProduct;
-</file>
-
 <file path="src/pages/06_Support/SupportArchive.tsx">
 import PageHeader from "../../components/PageHeader";
 import BottomNav from "../../components/BottomNav";
@@ -3630,259 +3076,6 @@ const SupportArchive = () => {
 };
 
 export default SupportArchive;
-</file>
-
-<file path="src/pages/06_Support/SupportReferences.tsx">
-import PageHeader from "../../components/PageHeader";
-import BottomNav from "../../components/BottomNav";
-
-const SupportReferences = () => {
-  const cityCases = [
-    {
-      id: 1,
-      tag: "경기도 안산시",
-      title: "안산스마트허브 (1,594개)",
-      desc: "통행량 분석 IoT 조명제어 장치 적용",
-      prefix: "",
-      percent: "70",
-      unit: "%",
-      label: "에너지 감축",
-    },
-    {
-      id: 2,
-      tag: "서울특별시",
-      title: "강남 4구 도로 (1,500개)",
-      desc: "유동 인구 밀집 지역 스마트 제어망 구축",
-      prefix: "",
-      percent: "50",
-      unit: "%",
-      label: "이상 절감 (912MW)",
-    },
-    {
-      id: 3,
-      tag: "서울특별시",
-      title: "금천구 G밸리 (601개)",
-      desc: "심야 시간대 교통량 연동 자동 조도 조절",
-      prefix: "연간",
-      percent: "6만",
-      unit: "kWh",
-      label: "절감",
-    },
-  ];
-
-  const buildingCases = [
-    {
-      id: 4,
-      tag: "공장 및 상업시설",
-      title: "한국전자통신연구원 실증",
-      desc: "스마트조명 플랫폼 개별/그룹 제어 적용",
-      prefix: "최대",
-      percent: "74.1",
-      unit: "%",
-      label: "절감",
-    },
-    {
-      id: 5,
-      tag: "공동주택 및 건물",
-      title: "대한민국 LH공사 실증",
-      desc: "IoT 기반 10단계 자동 조도 조절(디밍) 적용",
-      prefix: "최대",
-      percent: "70",
-      unit: "%",
-      label: "이상 절감",
-    },
-    {
-      id: 6,
-      tag: "학교 및 사무실",
-      title: "한국광기술원 실증",
-      desc: "자연광 연동 스마트 센서망 자동 제어",
-      prefix: "일반 LED 대비",
-      percent: "43",
-      unit: "%",
-      label: "추가 절감",
-    },
-  ];
-
-  return (
-    <div className="pb-10 relative overflow-hidden">
-      <PageHeader
-        category="공식 실증 데이터"
-        title="공식 실증 데이터"
-        subtitle={
-          <>
-            기존 노후 조명을 스마트 제어 시스템으로 전환했을 때 입증되는
-            <br className="hidden md:block" />
-            <strong className="text-white font-bold">
-              객관적인 에너지 절감 및 탄소 중립 지표
-            </strong>
-            를 확인해 보세요.
-          </>
-        }
-      />
-
-      <div className="container mx-auto px-4 max-w-6xl mt-10">
-        <section className="bg-slate-900/50 backdrop-blur-md rounded-[2.5rem] p-6 md:p-10 lg:p-16 shadow-2xl border border-slate-800 mb-16 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-flolim/5 rounded-full blur-[150px] pointer-events-none -translate-y-1/4 translate-x-1/4"></div>
-
-          <div className="mb-8 md:mb-10 relative z-10">
-            <div className="flex items-center gap-3 border-b border-slate-800 pb-4 mb-4">
-              <svg
-                className="w-6 h-6 md:w-8 md:h-8 text-flolim shrink-0"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                ></path>
-              </svg>
-              <h2 className="text-xl md:text-2xl font-bold text-white break-keep">
-                스마트 가로등 공식 실증 데이터
-              </h2>
-            </div>
-            <p className="text-slate-400 text-xs md:text-sm font-light break-keep">
-              전력 소모가 큰 노후 가로등을 통합 제어형 스마트 가로등으로
-              교체하여 입증된 국내외 공식 에너지 절감 데이터입니다.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
-            {cityCases.map((c) => (
-              <div
-                key={c.id}
-                className="bg-[#050b14] p-6 md:p-8 rounded-3xl border border-slate-700 shadow-inner hover:border-flolim/50 active:scale-[0.98] transition-all duration-300 group relative overflow-hidden flex flex-col h-full cursor-default"
-              >
-                <div className="absolute -right-6 -top-6 w-24 h-24 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
-                <div className="relative z-10 flex flex-col h-full">
-                  <span className="inline-block px-3 py-1 bg-slate-800 text-slate-400 text-[10px] md:text-xs font-bold rounded-lg mb-4 border border-slate-700 self-start">
-                    {c.tag}
-                  </span>
-                  <h3 className="text-lg md:text-xl font-bold text-white mb-2 group-hover:text-flolim transition-colors break-keep">
-                    {c.title}
-                  </h3>
-                  <p className="text-xs md:text-sm text-slate-500 font-medium mb-6 break-keep flex-grow">
-                    {c.desc}
-                  </p>
-
-                  <div className="flex flex-wrap items-end gap-x-2 gap-y-1 mt-auto">
-                    {c.prefix && (
-                      <span className="text-slate-400 font-bold mb-1 text-xs md:text-sm">
-                        {c.prefix}
-                      </span>
-                    )}
-                    <span className="text-3xl md:text-4xl font-black text-flolim tracking-tight drop-shadow-[0_0_15px_rgba(24,169,198,0.3)] whitespace-nowrap">
-                      {c.percent}
-                      <span className="text-lg md:text-xl font-medium ml-0.5">
-                        {c.unit}
-                      </span>
-                    </span>
-                    <span className="text-slate-400 font-bold mb-1 text-xs md:text-sm whitespace-nowrap">
-                      {c.label}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="bg-slate-900/50 backdrop-blur-md rounded-[2.5rem] p-6 md:p-10 lg:p-16 shadow-2xl border border-slate-800 mb-16 relative overflow-hidden">
-          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-flolim/5 rounded-full blur-[150px] pointer-events-none translate-y-1/4 -translate-x-1/4"></div>
-
-          <div className="mb-8 md:mb-10 relative z-10">
-            <div className="flex items-center gap-3 border-b border-slate-800 pb-4 mb-4">
-              <svg
-                className="w-6 h-6 md:w-8 md:h-8 text-flolim shrink-0"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                ></path>
-              </svg>
-              <h2 className="text-xl md:text-2xl font-bold text-white break-keep">
-                스마트 빌딩 및 산업 현장 실증 데이터
-              </h2>
-            </div>
-            <p className="text-slate-400 text-xs md:text-sm font-light break-keep">
-              고효율 스마트 조명에 첨단 IoT 센서망을 결합하여 실내 공간의 전력
-              효율을 최적화한 공식 실증 데이터입니다.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
-            {buildingCases.map((c) => (
-              <div
-                key={c.id}
-                className="bg-[#050b14] p-6 md:p-8 rounded-3xl border border-slate-700 shadow-inner hover:border-flolim/50 active:scale-[0.98] transition-all duration-300 group relative overflow-hidden flex flex-col h-full cursor-default"
-              >
-                <div className="absolute -right-6 -top-6 w-24 h-24 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
-                <div className="relative z-10 flex flex-col h-full">
-                  <span className="inline-block px-3 py-1 bg-slate-800 text-slate-400 text-[10px] md:text-xs font-bold rounded-lg mb-4 border border-slate-700 self-start">
-                    {c.tag}
-                  </span>
-                  <h3 className="text-lg md:text-xl font-bold text-white mb-2 group-hover:text-flolim transition-colors break-keep">
-                    {c.title}
-                  </h3>
-                  <p className="text-xs md:text-sm text-slate-500 font-medium mb-6 break-keep flex-grow">
-                    {c.desc}
-                  </p>
-
-                  <div className="flex flex-wrap items-end gap-x-2 gap-y-1 mt-auto">
-                    {c.prefix && (
-                      <span className="text-slate-400 font-bold mb-1 text-xs md:text-sm break-keep">
-                        {c.prefix}
-                      </span>
-                    )}
-                    <span className="text-3xl md:text-4xl font-black text-flolim tracking-tight drop-shadow-[0_0_15px_rgba(24,169,198,0.3)] whitespace-nowrap">
-                      {c.percent}
-                      <span className="text-lg md:text-xl font-medium ml-0.5">
-                        {c.unit}
-                      </span>
-                    </span>
-                    <span className="text-slate-400 font-bold mb-1 text-xs md:text-sm whitespace-nowrap">
-                      {c.label}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-12 pt-6 border-t border-slate-800 text-center relative z-10 bg-[#050b14]/80 p-4 rounded-xl border border-slate-700/50">
-            <p className="text-slate-400 text-[10px] md:text-xs font-light break-keep leading-relaxed">
-              ※ 본 페이지의 데이터는 플로림의 직접 시공 실적이 아니며, 스마트
-              제어 시스템의 우수성과 기대 효과에 대한 이해를 돕기 위해 인용된
-              국가/공공기관 및 산업계의 공식 실증 사례입니다.
-            </p>
-          </div>
-        </section>
-
-        <BottomNav
-          prev={{
-            label: "이전 페이지",
-            title: "대시보드 및 ESG 리포트", // 💡 연결 수정
-            path: "/platform/dashboard",
-          }}
-          next={{
-            label: "다음 페이지",
-            title: "자료실",
-            path: "/support/archive",
-          }}
-        />
-      </div>
-    </div>
-  );
-};
-
-export default SupportReferences;
 </file>
 
 <file path="src/pages/02_Business/BusinessEsco.tsx">
@@ -4183,6 +3376,530 @@ const BusinessEsco = () => {
 };
 
 export default BusinessEsco;
+</file>
+
+<file path="src/pages/04_SmartBuilding/SmartBuildingProduct.tsx">
+import PageHeader from "../../components/PageHeader";
+import BottomNav from "../../components/BottomNav";
+
+const SmartBuildingProduct = () => {
+  const systemHardwares = [
+    {
+      id: "01",
+      title: "플로림 스마트 허브 프로",
+      subtitle: "Flolim Smart Hub Pro",
+      image: "/images/building_smart_hub_pro.png",
+      tag: "Core Brain",
+      desc: "(주)플로림이 자체 개발한 고성능 다중 통신 게이트웨이입니다. Matter, Thread 프로토콜을 동시에 처리하여 수천 개의 조명 기기와 센서를 하나의 네트워크로 완벽하게 연동합니다.",
+    },
+    {
+      id: "02",
+      title: "AI 비전 센서",
+      subtitle: "Vision Control Sensor",
+      image: "/images/building_vision_sensor.png",
+      tag: "Vision Node",
+      desc: "공간 내 차량과 보행자의 유동 흐름 및 동선을 정밀 추적·예측하는 첨단 센서입니다. 사각지대 없는 비전 센싱 데이터를 기반으로 조명 점소등의 완벽한 자동화를 실현합니다.",
+    },
+  ];
+
+  const ledProducts = [
+    {
+      id: "03",
+      title: "스마트 LED 다운라이트",
+      subtitle: "6-inch Downlight",
+      image: "/images/building_led_downlight.png",
+      desc: "단 10.1W의 초저전력 구동. 고도의 정밀 디밍(0.0001%) 제어 기술로 호텔, 로비, 회의실 등에 격조 높은 명품 빛을 선사합니다.",
+      specs: [
+        { label: "소비 전력", value: "10.1W" },
+        { label: "광효율", value: "100 Lm/W" },
+      ],
+    },
+    {
+      id: "04",
+      title: "스마트 직사각 평판등",
+      subtitle: "1285x320 Panel Light",
+      image: "/images/building_led_panel_rect.png",
+      desc: "국내 최고 수준의 170 Lm/W 광효율을 증명하는 고성능 조명입니다. 슬림한 일체형 강판 설계로 세련된 오피스 시각 환경을 보장합니다.",
+      specs: [
+        { label: "소비 전력", value: "24.8W" },
+        { label: "광효율", value: "170 Lm/W" },
+      ],
+    },
+    {
+      id: "05",
+      title: "스마트 정사각 평판등",
+      subtitle: "640x640 Panel Light",
+      image: "/images/building_led_panel_sq.png",
+      desc: "정밀 모듈 패널화 공정으로 고품질 균일 광원을 뿜어내는 정사각 패널입니다. 일반 LED 제품 대비 열 발생을 혁신적으로 억제했습니다.",
+      specs: [
+        { label: "소비 전력", value: "24.8W" },
+        { label: "광효율", value: "170 Lm/W" },
+      ],
+    },
+    {
+      id: "06",
+      title: "스마트 레이스웨이등",
+      subtitle: "1200mm Raceway Light",
+      image: "/images/building_led_raceway.png",
+      desc: "대형 마트 및 빌딩 지하주차장 트랙 레이스에 완벽 대응하는 직결 플러그 형태의 조명입니다. 차량 통행량 연동 제어에 최적화되었습니다.",
+      specs: [
+        { label: "소비 전력", value: "12W" },
+        { label: "광효율", value: "150 Lm/W" },
+      ],
+    },
+  ];
+
+  return (
+    <div className="pb-10 relative overflow-hidden bg-[#020617] min-h-screen text-slate-200">
+      <PageHeader
+        category="Smart Building Hardware"
+        title="핵심 하드웨어 및 제품소개"
+        subtitle={
+          <>
+            건물의 최상위 두뇌 역할을 하는 제어 장비부터
+            <br className="hidden md:block" />
+            독보적인 효율을 내는 고품질 LED까지{" "}
+            <strong className="text-white font-bold">
+              플로림 빌딩 생태계의 실물 라인업
+            </strong>
+            입니다.
+          </>
+        }
+      />
+
+      <div className="container mx-auto px-4 max-w-6xl mt-10">
+        {/* 1. 핵심 제어 인프라 */}
+        <section className="relative z-10 mb-20">
+          <div className="flex items-center gap-3 mb-8 border-l-4 border-flolim pl-3">
+            <h2 className="text-xl md:text-2xl font-bold text-white">
+              1. 핵심 제어 인프라 및 기기
+            </h2>
+            <span className="bg-slate-900 text-slate-400 text-[10px] md:text-xs px-2.5 py-1 rounded border border-slate-800 font-bold whitespace-nowrap">
+              건물 통합 허브망
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {systemHardwares.map((hw) => (
+              <div
+                key={hw.id}
+                className="bg-[#050b14] p-6 md:p-8 rounded-[2rem] border border-slate-800 shadow-inner hover:border-slate-700/60 transition-all duration-300 flex flex-col md:flex-row items-center gap-6 group"
+              >
+                <div className="w-full md:w-40 aspect-square bg-slate-900/40 rounded-2xl flex items-center justify-center p-4 border border-slate-800 shrink-0 relative overflow-hidden">
+                  <img
+                    src={hw.image}
+                    alt={hw.title}
+                    className="max-w-full max-h-full object-contain mix-blend-screen drop-shadow-xl group-hover:scale-110 transition-transform duration-700 relative z-10"
+                  />
+                </div>
+                <div className="text-left flex-1">
+                  <span className="text-flolim font-mono text-[10px] uppercase tracking-widest block mb-1">
+                    {hw.tag}
+                  </span>
+                  <h3 className="text-xl font-bold text-white mb-1 group-hover:text-flolim transition-colors break-keep">
+                    {hw.title}
+                  </h3>
+                  <p className="text-slate-500 font-mono text-[11px] mb-3 uppercase">
+                    {hw.subtitle}
+                  </p>
+                  <p className="text-slate-400 text-xs md:text-sm font-light leading-relaxed break-keep">
+                    {hw.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* 2. 프리미엄 LED 라인업 */}
+        <section className="relative z-10 mb-20">
+          <div className="flex items-center gap-3 mb-8 border-l-4 border-flolim pl-3">
+            <h2 className="text-xl md:text-2xl font-bold text-white">
+              2. 스마트 프리미엄 LED 라인업
+            </h2>
+            <span className="bg-slate-900 text-slate-400 text-[10px] md:text-xs px-2.5 py-1 rounded border border-slate-800 font-bold whitespace-nowrap">
+              Matter over Thread 탑재
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            {ledProducts.map((hw) => (
+              <div
+                key={hw.id}
+                className="bg-[#050b14] p-5 md:p-6 rounded-[2rem] border border-slate-800 shadow-inner hover:border-flolim/40 transition-all duration-300 flex flex-col h-full group relative overflow-hidden"
+              >
+                <div className="absolute -right-6 -top-6 w-24 h-24 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 blur-2xl pointer-events-none"></div>
+                <div className="w-full aspect-square bg-slate-900/40 rounded-xl mb-4 flex items-center justify-center border border-slate-800/80 p-3 relative overflow-hidden z-10">
+                  <img
+                    src={hw.image}
+                    alt={hw.title}
+                    className="max-w-full max-h-full object-contain mix-blend-screen drop-shadow-lg group-hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
+                <div className="text-left flex flex-col flex-grow relative z-10">
+                  <span className="text-flolim text-[9px] font-mono font-bold uppercase mb-1">
+                    LED {hw.id}
+                  </span>
+                  <h3 className="text-sm md:text-base font-bold text-white group-hover:text-flolim transition-colors mb-1 break-keep">
+                    {hw.title}
+                  </h3>
+                  <p className="text-slate-500 text-[10px] font-mono mb-3">
+                    {hw.subtitle}
+                  </p>
+                  <p className="text-slate-400 text-[11px] md:text-xs font-light leading-relaxed mb-4 flex-grow break-keep">
+                    {hw.desc}
+                  </p>
+                  <div className="grid grid-cols-2 gap-1.5 mt-auto">
+                    {hw.specs.map((spec, i) => (
+                      <div
+                        key={i}
+                        className="bg-slate-900/60 p-2.5 rounded-xl border border-slate-800 text-xs flex flex-col items-center justify-center"
+                      >
+                        <span className="text-slate-500 text-[8px] uppercase font-bold mb-0.5 whitespace-nowrap">
+                          {spec.label}
+                        </span>
+                        <span className="text-flolim font-black text-[10px] md:text-xs whitespace-nowrap">
+                          {spec.value}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* 3. Matter over Thread 기술 소개 브릿지 영역 */}
+        <section className="bg-slate-900/30 rounded-[2.5rem] p-8 md:p-12 border border-slate-800/80 relative overflow-hidden mb-16">
+          <div className="absolute -left-20 -bottom-20 w-80 h-80 bg-flolim/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+          <div className="text-left mb-10 relative z-10">
+            <span className="text-xs font-bold text-flolim uppercase tracking-widest block mb-2">
+              Technical Core Edge
+            </span>
+            <h2 className="text-2xl md:text-3xl font-bold text-white break-keep">
+              제품의 완벽성을 책임지는 무선 기술, Matter over Thread
+            </h2>
+            <div className="w-16 h-0.5 bg-flolim mt-4 mb-5 opacity-70"></div>
+            <p className="text-slate-400 text-sm font-light leading-relaxed max-w-4xl break-keep">
+              플로림의 스마트 하드웨어 라인업이 일반 스마트 기기들과 결정적으로
+              차별화되는 이유는, 글로벌 무선 표준 규격인{" "}
+              <strong className="text-slate-200">Matter</strong>와 고신뢰성 IP
+              기반 메시 네트워크 기술인{" "}
+              <strong className="text-slate-200">Thread</strong>를 제품 내부에
+              원천 탑재했기 때문입니다.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+            <div className="bg-[#050b14]/50 border border-slate-800 p-6 rounded-2xl hover:border-slate-700 transition-colors">
+              <h4 className="text-white font-bold text-sm md:text-base mb-3 flex items-center gap-2">
+                <span className="w-1 h-4 bg-flolim rounded-full"></span> 완벽한
+                자가 치유 무선망
+              </h4>
+              <p className="text-slate-400 text-xs md:text-sm font-light leading-relaxed break-keep">
+                Thread 통신은 조명 기구들끼리 그물망처럼 촘촘히 엮여 신호를 우회
+                중계합니다. 한 장비의 전원이 꺼져도 주변 기기를 통해 무선망을
+                스스로 복구하는 고신뢰성 제어망입니다.
+              </p>
+            </div>
+            <div className="bg-[#050b14]/50 border border-slate-800 p-6 rounded-2xl hover:border-slate-700 transition-colors">
+              <h4 className="text-white font-bold text-sm md:text-base mb-3 flex items-center gap-2">
+                <span className="w-1 h-4 bg-flolim rounded-full"></span> 은행
+                보안수준 암호화
+              </h4>
+              <p className="text-slate-400 text-xs md:text-sm font-light leading-relaxed break-keep">
+                강력한 종단간(E2EE) 암호화 통신 표준을 준수하여, 빌딩 제어
+                데이터를 노리는 외부 악성 해킹 공격이나 조명 제어권 탈취 시도를
+                원천 차단합니다.
+              </p>
+            </div>
+            <div className="bg-[#050b14]/50 border border-slate-800 p-6 rounded-2xl hover:border-slate-700 transition-colors">
+              <h4 className="text-white font-bold text-sm md:text-base mb-3 flex items-center gap-2">
+                <span className="w-1 h-4 bg-flolim rounded-full"></span>{" "}
+                초저전력 무선 반응속도
+              </h4>
+              <p className="text-slate-400 text-xs md:text-sm font-light leading-relaxed break-keep">
+                대규모 연결 인프라에서도 통신 딜레이 현상을 수 밀리초(ms) 단위로
+                억제하여, 센서 신호 감지 즉시 물 흐르듯 유기적으로 켜지는 쾌적한
+                반응 속도를 완성합니다.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <BottomNav
+          prev={{
+            label: "이전 페이지",
+            title: "IoT 센서 자동 제어",
+            path: "/smart-building/sensor",
+          }}
+          next={{
+            label: "다음 카테고리",
+            title: "대시보드 및 ESG 리포트",
+            path: "/platform/dashboard",
+          }} // 💡 타이틀 수정
+        />
+      </div>
+    </div>
+  );
+};
+
+export default SmartBuildingProduct;
+</file>
+
+<file path="src/pages/06_Support/SupportReferences.tsx">
+import PageHeader from "../../components/PageHeader";
+import BottomNav from "../../components/BottomNav";
+
+const SupportReferences = () => {
+  const cityCases = [
+    {
+      id: 1,
+      tag: "경기도 안산시",
+      title: "안산스마트허브 (1,594개)",
+      desc: "통행량 분석 IoT 조명제어 장치 적용",
+      prefix: "",
+      percent: "70",
+      unit: "%",
+      label: "에너지 감축",
+    },
+    {
+      id: 2,
+      tag: "서울특별시",
+      title: "강남 4구 도로 (1,500개)",
+      desc: "유동 인구 밀집 지역 스마트 제어망 구축",
+      prefix: "",
+      percent: "50",
+      unit: "%",
+      label: "이상 절감 (912MW)",
+    },
+    {
+      id: 3,
+      tag: "서울특별시",
+      title: "금천구 G밸리 (601개)",
+      desc: "심야 시간대 교통량 연동 자동 조도 조절",
+      prefix: "연간",
+      percent: "6만",
+      unit: "kWh",
+      label: "절감",
+    },
+  ];
+
+  const buildingCases = [
+    {
+      id: 4,
+      tag: "공장 및 상업시설",
+      title: "한국전자통신연구원 실증",
+      desc: "스마트조명 플랫폼 개별/그룹 제어 적용",
+      prefix: "최대",
+      percent: "74.1",
+      unit: "%",
+      label: "절감",
+    },
+    {
+      id: 5,
+      tag: "공동주택 및 건물",
+      title: "대한민국 LH공사 실증",
+      desc: "IoT 기반 10단계 자동 조도 조절(디밍) 적용",
+      prefix: "최대",
+      percent: "70",
+      unit: "%",
+      label: "이상 절감",
+    },
+    {
+      id: 6,
+      tag: "학교 및 사무실",
+      title: "한국광기술원 실증",
+      desc: "자연광 연동 스마트 센서망 자동 제어",
+      prefix: "일반 LED 대비",
+      percent: "43",
+      unit: "%",
+      label: "추가 절감",
+    },
+  ];
+
+  return (
+    <div className="pb-10 relative overflow-hidden">
+      <PageHeader
+        category="공식 실증 데이터"
+        title="공식 실증 데이터"
+        subtitle={
+          <>
+            기존 노후 조명을 스마트 제어 시스템으로 전환했을 때 입증되는
+            <br className="hidden md:block" />
+            <strong className="text-white font-bold">
+              객관적인 에너지 절감 및 탄소 중립 지표
+            </strong>
+            를 확인해 보세요.
+          </>
+        }
+      />
+
+      <div className="container mx-auto px-4 max-w-6xl mt-10">
+        <section className="bg-slate-900/50 backdrop-blur-md rounded-[2.5rem] p-6 md:p-10 lg:p-16 shadow-2xl border border-slate-800 mb-16 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-flolim/5 rounded-full blur-[150px] pointer-events-none -translate-y-1/4 translate-x-1/4"></div>
+
+          <div className="mb-8 md:mb-10 relative z-10">
+            <div className="flex items-center gap-3 border-b border-slate-800 pb-4 mb-4">
+              <svg
+                className="w-6 h-6 md:w-8 md:h-8 text-flolim shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                ></path>
+              </svg>
+              <h2 className="text-xl md:text-2xl font-bold text-white break-keep">
+                스마트 가로등 공식 실증 데이터
+              </h2>
+            </div>
+            <p className="text-slate-400 text-xs md:text-sm font-light break-keep">
+              전력 소모가 큰 노후 가로등을 통합 제어형 스마트 가로등으로
+              교체하여 입증된 국내외 공식 에너지 절감 데이터입니다.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
+            {cityCases.map((c) => (
+              <div
+                key={c.id}
+                className="bg-[#050b14] p-6 md:p-8 rounded-3xl border border-slate-700 shadow-inner hover:border-flolim/50 active:scale-[0.98] transition-all duration-300 group relative overflow-hidden flex flex-col h-full cursor-default"
+              >
+                <div className="absolute -right-6 -top-6 w-24 h-24 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
+                <div className="relative z-10 flex flex-col h-full">
+                  <span className="inline-block px-3 py-1 bg-slate-800 text-slate-400 text-[10px] md:text-xs font-bold rounded-lg mb-4 border border-slate-700 self-start">
+                    {c.tag}
+                  </span>
+                  <h3 className="text-lg md:text-xl font-bold text-white mb-2 group-hover:text-flolim transition-colors break-keep">
+                    {c.title}
+                  </h3>
+                  <p className="text-xs md:text-sm text-slate-500 font-medium mb-6 break-keep flex-grow">
+                    {c.desc}
+                  </p>
+
+                  <div className="flex flex-wrap items-end gap-x-2 gap-y-1 mt-auto">
+                    {c.prefix && (
+                      <span className="text-slate-400 font-bold mb-1 text-xs md:text-sm">
+                        {c.prefix}
+                      </span>
+                    )}
+                    <span className="text-3xl md:text-4xl font-black text-flolim tracking-tight drop-shadow-[0_0_15px_rgba(24,169,198,0.3)] whitespace-nowrap">
+                      {c.percent}
+                      <span className="text-lg md:text-xl font-medium ml-0.5">
+                        {c.unit}
+                      </span>
+                    </span>
+                    <span className="text-slate-400 font-bold mb-1 text-xs md:text-sm whitespace-nowrap">
+                      {c.label}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="bg-slate-900/50 backdrop-blur-md rounded-[2.5rem] p-6 md:p-10 lg:p-16 shadow-2xl border border-slate-800 mb-16 relative overflow-hidden">
+          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-flolim/5 rounded-full blur-[150px] pointer-events-none translate-y-1/4 -translate-x-1/4"></div>
+
+          <div className="mb-8 md:mb-10 relative z-10">
+            <div className="flex items-center gap-3 border-b border-slate-800 pb-4 mb-4">
+              <svg
+                className="w-6 h-6 md:w-8 md:h-8 text-flolim shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                ></path>
+              </svg>
+              <h2 className="text-xl md:text-2xl font-bold text-white break-keep">
+                스마트 빌딩 및 산업 현장 실증 데이터
+              </h2>
+            </div>
+            <p className="text-slate-400 text-xs md:text-sm font-light break-keep">
+              고효율 스마트 조명에 첨단 IoT 센서망을 결합하여 실내 공간의 전력
+              효율을 최적화한 공식 실증 데이터입니다.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
+            {buildingCases.map((c) => (
+              <div
+                key={c.id}
+                className="bg-[#050b14] p-6 md:p-8 rounded-3xl border border-slate-700 shadow-inner hover:border-flolim/50 active:scale-[0.98] transition-all duration-300 group relative overflow-hidden flex flex-col h-full cursor-default"
+              >
+                <div className="absolute -right-6 -top-6 w-24 h-24 bg-flolim/5 rounded-full z-0 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
+                <div className="relative z-10 flex flex-col h-full">
+                  <span className="inline-block px-3 py-1 bg-slate-800 text-slate-400 text-[10px] md:text-xs font-bold rounded-lg mb-4 border border-slate-700 self-start">
+                    {c.tag}
+                  </span>
+                  <h3 className="text-lg md:text-xl font-bold text-white mb-2 group-hover:text-flolim transition-colors break-keep">
+                    {c.title}
+                  </h3>
+                  <p className="text-xs md:text-sm text-slate-500 font-medium mb-6 break-keep flex-grow">
+                    {c.desc}
+                  </p>
+
+                  <div className="flex flex-wrap items-end gap-x-2 gap-y-1 mt-auto">
+                    {c.prefix && (
+                      <span className="text-slate-400 font-bold mb-1 text-xs md:text-sm break-keep">
+                        {c.prefix}
+                      </span>
+                    )}
+                    <span className="text-3xl md:text-4xl font-black text-flolim tracking-tight drop-shadow-[0_0_15px_rgba(24,169,198,0.3)] whitespace-nowrap">
+                      {c.percent}
+                      <span className="text-lg md:text-xl font-medium ml-0.5">
+                        {c.unit}
+                      </span>
+                    </span>
+                    <span className="text-slate-400 font-bold mb-1 text-xs md:text-sm whitespace-nowrap">
+                      {c.label}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-12 pt-6 border-t border-slate-800 text-center relative z-10 bg-[#050b14]/80 p-4 rounded-xl border border-slate-700/50">
+            <p className="text-slate-400 text-[10px] md:text-xs font-light break-keep leading-relaxed">
+              ※ 본 페이지의 데이터는 플로림의 직접 시공 실적이 아니며, 스마트
+              제어 시스템의 우수성과 기대 효과에 대한 이해를 돕기 위해 인용된
+              국가/공공기관 및 산업계의 공식 실증 사례입니다.
+            </p>
+          </div>
+        </section>
+
+        <BottomNav
+          prev={{
+            label: "이전 페이지",
+            title: "대시보드 및 ESG 리포트", // 💡 연결 수정
+            path: "/platform/dashboard",
+          }}
+          next={{
+            label: "다음 페이지",
+            title: "자료실",
+            path: "/support/archive",
+          }}
+        />
+      </div>
+    </div>
+  );
+};
+
+export default SupportReferences;
 </file>
 
 <file path="src/pages/01_Company/CompanyCert.tsx">
@@ -4841,110 +4558,6 @@ const SmartBuildingIntro = () => {
 export default SmartBuildingIntro;
 </file>
 
-<file path="src/App.tsx">
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import ScrollToTop from "./components/ScrollToTop";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Home from "./pages/Home";
-
-// Company
-import CompanyIntro from "./pages/01_Company/CompanyIntro";
-import CompanyGreeting from "./pages/01_Company/CompanyGreeting";
-import CompanyOrg from "./pages/01_Company/CompanyOrg";
-import CompanyCert from "./pages/01_Company/CompanyCert";
-import CompanyHistory from "./pages/01_Company/CompanyHistory";
-import CompanyLocation from "./pages/01_Company/CompanyLocation";
-
-// Business
-import BusinessEsco from "./pages/02_Business/BusinessEsco";
-import BusinessSimulation from "./pages/02_Business/BusinessSimulation";
-
-// Smart City
-import SmartCityIntro from "./pages/03_SmartCity/SmartCityIntro";
-import SmartCityLora from "./pages/03_SmartCity/SmartCityLora";
-import SmartCityNbIot from "./pages/03_SmartCity/SmartCityNbIot";
-import SmartCityDmx from "./pages/03_SmartCity/SmartCityDmx";
-
-// Smart Building
-import SmartBuildingIntro from "./pages/04_SmartBuilding/SmartBuildingIntro";
-import SmartBuildingSensor from "./pages/04_SmartBuilding/SmartBuildingSensor";
-import SmartBuildingProduct from "./pages/04_SmartBuilding/SmartBuildingProduct";
-
-// Platform
-import PlatformDashboard from "./pages/05_Platform/PlatformDashboard";
-import PlatformEsg from "./pages/05_Platform/PlatformEsg";
-
-// Support
-import SupportReferences from "./pages/06_Support/SupportReferences";
-import SupportArchive from "./pages/06_Support/SupportArchive";
-import SupportContact from "./pages/06_Support/SupportContact";
-
-// Policy
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import TermsOfService from "./pages/TermsOfService";
-
-function App() {
-  return (
-    <Router>
-      <ScrollToTop />
-      <div className="flex flex-col min-h-screen bg-[#020617] font-sans selection:bg-flolim selection:text-slate-900">
-        <Header />
-        <main className="flex-grow pt-20">
-          <Routes>
-            <Route path="/" element={<Home />} />
-
-            <Route path="/company/intro" element={<CompanyIntro />} />
-            <Route path="/company/greeting" element={<CompanyGreeting />} />
-            <Route path="/company/org" element={<CompanyOrg />} />
-            <Route path="/company/cert" element={<CompanyCert />} />
-            <Route path="/company/history" element={<CompanyHistory />} />
-            <Route path="/company/location" element={<CompanyLocation />} />
-
-            <Route path="/business/esco" element={<BusinessEsco />} />
-            <Route
-              path="/business/simulation"
-              element={<BusinessSimulation />}
-            />
-
-            <Route path="/smart-city/intro" element={<SmartCityIntro />} />
-            <Route path="/smart-city/lora" element={<SmartCityLora />} />
-            <Route path="/smart-city/nb-iot" element={<SmartCityNbIot />} />
-            <Route path="/smart-city/dmx" element={<SmartCityDmx />} />
-
-            <Route
-              path="/smart-building/intro"
-              element={<SmartBuildingIntro />}
-            />
-            <Route
-              path="/smart-building/product"
-              element={<SmartBuildingProduct />}
-            />
-            <Route
-              path="/smart-building/sensor"
-              element={<SmartBuildingSensor />}
-            />
-
-            <Route path="/platform/dashboard" element={<PlatformDashboard />} />
-            <Route path="/platform/esg" element={<PlatformEsg />} />
-
-            <Route path="/support/references" element={<SupportReferences />} />
-            <Route path="/support/archive" element={<SupportArchive />} />
-            <Route path="/support/contact" element={<SupportContact />} />
-
-            <Route path="/privacy" element={<PrivacyPolicy />} />
-            <Route path="/terms" element={<TermsOfService />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </Router>
-  );
-}
-
-export default App;
-</file>
-
 <file path="src/components/Footer.tsx">
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -5377,6 +4990,110 @@ export default function CompanyIntro() {
     </div>
   );
 }
+</file>
+
+<file path="src/App.tsx">
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ScrollToTop from "./components/ScrollToTop";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Home from "./pages/Home";
+
+// Company
+import CompanyIntro from "./pages/01_Company/CompanyIntro";
+import CompanyGreeting from "./pages/01_Company/CompanyGreeting";
+import CompanyOrg from "./pages/01_Company/CompanyOrg";
+import CompanyCert from "./pages/01_Company/CompanyCert";
+import CompanyHistory from "./pages/01_Company/CompanyHistory";
+import CompanyLocation from "./pages/01_Company/CompanyLocation";
+
+// Business
+import BusinessEsco from "./pages/02_Business/BusinessEsco";
+import BusinessSimulation from "./pages/02_Business/BusinessSimulation";
+
+// Smart City
+import SmartCityIntro from "./pages/03_SmartCity/SmartCityIntro";
+import SmartCityLora from "./pages/03_SmartCity/SmartCityLora";
+import SmartCityNbIot from "./pages/03_SmartCity/SmartCityNbIot";
+import SmartCityDmx from "./pages/03_SmartCity/SmartCityDmx";
+
+// Smart Building
+import SmartBuildingIntro from "./pages/04_SmartBuilding/SmartBuildingIntro";
+import SmartBuildingSensor from "./pages/04_SmartBuilding/SmartBuildingSensor";
+import SmartBuildingProduct from "./pages/04_SmartBuilding/SmartBuildingProduct";
+
+// Platform
+import PlatformDashboard from "./pages/05_Platform/PlatformDashboard";
+// 💡 PlatformEsg import 삭제 완료
+
+// Support
+import SupportReferences from "./pages/06_Support/SupportReferences";
+import SupportArchive from "./pages/06_Support/SupportArchive";
+import SupportContact from "./pages/06_Support/SupportContact";
+
+// Policy
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
+
+function App() {
+  return (
+    <Router>
+      <ScrollToTop />
+      <div className="flex flex-col min-h-screen bg-[#020617] font-sans selection:bg-flolim selection:text-slate-900">
+        <Header />
+        <main className="flex-grow pt-20">
+          <Routes>
+            <Route path="/" element={<Home />} />
+
+            <Route path="/company/intro" element={<CompanyIntro />} />
+            <Route path="/company/greeting" element={<CompanyGreeting />} />
+            <Route path="/company/org" element={<CompanyOrg />} />
+            <Route path="/company/cert" element={<CompanyCert />} />
+            <Route path="/company/history" element={<CompanyHistory />} />
+            <Route path="/company/location" element={<CompanyLocation />} />
+
+            <Route path="/business/esco" element={<BusinessEsco />} />
+            <Route
+              path="/business/simulation"
+              element={<BusinessSimulation />}
+            />
+
+            <Route path="/smart-city/intro" element={<SmartCityIntro />} />
+            <Route path="/smart-city/lora" element={<SmartCityLora />} />
+            <Route path="/smart-city/nb-iot" element={<SmartCityNbIot />} />
+            <Route path="/smart-city/dmx" element={<SmartCityDmx />} />
+
+            <Route
+              path="/smart-building/intro"
+              element={<SmartBuildingIntro />}
+            />
+            <Route
+              path="/smart-building/product"
+              element={<SmartBuildingProduct />}
+            />
+            <Route
+              path="/smart-building/sensor"
+              element={<SmartBuildingSensor />}
+            />
+
+            <Route path="/platform/dashboard" element={<PlatformDashboard />} />
+            {/* 💡 PlatformEsg Route 삭제 완료 */}
+
+            <Route path="/support/references" element={<SupportReferences />} />
+            <Route path="/support/archive" element={<SupportArchive />} />
+            <Route path="/support/contact" element={<SupportContact />} />
+
+            <Route path="/privacy" element={<PrivacyPolicy />} />
+            <Route path="/terms" element={<TermsOfService />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
+  );
+}
+
+export default App;
 </file>
 
 <file path="src/pages/03_SmartCity/SmartCityLora.tsx">
