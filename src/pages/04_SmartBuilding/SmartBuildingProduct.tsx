@@ -27,7 +27,7 @@ const SmartBuildingProduct = () => {
       title: "스마트 LED 다운라이트",
       subtitle: "6-inch Downlight",
       image: "/images/building_led_downlight.png",
-      desc: "단 10.1W의 초저전력 구동. 고도의 정밀 디밍(0.0001%) 제어 기술로 호텔, 로비, 회의실 등에 격조 높은 명품 빛을 선사합니다.",
+      desc: "단 10.1W의 초저전력 구동. 고도의 정밀 디밍 제어 기술로 호텔, 로비, 회의실 등에 격조 높은 명품 빛을 선사합니다.",
       specs: [
         { label: "소비 전력", value: "10.1W" },
         { label: "광효율", value: "100 Lm/W" },
@@ -38,7 +38,7 @@ const SmartBuildingProduct = () => {
       title: "스마트 직사각 평판등",
       subtitle: "1290x320 Panel Light", // 1285에서 1290으로 규격 수정
       image: "/images/building_led_panel_rect.png",
-      desc: "눈의 피로를 최소화하는 플리커 프리(Flicker-Free) 설계와 5700K(주광색)의 균일한 빛을 제공합니다. 학교, 관공서, 병원, 오피스 등에 쾌적한 시각 환경을 보장합니다.",
+      desc: "눈의 피로를 최소화하는 플리커 프리 설계와 5700K(주광색)의 균일한 빛을 제공합니다. 학교, 관공서, 병원, 오피스 등에 쾌적한 시각 환경을 보장합니다.",
       specs: [
         { label: "소비 전력", value: "25W" }, // 24.8W -> 25W 수정
         { label: "광효율", value: "165 Lm/W" }, // 170 -> 165 Lm/W 수정 (4125LM)
