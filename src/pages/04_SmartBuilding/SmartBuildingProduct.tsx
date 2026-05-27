@@ -10,7 +10,7 @@ const SmartBuildingProduct = () => {
       image: "/images/building_smart_hub_pro.png",
       tag: "Core Brain",
       desc: "국가 공인 KC 인증(방송통신기자재 적합등록)을 획득하여 신뢰성을 입증한 고성능 다중 통신 게이트웨이입니다. Matter, Thread 프로토콜을 동시에 처리하여 수천 개의 조명 기기와 센서를 하나의 네트워크로 완벽하게 연동합니다.",
-      certLogo: "/images/logo-kc-cutout.png", // 💡 추가됨: KC 인증 마크 경로
+      certLogo: "/images/logo-kc-cutout.png", // KC 인증 마크 경로
     },
     {
       id: "02",
@@ -111,9 +111,9 @@ const SmartBuildingProduct = () => {
                     alt={hw.title}
                     className="max-w-full max-h-full object-contain mix-blend-screen drop-shadow-xl group-hover:scale-110 transition-transform duration-700 relative z-10"
                   />
-                  {/* 💡 추가됨: KC 인증 마크 렌더링 영역 */}
+                  {/* 💡 수정됨: 위치를 absolute bottom-3 right-3 로 변경 */}
                   {hw.certLogo && (
-                    <div className="absolute top-3 left-3 z-20 bg-white/95 px-1.5 py-1 rounded-md shadow-md backdrop-blur-sm border border-slate-200">
+                    <div className="absolute bottom-3 right-3 z-20 bg-white/95 px-1.5 py-1 rounded-md shadow-md backdrop-blur-sm border border-slate-200">
                       <img
                         src={hw.certLogo}
                         alt="KC 인증 마크"
