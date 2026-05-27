@@ -33,9 +33,26 @@ export default function CompanyCert() {
       title: "창업기업 확인서",
       desc: "공공기관 우선 구매 대상",
     },
+    {
+      id: 6,
+      img: "cert-iso45001.png",
+      title: "ISO 45001 인증",
+      desc: "안전보건경영시스템",
+    },
+    {
+      id: 7,
+      img: "cert-iso9001.png",
+      title: "ISO 9001 인증",
+      desc: "품질경영시스템",
+    },
+    {
+      id: 8,
+      img: "cert-kc-hub.png",
+      title: "KC 적합등록필증",
+      desc: "플로림 스마트 허브 프로",
+    },
   ];
 
-  // 💡 진행 중인 심사 및 등록 현황 (날짜 수정됨)
   const progresses = [
     {
       id: 1,

@@ -6,10 +6,10 @@ const SmartBuildingProduct = () => {
     {
       id: "01",
       title: "플로림 스마트 허브 프로",
-      subtitle: "Flolim Smart Hub Pro",
+      subtitle: "Flolim Smart Hub Pro (KC 인증 완료)",
       image: "/images/building_smart_hub_pro.png",
       tag: "Core Brain",
-      desc: "(주)플로림이 자체 개발한 고성능 다중 통신 게이트웨이입니다. Matter, Thread 프로토콜을 동시에 처리하여 수천 개의 조명 기기와 센서를 하나의 네트워크로 완벽하게 연동합니다.",
+      desc: "국가 공인 KC 인증(방송통신기자재 적합등록)을 획득하여 신뢰성을 입증한 고성능 다중 통신 게이트웨이입니다. Matter, Thread 프로토콜을 동시에 처리하여 수천 개의 조명 기기와 센서를 하나의 네트워크로 완벽하게 연동합니다.",
     },
     {
       id: "02",
@@ -34,25 +34,25 @@ const SmartBuildingProduct = () => {
       ],
     },
     {
-      id: "04", // 👇 직사각 평판등 스펙 업데이트
+      id: "04",
       title: "스마트 직사각 평판등",
-      subtitle: "1290x320 Panel Light", // 1285에서 1290으로 규격 수정
+      subtitle: "1290x320 Panel Light",
       image: "/images/building_led_panel_rect.png",
-      desc: "눈의 피로를 최소화하는 플리커 프리 설계와 5700K(주광색)의 균일한 빛을 제공합니다. 학교, 관공서, 병원, 오피스 등에 쾌적한 시각 환경을 보장합니다.",
+      desc: "눈의 피로를 최소화하는 플리커 프리(Flicker-Free) 설계와 5700K(주광색)의 균일한 빛을 제공합니다. 학교, 관공서, 병원, 오피스 등에 쾌적한 시각 환경을 보장합니다.",
       specs: [
-        { label: "소비 전력", value: "25W" }, // 24.8W -> 25W 수정
-        { label: "광효율", value: "165 Lm/W" }, // 170 -> 165 Lm/W 수정 (4125LM)
+        { label: "소비 전력", value: "25W" },
+        { label: "광효율", value: "165 Lm/W" },
       ],
     },
     {
-      id: "05", // 👇 정사각 평판등 스펙 업데이트
+      id: "05",
       title: "스마트 정사각 평판등",
       subtitle: "640x640 Panel Light",
       image: "/images/building_led_panel_sq.png",
       desc: "27mm의 슬림한 디자인이 돋보이는 고효율 직하형 면조명입니다. 플리커 프리 기술이 적용되어 대형 마트, 편의점, 상업시설 및 사무실의 집중력 향상에 도움을 줍니다.",
       specs: [
-        { label: "소비 전력", value: "25W" }, // 24.8W -> 25W 수정
-        { label: "광효율", value: "165 Lm/W" }, // 170 -> 165 Lm/W 수정 (4125LM)
+        { label: "소비 전력", value: "25W" },
+        { label: "광효율", value: "165 Lm/W" },
       ],
     },
     {
@@ -258,7 +258,7 @@ const SmartBuildingProduct = () => {
             label: "다음 카테고리",
             title: "대시보드 및 ESG 리포트",
             path: "/platform/dashboard",
-          }} // 💡 타이틀 수정
+          }}
         />
       </div>
     </div>
